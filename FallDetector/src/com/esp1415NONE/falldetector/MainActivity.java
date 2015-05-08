@@ -1,4 +1,3 @@
-// Ciao Mi chiamo Matteo
 package com.esp1415NONE.falldetector;
 
 import android.support.v7.app.ActionBarActivity;
