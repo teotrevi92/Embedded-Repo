@@ -1,15 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.progettoandroid.MainActivity" >
+    tools:context="com.esp1415NONE.falldetector.ImpostazioniFragment" >
 
-    <item
-        android:id="@+id/action_save"
-        android:orderInCategory="100"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_save"
-        android:title="@string/action_save"/>
-    
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"

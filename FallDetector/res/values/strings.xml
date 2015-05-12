@@ -1,8 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">FallDetector</string>
+    <string name="app_name">Fall Detector</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_save">Save</string>
+    <string name="drawer_text">Navigation Drawer example.</string>
+    <string name="ns_menu">Menù</string>
+    <string name="ns_menu_bar">Fall Detector</string>
+    <string name="ns_menu_1">Home</string>
+    <string name="ns_menu_2">Sessione Corrente</string>
+    <string name="ns_menu_3">Sessioni</string>
+    <string name="ns_menu_4">Profilo</string>
+    <string name="ns_menu_5">Impostazioni</string>
+    <string name="ns_menu_6">Crediti</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="textview">TextView</string>
+    <string name="title_activity_session_">Session_Activity</string>
+    <string name="cron">Chronometer</string>
+    <string name="stop">Stop</string>
+    <string name="title_activity_prova">Prova</string>
+    <string name="title_activity_resume_activiti">ResumeActiviti</string>
+    <string name="title_activity_resume">ResumeActivity</string>
+    <string name="title_activity_riepilogo_sessioni">RiepilogoSessioni</string>
+    <string name="title_ListActivity2">ListActivity2</string>
+    <string name="title_activity_profilo_fragment">ProfiloFragment</string>
+    <string name="title_activity_impostazioni_fragment">ImpostazioniFragment</string>
+    <string name="title_activity_crediti_fragment">CreditiFragment</string>
+    <string name="descImage">Immagine del drawer</string>
+    <string name="descRow">Immagine dello header</string>
+    <string name="title_activity_sessione_corrente_fragment">SessioneCorrenteFragment</string>
 
 </resources>

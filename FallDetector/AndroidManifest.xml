@@ -22,6 +22,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ListActivity2"
+            android:label="@string/title_ListActivity2" >
+        </activity>
+        <activity
+            android:name=".ProfiloFragment"
+            android:label="@string/title_activity_profilo_fragment" >
+        </activity>
+        <activity
+            android:name=".ImpostazioniFragment"
+            android:label="@string/title_activity_impostazioni_fragment" >
+        </activity>
+        <activity
+            android:name=".CreditiFragment"
+            android:label="@string/title_activity_crediti_fragment" >
+        </activity>
+        <activity
+            android:name=".SessioneCorrenteFragment"
+            android:label="@string/title_activity_sessione_corrente_fragment" >
+        </activity>
     </application>
 
 </manifest>

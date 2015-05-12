@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="ns_menu_items">
+        <item>ns_menu_1</item>
+        <item>ns_menu_2</item>
+        <item>ns_menu_3</item>
+        <item>ns_menu_4</item>
+        <item>ns_menu_5</item>
+        <item>ns_menu_6</item>
+    </string-array>
+
+    <array name="ns_menu_items_icon">
+        <item>home</item>
+        <item>current_session</item>
+        <item>sessions</item>
+        <item>profile</item>
+        <item>settings</item>
+        <item>info</item>
+    </array>
+    
+    <string-array name="titoli">
+        <item >Sessione 1</item>
+        <item >Sessione 2</item>
+        <item >Sessione 3</item>
+        <item >Sessione 4</item>
+        <item >Sessione 5</item>
+        <item >Sessione 6</item>
+        <item >Sessione 7</item>
+        <item >Sessione 8</item>
+        <item >Sessione 9</item>
+        <item >Sessione 10</item>
+        <item >Sessione 11</item>
+        <item >Sessione 12</item>
+        <item >Sessione 13</item>
+        <item >Sessione 14</item>
+        <item >Sessione 15</item>
+        <item >Sessione 16</item>
+    </string-array>
+    <string-array name="descrizioni">
+        <item >Descrizione 1</item>
+        <item >Descrizione 2</item>
+        <item >Descrizione 3</item>
+        <item >Descrizione 4</item>
+        <item >Descrizione 5</item>
+        <item >Descrizione 6</item>
+        <item >Descrizione 7</item>
+        <item >Descrizione 8</item>
+        <item >Descrizione 9</item>
+        <item >Descrizione 10</item>
+        <item >Descrizione 11</item>
+        <item >Descrizione 12</item>
+        <item >Descrizione 13</item>
+        <item >Descrizione 14</item>
+        <item >Descrizione 15</item>
+        <item >Descrizione 16</item>
+    </string-array>
+    <string-array name="menu">
+		<item>Edit</item>
+		<item>Delete</item>
+		<item>Send</item>
+	</string-array>
+    
+
+</resources>
