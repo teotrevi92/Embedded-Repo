@@ -49,7 +49,7 @@ public class MainActivity extends ActionBarActivity {
 		if (savedInstanceState == null)
 		{
 			//apre in automatico questa activity quando avvio l'app
-			HomeFragment ls_fragment = new HomeFragment();
+			FragmentHome ls_fragment = new FragmentHome();
 			fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 			//mi serve per metterlo nello stack per il pulsante indietro
 			fragmentTransaction.addToBackStack(null);
@@ -195,7 +195,7 @@ public class MainActivity extends ActionBarActivity {
 
 			switch (position) {
 			case 1:
-				HomeFragment ls_fragment1 = new HomeFragment();
+				FragmentHome ls_fragment1 = new FragmentHome();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment1);
 				fragmentTransaction.commit();
 				//ricreo l'oggetto per nuova futura Transaction
@@ -205,7 +205,7 @@ public class MainActivity extends ActionBarActivity {
 				mDrawer.closeDrawer(mDrawerList);
 				break;
 			case 2:
-				SessioneCorrenteFragment ls_fragment2 = new SessioneCorrenteFragment();
+				FragmentCurrentSession ls_fragment2 = new FragmentCurrentSession() ;
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment2);
 				fragmentTransaction.commit();
 				//passaggio di paremetri
@@ -228,7 +228,7 @@ public class MainActivity extends ActionBarActivity {
 				break;
 				
 			case 4:
-				ProfiloFragment ls_fragment4 = new ProfiloFragment();
+				FragmentProfile ls_fragment4 = new FragmentProfile();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment4);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();
@@ -237,7 +237,7 @@ public class MainActivity extends ActionBarActivity {
 				break;
 				
 			case 5:
-				ImpostazioniFragment ls_fragment5 = new ImpostazioniFragment();
+				FragmentSettings ls_fragment5 = new FragmentSettings();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment5);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();
@@ -246,7 +246,7 @@ public class MainActivity extends ActionBarActivity {
 				break;
 			
 			case 6:
-				CreditiFragment ls_fragment6 = new CreditiFragment();
+				FragmentCredits ls_fragment6 = new FragmentCredits();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment6);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();

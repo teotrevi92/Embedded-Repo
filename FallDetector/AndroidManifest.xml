@@ -42,6 +42,26 @@
             android:name=".SessioneCorrenteFragment"
             android:label="@string/title_activity_sessione_corrente_fragment" >
         </activity>
+        <activity
+            android:name=".FragmentCredits"
+            android:label="@string/title_activity_fragment_credits" >
+        </activity>
+        <activity
+            android:name=".FragmentSettings"
+            android:label="@string/title_activity_fragment_settings" >
+        </activity>
+        <activity
+            android:name=".FragmentProfile"
+            android:label="@string/title_activity_fragment_profile" >
+        </activity>
+        <activity
+            android:name=".FragmentCurrentSession"
+            android:label="@string/title_activity_fragment_current_session" >
+        </activity>
+        <activity
+            android:name=".FragmentHome"
+            android:label="@string/title_activity_fragment_home" >
+        </activity>
     </application>
 
 </manifest>

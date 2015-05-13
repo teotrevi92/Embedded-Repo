@@ -31,5 +31,10 @@
     <string name="descImage">Immagine del drawer</string>
     <string name="descRow">Immagine dello header</string>
     <string name="title_activity_sessione_corrente_fragment">SessioneCorrenteFragment</string>
+    <string name="title_activity_fragment_credits">FragmentCredits</string>
+    <string name="title_activity_fragment_settings">FragmentSettings</string>
+    <string name="title_activity_fragment_profile">FragmentProfile</string>
+    <string name="title_activity_fragment_current_session">FragmentCurrentSession</string>
+    <string name="title_activity_fragment_home">FragmentHome</string>
 
 </resources>
