@@ -99,7 +99,7 @@ public class MainActivity extends ActionBarActivity {
 					"drawable", this.getPackageName());
 
 			NsMenuItemModel mItem = new NsMenuItemModel(id_title, id_icon);
-			//potrei eliminarlo, lo tengo, in caso lo canello, è il numeretto blu
+			//potrei eliminarlo, lo tengo, in caso lo canello, e' il numeretto blu
 			//if (res==1) mItem.counter=12; //it is just an example...
 			//if (res==3) mItem.counter=3; //it is just an example...
 			mAdapter.addItem(mItem);
@@ -200,6 +200,7 @@ public class MainActivity extends ActionBarActivity {
 				fragmentTransaction.commit();
 				//ricreo l'oggetto per nuova futura Transaction
 				fragmentTransaction = fragmentManager.beginTransaction();
+				fragmentManager.popBackStack(); //viene tolto dallo stack questo fragment
 				//mi serve per metterlo nello stack per il pulsante indietro
 				fragmentTransaction.addToBackStack(null);
 				mDrawer.closeDrawer(mDrawerList);
@@ -213,6 +214,7 @@ public class MainActivity extends ActionBarActivity {
 				args.putString("play", "");
 				ls_fragment2.setArguments(args);
 				fragmentTransaction = fragmentManager.beginTransaction();
+				fragmentManager.popBackStack(); //viene tolto dallo stack questo fragment
 				//mi serve per metterlo nello stack per il pulsante indietro
 				fragmentTransaction.addToBackStack(null);				
 				mDrawer.closeDrawer(mDrawerList);
@@ -223,6 +225,7 @@ public class MainActivity extends ActionBarActivity {
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment3);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();
+				fragmentManager.popBackStack(); //viene tolto dallo stack questo fragment				
 				fragmentTransaction.addToBackStack(null);
 				mDrawer.closeDrawer(mDrawerList);
 				break;
@@ -232,6 +235,7 @@ public class MainActivity extends ActionBarActivity {
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment4);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();
+				fragmentManager.popBackStack(); //viene tolto dallo stack questo fragment				
 				fragmentTransaction.addToBackStack(null);
 				mDrawer.closeDrawer(mDrawerList);
 				break;
@@ -241,6 +245,7 @@ public class MainActivity extends ActionBarActivity {
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment5);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();
+				fragmentManager.popBackStack(); //viene tolto dallo stack questo fragment				
 				fragmentTransaction.addToBackStack(null);
 				mDrawer.closeDrawer(mDrawerList);
 				break;
@@ -250,6 +255,7 @@ public class MainActivity extends ActionBarActivity {
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment6);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();
+				fragmentManager.popBackStack(); //viene tolto dallo stack questo fragment				
 				fragmentTransaction.addToBackStack(null);
 				mDrawer.closeDrawer(mDrawerList);
 				break;	
