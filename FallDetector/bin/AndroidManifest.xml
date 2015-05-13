@@ -27,22 +27,6 @@
             android:label="@string/title_ListActivity2" >
         </activity>
         <activity
-            android:name=".ProfiloFragment"
-            android:label="@string/title_activity_profilo_fragment" >
-        </activity>
-        <activity
-            android:name=".ImpostazioniFragment"
-            android:label="@string/title_activity_impostazioni_fragment" >
-        </activity>
-        <activity
-            android:name=".CreditiFragment"
-            android:label="@string/title_activity_crediti_fragment" >
-        </activity>
-        <activity
-            android:name=".SessioneCorrenteFragment"
-            android:label="@string/title_activity_sessione_corrente_fragment" >
-        </activity>
-        <activity
             android:name=".FragmentCredits"
             android:label="@string/title_activity_fragment_credits" >
         </activity>
