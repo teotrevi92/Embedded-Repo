@@ -228,7 +228,6 @@ public class MainActivity extends ActionBarActivity {
 				//fragmentManager.popBackStack(); //viene tolto dallo stack questo fragment				
 				fragmentTransaction.addToBackStack(null);
 				mDrawer.closeDrawer(mDrawerList);
-				fragmentManager.popBackStack(); //viene tolto dallo stack questo fragment
 				break;
 				
 			case 4:
