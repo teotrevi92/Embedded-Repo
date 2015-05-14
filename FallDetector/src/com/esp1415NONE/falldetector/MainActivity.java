@@ -52,9 +52,10 @@ public class MainActivity extends ActionBarActivity {
 			FragmentHome ls_fragment = new FragmentHome();
 			fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 			//mi serve per metterlo nello stack per il pulsante indietro
-			fragmentTransaction.addToBackStack(null);
+//			fragmentTransaction.addToBackStack(null);
 			fragmentTransaction.commit();
 			fragmentTransaction = fragmentManager.beginTransaction();
+			fragmentTransaction.addToBackStack(null);
 		}
 
 		/*utilizzo un metodo di supporto di appcompact, e agisco il pulsante 
