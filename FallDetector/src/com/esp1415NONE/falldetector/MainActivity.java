@@ -55,7 +55,7 @@ public class MainActivity extends ActionBarActivity {
 //			fragmentTransaction.addToBackStack(null);
 			fragmentTransaction.commit();
 			fragmentTransaction = fragmentManager.beginTransaction();
-			fragmentTransaction.addToBackStack(null);
+			fragmentTransaction.addToBackStack("home");
 		}
 
 		/*utilizzo un metodo di supporto di appcompact, e agisco il pulsante 
@@ -197,66 +197,60 @@ public class MainActivity extends ActionBarActivity {
 			switch (position) {
 			case 1:
 				FragmentHome ls_fragment1 = new FragmentHome();
+				fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment1);
 				fragmentTransaction.commit();
 				//ricreo l'oggetto per nuova futura Transaction
 				fragmentTransaction = fragmentManager.beginTransaction();
-				//fragmentManager.popBackStack(); //viene tolto dallo stack questo fragment
-				//mi serve per metterlo nello stack per il pulsante indietro
-				fragmentTransaction.addToBackStack(null);
+				fragmentTransaction.addToBackStack("home");
 				mDrawer.closeDrawer(mDrawerList);
 				break;
 			case 2:
-				FragmentCurrentSession ls_fragment2 = new FragmentCurrentSession() ;
+				FragmentCurrentSession ls_fragment2 = new FragmentCurrentSession();
+				fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment2);
 				fragmentTransaction.commit();
-				//passaggio di paremetri
-				Bundle args=new Bundle();
-				args.putString("play", "");
-				ls_fragment2.setArguments(args);
 				fragmentTransaction = fragmentManager.beginTransaction();
-				//fragmentManager.popBackStack(); //viene tolto dallo stack questo fragment
-				//mi serve per metterlo nello stack per il pulsante indietro
 				fragmentTransaction.addToBackStack(null);				
 				mDrawer.closeDrawer(mDrawerList);
 				break;
 				
 			case 3:
 				FragmentListView2 ls_fragment3 = new FragmentListView2();
+				fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment3);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();
-				//fragmentManager.popBackStack(); //viene tolto dallo stack questo fragment				
 				fragmentTransaction.addToBackStack(null);
 				mDrawer.closeDrawer(mDrawerList);
 				break;
 				
 			case 4:
 				FragmentProfile ls_fragment4 = new FragmentProfile();
+				fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente		
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment4);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();
-				//fragmentManager.popBackStack(); //viene tolto dallo stack questo fragment				
 				fragmentTransaction.addToBackStack(null);
 				mDrawer.closeDrawer(mDrawerList);
 				break;
 				
 			case 5:
 				FragmentSettings ls_fragment5 = new FragmentSettings();
+				fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment5);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();
-				//fragmentManager.popBackStack(); //viene tolto dallo stack questo fragment				
 				fragmentTransaction.addToBackStack(null);
 				mDrawer.closeDrawer(mDrawerList);
 				break;
 			
 			case 6:
 				FragmentCredits ls_fragment6 = new FragmentCredits();
+				fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment6);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();
-				//fragmentManager.popBackStack(); //viene tolto dallo stack questo fragment				
 				fragmentTransaction.addToBackStack(null);
 				mDrawer.closeDrawer(mDrawerList);
 				break;	
@@ -270,7 +264,7 @@ public class MainActivity extends ActionBarActivity {
 
 				break;
 			}
-
+			
 
 		}
 
