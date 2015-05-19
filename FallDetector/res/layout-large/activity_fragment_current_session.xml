@@ -63,8 +63,8 @@
 	        android:id="@+id/playbutton"
 	        android:layout_width="200dp"
 	        android:layout_height="200dp"
-	        android:layout_centerHorizontal="true"
-	        android:layout_centerVertical="true"
+	        android:layout_alignParentBottom="true"
+	        android:layout_toLeftOf="@+id/stopbutton"
 	        android:background="@drawable/play"
 	        android:contentDescription="@string/DescPlay"
 	        android:visibility="visible" />
@@ -73,9 +73,10 @@
 	        android:id="@+id/stopbutton"
 	        android:layout_width="120dp"
 	        android:layout_height="120dp"
-	        android:layout_centerVertical="true"
-	        android:layout_toRightOf="@+id/pausebutton"
+	        android:layout_alignParentBottom="true"
+	        android:layout_marginBottom="21dp"
 	        android:layout_toEndOf="@+id/pausebutton"
+	        android:layout_toRightOf="@+id/pausebutton"
 	        android:background="@drawable/stop"
 	        android:contentDescription="@string/DescStop"
 	        android:visibility="visible" />
