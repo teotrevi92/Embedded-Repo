@@ -19,19 +19,17 @@
         android:text="@string/titleSession"
         android:gravity="center"
         android:textSize="25sp"
-        android:visibility="visible"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-     
-  
-    	
+
         <TextView
-	        android:id="@+id/textCrono"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_centerVertical="true"
-	        android:text="@string/time"
-	        android:textAppearance="?android:attr/textAppearanceLarge"
-	        android:textSize="70sp" />
+            android:id="@+id/textCrono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/time"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="30sp" />
     
     </RelativeLayout>
 
@@ -45,30 +43,32 @@
              android:layout_width="140dp"
              android:layout_height="140dp"
              android:layout_centerVertical="true"
+             android:layout_toLeftOf="@+id/stopbutton"
+             android:layout_toStartOf="@+id/stopbutton"
              android:background="@drawable/pause"
              android:contentDescription="@string/DescPause"
+             android:visibility="invisible" />
+
+         <ImageButton
+             android:id="@+id/stopbutton"
+             android:layout_width="70dp"
+             android:layout_height="70dp"
+             android:layout_alignParentRight="true"
+             android:layout_alignParentEnd="true"
+             android:layout_centerVertical="true"
+             android:background="@drawable/stop"
+             android:contentDescription="@string/DescStop"
              android:visibility="invisible" />
 
          <ImageButton
              android:id="@+id/playbutton"
              android:layout_width="140dp"
              android:layout_height="140dp"
-             android:layout_alignParentLeft="true"
-             android:layout_alignParentStart="true"
              android:layout_centerVertical="true"
+             android:layout_toLeftOf="@+id/stopbutton"
+             android:layout_toStartOf="@+id/stopbutton"
              android:background="@drawable/play"
              android:contentDescription="@string/DescPlay"
-             android:visibility="visible" />
-
-         <ImageButton
-             android:id="@+id/stopbutton"
-             android:layout_width="70dp"
-             android:layout_height="70dp"
-             android:layout_centerVertical="true"
-             android:layout_toEndOf="@+id/pausebutton"
-             android:layout_toRightOf="@+id/playbutton"
-             android:background="@drawable/stop"
-             android:contentDescription="@string/DescStop"
              android:visibility="visible" />
 
      </RelativeLayout>

@@ -46,6 +46,14 @@
             android:name=".FragmentHome"
             android:label="@string/title_activity_fragment_home" >
         </activity>
+         <activity android:name=".ToastAllertActivity"
+             android:theme="@android:style/Theme.Dialog"
+             android:label="@string/toast_act_title"
+             ></activity>
+        <service
+			android:name=".ChronoService"
+			android:enabled="true"
+			android:exported="false" />
     </application>
 
 </manifest>

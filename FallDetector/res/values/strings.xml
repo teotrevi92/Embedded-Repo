@@ -40,5 +40,9 @@
 	<string name="DescStop">Tasto Stop</string>
 	<string name="DescPause">Tasto Pause</string>
 	<string name="time">00:00:00</string>
-	<string name="titleSession">Nessuna sessione attiva</string>
+	<string name="titleSession">Nessuna sessione</string>
+	<string name="playtitleSession">Sessione in corso</string>
+	<string name="toast_act_title">AVVISO</string>
+	<string name="toast_act_messagge">Stai bene? Tra 10sec. verrà mandato un messaggio di aiuto. Premi Annulla per annullare.</string>
+	<string name="toast_act_button">Annulla</string>
 </resources>

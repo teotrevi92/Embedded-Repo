@@ -19,7 +19,6 @@
         android:text="@string/titleSession"
         android:gravity="center"
         android:textSize="30sp"
-        android:visibility="visible"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </RelativeLayout>
@@ -37,7 +36,7 @@
 	        android:layout_marginTop="60dp"
 	        android:text="@string/time"
 	        android:textAppearance="?android:attr/textAppearanceLarge"
-	        android:textSize="70sp" />
+	        android:textSize="30sp" />
     </LinearLayout>
      
 	
@@ -78,7 +77,7 @@
 	        android:layout_toEndOf="@+id/pausebutton"
 	        android:background="@drawable/stop"
 	        android:contentDescription="@string/DescStop"
-	        android:visibility="visible" />
+	        android:visibility="invisible" />
 
 	    </RelativeLayout>
  
