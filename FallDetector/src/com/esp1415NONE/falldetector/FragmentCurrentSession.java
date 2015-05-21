@@ -5,6 +5,7 @@ import com.esp1415NONE.falldetector.ChronoService.LocalBinder;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -13,11 +14,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 public class FragmentCurrentSession extends Fragment {	
 	
 	ImageButton play;
@@ -30,6 +34,8 @@ public class FragmentCurrentSession extends Fragment {
 	Timer myTimer;
 	TimerTask myTimerTask;
 	Handler hander = new Handler();
+	private FragmentTransaction fragmentTransaction;
+	private FragmentManager fragmentManager;
 	
 	/** Defines callbacks for service binding, passed to bindService() */
     private ServiceConnection mConnection = new ServiceConnection() {
@@ -70,6 +76,13 @@ public class FragmentCurrentSession extends Fragment {
 		pause.setVisibility(View.INVISIBLE);
 		title.setText(R.string.titleSession);
 	}
+	private void doStop()
+	{
+		FragmentResume ls_fragment = new FragmentResume();
+		fragmentTransaction.addToBackStack(null);
+		fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
+		fragmentTransaction.commit();
+	}
 	
 	
 	@Override
@@ -81,6 +94,9 @@ public class FragmentCurrentSession extends Fragment {
 		stop = (ImageButton) view.findViewById(R.id.stopbutton);
 		time = (TextView) view.findViewById(R.id.textCrono);
 		title = (TextView) view.findViewById(R.id.titoloSession);
+		
+		fragmentManager = getActivity().getSupportFragmentManager();
+		fragmentTransaction = fragmentManager.beginTransaction();
 		
 		Intent intent = new Intent(getActivity(), ChronoService.class);
 		getActivity().startService(intent);
@@ -98,6 +114,7 @@ public class FragmentCurrentSession extends Fragment {
 				{
 					cronom.play();
 					inPlay();
+					Toast.makeText(getActivity(), "Play" , Toast.LENGTH_LONG).show();
 				}
 				
 			}
@@ -115,6 +132,8 @@ public class FragmentCurrentSession extends Fragment {
 			            getActivity().unbindService(mConnection);
 			            mBound = false;
 			            inStop();
+			            Toast.makeText(getActivity(), "Stop" , Toast.LENGTH_LONG).show();
+			            doStop();
 				 }
 			}
 		});
@@ -135,6 +154,7 @@ public class FragmentCurrentSession extends Fragment {
 					String tm = cronom.getString();
 					time.setText(tm);
 					inPause();
+					Toast.makeText(getActivity(), "Pause" , Toast.LENGTH_LONG).show();
 				}
 			}
 		});
@@ -167,7 +187,7 @@ public class FragmentCurrentSession extends Fragment {
 		return view;
 	}
 	
-	public void onDestroy() {
+	public void onDestroyView() {
 		//per non avere piu' thread quando passo da un fragment all'altro chiudo il thread
 	    myTimer.cancel();
 	    myTimerTask.cancel();

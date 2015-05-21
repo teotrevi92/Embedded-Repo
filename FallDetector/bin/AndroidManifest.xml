@@ -46,14 +46,21 @@
             android:name=".FragmentHome"
             android:label="@string/title_activity_fragment_home" >
         </activity>
-         <activity android:name=".ToastAllertActivity"
-             android:theme="@android:style/Theme.Dialog"
-             android:label="@string/toast_act_title"
-             ></activity>
+        <activity
+            android:name=".ToastAllertActivity"
+            android:label="@string/toast_act_title"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+
         <service
-			android:name=".ChronoService"
-			android:enabled="true"
-			android:exported="false" />
+            android:name=".ChronoService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity
+            android:name=".FragmentResume"
+            android:label="@string/title_activity_fragment_resume" >
+        </activity>
     </application>
 
 </manifest>

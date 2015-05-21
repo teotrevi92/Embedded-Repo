@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation = "horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="com.esp1415NONE.falldetector.SessioneCorrenteFragment" >
+    
+
+       
+     <LinearLayout 
+            android:id="@+id/relativeLayoutHome1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent">
+        <TextView
+        android:id="@+id/titoloSession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titleSession"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </LinearLayout>
+
+     <RelativeLayout
+         android:id="@+id/relativeLayoutHome2"
+         android:layout_width="wrap_content"
+         android:layout_height="fill_parent"
+         android:layout_alignParentRight="true"
+         android:layout_alignParentEnd="true" >
+
+         <ImageButton
+             android:id="@+id/startSession"
+             android:layout_width="140dp"
+             android:layout_height="140dp"
+             android:layout_centerVertical="true"
+             android:background="@drawable/play"
+             android:contentDescription="@string/DescPlay"
+             android:visibility="visible" />
+     </RelativeLayout>
+
+</RelativeLayout>
