@@ -152,7 +152,6 @@ public class ChronoService extends Service implements SensorEventListener {
 		int hours= todayTime.get(Calendar.HOUR_OF_DAY);
 		int minutes = todayTime.get(Calendar.MINUTE);
 		int seconds = todayTime.get(Calendar.SECOND);
-		int milliseconds= todayTime.get(Calendar.MILLISECOND);
-		return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds+":"+milliseconds;
+		return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
 	}
 }

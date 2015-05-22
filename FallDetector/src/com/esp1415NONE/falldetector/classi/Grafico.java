@@ -84,7 +84,7 @@ public class Grafico {
 //			doBase();
 	}
 	//creo un immagine random
-	public void doRandomImg(int year, int month, int day, int hours, int minutes, int seconds, int milliseconds,int size)
+	public void doRandomImg(int year, int month, int day, int hours, int minutes, int seconds,int size)
 	{
 		rnd = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);;
 		canvas2 = new Canvas(rnd);
@@ -100,12 +100,11 @@ public class Grafico {
 		xrand[3]=(hours*size)/24;
 		xrand[4]=(minutes*size)/60;
 		xrand[5]=(seconds*size)/60;
-		xrand[0]=(milliseconds*size)/1000;
-		for (i=0;i<7;i++)
+		for (i=0;i<6;i++)
 		{
-			yrand[i]=(i+1)*14;
+			yrand[i]=(i+1)*(size/6);
 		}
-		for(i=0;i<7;i++)
+		for(i=0;i<6;i++)
 			canvas2.drawCircle(xrand[i], yrand[i], 8 , paint2);	
 	}
 	public Bitmap getRandomImg()
