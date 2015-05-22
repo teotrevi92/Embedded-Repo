@@ -64,7 +64,7 @@ public class FragmentHome extends Fragment{
     private void inStop()
     {
     	play.setVisibility(View.VISIBLE);
-    	title.setVisibility(View.VISIBLE);
+   // 	title.setVisibility(View.VISIBLE);
     }
     
 	@Override

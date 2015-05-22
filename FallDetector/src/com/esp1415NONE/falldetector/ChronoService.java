@@ -27,8 +27,18 @@ public class ChronoService extends Service implements SensorEventListener {
 		//variabili per il grafico e la data
 		Calendar todayTime;
 		Grafico graph;
-		
+		//db
+		DbAdapter dbHelper;
+		int id_s = 0; //id sessione corrente
 	
+	//per il database
+	@Override
+	public void onCreate() {
+		// TODO Auto-generated method stub
+		super.onCreate();
+		dbHelper = new DbAdapter(this);
+	}
+
 	public void onSensorChanged(SensorEvent event)
 	{
 	// Java's synchronized keyword is used to ensure mutually exclusive
@@ -116,6 +126,7 @@ public class ChronoService extends Service implements SensorEventListener {
 			/*QUI SI SALVA LA DATA DI INIZIO DELLA SESSIONE
 			
 			*/
+			id_s = dbHelper.createSession(100); //100 sarebbe la sensibilita dell'accelerometro
 		}
 		isPlaying = 1;
 		startForeground(0, null); //cerco di non far chiudere il service
@@ -134,9 +145,10 @@ public class ChronoService extends Service implements SensorEventListener {
 		isPlaying = 0;
 		stopForeground(true); //qui termino la richiesta di non chiudere il service
 		
-		/*QUI SI SALVA LA DURATA DELLA SESSIONE
+		/*QUI SI SALVA LA DURATA DELLA SESSIONE*/
 		 String lifeSession = getString();
-		*/
+		
+		dbHelper.setDuration(id_s, lifeSession);
 	}
 	public int getPlaying()
 	{
