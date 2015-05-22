@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class FragmentHome extends Fragment{
@@ -26,6 +27,7 @@ public class FragmentHome extends Fragment{
 	ChronoService cronom;
 	boolean mBound = false;
 	ImageButton play;
+	TextView title;
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
 	Timer myTimer;
@@ -59,13 +61,18 @@ public class FragmentHome extends Fragment{
 		fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.addToBackStack(null);
 	}
+    private void inStop()
+    {
+    	play.setVisibility(View.VISIBLE);
+    	title.setVisibility(View.VISIBLE);
+    }
     
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.activity_fragment_home, container, false);
 		play = (ImageButton) view.findViewById(R.id.startSession);
-		
+		title = (TextView) view.findViewById(R.id.titoloHome);
 		
 		fragmentManager = getActivity().getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
@@ -97,6 +104,8 @@ public class FragmentHome extends Fragment{
 					if (mBound) {
 						if (cronom.getPlaying() !=0)
 							inPlay();
+						else
+							inStop();
 						}
      				}
      			});

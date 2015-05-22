@@ -6,7 +6,6 @@ import java.util.Calendar;
 
 import android.app.Service;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -16,7 +15,6 @@ import android.os.IBinder;
 import android.util.Log;
 
 public class ChronoService extends Service implements SensorEventListener {
-		//private long tmp = 0;
 		private final IBinder mBinder = new LocalBinder();
 		private MyChronometer crn = new MyChronometer();
 		private static int isPlaying = 0; //0 se e' in stop, 1 in play, -1 in pausa
@@ -26,7 +24,7 @@ public class ChronoService extends Service implements SensorEventListener {
 		float totAcc;
 		Queue que;
 		static final int SIZE = 100;
-		//variabili per il grafico
+		//variabili per il grafico e la data
 		Calendar todayTime;
 		Grafico graph;
 		
@@ -59,6 +57,12 @@ public class ChronoService extends Service implements SensorEventListener {
 						Intent i = new Intent(this, ToastAllertActivity.class);
 						i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						startActivity(i);
+						
+						/*QUI SI SALVARE TUTTI I DATI DELLA CADUTA,
+						 	DATA E ORA E ARRAY DEI DATI
+						
+						*/
+						
 					}
 						
 					
@@ -93,7 +97,6 @@ public class ChronoService extends Service implements SensorEventListener {
 		SoundManager.init(ChronoService.this);
 		graph = new Grafico(300,300);
 		graph.doBase();
-		//creo l'immagine random per la sessione
 		que = new Queue(SIZE);
 		return mBinder;
 		
@@ -107,15 +110,9 @@ public class ChronoService extends Service implements SensorEventListener {
 		sm.registerListener((SensorEventListener) this, Accel, SensorManager.SENSOR_DELAY_UI);
 		if (isPlaying==0) //carico la data della sessione
 		{
-			Calendar todayTime = Calendar.getInstance();
-			int year = todayTime.get(Calendar.YEAR);
-			int day = todayTime.get(Calendar.DAY_OF_MONTH);
-			int month = todayTime.get(Calendar.MONTH)+1;
-			int hours= todayTime.get(Calendar.HOUR_OF_DAY);
-			int minutes = todayTime.get(Calendar.MINUTE);
-			int seconds = todayTime.get(Calendar.SECOND);
-			int milliseconds= todayTime.get(Calendar.MILLISECOND);
-			graph.doRandomImg(year,month,day,hours,minutes,seconds,milliseconds,100);
+			/*QUI SI SALVA LA DATA DI INIZIO DELLA SESSIONE
+			String dt = getDate();
+			*/
 		}
 		isPlaying = 1;
 		startForeground(0, null); //cerco di non far chiudere il service
@@ -134,6 +131,9 @@ public class ChronoService extends Service implements SensorEventListener {
 		isPlaying = 0;
 		stopForeground(true); //qui termino la richiesta di non chiudere il service
 		
+		/*QUI SI SALVA LA DURATA DELLA SESSIONE
+		String lifeSession = getString();
+		*/
 	}
 	public int getPlaying()
 	{
@@ -143,13 +143,16 @@ public class ChronoService extends Service implements SensorEventListener {
 	{
 		return crn.getElapsedTime();
 	}
-	public Bitmap getBitmap()
+	private String getDate()
 	{
-		return que.getGraphQueue();
+		Calendar todayTime = Calendar.getInstance();
+		int year = todayTime.get(Calendar.YEAR);
+		int day = todayTime.get(Calendar.DAY_OF_MONTH);
+		int month = todayTime.get(Calendar.MONTH)+1;
+		int hours= todayTime.get(Calendar.HOUR_OF_DAY);
+		int minutes = todayTime.get(Calendar.MINUTE);
+		int seconds = todayTime.get(Calendar.SECOND);
+		int milliseconds= todayTime.get(Calendar.MILLISECOND);
+		return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds+":"+milliseconds;
 	}
-	public Bitmap getRandomImg()
-	{
-		return graph.getRandomImg();
-	}
-	
 }

@@ -44,9 +44,9 @@ public class Queue
 		 //ALGORITMO CADUTA
 		 public boolean isFall()
 		 {
-			 if (getFloat((max/2)+1)<7)
+			 if (getFloat((max/2)+1)<6)
 				{
-					if(getFloat(max/2)>=15)
+					if(getFloat(max/2)>=20)
 					{
 						return true;
 					}

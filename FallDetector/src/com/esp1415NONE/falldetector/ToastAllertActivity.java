@@ -22,6 +22,8 @@ public class ToastAllertActivity extends Activity {
 	String gps = "Via Gradenigo";
 	String emailText = "Sono caduto. Mi trovo qui: " + gps;
 	String subject = "AIUTO DI SOCCORSO";
+	Handler handler;
+	boolean check=false;;
 	
 	@Override
 	public void onCreate(Bundle state) {
@@ -43,6 +45,7 @@ public class ToastAllertActivity extends Activity {
 				// TODO Auto-generated method stub
 				SoundManager.stop();
 				ToastAllertActivity.this.finish();
+				check = true;
 			}
 		});
 		
@@ -57,21 +60,24 @@ public class ToastAllertActivity extends Activity {
 		setContentView(mylayout);
 		
 		//se per 10 secondi non viene premuto il tasto ok, viene chiusa
-		Handler handler = new Handler();
+		handler = new Handler();
 		handler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				SoundManager.stop();
 				ToastAllertActivity.this.finish(); // kill after X seconds
-				email = new Intent(Intent.ACTION_SEND);
-				email.putExtra(Intent.EXTRA_EMAIL,emailTo);
-				email.putExtra(Intent.EXTRA_SUBJECT, subject);	
-				email.putExtra(Intent.EXTRA_TEXT, emailText);
-				email.setType("message/rfc822");
-				startActivity(Intent.createChooser(email, "chose en email client:"));
-				
+				if(!check)
+				{
+					email = new Intent(Intent.ACTION_SEND);
+					email.putExtra(Intent.EXTRA_EMAIL,emailTo);
+					email.putExtra(Intent.EXTRA_SUBJECT, subject);	
+					email.putExtra(Intent.EXTRA_TEXT, emailText);
+					email.setType("message/rfc822");
+					startActivity(Intent.createChooser(email, "chose en email client:"));
+				}
 			}
 		}, 10000);
+		
 
 	}
 }

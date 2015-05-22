@@ -61,6 +61,8 @@ public class FragmentCurrentSession extends Fragment {
 		play.setVisibility(View.VISIBLE);
 		pause.setVisibility(View.INVISIBLE);
 		title.setText(R.string.playtitleSession);
+		title.setVisibility(View.VISIBLE);
+		time.setVisibility(View.VISIBLE);
 	}
 	private void inPlay()
 	{
@@ -68,6 +70,9 @@ public class FragmentCurrentSession extends Fragment {
 		play.setVisibility(View.INVISIBLE);
 		pause.setVisibility(View.VISIBLE);
 		title.setText(R.string.playtitleSession);
+		title.setVisibility(View.VISIBLE);
+		time.setVisibility(View.VISIBLE);
+		
 	}
 	private void inStop()
 	{
@@ -75,6 +80,8 @@ public class FragmentCurrentSession extends Fragment {
 		play.setVisibility(View.VISIBLE);
 		pause.setVisibility(View.INVISIBLE);
 		title.setText(R.string.titleSession);
+		title.setVisibility(View.VISIBLE);
+		time.setVisibility(View.VISIBLE);
 	}
 	private void doStop()
 	{
@@ -82,6 +89,8 @@ public class FragmentCurrentSession extends Fragment {
 		fragmentTransaction.addToBackStack(null);
 		fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 		fragmentTransaction.commit();
+		time.setVisibility(View.INVISIBLE);
+		title.setVisibility(View.INVISIBLE);
 	}
 	
 	
