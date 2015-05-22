@@ -46,5 +46,13 @@
     <string name="toast_act_messagge">Stai bene? Tra 10sec. verrà mandato un messaggio di aiuto. Premi Annulla per annullare.</string>
     <string name="toast_act_button">Annulla</string>
     <string name="title_activity_fragment_resume">FragmentResume</string>
+    <string name="settings">Impostazioni FallDetector</string>
+    <string name="textaccurancy">Scegli l\'accuratezza dell\'accelerometro</string>
+    <string name="accurancy_prompt">Scegli</string>
+	<string-array name="accurancy_arrays">
+        <item>Bassa</item>
+        <item>Media</item>
+        <item>Alta</item>
+    </string-array>
 
 </resources>

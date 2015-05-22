@@ -102,7 +102,7 @@ public class FragmentCurrentSession extends Fragment {
 		pause = (ImageButton) view.findViewById(R.id.pausebutton);
 		stop = (ImageButton) view.findViewById(R.id.stopbutton);
 		time = (TextView) view.findViewById(R.id.textCrono);
-		title = (TextView) view.findViewById(R.id.titoloSession);
+		title = (TextView) view.findViewById(R.id.titleSession);
 		
 		fragmentManager = getActivity().getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();

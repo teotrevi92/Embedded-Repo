@@ -5,13 +5,16 @@ import com.esp1415NONE.falldetector.classi.*;
 import java.util.Calendar;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Binder;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class ChronoService extends Service implements SensorEventListener {
@@ -94,8 +97,7 @@ public class ChronoService extends Service implements SensorEventListener {
 	
 	@Override
 	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 		sm = (SensorManager)getSystemService(SENSOR_SERVICE);
 		SoundManager.init(ChronoService.this);
 		graph = new Grafico(300,300);
@@ -107,17 +109,20 @@ public class ChronoService extends Service implements SensorEventListener {
 	
 	public void play()
 	{	
+		if (isPlaying==0) //nuova sessione
+		{
+			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+			int a = preferences.getInt("spinnerValue", 10);
+			/*QUI SI SALVA LA DATA DI INIZIO DELLA SESSIONE
+			
+			*/
+			a++;
+		}
+		isPlaying = 1;
 		crn.start();
 		Sensor Accel = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 		// register this class as a listener for the accelerometer sensor
 		sm.registerListener((SensorEventListener) this, Accel, SensorManager.SENSOR_DELAY_UI);
-		if (isPlaying==0) //carico la data della sessione
-		{
-			/*QUI SI SALVA LA DATA DI INIZIO DELLA SESSIONE
-			
-			*/
-		}
-		isPlaying = 1;
 		startForeground(0, null); //cerco di non far chiudere il service
 	}		
 	

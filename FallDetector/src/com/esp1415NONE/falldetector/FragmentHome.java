@@ -27,7 +27,7 @@ public class FragmentHome extends Fragment{
 	ChronoService cronom;
 	boolean mBound = false;
 	ImageButton play;
-	TextView title;
+	TextView titlehome;
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
 	Timer myTimer;
@@ -64,7 +64,7 @@ public class FragmentHome extends Fragment{
     private void inStop()
     {
     	play.setVisibility(View.VISIBLE);
-    	title.setVisibility(View.VISIBLE);
+    	titlehome.setVisibility(View.VISIBLE);
     }
     
 	@Override
@@ -72,7 +72,7 @@ public class FragmentHome extends Fragment{
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.activity_fragment_home, container, false);
 		play = (ImageButton) view.findViewById(R.id.startSession);
-		title = (TextView) view.findViewById(R.id.titoloHome);
+		titlehome = (TextView) view.findViewById(R.id.titleHome);
 		
 		fragmentManager = getActivity().getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
