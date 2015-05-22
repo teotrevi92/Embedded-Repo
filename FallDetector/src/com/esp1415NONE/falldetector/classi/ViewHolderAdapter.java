@@ -17,12 +17,10 @@ public class ViewHolderAdapter extends ArrayAdapter<MyObj> {
 
 	private static String TAG = "RecycleAdapter";
 
-	private Activity mContext;
 	private LayoutInflater mInflater;
 
 	public ViewHolderAdapter(Activity context, int textViewResourceId) {
 		super(context, textViewResourceId);
-		mContext = context;
 		mInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}

@@ -53,15 +53,18 @@ public class ChronoService extends Service implements SensorEventListener {
 					
 					//ALGORITMO DI CADUTA
 					if (que.isFall())
-					{
+					{	
+						
+						
+						/*QUI SI SALVARE TUTTI I DATI DELLA CADUTA,
+					 	DATA E ORA E ARRAY DEI DATI
+						e mandare id_f nell'intent
+					*/
+						//allerta
 						Intent i = new Intent(this, ToastAllertActivity.class);
 						i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						startActivity(i);
-						
-						/*QUI SI SALVARE TUTTI I DATI DELLA CADUTA,
-						 	DATA E ORA E ARRAY DEI DATI
-						
-						*/
+	
 						
 					}
 						
@@ -111,7 +114,7 @@ public class ChronoService extends Service implements SensorEventListener {
 		if (isPlaying==0) //carico la data della sessione
 		{
 			/*QUI SI SALVA LA DATA DI INIZIO DELLA SESSIONE
-			String dt = getDate();
+			
 			*/
 		}
 		isPlaying = 1;
@@ -132,7 +135,7 @@ public class ChronoService extends Service implements SensorEventListener {
 		stopForeground(true); //qui termino la richiesta di non chiudere il service
 		
 		/*QUI SI SALVA LA DURATA DELLA SESSIONE
-		String lifeSession = getString();
+		 String lifeSession = getString();
 		*/
 	}
 	public int getPlaying()
@@ -143,15 +146,5 @@ public class ChronoService extends Service implements SensorEventListener {
 	{
 		return crn.getElapsedTime();
 	}
-	private String getDate()
-	{
-		Calendar todayTime = Calendar.getInstance();
-		int year = todayTime.get(Calendar.YEAR);
-		int day = todayTime.get(Calendar.DAY_OF_MONTH);
-		int month = todayTime.get(Calendar.MONTH)+1;
-		int hours= todayTime.get(Calendar.HOUR_OF_DAY);
-		int minutes = todayTime.get(Calendar.MINUTE);
-		int seconds = todayTime.get(Calendar.SECOND);
-		return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
-	}
+	
 }

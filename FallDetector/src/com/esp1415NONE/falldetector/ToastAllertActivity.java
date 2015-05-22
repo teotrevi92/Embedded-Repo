@@ -24,6 +24,7 @@ public class ToastAllertActivity extends Activity {
 	String subject = "AIUTO DI SOCCORSO";
 	Handler handler;
 	boolean check=false;;
+	boolean sent = false;
 	
 	@Override
 	public void onCreate(Bundle state) {
@@ -46,6 +47,7 @@ public class ToastAllertActivity extends Activity {
 				SoundManager.stop();
 				ToastAllertActivity.this.finish();
 				check = true;
+				
 			}
 		});
 		
@@ -68,13 +70,21 @@ public class ToastAllertActivity extends Activity {
 				ToastAllertActivity.this.finish(); // kill after X seconds
 				if(!check)
 				{
+					sent=true;
 					email = new Intent(Intent.ACTION_SEND);
 					email.putExtra(Intent.EXTRA_EMAIL,emailTo);
 					email.putExtra(Intent.EXTRA_SUBJECT, subject);	
 					email.putExtra(Intent.EXTRA_TEXT, emailText);
 					email.setType("message/rfc822");
 					startActivity(Intent.createChooser(email, "chose en email client:"));
+					
 				}
+
+					/*
+					 SALVARE CHE LA MAIL E' STATA INVIATA
+					 setSent
+					 */		
+				
 			}
 		}, 10000);
 		
