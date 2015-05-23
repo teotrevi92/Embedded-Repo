@@ -155,7 +155,7 @@ public class ChronoService extends Service implements SensorEventListener {
 		sm.unregisterListener(this);
 		isPlaying = 0;
 		stopForeground(true); //qui termino la richiesta di non chiudere il service
-		
+		idf = 0; //azzero il conteggio cadite per sessione
 	}
 	public int getPlaying()
 	{
