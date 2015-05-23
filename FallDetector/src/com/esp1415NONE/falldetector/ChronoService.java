@@ -30,6 +30,8 @@ public class ChronoService extends Service implements SensorEventListener {
 		//db
 		DbAdapter dbHelper;
 		int id_s = 0; //id sessione corrente
+		int idf = 0;
+		MyTime myTime;
 	
 	//per il database
 	@Override
@@ -69,7 +71,12 @@ public class ChronoService extends Service implements SensorEventListener {
 						/*QUI SI SALVARE TUTTI I DATI DELLA CADUTA,
 					 	DATA E ORA E ARRAY DEI DATI
 						e mandare id_f nell'intent
-					*/
+						 */
+						idf++;
+						myTime = new MyTime();
+						float f[] = {1.1f};
+						dbHelper.createFall(idf, id_s, 15L, 20L, myTime.myTime(), dbHelper.convertArrayToString(f));
+						
 						//allerta
 						Intent i = new Intent(this, ToastAllertActivity.class);
 						i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -140,15 +147,15 @@ public class ChronoService extends Service implements SensorEventListener {
 	}
 	public void stop()
 	{
+		/*QUI SI SALVA LA DURATA DELLA SESSIONE*/
+		String lifeSession = getString();
+		dbHelper.setDuration(id_s, lifeSession);  //per rash, memorizzo 00:00:00 quindi getString non va
+		
 		crn.stop();
 		sm.unregisterListener(this);
 		isPlaying = 0;
 		stopForeground(true); //qui termino la richiesta di non chiudere il service
 		
-		/*QUI SI SALVA LA DURATA DELLA SESSIONE*/
-		 String lifeSession = getString();
-		
-		dbHelper.setDuration(id_s, lifeSession);
 	}
 	public int getPlaying()
 	{
