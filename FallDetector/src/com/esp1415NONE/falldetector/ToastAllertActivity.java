@@ -31,7 +31,7 @@ public class ToastAllertActivity extends Activity {
 		// auto-kill activity after X seconds <-------------------------
 		super.onCreate(state);
 		
-		
+		SoundManager.init(this);
 		SoundManager.play();
 		Button ok = new Button(this);
 //		ok.setWidth(200);

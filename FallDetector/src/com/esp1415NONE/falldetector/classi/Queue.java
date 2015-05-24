@@ -7,18 +7,20 @@ import android.graphics.Bitmap;
 public class Queue
 	{
 		private float[] box;
-		private int back,max;
+		private int back, box_length, sensMax, sensMin;
 		
-		public Queue(int size)
+		public Queue(int size, int min, int max)
 		{
 			box = new float[size];
-			max = size;
+			box_length = size;
 			makeEmpty();
+			sensMax = max;
+			sensMin = min;
 		}
 		public void makeEmpty()
-		{back=max-1;}
+		{back=box_length-1;}
 		public boolean isEmpty()
-		 { return back==max-1;}
+		 { return back==box_length-1;}
 		 public void enqueue(float obj)
 		 { if(increment(back)<0) resize();
 		   box[back]=obj;
@@ -28,7 +30,7 @@ public class Queue
 		 { return index-1; }
 		 public void resize()
 		 {
-			 for (int i=max-1;i>0;i--)
+			 for (int i=box_length-1;i>0;i--)
 			 {
 				 box[i]=box[i-1];
 			 }
@@ -44,9 +46,9 @@ public class Queue
 		 //ALGORITMO CADUTA
 		 public boolean isFall()
 		 {
-			 if (getFloat((max/2)+1)<6)
+			 if (getFloat((box_length/2)+1)<sensMin)
 				{
-					if(getFloat(max/2)>=20)
+					if(getFloat(box_length/2)>=sensMax)
 					{
 						return true;
 					}
@@ -59,7 +61,7 @@ public class Queue
 			 Grafico graph;
 			 graph = new Grafico(300,300);
 			 graph.doBase();
-			 for(i=0;i<max;i++)
+			 for(i=0;i<box_length;i++)
 				 graph.disegna(box[i]);	
 			 return graph.getGrafico();
 		 }
