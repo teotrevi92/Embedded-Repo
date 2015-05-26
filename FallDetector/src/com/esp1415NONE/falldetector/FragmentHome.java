@@ -55,11 +55,9 @@ public class FragmentHome extends Fragment{
     private void inPlay()
 	{
     	FragmentCurrentSession ls_fragment2 = new FragmentCurrentSession();
-		fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
 		fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment2);
 		fragmentTransaction.commit();
 		fragmentTransaction = fragmentManager.beginTransaction();
-		fragmentTransaction.addToBackStack(null);
 	}
     private void inStop()
     {

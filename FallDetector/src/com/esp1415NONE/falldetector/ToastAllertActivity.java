@@ -24,7 +24,7 @@ public class ToastAllertActivity extends Activity {
 	String subject = "AIUTO DI SOCCORSO";
 	Handler handler;
 	boolean check=false;;
-	boolean sent = false;
+	boolean sent = false; //se la mail non viene inviata il valore resta false
 	
 	@Override
 	public void onCreate(Bundle state) {
@@ -34,8 +34,6 @@ public class ToastAllertActivity extends Activity {
 		SoundManager.init(this);
 		SoundManager.play();
 		Button ok = new Button(this);
-//		ok.setWidth(200);
-//		ok.setHeight(200);
 		ok.setText(R.string.toast_act_button);
 		TextView txt = new TextView(this);
 		txt.setText(R.string.toast_act_messagge);
@@ -70,7 +68,7 @@ public class ToastAllertActivity extends Activity {
 				ToastAllertActivity.this.finish(); // kill after X seconds
 				if(!check)
 				{
-					sent=true;
+					sent=true; //mail inviata
 					email = new Intent(Intent.ACTION_SEND);
 					email.putExtra(Intent.EXTRA_EMAIL,emailTo);
 					email.putExtra(Intent.EXTRA_SUBJECT, subject);	
@@ -81,7 +79,8 @@ public class ToastAllertActivity extends Activity {
 				}
 
 					/*
-					 SALVARE CHE LA MAIL E' STATA INVIATA
+					 SALVARE CHE LA MAIL E' STATA INVIATA O NO
+					 usare la variabile sent che 
 					 setSent
 					 */		
 				

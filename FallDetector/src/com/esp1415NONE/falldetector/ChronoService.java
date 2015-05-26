@@ -56,8 +56,11 @@ public class ChronoService extends Service implements SensorEventListener {
 					totAcc = (float) Math.sqrt((x*x)+(y*y)+(z*z));
 					que.enqueue(totAcc);
 					
+					//le sessione viene termina
+					//quando arriva alla massima durata, impostata dall'utente
 					if (getString().equals(maxTimeSession))
 						stop();
+					
 					//Rilevazione caduta
 					if (que.isFall())
 					{	
@@ -166,7 +169,7 @@ public class ChronoService extends Service implements SensorEventListener {
 		Sensor Accel = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 		// register this class as a listener for the accelerometer sensor
 		sm.registerListener((SensorEventListener) this, Accel, sensorAccurancy);
-		startForeground(0, null); //cerco di non far chiudere il service
+		startForeground(0, null); //chiedo di non far chiudere il service
 	}		
 	
 	public void pause()
