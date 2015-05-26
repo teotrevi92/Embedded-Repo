@@ -122,17 +122,17 @@ public class ChronoService extends Service implements SensorEventListener {
 			//imposto l'accuratezza dell'accellerometro
 			if (accurancy==0)	//se l'accuratezza e' normale allora ricevo 1 dato ogni 60 millisecondi
 			{	
-				sizeQueue = 5;
+				sizeQueue = 5; //ogni 200 millesimi di secondi riceve un dato
 				sensorAccurancy = SensorManager.SENSOR_DELAY_NORMAL;
 			}
 			else if(accurancy==1) //se l'accuratezza e' normale allora ricevo 1 dato ogni 20 millisecondi
 			{
-				sizeQueue = 17;
+				sizeQueue = 17; //ogni 60 millesimi di secondi riceve un dato
 				sensorAccurancy = SensorManager.SENSOR_DELAY_UI;
 			}
 			else if(accurancy==2) //se l'accuratezza e' normale allora ricevo 1 dato ogni 20 millisecondi
 			{
-				sizeQueue = 125;
+				sizeQueue = 125; //ogni 8 millesimi di secondi riceve un dato
 				sensorAccurancy = SensorManager.SENSOR_DELAY_GAME;
 			}
 			
