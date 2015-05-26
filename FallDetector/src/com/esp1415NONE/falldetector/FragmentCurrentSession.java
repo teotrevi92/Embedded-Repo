@@ -186,7 +186,8 @@ public class FragmentCurrentSession extends Fragment {
 							inPause();
 						else
 							inStop();
-						time.setText(cronom.getString());
+						if(cronom.getPlaying()!=0)
+							time.setText(cronom.getString());
 						}
      				}
      			});

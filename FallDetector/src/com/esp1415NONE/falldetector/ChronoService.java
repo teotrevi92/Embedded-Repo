@@ -33,7 +33,7 @@ public class ChronoService extends Service implements SensorEventListener {
 		Calendar todayTime;
 		Grafico graph;
 		String maxTimeSession;
-	
+		
 	public void onSensorChanged(SensorEvent event)
 	{
 	// Java's synchronized keyword is used to ensure mutually exclusive
@@ -52,7 +52,6 @@ public class ChronoService extends Service implements SensorEventListener {
 					float x = event.values[0];
 					float y = event.values[1];
 					float z = event.values[2];
-					
 					totAcc = (float) Math.sqrt((x*x)+(y*y)+(z*z));
 					que.enqueue(totAcc);
 					
@@ -133,7 +132,7 @@ public class ChronoService extends Service implements SensorEventListener {
 			}
 			else if(accurancy==2) //se l'accuratezza e' normale allora ricevo 1 dato ogni 20 millisecondi
 			{
-				sizeQueue = 50;
+				sizeQueue = 125;
 				sensorAccurancy = SensorManager.SENSOR_DELAY_GAME;
 			}
 			
@@ -195,6 +194,13 @@ public class ChronoService extends Service implements SensorEventListener {
 	public String getString()
 	{
 		return crn.getElapsedTime();
+	}
+	
+	@Override
+	public void onDestroy() {
+	// TODO Auto-generated method stub
+		System.out.println("ciao");
+	super.onDestroy();
 	}
 	
 }
