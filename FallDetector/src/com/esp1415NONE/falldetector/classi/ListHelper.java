@@ -6,12 +6,12 @@ import android.app.Activity;
 
 public class ListHelper {
 
-	protected static final String longText="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+	
 	
 	protected static ArrayList<MyObj> buildData() {
 		ArrayList<MyObj> list = new ArrayList<MyObj>();
 		for (int i = 1; i < 1000; i++) {
-			MyObj obj = new MyObj("text" + i, "text text text 2  ",longText);
+			MyObj obj = new MyObj("col1", "col2", "col3", "col4", "col5", "col6");
 			list.add(obj);
 			
 		}

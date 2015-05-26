@@ -28,7 +28,11 @@ public class ViewHolderAdapter extends ArrayAdapter<MyObj> {
 	static class ViewHolder {
 		TextView text1;
 		TextView text2;
-		TextView longtext;
+		TextView text3;
+		TextView text4;
+		TextView text5;
+		TextView text6;
+		
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -42,8 +46,11 @@ public class ViewHolderAdapter extends ArrayAdapter<MyObj> {
 			holder = new ViewHolder();
 			holder.text1 = (TextView) convertView.findViewById(R.id.text1);
 			holder.text2 = (TextView) convertView.findViewById(R.id.text2);
-			holder.longtext = (TextView) convertView
-					.findViewById(R.id.longtext);
+			holder.text3 = (TextView) convertView.findViewById(R.id.text3);
+			holder.text4 = (TextView) convertView.findViewById(R.id.text4);
+			holder.text5 = (TextView) convertView.findViewById(R.id.text5);
+			holder.text6 = (TextView) convertView.findViewById(R.id.text6);
+			
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -51,7 +58,11 @@ public class ViewHolderAdapter extends ArrayAdapter<MyObj> {
 		MyObj data = getItem(position);
 		holder.text1.setText(data.text1);
 		holder.text2.setText(data.text2);
-		holder.longtext.setText(data.longText);
+		holder.text3.setText(data.text3);
+		holder.text4.setText(data.text4);
+		holder.text5.setText(data.text5);
+		holder.text6.setText(data.text6);
+		
 
 		return convertView;
 

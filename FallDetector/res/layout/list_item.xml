@@ -10,34 +10,36 @@
         android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ellipsize="marquee"
-        android:gravity="center_vertical|start"
-        android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-         />
+        android:text="FirstCol" />
 
-    <TwoLineListItem
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minHeight="?android:attr/listPreferredItemHeight"
-        android:layout_marginLeft="5dip"
-        android:layout_marginStart="5dip"
-        android:mode="twoLine" >
+        android:text="SecCol" />
 
-        <TextView
-            android:id="@+id/text2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"            
-            android:layout_marginTop="2dip"
-             />
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ThirCol" />
 
-        <TextView
-            android:id="@+id/longtext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-       
-            android:layout_below="@id/text2"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-    </TwoLineListItem>
+    <TextView
+        android:id="@+id/text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FourCol" />
+
+    <TextView
+        android:id="@+id/text5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FifCol" />
+
+    <TextView
+        android:id="@+id/text6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SixCOl" />
 
 </LinearLayout>

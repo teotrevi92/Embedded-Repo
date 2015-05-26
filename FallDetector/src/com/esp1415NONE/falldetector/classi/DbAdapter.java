@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbAdapter  {
-
+	SQLiteDatabase db;
 	DbHelper helper;
 	public DbAdapter(Context context){
 
@@ -96,6 +96,23 @@ public class DbAdapter  {
 
 	}
 	
+	public DbAdapter open(){
+		db = helper.getWritableDatabase();
+		return this;
+	}
+	
+	public void close(){
+		helper.close();
+	}
+	
+	public Cursor gettAllRows(){
+		String where = null;
+		Cursor c = db.query(true, StringName.DATABASE_NAME, StringName.ALL_KEYS,where,null,null,null,null,null);
+		if(c!=null){
+			c.moveToFirst();
+		}
+		return c;
+	}
 	//registrazione contatto nelle impostazioni
 	public long setContact(String mail, String name, String surname)
 	{

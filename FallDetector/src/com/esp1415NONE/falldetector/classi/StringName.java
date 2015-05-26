@@ -13,12 +13,13 @@ public class StringName {
 	static final String SENS = "sens";
 	//tabella 2
 	static final String TABLE_NAME2 ="fall";
-	static final String UIDF = "_idf";
-	static final String UIDSREF = "ids"; // si riferisce a UIDS
-	static final String LAT = "lat";
-	static final String LONG = "longit";
-	static final String DATEF = "datef";
-	static final String ARRAY = "array";
+	public static final String UIDF = "_idf";
+	public static final String UIDSREF = "ids"; // si riferisce a UIDS
+	public static final String LAT = "lat";
+	public static final String LONG = "longit";
+	public static final String DATEF = "datef";
+	public static final String ARRAY = "array";
+	public static final String[] ALL_KEYS= {UIDF,UIDSREF,LAT,LONG,DATEF,ARRAY};
 	
 	//tabella 3
 	static final String TABLE_NAME3 ="state";
