@@ -101,7 +101,7 @@
             android:layout_gravity="center_vertical"
             android:text="@string/textonofftimer" />
         <TimePicker
-            android:id="@+id/timePicker5"
+            android:id="@+id/timePicker"
             android:layout_width="fill_parent"
             android:layout_height="89dp" />
         

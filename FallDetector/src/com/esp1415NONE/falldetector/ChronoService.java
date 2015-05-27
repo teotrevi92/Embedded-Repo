@@ -4,6 +4,8 @@ import com.esp1415NONE.falldetector.classi.*;
 
 import java.util.Calendar;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +16,7 @@ import android.hardware.SensorManager;
 import android.os.Binder;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 public class ChronoService extends Service implements SensorEventListener {
@@ -168,7 +171,24 @@ public class ChronoService extends Service implements SensorEventListener {
 		Sensor Accel = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 		// register this class as a listener for the accelerometer sensor
 		sm.registerListener((SensorEventListener) this, Accel, sensorAccurancy);
-		startForeground(0, null); //chiedo di non far chiudere il service
+		
+		//Creo la notifica
+		Intent intent = new Intent(this, MainActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
+		Notification notificationPlay = new NotificationCompat.Builder(getApplicationContext())
+		.setContentTitle("FallDetector")
+		.setContentText("In play")
+		.setSmallIcon(R.drawable.play)
+		.setContentIntent(pi) // Required on Gingerbread and below
+		.build();
+		final int notificationID = 5786000; // An ID for this notification unique within the app
+		startForeground(notificationID, notificationPlay);
+		
+		
+		
+		
+//		startForeground(0, null); //chiedo di non far chiudere il service
 	}		
 	
 	public void pause()
@@ -199,8 +219,7 @@ public class ChronoService extends Service implements SensorEventListener {
 	@Override
 	public void onDestroy() {
 	// TODO Auto-generated method stub
-		System.out.println("ciao");
-	super.onDestroy();
+		stop();
 	}
 	
 }

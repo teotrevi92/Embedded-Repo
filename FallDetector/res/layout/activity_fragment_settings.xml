@@ -99,7 +99,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
         <TimePicker
-            android:id="@+id/timePicker5"
+            android:id="@+id/timePicker"
             android:layout_width="fill_parent"
             android:layout_height="89dp" />
         
@@ -122,7 +122,7 @@
             android:text="@string/textemail" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/buttonemail"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/buttonaddemail" />

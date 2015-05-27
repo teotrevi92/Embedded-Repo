@@ -61,6 +61,12 @@
             android:name=".FragmentResume"
             android:label="@string/title_activity_fragment_resume" >
         </activity>
+        <service android:name=".AlarmService"
+                 android:enabled="true"
+                 android:exported="false" />
+         
+        <receiver android:name=".AlarmReceiver"/>
+        
     </application>
 
 </manifest>
