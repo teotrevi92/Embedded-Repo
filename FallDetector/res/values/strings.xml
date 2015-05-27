@@ -49,33 +49,12 @@
     <string name="settings">Impostazioni FallDetector</string>
     <string name="textaccurancy">Scegli l\'accuratezza dell\'accelerometro</string>
     <string name="accurancy_prompt">Scegli</string>
-	<string-array name="accurancy_arrays">
-        <item>Bassa</item>
-        <item>Media</item>
-        <item>Alta</item>
-    </string-array>
 	<string name="textmaxduration">Scegli la durata massima della sessione (HH:MM)</string>
-	<string name="maxsession_prompt">Massima durata sessione</string>
-	<string-array name="maxsession_arrays">
-        <item>1 ora</item>
-        <item>2 ore</item>
-        <item>3 ore</item>
-        <item>4 ore</item>
-        <item>5 ore</item>
-        <item>6 ore</item>
-        <item>7 ore</item>
-        <item>8 ore</item>
-        <item>9 ore</item>
-    </string-array>
+	<string name="maxsession_prompt">Massima durata sessione</string>	
 	<string name="texttimer">Imposta promemoria giornaliero</string>
 	<string name="textonofftimer">Attiva</string>
 	<string name="textsens">Scegli la sensibilità</string>
 	<string name="sens_prompt">Scegli</string>
-	<string-array name="sens_arrays">
-        <item>Corsa</item>
-        <item>Normale</item>
-        <item>Anziano</item>
-    </string-array>
 	<string name="textemail">Email a cui inviare la richiesta di aiuto</string>
 	<string name="buttonaddemail">MODIFICA LISTA EMAIL</string>
 	
