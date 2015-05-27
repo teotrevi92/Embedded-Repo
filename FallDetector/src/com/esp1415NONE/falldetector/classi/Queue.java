@@ -9,6 +9,7 @@ public class Queue
 		private float[] box;
 		private int back, box_length, sensMax, sensMin;
 		
+		//Viene chiamato per inserire i dati e rilevare la caduta
 		public Queue(int size, int min, int max)
 		{
 			box = new float[size];
@@ -16,6 +17,15 @@ public class Queue
 			makeEmpty();
 			sensMax = max;
 			sensMin = min;
+		}
+		//Viene chiamato quando mi serve per inserire i dati per poi creare il grafico
+		public Queue(int size) 
+		{
+			box = new float[size];
+			box_length = size;
+			makeEmpty();
+			sensMax = 0;
+			sensMin = 0;
 		}
 		public void makeEmpty()
 		{back=box_length-1;}
@@ -55,15 +65,15 @@ public class Queue
 				}
 			 return false;
 		 }
-		 public Bitmap getGraphQueue()
+		 public Bitmap getGraphQueue(int size)
 		 {
 			 int i;
 			 Grafico graph;
-			 graph = new Grafico(300,300);
+			 graph = new Grafico(size,size);
 			 graph.doBase();
 			 for(i=0;i<box_length;i++)
 				 graph.disegna(box[i]);	
 			 return graph.getGrafico();
 		 }
-		 
+
 	}

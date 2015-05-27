@@ -163,7 +163,7 @@ public class ChronoService extends Service implements SensorEventListener {
 			
 			
 			/*QUI SI SALVA LA DATA DI INIZIO DELLA SESSIONE
-			
+				salvare anche sizeQueue che serve poi per capire da quanti dati e' composto l'array
 			*/
 		}
 		isPlaying = 1;
@@ -184,11 +184,6 @@ public class ChronoService extends Service implements SensorEventListener {
 		.build();
 		final int notificationID = 5786000; // An ID for this notification unique within the app
 		startForeground(notificationID, notificationPlay);
-		
-		
-		
-		
-//		startForeground(0, null); //chiedo di non far chiudere il service
 	}		
 	
 	public void pause()
