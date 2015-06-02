@@ -37,7 +37,8 @@ public class ChronoService extends Service implements SensorEventListener {
 		Grafico graph;
 		String maxTimeSession;
 		
-	public void onSensorChanged(SensorEvent event)
+		
+		public void onSensorChanged(SensorEvent event)
 	{
 	// Java's synchronized keyword is used to ensure mutually exclusive
 	// access to the sensor. See also
@@ -66,7 +67,6 @@ public class ChronoService extends Service implements SensorEventListener {
 					//Rilevazione caduta
 					if (que.isFall())
 					{	
-						
 						
 						/*QUI SI SALVARE TUTTI I DATI DELLA CADUTA,
 					 	DATA E ORA E ARRAY DEI DATI
