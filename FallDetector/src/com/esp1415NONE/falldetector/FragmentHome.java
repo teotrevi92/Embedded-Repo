@@ -9,6 +9,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -28,6 +31,8 @@ public class FragmentHome extends Fragment{
 	boolean mBound = false;
 	ImageButton play;
 	TextView titlehome;
+	TextView statusGps;
+	TextView statusNtw;
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
 	Timer myTimer;
@@ -71,6 +76,8 @@ public class FragmentHome extends Fragment{
 		View view = inflater.inflate(R.layout.activity_fragment_home, container, false);
 		play = (ImageButton) view.findViewById(R.id.startSession);
 		titlehome = (TextView) view.findViewById(R.id.titleHome);
+		statusGps =(TextView) view.findViewById(R.id.textGps);
+		statusNtw =(TextView) view.findViewById(R.id.textNetwork);
 		
 		fragmentManager = getActivity().getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
@@ -84,21 +91,34 @@ public class FragmentHome extends Fragment{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if (mBound)
+				if(controlGps())
 				{
-					cronom.play();
-					inPlay();
-					Toast.makeText(getActivity(), "Play" , Toast.LENGTH_LONG).show();
+					if (mBound)
+					{
+						cronom.play();
+						inPlay();
+						Toast.makeText(getActivity(), "Play" , Toast.LENGTH_LONG).show();
+					}	
 				}
+				else
+					Toast.makeText(getActivity(), "ATTIVARE GPS" , Toast.LENGTH_LONG).show();
 			}
-		});
+			});
 	    
 	    myTimer = new Timer();   
 	    myTimerTask = new TimerTask() {  
      		@Override  
      		public void run() { getActivity().runOnUiThread(new Runnable() {  
      			@Override  
-     			public void run() {  	 
+     			public void run() {  
+     				if(controlGps())
+     					statusGps.setText(R.string.enableGps);
+     				else
+     					statusGps.setText(R.string.NoenableGps);
+     				if(controlInternet())
+     					statusNtw.setText(R.string.enableNet);
+     				else
+     					statusNtw.setText(R.string.NoenableNet);
 					if (mBound) {
 						if (cronom.getPlaying() !=0)
 							inPlay();
@@ -115,6 +135,20 @@ public class FragmentHome extends Fragment{
 		
 		return view;
 	}
+	
+	private boolean controlInternet() {
+		getActivity();
+		//controllo CONNESSIONE INTERNET
+		ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo actNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		return actNetworkInfo!=null;
+	}
+	private boolean controlGps(){
+		//Controllo ATTIVAZIONE GPS
+		LocationManager locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
+		return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+	}
+	
 	
 	public void onDestroyView() {
 		//per non avere piu' thread quando passo da un fragment all'altro chiudo il thread

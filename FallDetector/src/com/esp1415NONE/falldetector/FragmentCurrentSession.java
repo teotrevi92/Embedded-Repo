@@ -10,6 +10,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -31,6 +34,8 @@ public class FragmentCurrentSession extends Fragment {
 	boolean mBound = false;
 	TextView time;
 	TextView title;
+	TextView statusGps;
+	TextView statusNtw;
 	Timer myTimer;
 	TimerTask myTimerTask;
 	Handler hander = new Handler();
@@ -103,6 +108,8 @@ public class FragmentCurrentSession extends Fragment {
 		stop = (ImageButton) view.findViewById(R.id.stopbutton);
 		time = (TextView) view.findViewById(R.id.textCrono);
 		title = (TextView) view.findViewById(R.id.titleSession);
+		statusGps =(TextView) view.findViewById(R.id.textGps);
+		statusNtw =(TextView) view.findViewById(R.id.textNetwork);
 		
 		fragmentManager = getActivity().getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
@@ -119,12 +126,17 @@ public class FragmentCurrentSession extends Fragment {
 				Intent intent = new Intent(getActivity(), ChronoService.class);
 				getActivity().startService(intent);
 				getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-				if (mBound)
+				if(controlGps())
 				{
-					cronom.play();
-					inPlay();
-					Toast.makeText(getActivity(), "Play" , Toast.LENGTH_LONG).show();
+					if (mBound)
+					{
+						cronom.play();
+						inPlay();
+						Toast.makeText(getActivity(), "Play" , Toast.LENGTH_LONG).show();
+					}
 				}
+				else
+					Toast.makeText(getActivity(), "ATTIVARE GPS" , Toast.LENGTH_LONG).show();
 				
 			}
 		});
@@ -178,7 +190,16 @@ public class FragmentCurrentSession extends Fragment {
      		@Override  
      		public void run() { getActivity().runOnUiThread(new Runnable() {  
      			@Override  
-     			public void run() {  	 
+     			public void run() {  
+     				if(controlGps())
+     					statusGps.setText(R.string.enableGps);
+     				else
+     					statusGps.setText(R.string.NoenableGps);
+     				if(controlInternet())
+     					statusNtw.setText(R.string.enableNet);
+     				else
+     					statusNtw.setText(R.string.NoenableNet);
+     				
 					if (mBound) {
 						if (cronom.getPlaying() > 0)
 							inPlay();
@@ -195,6 +216,19 @@ public class FragmentCurrentSession extends Fragment {
 	    };
      	myTimer.scheduleAtFixedRate(myTimerTask, 0, 500);		
 		return view;
+	}
+	
+	private boolean controlInternet() {
+		getActivity();
+		//controllo CONNESSIONE INTERNET
+		ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo actNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		return actNetworkInfo!=null;
+	}
+	private boolean controlGps(){
+		//Controllo ATTIVAZIONE GPS
+		LocationManager locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
+		return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 	}
 	
 	public void onDestroyView() {

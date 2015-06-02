@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/titleSession"
+        android:visibility="invisible"
         android:gravity="center"
         android:textSize="50sp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -27,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
+            android:visibility="invisible"
             android:text="@string/time"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="100sp" />
@@ -69,7 +71,26 @@
              android:layout_toStartOf="@+id/stopbutton"
              android:background="@drawable/play"
              android:contentDescription="@string/DescPlay"
-             android:visibility="visible" />
+             android:visibility="invisible" />
+
+     <TextView
+         android:id="@+id/textGps"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentTop="true"
+         android:layout_centerHorizontal="true"
+         android:text=""
+         android:textSize="30sp" />
+
+     <TextView
+         android:id="@+id/textNetwork"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/textGps"
+         android:layout_alignStart="@+id/textGps"
+         android:layout_below="@+id/textGps"
+         android:text=""
+         android:textSize="30sp" />
 
      </RelativeLayout>
 

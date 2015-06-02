@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/titleSession"
+        android:visibility="invisible"
         android:gravity="center"
         android:textSize="30sp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -26,9 +27,8 @@
      <RelativeLayout
          android:id="@+id/relativeLayoutHome2"
          android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:layout_alignParentBottom="true"
-         android:layout_marginBottom="14dp" >
+         android:layout_height="400dp"
+         android:layout_alignParentBottom="true" >
 
          <ImageButton
              android:id="@+id/startSession"
@@ -38,7 +38,30 @@
              android:layout_centerVertical="true"
              android:background="@drawable/play"
              android:contentDescription="@string/DescPlay"
-             android:visibility="visible" />
+             android:visibility="invisible" />
+
+     <TextView
+         android:id="@+id/textGps"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/startSession"
+         android:layout_centerHorizontal="true"
+         android:textSize="30sp"
+         android:text="" />
+
+     <TextView
+         android:id="@+id/textNetwork"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/textGps"
+         android:textSize="30sp"
+         android:layout_alignLeft="@+id/textGps"
+         android:layout_alignStart="@+id/textGps"
+         android:text="" />
+
+
      </RelativeLayout>
+
+     
 
 </RelativeLayout>

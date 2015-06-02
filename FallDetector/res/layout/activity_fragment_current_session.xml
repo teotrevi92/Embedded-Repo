@@ -48,6 +48,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             >
+    
+          
    
 
 	    <ImageButton
@@ -80,6 +82,22 @@
 	        android:background="@drawable/stop"
 	        android:contentDescription="@string/DescStop"
 	        android:visibility="invisible" />
+
+	    <TextView
+	        android:id="@+id/textGps"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentTop="true"
+	        android:text="" />
+
+	    <TextView
+	        android:id="@+id/textNetwork"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/textGps"
+	        android:layout_alignStart="@+id/textGps"
+	        android:layout_below="@+id/textGps"
+	        android:text="" />
 
 	    </RelativeLayout>
  
