@@ -180,9 +180,9 @@ public class ChronoService extends Service implements SensorEventListener {
 		.setContentTitle("FallDetector")
 		.setContentText("In play")
 		.setSmallIcon(R.drawable.play)
-		.setContentIntent(pi) // Required on Gingerbread and below
+		.setContentIntent(pi) 
 		.build();
-		final int notificationID = 5786000; // An ID for this notification unique within the app
+		final int notificationID = 5786000;
 		startForeground(notificationID, notificationPlay);
 	}		
 	

@@ -4,6 +4,8 @@ package com.esp1415NONE.falldetector;
 import java.io.IOException;
 import java.util.List;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.location.Address;
@@ -14,6 +16,7 @@ import android.location.LocationManager;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 public class LocationService extends Service implements LocationListener{
@@ -79,6 +82,7 @@ public class LocationService extends Service implements LocationListener{
 		check=false;
 		sent=false;
 		mgr = (LocationManager) getSystemService(LOCATION_SERVICE);
+		setNotify();
 		//Cerco e salvo la localizzazione
         geocoder = new Geocoder(this);
 		if(mgr.isProviderEnabled(LocationManager.GPS_PROVIDER))
@@ -95,6 +99,22 @@ public class LocationService extends Service implements LocationListener{
 		}
 		return mBinder;
 	}
+	private void setNotify() {
+		///Creo la notifica
+		Intent intent = new Intent(this, MainActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
+		Notification notificationPlay = new NotificationCompat.Builder(getApplicationContext())
+		.setContentTitle("FallDetector")
+		.setContentText("Mail: invio in corso")
+		.setSmallIcon(R.drawable.play)
+		.setContentIntent(pi)
+		.build();
+		final int notificationID = 5786050;
+		startForeground(notificationID, notificationPlay);
+		
+	}
+
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
@@ -157,6 +177,8 @@ public class LocationService extends Service implements LocationListener{
 			
 			/* QUI BISOGNA SALVARE CHE LA MAIL E' STATA INVIATA ----------------------------------------------------------*/			
 			
+			
+			stopForeground(true);
 			stopSelf();
 		}
 	}
