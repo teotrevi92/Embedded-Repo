@@ -80,7 +80,7 @@
          android:layout_alignParentTop="true"
          android:layout_centerHorizontal="true"
          android:text=""
-         android:textSize="30sp" />
+         android:textSize="20sp" />
 
      <TextView
          android:id="@+id/textNetwork"
@@ -90,7 +90,7 @@
          android:layout_alignStart="@+id/textGps"
          android:layout_below="@+id/textGps"
          android:text=""
-         android:textSize="30sp" />
+         android:textSize="20sp" />
 
      </RelativeLayout>
 

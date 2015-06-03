@@ -126,7 +126,7 @@ public class FragmentCurrentSession extends Fragment {
 				Intent intent = new Intent(getActivity(), ChronoService.class);
 				getActivity().startService(intent);
 				getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-				if(controlGps())
+				if(controlInternet())
 				{
 					if (mBound)
 					{
@@ -136,7 +136,7 @@ public class FragmentCurrentSession extends Fragment {
 					}
 				}
 				else
-					Toast.makeText(getActivity(), "ATTIVARE GPS" , Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), "ATTIVARE CONNESSIONE DATI" , Toast.LENGTH_LONG).show();
 				
 			}
 		});
@@ -220,15 +220,23 @@ public class FragmentCurrentSession extends Fragment {
 	
 	private boolean controlInternet() {
 		getActivity();
+		NetworkInfo actNetworkInfo = null;
 		//controllo CONNESSIONE INTERNET
-		ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo actNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		try {
+			ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+			actNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		} catch (NullPointerException e) {}
 		return actNetworkInfo!=null;
 	}
 	private boolean controlGps(){
 		//Controllo ATTIVAZIONE GPS
-		LocationManager locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
-		return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		boolean control=false;
+		
+		try {
+			LocationManager locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
+			control=locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		} catch (NullPointerException e) {}
+		return control;
 	}
 	
 	public void onDestroyView() {

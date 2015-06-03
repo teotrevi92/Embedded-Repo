@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/titleSession"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:gravity="center"
         android:textSize="50sp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -37,23 +37,23 @@
              android:layout_centerVertical="true"
              android:background="@drawable/play"
              android:contentDescription="@string/DescPlay"
-             android:visibility="invisible" />
+             android:visibility="visible" />
 
          <TextView
              android:id="@+id/textGps"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_alignParentTop="true"
-             android:text=""
-             android:textSize="30sp" />
+             android:text="sss"
+             android:textSize="20sp" />
 
          <TextView
              android:id="@+id/textNetwork"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_below="@+id/textGps"
-             android:text=""
-             android:textSize="30sp" />
+             android:text="sss"
+             android:textSize="20sp" />
 
      </RelativeLayout>
 

@@ -86,7 +86,7 @@
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_centerHorizontal="true"
-         android:textSize="30sp"
+         android:textSize="20sp"
          android:text="" />
 
      <TextView
@@ -96,7 +96,7 @@
          android:layout_alignLeft="@+id/textGps"
          android:layout_alignStart="@+id/textGps"
          android:layout_below="@+id/textGps"
-         android:textSize="30sp"
+         android:textSize="20sp"
          android:text="" />
 
 	    </RelativeLayout>

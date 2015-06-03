@@ -7,14 +7,14 @@ import android.graphics.Bitmap;
 public class Queue
 	{
 		private float[] box;
-		private int back, box_length, sensMax, sensMin;
+		private int box_length, sensMax, sensMin;
 		
 		//Viene chiamato per inserire i dati e rilevare la caduta
 		public Queue(int size, int min, int max)
 		{
 			box = new float[size];
 			box_length = size;
-			makeEmpty();
+//			makeEmpty();
 			sensMax = max;
 			sensMin = min;
 		}
@@ -23,28 +23,40 @@ public class Queue
 		{
 			box = new float[size];
 			box_length = size;
-			makeEmpty();
+//			makeEmpty();
 			sensMax = 0;
 			sensMin = 0;
 		}
-		public void makeEmpty()
-		{back=box_length-1;}
-		public boolean isEmpty()
-		 { return back==box_length-1;}
+		
+//		public void makeEmpty()
+//		{back=box_length-1;}
+//		
+//		public boolean isEmpty()
+//		 { return back==box_length-1;}
+		
 		 public void enqueue(float obj)
-		 { if(increment(back)<0) resize();
-		   box[back]=obj;
-		   if (back > 0) back=increment(back);
-		 }
-		 public int increment(int index)
-		 { return index-1; }
-		 public void resize()
-		 {
-			 for (int i=box_length-1;i>0;i--)
+		 { 
+//		if(increment(back)<0) resize();
+//		   box[back]=obj;
+//		   if (back > 0) back=increment(back);
+		   
+		   for (int i=box_length-1;i>0;i--)
 			 {
 				 box[i]=box[i-1];
 			 }
+		   box[0]=obj;
+		   
 		 }
+//		 
+//		 public int increment(int index)
+//		 { return index-1; }
+//		 public void resize()
+//		 {
+//			 for (int i=box_length-1;i>0;i--)
+//			 {
+//				 box[i]=box[i-1];
+//			 }
+//		 }
 		 public float getFloat(int a)
 		 {
 			 return box[a];
@@ -58,7 +70,7 @@ public class Queue
 		 {
 			 if (getFloat((box_length/2)+1)<sensMin)
 				{
-					if(getFloat(box_length/2)>=sensMax)
+					if(getFloat(box_length/2)>sensMax)
 					{
 						return true;
 					}

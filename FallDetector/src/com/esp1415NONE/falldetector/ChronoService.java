@@ -143,17 +143,17 @@ public class ChronoService extends Service implements SensorEventListener {
 			if(int_sens==0)
 			{
 				sensibilityMin = 5;
-				sensibilityMax = 28;
+				sensibilityMax = 22;
 			}
 			else if(int_sens==1)
 			{
 				sensibilityMin = 6;
-				sensibilityMax = 25;
+				sensibilityMax = 18;
 			}
 			else if(int_sens==2)
 			{
 				sensibilityMin = 6;
-				sensibilityMax = 20;
+				sensibilityMax = 10;
 			}
 				
 			//creo l'array per il salvataggio dei dati dell'accellerometro
