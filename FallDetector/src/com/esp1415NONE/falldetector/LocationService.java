@@ -191,4 +191,8 @@ public class LocationService extends Service implements LocationListener{
 		if (ready)
 			sendMail(); //invio mail se la localizzazione e' pronta, altrimenti aspetto e verra' chiamata quando e' pronta
 	}
+	public void finish()
+	{
+		stopForeground(true);
+	}
 }

@@ -73,11 +73,14 @@ public class ToastAllertActivity extends Activity{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				SoundManager.stop();
-				ToastAllertActivity.this.finish();
 				check = true;
+				if(mBound)
+					loc.finish();
 				unbindService(mConnection);
 				
 				/* QUI BISOGNA SALVARE CHE NON E' STATA INVIATA LA MAIL*/
+				
+				ToastAllertActivity.this.finish();
 				
 			}
 		});
