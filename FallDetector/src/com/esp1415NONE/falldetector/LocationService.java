@@ -33,14 +33,16 @@ public class LocationService extends Service implements LocationListener{
 	String emailText = "Aiuto!! Sono caduto. Mi trovo qui:\n";
 	String subject = "AIUTO DI SOCCORSO";
 	
-	boolean check;
-	boolean sent;
+	boolean check; //Viene usata per avere l'ok dell'invio	
+	boolean sent; //Segnala il corretto invio della mail, da salvare del database
+	boolean ready; //Localizzazione salvata
     
     
 	@Override
 	public void onLocationChanged(Location location) {
 		// TODO Auto-generated method stub
 		setLocation();
+		ready=true;
 		sendMail();
 	}
 
@@ -81,20 +83,21 @@ public class LocationService extends Service implements LocationListener{
 		// TODO Auto-generated method stub
 		check=false;
 		sent=false;
+		ready=false;
 		mgr = (LocationManager) getSystemService(LOCATION_SERVICE);
 		setNotify();
 		//Cerco e salvo la localizzazione
         geocoder = new Geocoder(this);
 		if(mgr.isProviderEnabled(LocationManager.GPS_PROVIDER))
     	{
-			mgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100, 10, this);
+			mgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 10, this);
 			mLastLocation = mgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
     		
     	}
 		else 
 			//if(mgr.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
 		{
-			mgr.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 100, 10, this);
+			mgr.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10, 10, this);
         	mLastLocation = mgr.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);	
 		}
 		return mBinder;
@@ -107,7 +110,7 @@ public class LocationService extends Service implements LocationListener{
 		Notification notificationPlay = new NotificationCompat.Builder(getApplicationContext())
 		.setContentTitle("FallDetector")
 		.setContentText("Mail: invio in corso")
-		.setSmallIcon(R.drawable.play)
+		.setSmallIcon(R.drawable.sendmail)
 		.setContentIntent(pi)
 		.build();
 		final int notificationID = 5786050;
@@ -185,5 +188,7 @@ public class LocationService extends Service implements LocationListener{
 	public void check()
 	{
 		check=true; //conferma di invio mail
+		if (ready)
+			sendMail(); //invio mail se la localizzazione e' pronta, altrimenti aspetto e verra' chiamata quando e' pronta
 	}
 }
