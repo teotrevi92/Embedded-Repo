@@ -161,7 +161,7 @@ public class FragmentListView extends ListFragment {
 		switch (item.getItemId()) {
 		case R.id.delete_id:
 
-			Toast.makeText(activity, ""+ids, Toast.LENGTH_SHORT).show();
+			Toast.makeText(activity, "Eliminato:"+ids, Toast.LENGTH_SHORT).show();
 			dbHelper.dropSession(ids);
 			ssca.notifyDataSetChanged();
 			//per vedere la modifica in tempo reale
@@ -171,7 +171,7 @@ public class FragmentListView extends ListFragment {
 			setListAdapter(ssca);
 			return true;
 		case R.id.ren_id:
-			Toast.makeText(activity, "Da implementare la modifica", Toast.LENGTH_SHORT).show();
+//			Toast.makeText(activity, "Rinominato", Toast.LENGTH_SHORT).show();
 //			RenameDialog rd = new RenameDialog(getActivity(), ids);
 //            rd.show();
 			Intent i = new Intent(getActivity(), RenameActivity.class);

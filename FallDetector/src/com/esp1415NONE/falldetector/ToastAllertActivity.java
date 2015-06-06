@@ -4,16 +4,17 @@ package com.esp1415NONE.falldetector;
 
 
 import com.esp1415NONE.falldetector.LocationService.LocalBinder;
-import com.esp1415NONE.falldetector.classi.SoundManager;
 
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Vibrator;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +32,8 @@ public class ToastAllertActivity extends Activity{
     boolean mBound = false;
     LocationService loc;
     
+    private Vibrator vib;
+    private MediaPlayer mp;
 //    private DbAdapter dbAdapter;
  
     
@@ -60,8 +63,11 @@ public class ToastAllertActivity extends Activity{
 		super.onCreate(state);
 		
 //		dbAdapter = new DbAdapter(this);
-		SoundManager.init(this);
-		SoundManager.play();
+		mp = MediaPlayer.create(this, R.raw.avviso);
+		vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+		vib.vibrate(10000);
+		mp.setLooping(true);
+		mp.start();
 		Button ok = new Button(this);
 		ok.setText(R.string.toast_act_button);
 		TextView txt = new TextView(this);
@@ -77,7 +83,8 @@ public class ToastAllertActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				SoundManager.stop();
+				mp.stop();
+			    vib.cancel();
 				check = true;
 				if(mBound)
 					loc.finish();
@@ -111,7 +118,8 @@ public class ToastAllertActivity extends Activity{
 					public void run() {
 						if(!check)//se non e' stato premuto Annulla chiudi dopo 10 secondi e invia mail
 						{
-							SoundManager.stop();
+							mp.stop();
+						    vib.cancel();
 							if(mBound)
 								loc.check();
 							ToastAllertActivity.this.finish(); 
