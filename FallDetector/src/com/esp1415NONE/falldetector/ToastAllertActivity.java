@@ -88,7 +88,7 @@ public class ToastAllertActivity extends Activity{
 				check = true;
 				if(mBound)
 					loc.finish();
-				unbindService(mConnection);
+//				unbindService(mConnection);
 				
 				/* QUI BISOGNA SALVARE CHE NON E' STATA INVIATA LA MAIL*/
 				
