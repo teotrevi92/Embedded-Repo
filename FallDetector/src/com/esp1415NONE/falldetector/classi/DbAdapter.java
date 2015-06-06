@@ -529,10 +529,10 @@ public class DbAdapter  {
 		}
 
 
-		private void ondestroy() {
-			// TODO Auto-generated method stub
-
-		}
+//		private void ondestroy() {
+//			// TODO Auto-generated method stub
+//
+//		}
 
 	}
 }

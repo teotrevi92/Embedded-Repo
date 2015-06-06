@@ -3,18 +3,10 @@ package com.esp1415NONE.falldetector;
 import com.esp1415NONE.falldetector.classi.DbAdapter;
 import com.esp1415NONE.falldetector.classi.MyGraph;
 import com.esp1415NONE.falldetector.classi.Queue;
-import com.esp1415NONE.falldetector.classi.StringName;
 
-import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
-import android.app.DownloadManager.Query;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,7 +14,6 @@ public class DetailFallActivity extends Activity {
 
 	private DbAdapter dbAdapter;
 	private TextView name_S,id_s,id_f,date_f,lat_,longit_;
-	private String nameSess;
 	private String ids,idf,nameS,datef,lat,longit,dateS,array;
 	private Intent i;
 	private ImageView logo,graph;

@@ -1,24 +1,14 @@
 package com.esp1415NONE.falldetector.classi;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import com.esp1415NONE.falldetector.R;
 import com.esp1415NONE.falldetector.classi.DbAdapter;
-import com.esp1415NONE.falldetector.classi.DbAdapter.DbHelper;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnCreateContextMenuListener;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SessionSimpleCursorAdapterDetails extends SimpleCursorAdapter
 {

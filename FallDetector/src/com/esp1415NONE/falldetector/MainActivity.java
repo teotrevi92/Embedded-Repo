@@ -209,7 +209,7 @@ public class MainActivity extends ActionBarActivity {
 				break;
 				
 			case 3:
-				FragmentListView2 ls_fragment3 = new FragmentListView2();
+				FragmentListView ls_fragment3 = new FragmentListView();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment3);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();

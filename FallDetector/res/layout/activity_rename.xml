@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:ems="10" />
-
+	</LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             android:clickable="true"
             android:text="Conferma"
             android:layout_marginLeft="5dp"/>
-    </LinearLayout>
+    
     </LinearLayout>
 
 </RelativeLayout>

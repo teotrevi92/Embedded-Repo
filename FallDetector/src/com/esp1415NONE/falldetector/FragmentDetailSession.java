@@ -1,33 +1,21 @@
 package com.esp1415NONE.falldetector;
 
 import com.esp1415NONE.falldetector.classi.DbAdapter;
-import com.esp1415NONE.falldetector.classi.MyGraph;
-import com.esp1415NONE.falldetector.classi.SessionSimpleCursorAdapter;
 import com.esp1415NONE.falldetector.classi.SessionSimpleCursorAdapterDetails;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
-import android.view.ContextMenu;
-import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class FragmentDetailSession extends ListFragment {
 
-	private Activity activity;
+//	private Activity activity;
 	private String ids;
 	private String idf;
 	DbAdapter dbHelper;
@@ -41,7 +29,7 @@ public class FragmentDetailSession extends ListFragment {
 	@Override
 	public void onAttach(Activity a) {
 		super.onAttach(a);
-		activity = a;
+//		activity = a;
 	}
 	
 //	@Override
@@ -53,6 +41,7 @@ public class FragmentDetailSession extends ListFragment {
 //	}
 //	
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub

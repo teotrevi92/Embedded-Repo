@@ -136,7 +136,7 @@ public class LocationService extends Service implements LocationListener{
             setAdress();
         }
         else {
-        	where="(Couldn't get the location. Make sure location is enabled on the device)";
+        	where="(Non e' stato possibile rocevere i dati del gps!!)";
         }
         
         /*SALVARE LA  where COME LOCALIZZAZIONE, siccome puo' essere aggiornata, verra' salvata ogni volta cosi' da tenere quella ultima

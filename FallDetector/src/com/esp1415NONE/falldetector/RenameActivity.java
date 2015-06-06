@@ -1,22 +1,13 @@
 package com.esp1415NONE.falldetector;
 
 import com.esp1415NONE.falldetector.classi.DbAdapter;
-import com.esp1415NONE.falldetector.classi.SessionSimpleCursorAdapter;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class RenameActivity extends Activity{
 
@@ -26,7 +17,7 @@ public class RenameActivity extends Activity{
 	public String ids;
 	String where;
 	private Intent i;
-	private FragmentTransaction fragmentTransaction;
+//	private FragmentTransaction fragmentTransaction;
 	
 	
 	@Override
