@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="30dip"
+        android:layout_height="30dip"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dip"
+        android:contentDescription="image" />
+
+    <LinearLayout
+        android:id="@+id/contenitore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dip"
+        android:layout_toRightOf="@+id/logo"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/contenitorino"
+            android:layout_width="215dp"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/nome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="22dp" />
+            
+            <TextView
+                android:id="@+id/nomeS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sessione: "
+                android:layout_marginLeft="10dp"
+                android:textSize="22dp" />
+
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="215dp"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data: "
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/data"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=""
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="215dp"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Durata:  "
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/durata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00:00"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="N.Cadute: "
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/sessione"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textSize="14dp" />
+        </LinearLayout>
+        
+        
+    </LinearLayout>
+
+    <!--
+          <TextView
+        android:id="@+id/sessione"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/logo"
+        
+        android:text=""
+        android:textSize="16dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="7dip"  />
+    -->
+
+</RelativeLayout><!--
+      <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.progettoandroid.RiepilogoSessioni" >
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:divider="@null"
+        android:dividerHeight="0dp" >
+
+    </ListView>
+-->
+ 

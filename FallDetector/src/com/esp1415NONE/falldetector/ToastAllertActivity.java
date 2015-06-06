@@ -4,6 +4,7 @@ package com.esp1415NONE.falldetector;
 
 
 import com.esp1415NONE.falldetector.LocationService.LocalBinder;
+import com.esp1415NONE.falldetector.classi.DbAdapter;
 import com.esp1415NONE.falldetector.classi.SoundManager;
 
 import android.app.Activity;
@@ -31,6 +32,10 @@ public class ToastAllertActivity extends Activity{
     boolean mBound = false;
     LocationService loc;
     
+    private DbAdapter dbAdapter;
+ 
+    
+    
     private ServiceConnection mConnection = new ServiceConnection() {
 
         @Override
@@ -55,6 +60,7 @@ public class ToastAllertActivity extends Activity{
 		 annulla e verra' inviata la mail*/
 		super.onCreate(state);
 		
+		dbAdapter = new DbAdapter(this);
 		SoundManager.init(this);
 		SoundManager.play();
 		Button ok = new Button(this);

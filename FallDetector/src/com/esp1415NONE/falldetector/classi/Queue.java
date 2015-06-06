@@ -80,11 +80,11 @@ public class Queue
 		 public Bitmap getGraphQueue(int size)
 		 {
 			 int i;
-			 Grafico graph;
-			 graph = new Grafico(size,size);
+			 MyGraph graph;
+			 graph = new MyGraph(size,size);
 			 graph.doBase();
 			 for(i=0;i<box_length;i++)
-				 graph.disegna(box[i]);	
+				 graph.drowPoint(box[i]);	
 			 return graph.getGrafico();
 		 }
 

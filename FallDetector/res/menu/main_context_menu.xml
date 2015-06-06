@@ -6,12 +6,12 @@
         />
     
      <item 
-        android:id="@+id/mod_id"
-        android:title="Modifica Sessione"
+        android:id="@+id/ren_id"
+        android:title="Rinomina Sessione"
         />
      <item 
-        android:id="@+id/other_id"
-        android:title="Altre Opzioni"
+        android:id="@+id/new_session"
+        android:title="Avvia nuova sessione"
         />
     
 

@@ -49,19 +49,23 @@
     <string name="settings">Impostazioni FallDetector</string>
     <string name="textaccurancy">Scegli l\'accuratezza dell\'accelerometro</string>
     <string name="accurancy_prompt">Scegli</string>
-	<string name="textmaxduration">Scegli la durata massima della sessione (HH:MM)</string>
-	<string name="maxsession_prompt">Massima durata sessione</string>	
-	<string name="texttimer">Imposta promemoria giornaliero</string>
-	<string name="textonofftimer">Attiva</string>
-	<string name="textsens">Scegli la sensibilità</string>
-	<string name="sens_prompt">Scegli</string>
-	<string name="textemail">Email a cui inviare la richiesta di aiuto</string>
-	<string name="buttonaddemail">MODIFICA LISTA EMAIL</string>
-	<string name="enableGps">Gps ATTIVO</string>
-	<string name="NoenableGps">Gps NON ATTIVO</string>
-	<string name="enableNet">Connessione dati ATTIVA</string>
-	<string name="NoenableNet">Connessione dati NON ATTIVA</string>
-	
-	
-	
+    <string name="textmaxduration">Scegli la durata massima della sessione (HH:MM)</string>
+    <string name="maxsession_prompt">Massima durata sessione</string>
+    <string name="texttimer">Imposta promemoria giornaliero</string>
+    <string name="textonofftimer">Attiva</string>
+    <string name="textsens">Scegli la sensibilità</string>
+    <string name="sens_prompt">Scegli</string>
+    <string name="textemail">Email a cui inviare la richiesta di aiuto</string>
+    <string name="buttonaddemail">MODIFICA LISTA EMAIL</string>
+    <string name="enableGps">Gps ATTIVO</string>
+    <string name="NoenableGps">Gps NON ATTIVO</string>
+    <string name="enableNet">Connessione dati ATTIVA</string>
+    <string name="NoenableNet">Connessione dati NON ATTIVA</string>
+    <string name="title_activity_detail_fall">Dettaglio Caduta</string>
+    <string name="title_activity_fragment_detail_session">FragmentDetailSession</string>
+    <string name="title_activity_rename">RenameActivity</string>
+    <string name="title_activity_fragmaent_detail_session">FragmaentDetailSession</string>
+    <string name="toast_rename_button">Conferma</string>
+    <string name="activityRename">  Rinominare la Sessione?</string>
+    
 </resources>

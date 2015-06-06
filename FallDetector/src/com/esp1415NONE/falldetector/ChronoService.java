@@ -34,8 +34,13 @@ public class ChronoService extends Service implements SensorEventListener {
 		int sensibilityMax;
 		//variabili per il grafico e la data
 		Calendar todayTime;
-		Grafico graph;
+		MyGraph graph;
 		String maxTimeSession;
+		//Variabili per il database
+		private DbAdapter dbAdapter;
+		private int id_s = 0; //id sessione corrente
+		private int id_f = 0;
+		private MyTime myTime;
 		
 		
 		public void onSensorChanged(SensorEvent event)
@@ -72,6 +77,12 @@ public class ChronoService extends Service implements SensorEventListener {
 					 	DATA E ORA E ARRAY DEI DATI
 						e mandare id_f nell'intent
 					*/
+						id_f++;
+						myTime = new MyTime();
+//						float[] f = {1.1f}; //Passo gli array dei dati dell'accelerometro
+						String date = dbAdapter.convertArrayToString(que.getBox());
+						dbAdapter.createFall(id_f, id_s, 15L, 20L, myTime.myTime(), date); //I dati gps verranno salvati piu' avanti
+						
 						
 						//allerta
 						Intent i = new Intent(this, ToastAllertActivity.class);
@@ -107,6 +118,7 @@ public class ChronoService extends Service implements SensorEventListener {
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub		
 		sm = (SensorManager)getSystemService(SENSOR_SERVICE);
+		dbAdapter = new DbAdapter(this); //Inizializzazione database
 //		graph = new Grafico(300,300);
 //		graph.doBase();
 		return mBinder;
@@ -165,6 +177,7 @@ public class ChronoService extends Service implements SensorEventListener {
 			/*QUI SI SALVA LA DATA DI INIZIO DELLA SESSIONE
 				salvare anche sizeQueue che serve poi per capire da quanti dati e' composto l'array
 			*/
+			id_s = dbAdapter.createSession(sizeQueue, "Sessione");
 		}
 		isPlaying = 1;
 		crn.start();
@@ -194,9 +207,10 @@ public class ChronoService extends Service implements SensorEventListener {
 	}
 	public void stop()
 	{
-		/*QUI SI SALVA LA DURATA DELLA SESSIONE
-		 String lifeSession = getString();
-		*/
+		//QUI SI SALVA LA DURATA DELLA SESSIONE
+		 String lifeSession = getString(); 
+		dbAdapter.setDuration(id_s, lifeSession);
+		id_f = 0;
 		crn.stop();
 		sm.unregisterListener(this);
 		isPlaying = 0;

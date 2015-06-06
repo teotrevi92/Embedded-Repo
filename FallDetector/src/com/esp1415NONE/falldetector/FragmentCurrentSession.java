@@ -2,6 +2,7 @@ package com.esp1415NONE.falldetector;
 
 import com.esp1415NONE.falldetector.ChronoService;
 import com.esp1415NONE.falldetector.ChronoService.LocalBinder;
+import com.esp1415NONE.falldetector.classi.DbAdapter;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -41,6 +42,8 @@ public class FragmentCurrentSession extends Fragment {
 	Handler hander = new Handler();
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
+	private DbAdapter dbAdapter;
+	
 	
 	/** Defines callbacks for service binding, passed to bindService() */
     private ServiceConnection mConnection = new ServiceConnection() {
@@ -103,6 +106,8 @@ public class FragmentCurrentSession extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.activity_fragment_current_session, container, false);
+		dbAdapter = new DbAdapter(getActivity());
+		
 		play = (ImageButton) view.findViewById(R.id.playbutton);
 		pause = (ImageButton) view.findViewById(R.id.pausebutton);
 		stop = (ImageButton) view.findViewById(R.id.stopbutton);
@@ -154,6 +159,15 @@ public class FragmentCurrentSession extends Fragment {
 			            mBound = false;
 			            inStop();
 			            Toast.makeText(getActivity(), "Stop" , Toast.LENGTH_LONG).show();
+			  
+			            
+			          //implemento rinomina
+			            String ids = dbAdapter.getCurrentSessionID();
+			            Intent i = new Intent(getActivity(), RenameActivity.class);
+			            i.putExtra("ids", ids);
+			            i.putExtra("where", "stop");
+			            //i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			            startActivity(i);
 			            doStop();
 				 }
 			}
