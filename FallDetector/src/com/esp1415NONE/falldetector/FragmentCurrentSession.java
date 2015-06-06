@@ -94,7 +94,7 @@ public class FragmentCurrentSession extends Fragment {
 	private void doStop()
 	{
 		FragmentResume ls_fragment = new FragmentResume();
-		fragmentTransaction.addToBackStack(null);
+//		fragmentTransaction.addToBackStack(null);
 		fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 		fragmentTransaction.commit();
 		time.setVisibility(View.INVISIBLE);

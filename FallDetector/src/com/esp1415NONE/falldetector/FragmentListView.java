@@ -81,9 +81,9 @@ public class FragmentListView extends ListFragment {
 						args.putString("ids", ids);
 						frg.setArguments(args);
 						fragmentTransaction.replace(R.id.frag_show_activity, frg);
-						fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
+//						fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
 						fragmentTransaction.commit();
-						fragmentTransaction = fragmentManager.beginTransaction();
+//						fragmentTransaction = fragmentManager.beginTransaction();
 					}
 					else {
 						Toast.makeText(activity, "Non ci sono cadute", Toast.LENGTH_SHORT).show();
@@ -177,7 +177,7 @@ public class FragmentListView extends ListFragment {
 			Intent i = new Intent(getActivity(), RenameActivity.class);
 			i.putExtra("ids", ids);
 			i.putExtra("where", "rename");
-//			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(i);
 			ssca.notifyDataSetChanged();
 			//per vedere la modifica in tempo reale
@@ -189,13 +189,13 @@ public class FragmentListView extends ListFragment {
 			// adapter.notifyDataSetChanged();
 			return true;
 		case R.id.new_session:
-			FragmentHome ls_fragment = new FragmentHome();
-			fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
+			FragmentCurrentSession ls_fragment = new FragmentCurrentSession();
+//			fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
 			fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 			fragmentTransaction.commit();
-			fragmentTransaction = fragmentManager.beginTransaction();
-			fragmentTransaction.addToBackStack(null);
-			Toast.makeText(activity, "Da implementare altre opzioni", Toast.LENGTH_SHORT).show();
+//			fragmentTransaction = fragmentManager.beginTransaction();
+//			fragmentTransaction.addToBackStack(null);
+//			Toast.makeText(activity, "Da implementare altre opzioni", Toast.LENGTH_SHORT).show();
 			return true;
 		default:
 			return super.onContextItemSelected(item);

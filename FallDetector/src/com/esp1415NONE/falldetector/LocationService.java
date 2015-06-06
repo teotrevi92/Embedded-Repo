@@ -180,9 +180,7 @@ public class LocationService extends Service implements LocationListener{
 			
 			/* QUI BISOGNA SALVARE CHE LA MAIL E' STATA INVIATA ----------------------------------------------------------*/			
 			
-			
-			stopForeground(true);
-			stopSelf();
+			finish();
 		}
 	}
 	public void check()
@@ -194,5 +192,6 @@ public class LocationService extends Service implements LocationListener{
 	public void finish()
 	{
 		stopForeground(true);
+		stopSelf();
 	}
 }
