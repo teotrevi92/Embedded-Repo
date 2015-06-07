@@ -9,15 +9,18 @@ import com.esp1415NONE.falldetector.classi.DbAdapter;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -29,6 +32,8 @@ public class LocationService extends Service implements LocationListener{
     private Location mLastLocation;
     private Geocoder geocoder;
     DbAdapter dbAdapter;
+    private Vibrator vib;
+    private MediaPlayer mp;
     
     Intent email;
 
@@ -90,20 +95,26 @@ public class LocationService extends Service implements LocationListener{
 		check=false;
 		sent=false;
 		ready=false;
-		mgr = (LocationManager) getSystemService(LOCATION_SERVICE);
+		mgr = (LocationManager) this.getSystemService(LOCATION_SERVICE);
 		setNotify();
+		//avvio l'avviso
+		mp = MediaPlayer.create(this, R.raw.avviso);
+		vib = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+		vib.vibrate(10000);
+		mp.setLooping(true);
+		mp.start();
 		//Cerco e salvo la localizzazione
         geocoder = new Geocoder(this);
 		if(mgr.isProviderEnabled(LocationManager.GPS_PROVIDER))
     	{
-			mgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 10, this);
+			mgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 			mLastLocation = mgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
     		
     	}
 		else 
 			//if(mgr.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
 		{
-			mgr.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10, 10, this);
+			mgr.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
         	mLastLocation = mgr.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);	
 		}
 		return mBinder;
@@ -203,6 +214,11 @@ public class LocationService extends Service implements LocationListener{
 	{
 		stopForeground(true);
 		stopSelf();
+	}
+	public void stopAlarm()
+	{
+		mp.stop();
+	    vib.cancel();
 	}
 	public void setId(String id_s, String id_f) //Arrivano i valori per salvare i dati
 	{

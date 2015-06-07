@@ -10,11 +10,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Vibrator;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -32,8 +30,7 @@ public class ToastAllertActivity extends Activity{
     boolean mBound = false;
     LocationService loc;
     
-    private Vibrator vib;
-    private MediaPlayer mp;
+
     private Intent intent; //Tri
     private String ids; //Tri
     private String idf; //Tri
@@ -68,11 +65,7 @@ public class ToastAllertActivity extends Activity{
 		ids = intent.getStringExtra("ids"); //Tri
 		idf = intent.getStringExtra("idf"); //Tri
 //		dbAdapter = new DbAdapter(this);
-		mp = MediaPlayer.create(this, R.raw.avviso);
-		vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-		vib.vibrate(10000);
-		mp.setLooping(true);
-		mp.start();
+		
 		Button ok = new Button(this);
 		ok.setText(R.string.toast_act_button);
 		TextView txt = new TextView(this);
@@ -88,11 +81,11 @@ public class ToastAllertActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				mp.stop();
-			    vib.cancel();
 				check = true;
-				if(mBound)
+				if(mBound){
 					loc.finish();
+					loc.stopAlarm();
+				}
 //				unbindService(mConnection);
 				
 				/* QUI BISOGNA SALVARE CHE NON E' STATA INVIATA LA MAIL*/
@@ -121,17 +114,15 @@ public class ToastAllertActivity extends Activity{
 				handler.postDelayed(new Runnable() {
 					@Override
 					public void run() {
-						if(mBound)  //Tri
-							loc.setId(ids, idf);  //Tri
-						//decommenta queste due righe sopra e passa i valori
-						
+						if(mBound) 
+							loc.setId(ids, idf); 
 						
 						if(!check)//se non e' stato premuto Annulla chiudi dopo 10 secondi e invia mail
 						{
-							mp.stop();
-						    vib.cancel();
-							if(mBound)
+							if(mBound){
 								loc.check();
+								loc.stopAlarm();
+							}
 							ToastAllertActivity.this.finish(); 
 						}
 					}
