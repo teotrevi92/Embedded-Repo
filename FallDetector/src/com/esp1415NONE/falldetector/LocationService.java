@@ -98,12 +98,17 @@ public class LocationService extends Service implements LocationListener{
 			mLastLocation = mgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
     		
     	}
-		else 
-			//if(mgr.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
+		else if(mgr.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
 		{
 			mgr.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10, 10, this);
         	mLastLocation = mgr.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);	
 		}
+		else
+		{
+			mgr.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10, 10, this);
+        	mLastLocation = mgr.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);	
+		}
+		
 		return mBinder;
 	}
 	private void setNotify() {
