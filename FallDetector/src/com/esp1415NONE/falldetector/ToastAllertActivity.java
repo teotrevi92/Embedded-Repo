@@ -116,6 +116,11 @@ public class ToastAllertActivity extends Activity{
 				handler.postDelayed(new Runnable() {
 					@Override
 					public void run() {
+//						if(mBound)
+//							loc.setId(id_s, id_f);
+						//decommenta queste due righe sopra e passa i valori 
+						
+						
 						if(!check)//se non e' stato premuto Annulla chiudi dopo 10 secondi e invia mail
 						{
 							mp.stop();
