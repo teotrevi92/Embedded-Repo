@@ -23,26 +23,26 @@ public class LocationService extends Service implements LocationListener{
 
 	private final IBinder mBinder = new LocalBinder();
 	private String where;
-    LocationManager mgr;
+    private LocationManager mgr;
     private Location mLastLocation;
     private Geocoder geocoder;
     
-    Intent email;
+    private Intent email;
 
-	String[] emailTo = {"azi92@hotmail.it", "azi92rach@gmail.com"};
-	String emailText = "Aiuto!! Sono caduto. Mi trovo qui:\n";
-	String subject = "AIUTO DI SOCCORSO";
+	private String[] emailTo = {"azi92@hotmail.it", "azi92rach@gmail.com"};
+	private String emailText = "Aiuto!! Sono caduto. Mi trovo qui:\n";
+	private String subject = "AIUTO DI SOCCORSO";
 	
-	boolean check; //Viene usata per avere l'ok dell'invio	
-	boolean sent; //Segnala il corretto invio della mail, da salvare del database
-	boolean ready; //Localizzazione salvata
+//	private boolean check; //Viene usata per avere l'ok dell'invio	
+	private boolean sent; //Segnala il corretto invio della mail, da salvare del database
+	private boolean ready; //Localizzazione salvata
     
     
 	@Override
 	public void onLocationChanged(Location location) {
 		// TODO Auto-generated method stub
 		setLocation();
-		ready=true;
+//		ready=true;
 		sendMail();
 	}
 
@@ -81,9 +81,9 @@ public class LocationService extends Service implements LocationListener{
 	@Override
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub
-		check=false;
+//		check=false;
 		sent=false;
-		ready=false;
+//		ready=false;
 		mgr = (LocationManager) getSystemService(LOCATION_SERVICE);
 		setNotify();
 		//Cerco e salvo la localizzazione
@@ -92,13 +92,14 @@ public class LocationService extends Service implements LocationListener{
     	{
 			mgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 10, this);
 			mLastLocation = mgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+			setLocation();
     		
     	}
-		else 
-			//if(mgr.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
+		else
 		{
 			mgr.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10, 10, this);
         	mLastLocation = mgr.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);	
+        	setLocation();
 		}
 		return mBinder;
 	}
@@ -133,10 +134,11 @@ public class LocationService extends Service implements LocationListener{
             double latitude = mLastLocation.getLatitude();
             double longitude = mLastLocation.getLongitude();
             where = latitude + ", " + longitude;
+            ready = true;
             setAdress();
         }
         else {
-        	where="(Non e' stato possibile rocevere i dati del gps!!)";
+        	where="(Non e' stato possibile ricevere i dati della posizione!!)";
         }
         
         /*SALVARE LA  where COME LOCALIZZAZIONE, siccome puo' essere aggiornata, verra' salvata ogni volta cosi' da tenere quella ultima
@@ -165,27 +167,27 @@ public class LocationService extends Service implements LocationListener{
 	
 	private void sendMail()
 	{	//Se confermato l'invio mail viene inviata appena vengono presi i dati del gps
-		if(check)
-		{
+//		if(check)
+//		{
 			sent=true; //mail inviata
 			email = new Intent(Intent.ACTION_SEND);
 			email.putExtra(Intent.EXTRA_EMAIL,emailTo);
 			email.putExtra(Intent.EXTRA_SUBJECT, subject);	
 			email.putExtra(Intent.EXTRA_TEXT, emailText+where);
 			email.setType("message/rfc822");
-			Intent i = Intent.createChooser(email, "chose en email client:");
+			Intent i = Intent.createChooser(email, "Scegli un email client:");
 			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(i);
-			check=false;
+//			check=false;
 			
 			/* QUI BISOGNA SALVARE CHE LA MAIL E' STATA INVIATA ----------------------------------------------------------*/			
 			
 			finish();
-		}
+//		}
 	}
 	public void check()
 	{
-		check=true; //conferma di invio mail
+//		check=true; //conferma di invio mail
 		if (ready)
 			sendMail(); //invio mail se la localizzazione e' pronta, altrimenti aspetto e verra' chiamata quando e' pronta
 	}
