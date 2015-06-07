@@ -140,16 +140,19 @@ public class DbAdapter  {
 				" ON " + StringName.UIDS + " = " + StringName.UIDSREF +//MANCA JOIN CON TABLE3
 				" WHERE " + StringName.UIDSREF + " = ' " + id_s + " ' ;";
 		Cursor cursor = db.rawQuery(query, null);
-		//		StringBuffer buffer = new StringBuffer();
-		//		while(cursor.moveToNext())
-		//		{
-		//			int ids = cursor.getInt(0);
-		//			String date = cursor.getString(1);
-		//			boolean sent = Boolean.parseBoolean(cursor.getString(3));
-		//			buffer.append(ids+ ""+ date + "" + sent + "\n");
-		//		}
-		//
-		//		return buffer.toString();
+		
+		return cursor;
+
+	}
+	
+	public Cursor getInfoTable4()
+	{
+		SQLiteDatabase db = helper.getWritableDatabase();
+
+		String query = "SELECT " + StringName.MAIL + " as _id ," + StringName.NAME + "," 
+				+ StringName.SURNAME + " FROM " + StringName.TABLE_NAME4 + " ;";
+		Cursor cursor = db.rawQuery(query, null);
+		
 		return cursor;
 
 	}

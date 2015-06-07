@@ -5,6 +5,8 @@ package com.esp1415NONE.falldetector;
 import java.util.Calendar;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -15,6 +17,7 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TimePicker;
@@ -28,6 +31,9 @@ public class FragmentSettings extends Fragment {
 	TimePicker tmpicker;
 	private PendingIntent pendIntent;
 	private AlarmManager alarmManager;
+	private Button button; //Tri
+	private FragmentTransaction fragmentTransaction;
+	private FragmentManager fragmentManager;
 	
 	View view;
 	@Override
@@ -41,12 +47,15 @@ public class FragmentSettings extends Fragment {
 		boolean bln_cbt = preferences.getBoolean("checkBoxTimerValue", false);
 		int int_spH = preferences.getInt("pickerValueH", 0);
 		int int_spM = preferences.getInt("pickerValueM", 0);
+		fragmentManager = getActivity().getSupportFragmentManager(); //Tri
+		fragmentTransaction = fragmentManager.beginTransaction(); //Tri
 		
 		sp_acc = (Spinner) view.findViewById(R.id.spinnerAcc);
 		sp_duration = (Spinner) view.findViewById(R.id.spinnerMaxSession);
 		sp_sens = (Spinner) view.findViewById(R.id.spinnerSens);
 		cbt = (CheckBox) view.findViewById(R.id.checkBoxTimer);
 		tmpicker = (TimePicker) view.findViewById(R.id.timePicker);
+		button = (Button) view.findViewById(R.id.buttonemail); //Tri
 		
 		//Reimposto i valori salvati
 		sp_acc.setSelection(int_sp_acc);
@@ -91,6 +100,19 @@ public class FragmentSettings extends Fragment {
 			}
 		});
 		
+		
+		button.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				FragmentListContacts ls_fragment = new FragmentListContacts();
+				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
+				fragmentTransaction.commit();
+				/* controllo degli stack per rach*/
+			}
+		});
+		
+		
 		tmpicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
 			
 			@Override
@@ -107,6 +129,8 @@ public class FragmentSettings extends Fragment {
 		
 		return view;
 	}
+	
+	
 	
 	public void onPause()
 	{
