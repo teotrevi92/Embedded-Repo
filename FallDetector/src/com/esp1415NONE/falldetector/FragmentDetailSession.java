@@ -18,11 +18,11 @@ public class FragmentDetailSession extends ListFragment {
 //	private Activity activity;
 	private String ids;
 	private String idf;
-	DbAdapter dbAdapter;
-	ListView ls;
-	TextView idsess;
-	TextView cad;
-	Intent intent;
+	private DbAdapter dbAdapter;
+	private ListView ls;
+	private TextView idsess;
+	private TextView cad;
+	private Intent intent;
 	
 	
 	

@@ -39,8 +39,8 @@ public class LocationService extends Service implements LocationListener{
 	boolean check; //Viene usata per avere l'ok dell'invio	
 	boolean sent; //Segnala il corretto invio della mail, da salvare del database
 	boolean ready; //Localizzazione salvata
-	private int ids;
-	private int idf;
+	private String ids;
+	private String idf;
     
     
 	@Override
@@ -139,7 +139,9 @@ public class LocationService extends Service implements LocationListener{
             double latitude = mLastLocation.getLatitude();
             double longitude = mLastLocation.getLongitude();
             //salvo i dati del gps
-//          dbAdapter.setLatLongGPS(ids, idf, latitude, longitude); //da capire come passare idf e ids
+            String lat = Double.toString(latitude);  //Tri
+            String longit = Double.toString(longitude);  //Tri
+            dbAdapter.setLatLongGPS(ids, idf, lat, longit); //da capire come passare idf e ids
             where = latitude + ", " + longitude;
             setAdress();
         }
@@ -202,7 +204,7 @@ public class LocationService extends Service implements LocationListener{
 		stopForeground(true);
 		stopSelf();
 	}
-	public void setId(int id_s, int id_f) //Arrivano i valori per salvare i dati
+	public void setId(String id_s, String id_f) //Arrivano i valori per salvare i dati
 	{
 		ids=id_s;
 		idf=id_f;

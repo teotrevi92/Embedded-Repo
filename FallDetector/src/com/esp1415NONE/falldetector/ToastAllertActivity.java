@@ -34,6 +34,9 @@ public class ToastAllertActivity extends Activity{
     
     private Vibrator vib;
     private MediaPlayer mp;
+    private Intent intent; //Tri
+    private String ids; //Tri
+    private String idf; //Tri
 //    private DbAdapter dbAdapter;
  
     
@@ -61,7 +64,9 @@ public class ToastAllertActivity extends Activity{
 		/* Verra' chiusa dopo 10 secondi se non viene premuto il tasto
 		 annulla e verra' inviata la mail*/
 		super.onCreate(state);
-		
+		intent = getIntent(); //Tri
+		ids = intent.getStringExtra("ids"); //Tri
+		idf = intent.getStringExtra("idf"); //Tri
 //		dbAdapter = new DbAdapter(this);
 		mp = MediaPlayer.create(this, R.raw.avviso);
 		vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -116,9 +121,9 @@ public class ToastAllertActivity extends Activity{
 				handler.postDelayed(new Runnable() {
 					@Override
 					public void run() {
-//						if(mBound)
-//							loc.setId(id_s, id_f);
-						//decommenta queste due righe sopra e passa i valori 
+						if(mBound)  //Tri
+							loc.setId(ids, idf);  //Tri
+						//decommenta queste due righe sopra e passa i valori
 						
 						
 						if(!check)//se non e' stato premuto Annulla chiudi dopo 10 secondi e invia mail

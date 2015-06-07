@@ -357,7 +357,7 @@ public class DbAdapter  {
 	}
 	
 	//si setta la durata della sessione una volta terminata
-		public void setLatLongGPS(String ids,String idf, String lat, String longit)
+		public void setLatLongGPS(String ids, String idf, String lat, String longit)
 		{ 
 			SQLiteDatabase db = helper.getWritableDatabase();
 

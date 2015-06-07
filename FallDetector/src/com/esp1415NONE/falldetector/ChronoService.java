@@ -86,6 +86,8 @@ public class ChronoService extends Service implements SensorEventListener {
 						
 						//allerta
 						Intent i = new Intent(this, ToastAllertActivity.class);
+						i.putExtra("ids", id_s+""); //Tri
+						i.putExtra("idf", id_f+""); //Tri
 						i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						startActivity(i);
 					}
