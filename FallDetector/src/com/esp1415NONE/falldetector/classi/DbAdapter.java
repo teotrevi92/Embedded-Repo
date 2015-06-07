@@ -47,8 +47,8 @@ public class DbAdapter  {
 		{
 			int cid = cursor.getInt(0);
 			int ids = cursor.getInt(1);
-			Long lat = cursor.getLong(2);
-			Long longit = cursor.getLong(3);
+			String lat = cursor.getString(2);
+			String longit = cursor.getString(3);
 			String datef = cursor.getString(4);
 			String array = cursor.getString(5);
 			buffer.append(cid+ ""+ ids + "" + lat + "" + longit + "" + datef+ "" + array + "\n");
@@ -355,6 +355,24 @@ public class DbAdapter  {
 		db.update(StringName.TABLE_NAME1, contentValues, StringName.UIDS +" = " + ids, null);
 		db.close();
 	}
+	
+	//si setta la durata della sessione una volta terminata
+		public void setLatLongGPS(String ids,String idf, String lat, String longit)
+		{ 
+			SQLiteDatabase db = helper.getWritableDatabase();
+
+			//		String QUERY = "UPDATE " + StringName.TABLE_NAME1 + " SET " + StringName.DURATION 
+			//				+ " = ' " + duration + " ' WHERE " + StringName.UIDS + " = ' " + ids + " ' ;";
+			//		db.execSQL(QUERY);
+
+			ContentValues contentValues = new ContentValues();
+			contentValues.put(StringName.LAT, lat);
+			contentValues.put(StringName.LONG, longit);
+			db.update(StringName.TABLE_NAME2, contentValues, StringName.UIDSREF + " = " + ids + " AND "
+					 + StringName.UIDF + " = " + idf , null);
+			db.close();
+		}
+
 
 
 	//si setta il nome della sessione
@@ -372,7 +390,7 @@ public class DbAdapter  {
 		db.close();
 	}
 
-	public void createFall(int idf, int ids, Long lat, Long longit, String datef, String array)
+	public void createFall(int idf, int ids, String lat, String longit, String datef, String array)
 	{
 		SQLiteDatabase db = helper.getWritableDatabase();
 		ContentValues contentValues = new ContentValues();
@@ -438,7 +456,9 @@ public class DbAdapter  {
 		contentValues.put(StringName.MAILREF, mailr);
 		contentValues.put(StringName.SENT, sent);
 		db.insert(StringName.TABLE_NAME3, null,contentValues); // ritorna -1 se qualcosa va storto
-	}
+	} // da modificare?
+	
+	
 
 
 
@@ -471,7 +491,7 @@ public class DbAdapter  {
 				+ StringName.DATE + " TIMESTAMP NOT NULL, " + StringName.DURATION + " CHAR(8), " + StringName.SENS + " INTEGER NOT NULL " + ");";
 		private static final String CREATE_TABLE2 = "CREATE TABLE "+ StringName.TABLE_NAME2 + " ( "
 				+ StringName.UIDF + " INTEGER , " + StringName.UIDSREF + " TIMESTAMP NOT NULL, " 
-				+ StringName.LAT + " DECIMAL(8,10) NOT NULL, " + StringName.LONG + " DECIMAL(8,10) NOT NULL, "
+				+ StringName.LAT + " VARCHAR(20), " + StringName.LONG + " VARCHAR(20), "
 				+ StringName.DATEF + " TIMESTAMP NOT NULL, " + StringName.ARRAY + " VARCHAR(1000) NOT NULL, "
 				+ "PRIMARY KEY(" + StringName.UIDF + "," + StringName.UIDSREF + "),"
 				+ "FOREIGN KEY(" + StringName.UIDSREF + ") REFERENCES " + StringName.TABLE_NAME1 + "(" + StringName.UIDS + ")" + ");";

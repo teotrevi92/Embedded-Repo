@@ -81,13 +81,13 @@ public class ChronoService extends Service implements SensorEventListener {
 						myTime = new MyTime();
 //						float[] f = {1.1f}; //Passo gli array dei dati dell'accelerometro
 						String date = dbAdapter.convertArrayToString(que.getBox());
-						dbAdapter.createFall(id_f, id_s, 15L, 20L, myTime.myTime(), date); //I dati gps verranno salvati piu' avanti
+						dbAdapter.createFall(id_f, id_s, null, null, myTime.myTime(), date); //I dati gps verranno salvati piu' avanti
 						
 						
 						//allerta
 						Intent i = new Intent(this, ToastAllertActivity.class);
 						i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-						startActivity(i);	
+						startActivity(i);
 					}
 						
 					

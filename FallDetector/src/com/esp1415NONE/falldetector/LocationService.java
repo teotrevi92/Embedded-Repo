@@ -4,6 +4,8 @@ package com.esp1415NONE.falldetector;
 import java.io.IOException;
 import java.util.List;
 
+import com.esp1415NONE.falldetector.classi.DbAdapter;
+
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -26,6 +28,7 @@ public class LocationService extends Service implements LocationListener{
     LocationManager mgr;
     private Location mLastLocation;
     private Geocoder geocoder;
+    DbAdapter dbAdapter;
     
     Intent email;
 
@@ -81,6 +84,7 @@ public class LocationService extends Service implements LocationListener{
 	@Override
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub
+		dbAdapter = new DbAdapter(this);
 		check=false;
 		sent=false;
 		ready=false;
@@ -132,6 +136,8 @@ public class LocationService extends Service implements LocationListener{
         if (mLastLocation != null) {
             double latitude = mLastLocation.getLatitude();
             double longitude = mLastLocation.getLongitude();
+            //salvo i dati del gps
+//          dbAdapter.setLatLongGPS(ids, idf, latitude, longitude); //da capire come passare idf e ids
             where = latitude + ", " + longitude;
             setAdress();
         }
@@ -140,7 +146,7 @@ public class LocationService extends Service implements LocationListener{
         }
         
         /*SALVARE LA  where COME LOCALIZZAZIONE, siccome puo' essere aggiornata, verra' salvata ogni volta cosi' da tenere quella ultima
-         
+         FATTO SOPRA
          ----------------------------------------------------*/
         
     }

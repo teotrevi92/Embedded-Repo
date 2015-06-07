@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 public class RenameActivity extends Activity{
 
-	public DbAdapter dbHelper;
+	public DbAdapter dbAdapter;
 	public EditText nameS;
 	public String nameSess;
 	public String ids;
@@ -34,7 +34,7 @@ public class RenameActivity extends Activity{
 		Button no = (Button) findViewById(R.id.btn_no);
 		ok.setText(R.string.toast_rename_button);
 		no.setText("Annulla");
-		dbHelper = new DbAdapter(this);
+		dbAdapter = new DbAdapter(this);
 		//		TextView txt = new TextView(this);
 		//		txt.setText(R.string.toast_rename_messagge);
 
@@ -47,7 +47,7 @@ public class RenameActivity extends Activity{
 				nameSess = nameS.getText().toString();
 				if(nameSess.equals(""))
 					nameSess = "Sessione";
-				dbHelper.setNameSession(ids, nameSess);
+				dbAdapter.setNameSession(ids, nameSess);
 
 				//Toast.makeText(RenameActivity.this, "bau", Toast.LENGTH_SHORT).show();
 //				if(where.equals("rename"))
@@ -70,10 +70,10 @@ public class RenameActivity extends Activity{
 				// TODO Auto-generated method stub
 				if(where.equals("stop")) {
 					nameSess = "Sessione";
-					dbHelper.setNameSession(ids, nameSess);
+					dbAdapter.setNameSession(ids, nameSess);
 				}
 				else if(where.equals("rename")) 
-					nameSess = dbHelper.getNameSession(ids);
+					nameSess = dbAdapter.getNameSession(ids);
 				RenameActivity.this.finish();
 			}
 		});

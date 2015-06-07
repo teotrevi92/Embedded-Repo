@@ -18,7 +18,7 @@ public class FragmentDetailSession extends ListFragment {
 //	private Activity activity;
 	private String ids;
 	private String idf;
-	DbAdapter dbHelper;
+	DbAdapter dbAdapter;
 	ListView ls;
 	TextView idsess;
 	TextView cad;
@@ -48,9 +48,9 @@ public class FragmentDetailSession extends ListFragment {
 		super.onActivityCreated(savedInstanceState);
 		
 		ids = getArguments().getString("ids");
-		dbHelper = new DbAdapter(getActivity());
+		dbAdapter = new DbAdapter(getActivity());
 		ls = (ListView) getActivity().findViewById(android.R.id.list);
-		Cursor c = dbHelper.getInfoTable2(ids);
+		Cursor c = dbAdapter.getInfoTable2(ids);
 		getActivity().startManagingCursor(c);
 		setListAdapter(new SessionSimpleCursorAdapterDetails(getActivity(), c));
 		
@@ -68,7 +68,7 @@ public class FragmentDetailSession extends ListFragment {
 					ids = idsess.getText().toString();
 					idf = cad.getText().toString();
 					String[] result = new String[8];
-					result = dbHelper.getMoreInfoTable2(ids, idf);
+					result = dbAdapter.getMoreInfoTable2(ids, idf);
 					intent = new Intent(getActivity(),DetailFallActivity.class);
 					intent.putExtra("ids", result[0]);
 					intent.putExtra("nomeS", result[1]);

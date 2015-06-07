@@ -42,17 +42,17 @@ public class SessionSimpleCursorAdapterDetails extends SimpleCursorAdapter
 		durationS = (TextView) view.findViewById(R.id.durationS);
 		logo = (ImageView) view.findViewById(R.id.logoS);
 		
-		DbAdapter dbHelper = new DbAdapter(context);
+		DbAdapter dbAdapter = new DbAdapter(context);
 		String[] arr = new String[3];
 		String ids = cursor.getString(cursor.getColumnIndex("_id"));
-		arr = dbHelper.getInfoTable1(ids);
+		arr = dbAdapter.getInfoTable1(ids);
 		idsess.setText(ids);
 		dataS.setText(arr[0]);
 		nameS.setText(arr[1]);
 		durationS.setText(arr[2]);
 		
 		int[] dateA = new int[6];
-		dateA = dbHelper.getDate(arr[0]);
+		dateA = dbAdapter.getDate(arr[0]);
 		int size = 30;
 		MyGraph rndBitmap = new MyGraph(size,size);
 		rndBitmap.doRandomImg(dateA[0], dateA[1], dateA[2], dateA[3], dateA[4], dateA[5], size);
@@ -70,8 +70,8 @@ public class SessionSimpleCursorAdapterDetails extends SimpleCursorAdapter
 //		if(countFall == null)
 //			sess.setText("0");
 //		int[] dateA = new int[6];
-//		DbAdapter dbHelper = new DbAdapter(context);
-//		dateA = dbHelper.getDate(date);
+//		DbAdapter dbAdapter = new DbAdapter(context);
+//		dateA = dbAdapter.getDate(date);
 //		int size = 60;
 //		//String nomeImmagine = date.toLowerCase().replace(' ', '_').replace('\'', '_') + ".png";
 //		Grafico rndBitmap = new Grafico(size,size);

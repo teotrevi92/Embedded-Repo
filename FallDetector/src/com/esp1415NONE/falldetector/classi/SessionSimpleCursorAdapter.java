@@ -36,8 +36,8 @@ public class SessionSimpleCursorAdapter extends SimpleCursorAdapter
 		if(countFall == null)
 			sess.setText("0");
 		int[] dateA = new int[6];
-		DbAdapter dbHelper = new DbAdapter(context);
-		dateA = dbHelper.getDate(date);
+		DbAdapter dbAdapter = new DbAdapter(context);
+		dateA = dbAdapter.getDate(date);
 		int size = 30;
 		//String nomeImmagine = date.toLowerCase().replace(' ', '_').replace('\'', '_') + ".png";
 		MyGraph rndBitmap = new MyGraph(size,size);

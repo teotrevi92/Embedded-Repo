@@ -23,7 +23,7 @@ import android.widget.Toast;
 public class FragmentListView extends ListFragment {
 
 
-	private DbAdapter dbHelper;
+	private DbAdapter dbAdapter;
 	private Activity activity;
 	private ListView ls;
 	private FragmentTransaction fragmentTransaction;
@@ -48,12 +48,12 @@ public class FragmentListView extends ListFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
-		dbHelper = new DbAdapter(getActivity());
+		dbAdapter = new DbAdapter(getActivity());
 
 		fragmentManager = getActivity().getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
 		ls = (ListView) getActivity().findViewById(android.R.id.list);
-		Cursor c = dbHelper.getAllRowsTable1();
+		Cursor c = dbAdapter.getAllRowsTable1();
 		getActivity().startManagingCursor(c);
 		ssca = new SessionSimpleCursorAdapter(getActivity(), c);
 		setListAdapter(ssca);
@@ -106,8 +106,8 @@ public class FragmentListView extends ListFragment {
 							textview = (TextView) view.findViewById(R.id.nome);
 							ids = textview.getText().toString();
 							
-//							dbHelper.dropSession(ids);
-//							Cursor c = dbHelper.getAllRowsTable1();
+//							dbAdapter.dropSession(ids);
+//							Cursor c = dbAdapter.getAllRowsTable1();
 //							getActivity().startManagingCursor(c);
 //							ssca = new SessionSimpleCursorAdapter(getActivity(), c);
 //							setListAdapter(ssca);
@@ -162,10 +162,10 @@ public class FragmentListView extends ListFragment {
 		case R.id.delete_id:
 
 			Toast.makeText(activity, "Eliminato:"+ids, Toast.LENGTH_SHORT).show();
-			dbHelper.dropSession(ids);
+			dbAdapter.dropSession(ids);
 			ssca.notifyDataSetChanged();
 			//per vedere la modifica in tempo reale
-			c = dbHelper.getAllRowsTable1();
+			c = dbAdapter.getAllRowsTable1();
 			getActivity().startManagingCursor(c);
 			ssca = new SessionSimpleCursorAdapter(getActivity(), c);
 			setListAdapter(ssca);
@@ -181,7 +181,7 @@ public class FragmentListView extends ListFragment {
 			startActivity(i);
 			ssca.notifyDataSetChanged();
 			//per vedere la modifica in tempo reale
-			c = dbHelper.getAllRowsTable1();
+			c = dbAdapter.getAllRowsTable1();
 			getActivity().startManagingCursor(c);
 			ssca = new SessionSimpleCursorAdapter(getActivity(), c);
 			setListAdapter(ssca);

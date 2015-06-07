@@ -8,42 +8,44 @@
     <LinearLayout
         android:layout_width="250dp"
         android:layout_height="150dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical"
-        android:gravity="center" >
- 
+        android:gravity="center"
+        android:orientation="vertical" >
+
         <EditText
             android:id="@+id/nameS"
             android:layout_width="214dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:ems="10" />
-	</LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal" >
+            android:ems="10" >
 
-        <Button
-            android:id="@+id/btn_no"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:background="@android:color/white"
-            android:clickable="true"
-            android:text="Annulla"
-            android:layout_marginRight="5dp" />
-         <Button
-            android:id="@+id/btn_yes"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:background="@android:color/white"
-            android:clickable="true"
-            android:text="Conferma"
-            android:layout_marginLeft="5dp"/>
-    
+            <requestFocus />
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_no"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@android:color/white"
+                android:clickable="true"
+                android:text="Annulla" />
+
+            <Button
+                android:id="@+id/btn_yes"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:background="@android:color/white"
+                android:clickable="true"
+                android:text="Conferma" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>
