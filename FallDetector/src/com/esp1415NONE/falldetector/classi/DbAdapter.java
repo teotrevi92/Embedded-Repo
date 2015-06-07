@@ -227,15 +227,14 @@ public class DbAdapter  {
 	}
 
 	//registrazione contatto nelle impostazioni
-	public long setContact(String mail, String name, String surname)
+	public void createContact(String mail, String name, String surname)
 	{
 		SQLiteDatabase db = helper.getWritableDatabase();
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(StringName.MAIL, mail);
 		contentValues.put(StringName.NAME, name);
 		contentValues.put(StringName.SURNAME, surname);
-		long id = db.insert(StringName.TABLE_NAME4, null,contentValues); // ritorna -1 se qualcosa va storto
-		return id;
+		db.insert(StringName.TABLE_NAME4, null,contentValues); // ritorna -1 se qualcosa va storto
 	}
 
 	//crea la sessione e restituisce l'id sessione

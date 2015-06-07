@@ -32,6 +32,7 @@ public class FragmentSettings extends Fragment {
 	private PendingIntent pendIntent;
 	private AlarmManager alarmManager;
 	private Button button; //Tri
+	private Button button_add; //Tri
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
 	
@@ -55,7 +56,8 @@ public class FragmentSettings extends Fragment {
 		sp_sens = (Spinner) view.findViewById(R.id.spinnerSens);
 		cbt = (CheckBox) view.findViewById(R.id.checkBoxTimer);
 		tmpicker = (TimePicker) view.findViewById(R.id.timePicker);
-		button = (Button) view.findViewById(R.id.buttonemail); //Tri
+		button = (Button) view.findViewById(R.id.buttonemail); //Tri 
+		button_add = (Button) view.findViewById(R.id.addemail); //Tri 
 		
 		//Reimposto i valori salvati
 		sp_acc.setSelection(int_sp_acc);
@@ -69,7 +71,28 @@ public class FragmentSettings extends Fragment {
 		alarmManager = (AlarmManager)getActivity().getSystemService(Context.ALARM_SERVICE);
 		Intent myIntent = new Intent(getActivity(), AlarmReceiver.class);
 	    pendIntent = PendingIntent.getBroadcast(getActivity(), 0, myIntent,0);
+	    
+	    button.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				FragmentListContacts ls_fragment = new FragmentListContacts();
+				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
+				fragmentTransaction.commit();
+				/* controllo degli stack per rach*/
+			}
+		});
 		
+	    
+	    button_add.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent(getActivity(),AddEmailActivity.class);
+				startActivity(i);
+				/* controllo degli stack per rach*/
+			}
+		});
 	    
 		cbt.setOnClickListener(new View.OnClickListener() {
 			
@@ -101,18 +124,6 @@ public class FragmentSettings extends Fragment {
 		});
 		
 		
-		button.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				FragmentListContacts ls_fragment = new FragmentListContacts();
-				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
-				fragmentTransaction.commit();
-				/* controllo degli stack per rach*/
-			}
-		});
-		
-		
 		tmpicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
 			
 			@Override
@@ -125,7 +136,6 @@ public class FragmentSettings extends Fragment {
 				}
 			}
 		});
-		
 		
 		return view;
 	}

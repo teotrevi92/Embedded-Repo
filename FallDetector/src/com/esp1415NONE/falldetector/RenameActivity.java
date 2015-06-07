@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class RenameActivity extends Activity{
+public class RenameActivity extends Activity {
 
 	public DbAdapter dbAdapter;
 	public EditText nameS;
@@ -78,16 +78,6 @@ public class RenameActivity extends Activity{
 			}
 		});
 
-		//Creo il layout
-		//		LinearLayout mylayout = new LinearLayout(this);
-		//Aggiungo gli elementi al layout
-		//		mylayout.addView(ok);
-		//		mylayout.addView(no);
-		//		mylayout.addView(txt);
-
-		//		mylayout.setGravity(Gravity.CENTER);
-		//		//Visualizzo il layout
-		//		setContentView(mylayout);
 
 	}
 

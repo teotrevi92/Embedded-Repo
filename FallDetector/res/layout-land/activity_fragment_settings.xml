@@ -6,13 +6,13 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:minHeight="32dp"
+        android:minHeight="15sp"
         android:text="@string/settings" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="61dp" >
 
         <TextView
             android:id="@+id/textView1"
@@ -24,7 +24,7 @@
 
         <Spinner
             android:id="@+id/spinnerAcc"
-            android:layout_width="wrap_content"
+            android:layout_width="113dp"
             android:layout_height="wrap_content"
             android:entries="@array/accurancy_arrays"
             android:prompt="@string/accurancy_prompt" />
@@ -36,53 +36,57 @@
             android:layout_gravity="center_vertical"
             android:minWidth="130dp"
             android:text="@string/textmaxduration" />
+
         <Spinner
-        android:id="@+id/spinnerMaxSession"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:entries="@array/maxsession_arrays"
-        android:prompt="@string/maxsession_prompt" />
+            android:id="@+id/spinnerMaxSession"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/maxsession_arrays"
+            android:prompt="@string/maxsession_prompt" />
     </LinearLayout>
-
-
 
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="56dp" >
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_height="wrap_content"
             android:layout_width="140dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:minWidth="130dp"
             android:text="@string/textsens" />
-		
-         <Spinner
-        android:id="@+id/spinnerSens"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:entries="@array/sens_arrays"
-        android:prompt="@string/sens_prompt" />
-         
-         <TextView
-            android:id="@+id/textView5"
+
+        <Spinner
+            android:id="@+id/spinnerSens"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
+            android:entries="@array/sens_arrays"
+            android:prompt="@string/sens_prompt" />
+
+        <TextView
+            android:id="@+id/textView5"
             android:layout_width="140dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:minWidth="130dp"
             android:text="@string/textemail" />
 
         <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
+            android:id="@+id/buttonemail"
+            android:layout_width="127dp"
             android:layout_height="wrap_content"
             android:text="@string/buttonaddemail" />
-        
     </LinearLayout>
-    
-     <LinearLayout
+
+    <Button
+        android:id="@+id/addemail"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:text="Aggiungi nuovo contatto" />
+
+    <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -94,18 +98,18 @@
             android:layout_gravity="center_vertical"
             android:minWidth="130dp"
             android:text="@string/texttimer" />
+
         <CheckBox
             android:id="@+id/checkBoxTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="@string/textonofftimer" />
+
         <TimePicker
             android:id="@+id/timePicker"
-            android:layout_width="fill_parent"
-            android:layout_height="89dp" />
-        
+            android:layout_width="250dp"
+            android:layout_height="70dp" />
     </LinearLayout>
-    
 
 </LinearLayout>

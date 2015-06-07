@@ -81,8 +81,8 @@
 
         <activity
             android:name=".DetailFallActivity"
-            android:label="@string/title_activity_detail_fall" 
-            android:theme="@android:style/Theme.Dialog">
+            android:label="@string/title_activity_detail_fall"
+            android:theme="@android:style/Theme.Dialog" >
         </activity>
         <activity
             android:name=".FragmentDetailSession"
@@ -90,8 +90,13 @@
         </activity>
         <activity
             android:name=".RenameActivity"
-            android:label="@string/title_activity_rename" 
-            android:theme="@android:style/Theme.Dialog">
+            android:label="@string/title_activity_rename"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name=".AddEmailActivity"
+            android:label="@string/title_activity_add_email"
+            android:theme="@android:style/Theme.Dialog" >
         </activity>
     </application>
 
