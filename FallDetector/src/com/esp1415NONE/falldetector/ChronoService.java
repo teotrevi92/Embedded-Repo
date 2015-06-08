@@ -20,34 +20,34 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 public class ChronoService extends Service implements SensorEventListener {
-		private final IBinder mBinder = new LocalBinder();
-		private MyChronometer crn;
-		private static int isPlaying = 0; //0 se e' in stop, 1 in play, -1 in pausa
-		SensorManager sm = null;
-		int sensorAccurancy;
-		final String tag = "AccLogger";
-		//variabili per i calcoli
-		float totAcc;
-		Queue que;
-		int sizeQueue;
-		int sensibilityMin;
-		int sensibilityMax;
-		//variabili per il grafico e la data
-		Calendar todayTime;
-		MyGraph graph;
-		String maxTimeSession;
-		//Variabili per il database
-		private DbAdapter dbAdapter;
-		private int id_s = 0; //id sessione corrente
-		private int id_f = 0;
-		private MyTime myTime;
-		
-		
-		public void onSensorChanged(SensorEvent event)
+	private final IBinder mBinder = new LocalBinder();
+	private MyChronometer crn;
+	private static int isPlaying = 0; //0 se e' in stop, 1 in play, -1 in pausa
+	SensorManager sm = null;
+	int sensorAccurancy;
+	final String tag = "AccLogger";
+	//variabili per i calcoli
+	float totAcc;
+	Queue que;
+	int sizeQueue;
+	int sensibilityMin;
+	int sensibilityMax;
+	//variabili per il grafico e la data
+	Calendar todayTime;
+	MyGraph graph;
+	String maxTimeSession;
+	//Variabili per il database
+	private DbAdapter dbAdapter;
+	private int id_s = 0; //id sessione corrente
+	private int id_f = 0;
+	private MyTime myTime;
+
+
+	public void onSensorChanged(SensorEvent event)
 	{
-	// Java's synchronized keyword is used to ensure mutually exclusive
-	// access to the sensor. See also
-	// http://download.oracle.com/javase/tutorial/essential/concurrency/locksync.html
+		// Java's synchronized keyword is used to ensure mutually exclusive
+		// access to the sensor. See also
+		// http://download.oracle.com/javase/tutorial/essential/concurrency/locksync.html
 		synchronized(this)
 		{
 			// The SensorEvent object holds informations such as
@@ -55,78 +55,78 @@ public class ChronoService extends Service implements SensorEventListener {
 			// the sensor's data.
 			if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
 			{
-					// IMPORTANT NOTE: The axes are swapped when the device's
-					// screen orientation changes. To access the unswapped values,
-					// use indices 3, 4 and 5 in values[]
-					float x = event.values[0];
-					float y = event.values[1];
-					float z = event.values[2];
-					totAcc = (float) Math.sqrt((x*x)+(y*y)+(z*z));
-					que.enqueue(totAcc);
-					
-					//le sessione viene termina
-					//quando arriva alla massima durata, impostata dall'utente
-					if (getString().equals(maxTimeSession))
-						stop();
-					
-					//Rilevazione caduta
-					if (que.isFall())
-					{	
-						
-						/*QUI SI SALVARE TUTTI I DATI DELLA CADUTA,
+				// IMPORTANT NOTE: The axes are swapped when the device's
+				// screen orientation changes. To access the unswapped values,
+				// use indices 3, 4 and 5 in values[]
+				float x = event.values[0];
+				float y = event.values[1];
+				float z = event.values[2];
+				totAcc = (float) Math.sqrt((x*x)+(y*y)+(z*z));
+				que.enqueue(totAcc);
+
+				//le sessione viene termina
+				//quando arriva alla massima durata, impostata dall'utente
+				if (getString().equals(maxTimeSession))
+					stop();
+
+				//Rilevazione caduta
+				if (que.isFall())
+				{	
+
+					/*QUI SI SALVARE TUTTI I DATI DELLA CADUTA,
 					 	DATA E ORA E ARRAY DEI DATI
 						e mandare id_f nell'intent
-					*/
-						id_f++;
-						myTime = new MyTime();
-//						float[] f = {1.1f}; //Passo gli array dei dati dell'accelerometro
-						String date = dbAdapter.convertArrayToString(que.getBox());
-						dbAdapter.createFall(id_f, id_s, null, null, myTime.myTime(), date); //I dati gps verranno salvati piu' avanti
-						
-						
-						//allerta
-						Intent i = new Intent(this, ToastAllertActivity.class);
-						i.putExtra("ids", id_s+""); //Tri
-						i.putExtra("idf", id_f+""); //Tri
-						i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-						startActivity(i);
-					}
-						
-					
+					 */
+					id_f++;
+					myTime = new MyTime();
+					//						float[] f = {1.1f}; //Passo gli array dei dati dell'accelerometro
+					String date = dbAdapter.convertArrayToString(que.getBox());
+					dbAdapter.createFall(id_f, id_s, null, null, myTime.myTime(), date); //I dati gps verranno salvati piu' avanti
+
+
+					//allerta
+					Intent i = new Intent(this, ToastAllertActivity.class);
+					i.putExtra("ids", id_s+""); //Tri
+					i.putExtra("idf", id_f+""); //Tri
+					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					startActivity(i);
+				}
+
+
 			}
 		}
 	}
-	
+
 	public void onAccuracyChanged(Sensor sensor, int accuracy)
 	{
 		Log.d(tag,"onAccuracyChanged: " + sensor + ", accuracy: " + accuracy);
 	}
-	
+
 	//classe che estende Binder per permette di usare i metodi si questo Service
 	public class LocalBinder extends Binder 
 	{
 		ChronoService getService() 
-        {
-            return ChronoService.this;
-        }
-    }
-	
+		{
+			return ChronoService.this;
+		}
+	}
+
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		return START_STICKY;
 	};
-	
-	
+
+
 	@Override
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub		
 		sm = (SensorManager)getSystemService(SENSOR_SERVICE);
 		dbAdapter = new DbAdapter(this); //Inizializzazione database
-//		graph = new Grafico(300,300);
-//		graph.doBase();
+		//		graph = new Grafico(300,300);
+		//		graph.doBase();
 		return mBinder;
-		
+
 	}
-	
+
 	public void play()
 	{	
 		if (isPlaying==0) //nuova sessione
@@ -152,7 +152,7 @@ public class ChronoService extends Service implements SensorEventListener {
 				sizeQueue = 125; //ogni 8 millesimi di secondi riceve un dato
 				sensorAccurancy = SensorManager.SENSOR_DELAY_GAME;
 			}
-			
+
 			//imposto la sensibilita'
 			if(int_sens==0)
 			{
@@ -169,16 +169,16 @@ public class ChronoService extends Service implements SensorEventListener {
 				sensibilityMin = 6;
 				sensibilityMax = 10;
 			}
-				
+
 			//creo l'array per il salvataggio dei dati dell'accellerometro
 			que = new Queue(sizeQueue,sensibilityMin,sensibilityMax);
 			//creo la stringa che mi indica la massima durata della sessione
 			maxTimeSession = "0"+int_maxTimeSession+":00:00";
-			
-			
+
+
 			/*QUI SI SALVA LA DATA DI INIZIO DELLA SESSIONE
 				salvare anche sizeQueue che serve poi per capire da quanti dati e' composto l'array
-			*/
+			 */
 			id_s = dbAdapter.createSession(sizeQueue, "Sessione");
 		}
 		isPlaying = 1;
@@ -186,7 +186,7 @@ public class ChronoService extends Service implements SensorEventListener {
 		Sensor Accel = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 		// register this class as a listener for the accelerometer sensor
 		sm.registerListener((SensorEventListener) this, Accel, sensorAccurancy);
-		
+
 		//Creo la notifica
 		Intent intent = new Intent(this, MainActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -200,7 +200,7 @@ public class ChronoService extends Service implements SensorEventListener {
 		final int notificationID = 5786000;
 		startForeground(notificationID, notificationPlay);
 	}		
-	
+
 	public void pause()
 	{
 		crn.pause();
@@ -210,7 +210,7 @@ public class ChronoService extends Service implements SensorEventListener {
 	public void stop()
 	{
 		//QUI SI SALVA LA DURATA DELLA SESSIONE
-		 String lifeSession = getString(); 
+		String lifeSession = getString(); 
 		dbAdapter.setDuration(id_s, lifeSession);
 		id_f = 0;
 		crn.stop();
@@ -226,11 +226,11 @@ public class ChronoService extends Service implements SensorEventListener {
 	{
 		return crn.getElapsedTime();
 	}
-	
+
 	@Override
 	public void onDestroy() {
-	// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 		stop();
 	}
-	
+
 }

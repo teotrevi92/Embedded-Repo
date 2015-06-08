@@ -14,8 +14,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:text="Nome"
-            android:textSize="18sp" 
+            android:text="@string/text_example_name_contact"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
-            android:text="Cognome"
+            android:text="@string/text_example_surname_contact"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:text="abcdefghilm@qualcosa.com"
+            android:text="@string/text_example_mail_contact"
             android:textSize="18sp"
             android:textStyle="italic" />
     </LinearLayout>

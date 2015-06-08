@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item 
+
+    <item
         android:id="@+id/delete_id"
-        android:title="Cancella Sessione"
-        />
-    
-     <item 
+        android:title="@string/delete_session"/>
+    <item
         android:id="@+id/ren_id"
-        android:title="Rinomina Sessione"
-        />
-     <item 
+        android:title="@string/rename_session"/>
+    <item
         android:id="@+id/new_session"
-        android:title="Avvia nuova sessione"
-        />
-    
+        android:title="@string/new_session"/>
 
 </menu>

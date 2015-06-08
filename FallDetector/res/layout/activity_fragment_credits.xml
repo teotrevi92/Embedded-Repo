@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Questo è il fragment dedicato ai crediti"
         android:gravity="center"
+        android:text="Questo è il fragment dedicato ai crediti"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

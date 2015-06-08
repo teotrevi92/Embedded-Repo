@@ -2,12 +2,8 @@ package com.esp1415NONE.falldetector;
 
 import com.esp1415NONE.falldetector.classi.DbAdapter;
 
-import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,16 +12,12 @@ public class AddEmailActivity extends Activity {
 
 	public DbAdapter dbAdapter;
 	public EditText name, surname, email;
-	private Intent i;
 	//	private FragmentTransaction fragmentTransaction;
 
 
 	@Override
 	public void onCreate(Bundle state) {
 		super.onCreate(state);
-
-		i = getIntent();
-
 		setContentView(R.layout.activity_add_email);
 
 		email = (EditText) findViewById(R.id.mail);
@@ -49,7 +41,7 @@ public class AddEmailActivity extends Activity {
 				String name_ = name.getText().toString();
 				String surname_ = surname.getText().toString(); 
 				dbAdapter.createContact(mail, name_, surname_);
-				
+
 				AddEmailActivity.this.finish();
 
 			}

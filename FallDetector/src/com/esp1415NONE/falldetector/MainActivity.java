@@ -42,7 +42,7 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_drawer);
-		
+
 		fragmentManager = getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
 		if (savedInstanceState == null)
@@ -51,10 +51,10 @@ public class MainActivity extends ActionBarActivity {
 			FragmentHome ls_fragment = new FragmentHome();
 			fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 			//mi serve per metterlo nello stack per il pulsante indietro
-//			fragmentTransaction.addToBackStack(null);
+			//			fragmentTransaction.addToBackStack(null);
 			fragmentTransaction.commit();
 			fragmentTransaction = fragmentManager.beginTransaction();
-//			fragmentTransaction.addToBackStack("home");
+			//			fragmentTransaction.addToBackStack("home");
 		}
 
 		/*utilizzo un metodo di supporto di appcompact, e agisco il pulsante 
@@ -72,7 +72,7 @@ public class MainActivity extends ActionBarActivity {
 		mDrawer.setDrawerListener(mDrawerToggle);
 
 		//fragment
-	//	Configuration config = getResources().getConfiguration();
+		//	Configuration config = getResources().getConfiguration();
 
 
 	}
@@ -184,7 +184,7 @@ public class MainActivity extends ActionBarActivity {
 
 	private class DrawerItemClickListener implements ListView.OnItemClickListener {
 
-		
+
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
@@ -207,7 +207,7 @@ public class MainActivity extends ActionBarActivity {
 				fragmentTransaction = fragmentManager.beginTransaction();
 				mDrawer.closeDrawer(mDrawerList);
 				break;
-				
+
 			case 3:
 				FragmentListView ls_fragment3 = new FragmentListView();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment3);
@@ -215,7 +215,7 @@ public class MainActivity extends ActionBarActivity {
 				fragmentTransaction = fragmentManager.beginTransaction();
 				mDrawer.closeDrawer(mDrawerList);
 				break;
-				
+
 			case 4:
 				FragmentProfile ls_fragment4 = new FragmentProfile();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment4);
@@ -223,7 +223,7 @@ public class MainActivity extends ActionBarActivity {
 				fragmentTransaction = fragmentManager.beginTransaction();
 				mDrawer.closeDrawer(mDrawerList);
 				break;
-				
+
 			case 5:
 				FragmentSettings ls_fragment5 = new FragmentSettings();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment5);
@@ -231,7 +231,7 @@ public class MainActivity extends ActionBarActivity {
 				fragmentTransaction = fragmentManager.beginTransaction();
 				mDrawer.closeDrawer(mDrawerList);
 				break;
-			
+
 			case 6:
 				FragmentCredits ls_fragment6 = new FragmentCredits();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment6);
@@ -239,8 +239,8 @@ public class MainActivity extends ActionBarActivity {
 				fragmentTransaction = fragmentManager.beginTransaction();
 				mDrawer.closeDrawer(mDrawerList);
 				break;	
-			
-				
+
+
 
 			default:
 				//You should reset item counter
@@ -249,7 +249,7 @@ public class MainActivity extends ActionBarActivity {
 
 				break;
 			}
-			
+
 
 		}
 

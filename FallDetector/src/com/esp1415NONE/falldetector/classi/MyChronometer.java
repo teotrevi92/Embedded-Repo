@@ -6,20 +6,20 @@ public class MyChronometer
 	private long elapsedTime;
 	private long startTime;
 	private boolean isRunning;
-	
+
 	public MyChronometer() { reset(); }
-	
+
 	public void start(){
 		if (isRunning) return;
 		isRunning = true;
 		startTime = System.currentTimeMillis();
-		}
+	}
 	public void stop(){
 		isRunning = false;
 		long endTime = System.currentTimeMillis();
 		elapsedTime = elapsedTime + endTime - startTime;
 		reset();
-		}
+	}
 	public void pause()
 	{
 		if (!isRunning) return;
@@ -51,9 +51,9 @@ public class MyChronometer
 		else
 			m=""+minutes;
 		return h+":"+m+":"+s; 
-    }
-	
+	}
+
 	public void reset(){
-	elapsedTime = 0;
-	isRunning = false; }
+		elapsedTime = 0;
+		isRunning = false; }
 }

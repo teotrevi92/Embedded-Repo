@@ -6,10 +6,10 @@ import android.content.Intent;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
-    @Override
-    public void onReceive(Context context, Intent intent) {
+	@Override
+	public void onReceive(Context context, Intent intent) {
 
-    	Intent service1 = new Intent(context, AlarmService.class);
-        context.startService(service1);
-    }
+		Intent service1 = new Intent(context, AlarmService.class);
+		context.startService(service1);
+	}
 }

@@ -1,7 +1,7 @@
 package com.esp1415NONE.falldetector.classi;
 
 public class StringName {
-	
+
 	public static final String DATABASE_NAME="fallenDB";
 	public static final int DATABASE_VERSION = 1;
 	//tabella 1
@@ -19,14 +19,14 @@ public class StringName {
 	public static final String LONG = "longit";
 	public static final String DATEF = "datef";
 	public static final String ARRAY = "array";
-	
+
 	//tabella 3
 	public static final String TABLE_NAME3 ="state";
 	public static final String UIDFREF = "idf";
 	//static final String UIDSREF = "ids";
 	public static final String MAILREF = "mailr";
 	public static final String SENT = "sent";
-	
+
 	//tabella 4
 	public static final String TABLE_NAME4 ="contact";
 	public static final String MAIL = "mail";

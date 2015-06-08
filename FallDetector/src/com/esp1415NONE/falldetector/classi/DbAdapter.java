@@ -140,11 +140,11 @@ public class DbAdapter  {
 				" ON " + StringName.UIDS + " = " + StringName.UIDSREF +//MANCA JOIN CON TABLE3
 				" WHERE " + StringName.UIDSREF + " = ' " + id_s + " ' ;";
 		Cursor cursor = db.rawQuery(query, null);
-		
+
 		return cursor;
 
 	}
-	
+
 	public Cursor getInfoTable4()
 	{
 		SQLiteDatabase db = helper.getWritableDatabase();
@@ -152,7 +152,7 @@ public class DbAdapter  {
 		String query = "SELECT " + StringName.MAIL + " as _id ," + StringName.NAME + "," 
 				+ StringName.SURNAME + " FROM " + StringName.TABLE_NAME4 + " ;";
 		Cursor cursor = db.rawQuery(query, null);
-		
+
 		return cursor;
 
 	}
@@ -216,14 +216,21 @@ public class DbAdapter  {
 	public void dropSession(String ids) {
 		SQLiteDatabase db = helper.getWritableDatabase();
 		//		db.delete(StringName.TABLE_NAME3, ids, null);
-		db.delete(StringName.TABLE_NAME2, StringName.UIDSREF + " = ' " + ids + " ' ", null);
-		db.delete(StringName.TABLE_NAME1, StringName.UIDS + " = ' " + ids + " ' ", null);
+		db.delete(StringName.TABLE_NAME2, StringName.UIDSREF + " = '" + ids + "' ", null);
+		db.delete(StringName.TABLE_NAME1, StringName.UIDS + " = '" + ids + "' ", null);
 		//		String QUERY = "DELETE FROM " + StringName.TABLE_NAME2 + " WHERE "
 		//				+ StringName.UIDSREF + " = ' " + ids + " ' ;";
 		//		db.execSQL(QUERY);
 		//		QUERY = "DELETE FROM " + StringName.TABLE_NAME1 + " WHERE "
 		//				+ StringName.UIDS + " = ' " + ids + " ' ;";
 		//		db.execSQL(QUERY);
+	}
+
+	public void dropContact(String mail) {
+		SQLiteDatabase db = helper.getWritableDatabase();
+		//		db.delete(StringName.TABLE_NAME3, ids, null);
+		db.delete(StringName.TABLE_NAME3, StringName.MAILREF + " = '" + mail + "' ", null);
+		db.delete(StringName.TABLE_NAME4, StringName.MAIL + " = '" + mail + "' ", null);
 	}
 
 	//registrazione contatto nelle impostazioni
@@ -357,23 +364,64 @@ public class DbAdapter  {
 		db.update(StringName.TABLE_NAME1, contentValues, StringName.UIDS +" = " + ids, null);
 		db.close();
 	}
-	
-	//si setta la durata della sessione una volta terminata
-		public void setLatLongGPS(String ids, String idf, String lat, String longit)
-		{ 
-			SQLiteDatabase db = helper.getWritableDatabase();
 
-			//		String QUERY = "UPDATE " + StringName.TABLE_NAME1 + " SET " + StringName.DURATION 
-			//				+ " = ' " + duration + " ' WHERE " + StringName.UIDS + " = ' " + ids + " ' ;";
-			//		db.execSQL(QUERY);
+	public void setNameContact(String mail, String name, String surname)
+	{ 
+		SQLiteDatabase db = helper.getWritableDatabase();
+		ContentValues contentValues = new ContentValues();
+		contentValues.put(StringName.NAME, name);
+		contentValues.put(StringName.SURNAME, surname);
+		db.update(StringName.TABLE_NAME4, contentValues, StringName.MAIL +" = '" + mail + "'", null);
+		db.close();
+	}
 
-			ContentValues contentValues = new ContentValues();
-			contentValues.put(StringName.LAT, lat);
-			contentValues.put(StringName.LONG, longit);
-			db.update(StringName.TABLE_NAME2, contentValues, StringName.UIDSREF + " = " + ids + " AND "
-					 + StringName.UIDF + " = " + idf , null);
-			db.close();
+	public int getNumberContact()
+	{ 
+		int n = 0;
+		SQLiteDatabase db = helper.getReadableDatabase();
+		String QUERY = "SELECT COUNT(*) FROM " + StringName.TABLE_NAME4 + ";";
+		Cursor cursor = db.rawQuery(QUERY, null);
+		if(cursor != null) {
+			cursor.moveToFirst();
+			n = Integer.parseInt(cursor.getString(0));
 		}
+		else n = 0;
+		return n;
+	}
+
+	public String[] getListContact() {
+		int n = getNumberContact();
+		String[] listcontact = new String[n];
+		SQLiteDatabase db = helper.getReadableDatabase();
+		String QUERY = "SELECT " + StringName.MAIL + " FROM " + StringName.TABLE_NAME4 + ";";
+		Cursor cursor = db.rawQuery(QUERY, null);
+		if(cursor != null) {
+			cursor.moveToFirst();
+			for(int i = 0; i < n; i++)
+				listcontact[i] = cursor.getString(i);
+		}
+
+		return listcontact;
+	}
+
+
+
+	//si setta la durata della sessione una volta terminata
+	public void setLatLongGPS(String ids, String idf, String lat, String longit)
+	{ 
+		SQLiteDatabase db = helper.getWritableDatabase();
+
+		//		String QUERY = "UPDATE " + StringName.TABLE_NAME1 + " SET " + StringName.DURATION 
+		//				+ " = ' " + duration + " ' WHERE " + StringName.UIDS + " = ' " + ids + " ' ;";
+		//		db.execSQL(QUERY);
+
+		ContentValues contentValues = new ContentValues();
+		contentValues.put(StringName.LAT, lat);
+		contentValues.put(StringName.LONG, longit);
+		db.update(StringName.TABLE_NAME2, contentValues, StringName.UIDSREF + " = " + ids + " AND "
+				+ StringName.UIDF + " = " + idf , null);
+		db.close();
+	}
 
 
 
@@ -390,6 +438,32 @@ public class DbAdapter  {
 		contentValues.put(StringName.NAMES, name);
 		db.update(StringName.TABLE_NAME1, contentValues, StringName.UIDS +" = " + ids, null);
 		db.close();
+	}
+
+	public String getName(String mail) {
+		String s = "";
+		SQLiteDatabase db = helper.getReadableDatabase();
+		String query = "SELECT " + StringName.NAME + " FROM " + StringName.TABLE_NAME4 + 
+				" WHERE " + StringName.MAIL + " = '" + mail + "' ;";
+		Cursor cursor = db.rawQuery(query, null);
+		if(cursor != null) {
+			cursor.moveToFirst();
+			s = cursor.getString(0);
+		}
+		return s;
+	}
+
+	public String getSurname(String mail) {
+		String s = "";
+		SQLiteDatabase db = helper.getReadableDatabase();
+		String query = "SELECT " + StringName.SURNAME + " FROM " + StringName.TABLE_NAME4 + 
+				" WHERE " + StringName.MAIL + " = '" + mail + "' ;";
+		Cursor cursor = db.rawQuery(query, null);
+		if(cursor != null) {
+			cursor.moveToFirst();
+			s = cursor.getString(0);
+		}
+		return s;
 	}
 
 	public void createFall(int idf, int ids, String lat, String longit, String datef, String array)
@@ -459,8 +533,8 @@ public class DbAdapter  {
 		contentValues.put(StringName.SENT, sent);
 		db.insert(StringName.TABLE_NAME3, null,contentValues); // ritorna -1 se qualcosa va storto
 	} // da modificare?
-	
-	
+
+
 
 
 
@@ -551,10 +625,10 @@ public class DbAdapter  {
 		}
 
 
-//		private void ondestroy() {
-//			// TODO Auto-generated method stub
-//
-//		}
+		//		private void ondestroy() {
+		//			// TODO Auto-generated method stub
+		//
+		//		}
 
 	}
 }

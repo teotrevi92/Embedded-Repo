@@ -11,9 +11,9 @@
         android:gravity="center_vertical"
         android:padding="10dp"
         android:paddingBottom="10dp"
+        android:paddingEnd="0dp"
         android:paddingLeft="10dp"
         android:paddingRight="0dp"
-        android:paddingEnd="0dp"
         android:paddingStart="10dp"
         android:paddingTop="10dp"
         android:singleLine="true"
@@ -22,11 +22,11 @@
         android:textStyle="bold" />
 
     <ImageView
-        android:contentDescription="@string/descRow"
         android:id="@+id/menu_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/menurow_title"
+        android:contentDescription="@string/descRow"
         android:src="#DADADC" />
 
 </RelativeLayout>

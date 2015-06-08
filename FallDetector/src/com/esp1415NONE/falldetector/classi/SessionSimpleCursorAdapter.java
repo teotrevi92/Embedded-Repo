@@ -12,23 +12,22 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class SessionSimpleCursorAdapter extends SimpleCursorAdapter 
-{
-	private static Context cont;	
-		
+{	
+
+	@SuppressWarnings("deprecation")
 	public SessionSimpleCursorAdapter(Context context, Cursor c)
 	{
 		super(context, R.layout.activity_session_riepilog, c, new String[]
 				{ "_id" , StringName.NAMES ,StringName.DATE , StringName.DURATION, "countFall" }, new int[]
 						{ R.id.nome,R.id.nomeS,R.id.data, R.id.durata, R.id.sessione });
-		this.cont = context;
 	}
-	
+
 
 	@Override
 	public void bindView(View view, Context context, Cursor cursor)
 	{
 		super.bindView(view, context, cursor);
-		
+
 		ImageView logo = (ImageView) view.findViewById(R.id.logo);
 		TextView sess = (TextView) view.findViewById(R.id.sessione);
 		String date = cursor.getString(cursor.getColumnIndex(StringName.DATE));
@@ -43,17 +42,17 @@ public class SessionSimpleCursorAdapter extends SimpleCursorAdapter
 		MyGraph rndBitmap = new MyGraph(size,size);
 		rndBitmap.doRandomImg(dateA[0], dateA[1], dateA[2], dateA[3], dateA[4], dateA[5], size);
 		logo.setImageBitmap(rndBitmap.getRandomImg());
-		
+
 	}
 
 
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 	/*private Bitmap readBitmap(String nomeImmagine)
 	{
 		InputStream is = null;

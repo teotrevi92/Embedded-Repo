@@ -3,7 +3,7 @@ package com.esp1415NONE.falldetector.classi;
 import java.util.Calendar;
 
 public class MyTime {
-	
+
 	public String myTime() {
 		String time = "";
 		String or = "";
@@ -41,7 +41,7 @@ public class MyTime {
 		else gio = ""+giorno;
 
 		time = anno+ "-" + mes + "-" + gio + " " + or + ":" + min + ":" + sec;
-		
+
 		return time;
 	}
 

@@ -30,10 +30,10 @@ public class FragmentListView extends ListFragment {
 	private FragmentManager fragmentManager;
 	private TextView textview;
 	private TextView textview1;
-//	private TextView textview2;
+	//	private TextView textview2;
 	private String ids;
 	private int cad;
-	
+
 	SessionSimpleCursorAdapter ssca;
 
 
@@ -70,7 +70,7 @@ public class FragmentListView extends ListFragment {
 
 				default:
 					textview = (TextView) view.findViewById(R.id.nome);
-//					textview2 = (TextView) view.findViewById(R.id.nomeS);
+					//					textview2 = (TextView) view.findViewById(R.id.nomeS);
 					textview1 = (TextView) view.findViewById(R.id.sessione);
 
 					ids = textview.getText().toString();
@@ -81,9 +81,9 @@ public class FragmentListView extends ListFragment {
 						args.putString("ids", ids);
 						frg.setArguments(args);
 						fragmentTransaction.replace(R.id.frag_show_activity, frg);
-//						fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
+						//						fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
 						fragmentTransaction.commit();
-//						fragmentTransaction = fragmentManager.beginTransaction();
+						//						fragmentTransaction = fragmentManager.beginTransaction();
 					}
 					else {
 						Toast.makeText(activity, "Non ci sono cadute", Toast.LENGTH_SHORT).show();
@@ -95,28 +95,28 @@ public class FragmentListView extends ListFragment {
 
 		});
 
-				ls.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-					@Override
-					public boolean onItemLongClick(AdapterView<?> parent, View view,
-							int position, long id) {
-						// TODO Auto-generated method stub
-						switch (position) {
-						
-						default:
-							textview = (TextView) view.findViewById(R.id.nome);
-							ids = textview.getText().toString();
-							
-//							dbAdapter.dropSession(ids);
-//							Cursor c = dbAdapter.getAllRowsTable1();
-//							getActivity().startManagingCursor(c);
-//							ssca = new SessionSimpleCursorAdapter(getActivity(), c);
-//							setListAdapter(ssca);
-							break;
-						}
-						
-						return false;
-					}
-				});
+		ls.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				switch (position) {
+
+				default:
+					textview = (TextView) view.findViewById(R.id.nome);
+					ids = textview.getText().toString();
+
+					//							dbAdapter.dropSession(ids);
+					//							Cursor c = dbAdapter.getAllRowsTable1();
+					//							getActivity().startManagingCursor(c);
+					//							ssca = new SessionSimpleCursorAdapter(getActivity(), c);
+					//							setListAdapter(ssca);
+					break;
+				}
+
+				return false;
+			}
+		});
 
 	}
 
@@ -136,12 +136,12 @@ public class FragmentListView extends ListFragment {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		MenuInflater inflater = activity.getMenuInflater();
 		inflater.inflate(R.menu.main_context_menu, menu);
-		
-//		View parent = ((ViewGroup)v).getChildAt(1);
-//		View child = ((ViewGroup)parent).getChildAt(1);
-//		View child2 = ((ViewGroup)child).getChildAt(0);
-//		TextView child3 =(TextView)((ViewGroup)child2).getChildAt(1);
-//		ids = child3.getText().toString();
+
+		//		View parent = ((ViewGroup)v).getChildAt(1);
+		//		View child = ((ViewGroup)parent).getChildAt(1);
+		//		View child2 = ((ViewGroup)child).getChildAt(0);
+		//		TextView child3 =(TextView)((ViewGroup)child2).getChildAt(1);
+		//		ids = child3.getText().toString();
 
 
 
@@ -153,8 +153,8 @@ public class FragmentListView extends ListFragment {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
-	//	AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-	//	int pos = info.position;
+		//	AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		//	int pos = info.position;
 
 
 		Cursor c;
@@ -171,9 +171,9 @@ public class FragmentListView extends ListFragment {
 			setListAdapter(ssca);
 			return true;
 		case R.id.ren_id:
-//			Toast.makeText(activity, "Rinominato", Toast.LENGTH_SHORT).show();
-//			RenameDialog rd = new RenameDialog(getActivity(), ids);
-//            rd.show();
+			//			Toast.makeText(activity, "Rinominato", Toast.LENGTH_SHORT).show();
+			//			RenameDialog rd = new RenameDialog(getActivity(), ids);
+			//            rd.show();
 			Intent i = new Intent(getActivity(), RenameActivity.class);
 			i.putExtra("ids", ids);
 			i.putExtra("where", "rename");
@@ -181,6 +181,7 @@ public class FragmentListView extends ListFragment {
 			startActivity(i);
 			ssca.notifyDataSetChanged();
 			//per vedere la modifica in tempo reale
+			//SEMBRA NON FUNZIONARE QUESTO METODO
 			c = dbAdapter.getAllRowsTable1();
 			getActivity().startManagingCursor(c);
 			ssca = new SessionSimpleCursorAdapter(getActivity(), c);
@@ -190,12 +191,12 @@ public class FragmentListView extends ListFragment {
 			return true;
 		case R.id.new_session:
 			FragmentCurrentSession ls_fragment = new FragmentCurrentSession();
-//			fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
+			//			fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
 			fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 			fragmentTransaction.commit();
-//			fragmentTransaction = fragmentManager.beginTransaction();
-//			fragmentTransaction.addToBackStack(null);
-//			Toast.makeText(activity, "Da implementare altre opzioni", Toast.LENGTH_SHORT).show();
+			//			fragmentTransaction = fragmentManager.beginTransaction();
+			//			fragmentTransaction.addToBackStack(null);
+			//			Toast.makeText(activity, "Da implementare altre opzioni", Toast.LENGTH_SHORT).show();
 			return true;
 		default:
 			return super.onContextItemSelected(item);

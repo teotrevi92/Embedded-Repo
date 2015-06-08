@@ -28,26 +28,27 @@ public class LocationService extends Service implements LocationListener{
 
 	private final IBinder mBinder = new LocalBinder();
 	private String where;
-    LocationManager mgr;
-    private Location mLastLocation;
-    private Geocoder geocoder;
-    DbAdapter dbAdapter;
-    private Vibrator vib;
-    private MediaPlayer mp;
-    
-    Intent email;
+	LocationManager mgr;
+	private Location mLastLocation;
+	private Geocoder geocoder;
+	DbAdapter dbAdapter;
+	private Vibrator vib;
+	private MediaPlayer mp;
+	private int n = 0; //TRI
 
-	String[] emailTo = {"azi92@hotmail.it", "azi92rach@gmail.com"};
+	Intent email;
+	String[] emailTo;
+//	String[] emailTo = {"azi92@hotmail.it", "azi92rach@gmail.com"};
 	String emailText = "Aiuto!! Sono caduto. Mi trovo qui:\n";
 	String subject = "AIUTO DI SOCCORSO";
-	
+
 	boolean check; //Viene usata per avere l'ok dell'invio	
 	boolean sent; //Segnala il corretto invio della mail, da salvare del database
 	boolean ready; //Localizzazione salvata
 	private String ids;
 	private String idf;
-    
-    
+
+
 	@Override
 	public void onLocationChanged(Location location) {
 		// TODO Auto-generated method stub
@@ -59,31 +60,31 @@ public class LocationService extends Service implements LocationListener{
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onProviderEnabled(String provider) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onProviderDisabled(String provider) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	//---------------------------SERVICE------------------------
 	public class LocalBinder extends Binder 
 	{
 		LocationService getService() 
-        {
-            return LocationService.this;
-        }
-    }
-	
-	
+		{
+			return LocationService.this;
+		}
+	}
+
+
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		return START_STICKY;
 	};
@@ -104,18 +105,18 @@ public class LocationService extends Service implements LocationListener{
 		mp.setLooping(true);
 		mp.start();
 		//Cerco e salvo la localizzazione
-        geocoder = new Geocoder(this);
+		geocoder = new Geocoder(this);
 		if(mgr.isProviderEnabled(LocationManager.GPS_PROVIDER))
-    	{
+		{
 			mgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 			mLastLocation = mgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-    		
-    	}
+
+		}
 		else 
 			//if(mgr.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
 		{
 			mgr.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
-        	mLastLocation = mgr.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);	
+			mLastLocation = mgr.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);	
 		}
 		return mBinder;
 	}
@@ -132,7 +133,7 @@ public class LocationService extends Service implements LocationListener{
 		.build();
 		final int notificationID = 5786050;
 		startForeground(notificationID, notificationPlay);
-		
+
 	}
 
 	@Override
@@ -140,37 +141,37 @@ public class LocationService extends Service implements LocationListener{
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		mgr.removeUpdates(this);
-		
+
 	}
 	//--------------------------METODI----------------
 
 	//Salvo la localizzazione
-    private void setLocation() {
-        if (mLastLocation != null) {
-            double latitude = mLastLocation.getLatitude();
-            double longitude = mLastLocation.getLongitude();
-            //salvo i dati del gps
-            String lat = Double.toString(latitude);  //Tri
-            String longit = Double.toString(longitude);  //Tri
-            dbAdapter.setLatLongGPS(ids, idf, lat, longit); //da capire come passare idf e ids
-            where = latitude + ", " + longitude;
-            setAdress();
-        }
-        else {
-        	where="(Non e' stato possibile rocevere i dati del gps!!)";
-        }
-        
-        /*SALVARE LA  where COME LOCALIZZAZIONE, siccome puo' essere aggiornata, verra' salvata ogni volta cosi' da tenere quella ultima
+	private void setLocation() {
+		if (mLastLocation != null) {
+			double latitude = mLastLocation.getLatitude();
+			double longitude = mLastLocation.getLongitude();
+			//salvo i dati del gps
+			String lat = Double.toString(latitude);  //Tri
+			String longit = Double.toString(longitude);  //Tri
+			dbAdapter.setLatLongGPS(ids, idf, lat, longit); //da capire come passare idf e ids
+			where = latitude + ", " + longitude;
+			setAdress();
+		}
+		else {
+			where="(Non e' stato possibile rocevere i dati del gps!!)";
+		}
+
+		/*SALVARE LA  where COME LOCALIZZAZIONE, siccome puo' essere aggiornata, verra' salvata ogni volta cosi' da tenere quella ultima
          FATTO SOPRA
          ----------------------------------------------------*/
-        
-    }
-	
-	
+
+	}
+
+
 	private void setAdress()
-    {
-    	 //Provo a cercare l'indirizzo
-        try {
+	{
+		//Provo a cercare l'indirizzo
+		try {
 			//Creo una lista con i dettagli degli indirizzi
 			List<Address> addresses = geocoder.getFromLocation(mLastLocation.getLatitude(), mLastLocation.getLongitude(), 10);
 			if (addresses != null && addresses.size() > 0)
@@ -182,10 +183,13 @@ public class LocationService extends Service implements LocationListener{
 		} catch (IOException e) {
 			Log.e("LocateMe", "Could not get Geocoder data", e);
 		}
-    }
-	
+	}
+
 	private void sendMail()
 	{	//Se confermato l'invio mail viene inviata appena vengono presi i dati del gps
+		n = dbAdapter.getNumberContact(); //TRI
+		emailTo = new String[n]; //TRI
+		emailTo = dbAdapter.getListContact(); //TRI
 		if(check)
 		{
 			sent=true; //mail inviata
@@ -198,9 +202,9 @@ public class LocationService extends Service implements LocationListener{
 			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(i);
 			check=false;
-			
+
 			/* QUI BISOGNA SALVARE CHE LA MAIL E' STATA INVIATA ----------------------------------------------------------*/			
-			
+
 			finish();
 		}
 	}
@@ -218,7 +222,7 @@ public class LocationService extends Service implements LocationListener{
 	public void stopAlarm()
 	{
 		mp.stop();
-	    vib.cancel();
+		vib.cancel();
 	}
 	public void setId(String id_s, String id_f) //Arrivano i valori per salvare i dati
 	{

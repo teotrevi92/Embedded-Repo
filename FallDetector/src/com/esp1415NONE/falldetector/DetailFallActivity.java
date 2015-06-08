@@ -19,12 +19,12 @@ public class DetailFallActivity extends Activity {
 	private ImageView logo,graph;
 	private float[] acc;
 	private Queue que;
-	
+
 	@Override
 	public void onCreate(Bundle state) {
 		super.onCreate(state);
 		setContentView(R.layout.activity_detail_fall);
-		
+
 		i = getIntent();
 		ids = i.getStringExtra("ids");
 		nameS = i.getStringExtra("nomeS");
@@ -35,7 +35,7 @@ public class DetailFallActivity extends Activity {
 		datef = i.getStringExtra("dataf");
 		array = i.getStringExtra("array");
 
-		
+
 
 		name_S = (TextView) findViewById(R.id.nameS);
 		id_s = (TextView) findViewById(R.id.ids);
@@ -52,9 +52,9 @@ public class DetailFallActivity extends Activity {
 		date_f.setText(datef);
 		lat_.setText(lat);
 		longit_.setText(longit);
-		
+
 		dbAdapter = new DbAdapter(this);
-		
+
 		int sizeArray = dbAdapter.getSens(ids);
 		acc = new float[sizeArray];
 		acc = dbAdapter.convertStringToArray(array);
@@ -64,10 +64,10 @@ public class DetailFallActivity extends Activity {
 			que.enqueue(acc[i]);
 		}
 		graph.setImageBitmap(que.getGraphQueue(150));
-		
-		
-		
-		
+
+
+
+
 		int[] dateA = new int[6];
 		dateA = dbAdapter.getDate(dateS);
 		int size = 30;
@@ -75,7 +75,7 @@ public class DetailFallActivity extends Activity {
 		MyGraph rndBitmap = new MyGraph(size,size);
 		rndBitmap.doRandomImg(dateA[0], dateA[1], dateA[2], dateA[3], dateA[4], dateA[5], size);
 		logo.setImageBitmap(rndBitmap.getRandomImg());
-		
+
 
 
 

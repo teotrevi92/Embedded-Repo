@@ -17,13 +17,13 @@ public class RenameActivity extends Activity {
 	public String ids;
 	String where;
 	private Intent i;
-//	private FragmentTransaction fragmentTransaction;
-	
-	
+	//	private FragmentTransaction fragmentTransaction;
+
+
 	@Override
 	public void onCreate(Bundle state) {
 		super.onCreate(state);
-		
+
 		i = getIntent();
 		ids = i.getStringExtra("ids");
 		where = i.getStringExtra("where");
@@ -35,6 +35,8 @@ public class RenameActivity extends Activity {
 		ok.setText(R.string.toast_rename_button);
 		no.setText("Annulla");
 		dbAdapter = new DbAdapter(this);
+		nameSess = dbAdapter.getNameSession(ids);
+		nameS.setText(nameSess);
 		//		TextView txt = new TextView(this);
 		//		txt.setText(R.string.toast_rename_messagge);
 
@@ -50,14 +52,14 @@ public class RenameActivity extends Activity {
 				dbAdapter.setNameSession(ids, nameSess);
 
 				//Toast.makeText(RenameActivity.this, "bau", Toast.LENGTH_SHORT).show();
-//				if(where.equals("rename"))
-//				{
-//					RenameActivity ls_fragment = new RenameActivity();
-//					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
-//					fragmentTransaction.commit();
-//				}
-//				
-				
+				//				if(where.equals("rename"))
+				//				{
+				//					RenameActivity ls_fragment = new RenameActivity();
+				//					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
+				//					fragmentTransaction.commit();
+				//				}
+				//				
+
 				RenameActivity.this.finish();
 
 			}

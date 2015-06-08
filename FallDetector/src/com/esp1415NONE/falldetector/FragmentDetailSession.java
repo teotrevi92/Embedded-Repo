@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 public class FragmentDetailSession extends ListFragment {
 
-//	private Activity activity;
+	//	private Activity activity;
 	private String ids;
 	private String idf;
 	private DbAdapter dbAdapter;
@@ -23,48 +23,48 @@ public class FragmentDetailSession extends ListFragment {
 	private TextView idsess;
 	private TextView cad;
 	private Intent intent;
-	
-	
-	
+
+
+
 	@Override
 	public void onAttach(Activity a) {
 		super.onAttach(a);
-//		activity = a;
+		//		activity = a;
 	}
-	
-//	@Override
-//	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//			Bundle savedInstanceState) {
-//		// TODO Auto-generated method stub
-//		View view = inflater.inflate(R.layout.activity_fragment_detail_session, container, false);
-//		return view;
-//	}
-//	
+
+	//	@Override
+	//	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	//			Bundle savedInstanceState) {
+	//		// TODO Auto-generated method stub
+	//		View view = inflater.inflate(R.layout.activity_fragment_detail_session, container, false);
+	//		return view;
+	//	}
+	//	
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
-		
+
 		ids = getArguments().getString("ids");
 		dbAdapter = new DbAdapter(getActivity());
 		ls = (ListView) getActivity().findViewById(android.R.id.list);
 		Cursor c = dbAdapter.getInfoTable2(ids);
 		getActivity().startManagingCursor(c);
 		setListAdapter(new SessionSimpleCursorAdapterDetails(getActivity(), c));
-		
+
 		ls.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				// TODO Auto-generated method stub
 				switch (position) {
-				
+
 				default:
 					idsess = (TextView) view.findViewById(R.id.idsess);
 					cad = (TextView) view.findViewById(R.id.idf);
-					
+
 					ids = idsess.getText().toString();
 					idf = cad.getText().toString();
 					String[] result = new String[8];
@@ -81,56 +81,56 @@ public class FragmentDetailSession extends ListFragment {
 					startActivity(intent);
 					break;
 				}
-				
+
 			}
 		});
-		
-		
-//		registerForContextMenu(getListView());
 
-		
-	
+
+		//		registerForContextMenu(getListView());
+
+
+
 	}
-	
-	
 
 
-//	@Override
-//	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-//		// TODO Auto-generated method stub
-//		super.onCreateContextMenu(menu, v, menuInfo);
-//		MenuInflater inflater = activity.getMenuInflater();
-//		inflater.inflate(R.menu.main_context_menu, menu);
-//
-//	}
-//
-//
-//	@Override
-//	public boolean onContextItemSelected(MenuItem item) {
-//		// TODO Auto-generated method stub
-//
-//
-//		switch (item.getItemId()) {
-//		case R.id.delete_id:
-//			Toast.makeText(activity, "Da implementare la rimozione", Toast.LENGTH_SHORT).show();
-//			
-//			return true;
-//		case R.id.ren_id:
-//			Toast.makeText(activity, "Da implementare la modifica", Toast.LENGTH_SHORT).show();
-//			// arrayList.set(info.position,setItem);
-//			// adapter.notifyDataSetChanged();
-//			return true;
-//		case R.id.new_session:
-//			Toast.makeText(activity, "Da implementare altre opzioni", Toast.LENGTH_SHORT).show();
-//			return true;
-//		default:
-//			return super.onContextItemSelected(item);
-//		}
-//
-//
-//
-//	}
-	
-	
-	
+
+
+	//	@Override
+	//	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+	//		// TODO Auto-generated method stub
+	//		super.onCreateContextMenu(menu, v, menuInfo);
+	//		MenuInflater inflater = activity.getMenuInflater();
+	//		inflater.inflate(R.menu.main_context_menu, menu);
+	//
+	//	}
+	//
+	//
+	//	@Override
+	//	public boolean onContextItemSelected(MenuItem item) {
+	//		// TODO Auto-generated method stub
+	//
+	//
+	//		switch (item.getItemId()) {
+	//		case R.id.delete_id:
+	//			Toast.makeText(activity, "Da implementare la rimozione", Toast.LENGTH_SHORT).show();
+	//			
+	//			return true;
+	//		case R.id.ren_id:
+	//			Toast.makeText(activity, "Da implementare la modifica", Toast.LENGTH_SHORT).show();
+	//			// arrayList.set(info.position,setItem);
+	//			// adapter.notifyDataSetChanged();
+	//			return true;
+	//		case R.id.new_session:
+	//			Toast.makeText(activity, "Da implementare altre opzioni", Toast.LENGTH_SHORT).show();
+	//			return true;
+	//		default:
+	//			return super.onContextItemSelected(item);
+	//		}
+	//
+	//
+	//
+	//	}
+
+
+
 }

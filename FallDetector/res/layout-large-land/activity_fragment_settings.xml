@@ -86,7 +86,7 @@
         android:id="@+id/addemail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Aggiungi nuovo contatto" />
+        android:text="@string/add_new_contact" />
     
      <LinearLayout
         android:id="@+id/linearLayout4"

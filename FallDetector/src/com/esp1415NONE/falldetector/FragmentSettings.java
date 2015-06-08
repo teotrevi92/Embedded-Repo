@@ -35,7 +35,7 @@ public class FragmentSettings extends Fragment {
 	private Button button_add; //Tri
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
-	
+
 	View view;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class FragmentSettings extends Fragment {
 		int int_spM = preferences.getInt("pickerValueM", 0);
 		fragmentManager = getActivity().getSupportFragmentManager(); //Tri
 		fragmentTransaction = fragmentManager.beginTransaction(); //Tri
-		
+
 		sp_acc = (Spinner) view.findViewById(R.id.spinnerAcc);
 		sp_duration = (Spinner) view.findViewById(R.id.spinnerMaxSession);
 		sp_sens = (Spinner) view.findViewById(R.id.spinnerSens);
@@ -58,7 +58,7 @@ public class FragmentSettings extends Fragment {
 		tmpicker = (TimePicker) view.findViewById(R.id.timePicker);
 		button = (Button) view.findViewById(R.id.buttonemail); //Tri 
 		button_add = (Button) view.findViewById(R.id.addemail); //Tri 
-		
+
 		//Reimposto i valori salvati
 		sp_acc.setSelection(int_sp_acc);
 		sp_duration.setSelection(int_sp_duration);
@@ -66,13 +66,13 @@ public class FragmentSettings extends Fragment {
 		cbt.setChecked(bln_cbt);
 		tmpicker.setCurrentHour(int_spH);
 		tmpicker.setCurrentMinute(int_spM);
-		
+
 		//Inizializzazione per il promemoria
 		alarmManager = (AlarmManager)getActivity().getSystemService(Context.ALARM_SERVICE);
 		Intent myIntent = new Intent(getActivity(), AlarmReceiver.class);
-	    pendIntent = PendingIntent.getBroadcast(getActivity(), 0, myIntent,0);
-	    
-	    button.setOnClickListener(new View.OnClickListener() {
+		pendIntent = PendingIntent.getBroadcast(getActivity(), 0, myIntent,0);
+
+		button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -82,9 +82,9 @@ public class FragmentSettings extends Fragment {
 				/* controllo degli stack per rach*/
 			}
 		});
-		
-	    
-	    button_add.setOnClickListener(new View.OnClickListener() {
+
+
+		button_add.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -93,25 +93,25 @@ public class FragmentSettings extends Fragment {
 				/* controllo degli stack per rach*/
 			}
 		});
-	    
+
 		cbt.setOnClickListener(new View.OnClickListener() {
-			
-		@Override
-		public void onClick(View v) {
+
+			@Override
+			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+
 				if(cbt.isChecked())
 				{//Attiva promemoria
 					int hour_now = tmpicker.getCurrentHour();
 					int min_now = tmpicker.getCurrentMinute();
-					
+
 					Calendar mycalendar = Calendar.getInstance();
 					mycalendar.setTimeInMillis(System.currentTimeMillis());
 					mycalendar.set(Calendar.HOUR_OF_DAY, hour_now);
-				    mycalendar.set(Calendar.MINUTE, min_now);
-				    //Imposto promemoria
-				    alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, mycalendar.getTimeInMillis(),
-				    		AlarmManager.INTERVAL_DAY, pendIntent);
+					mycalendar.set(Calendar.MINUTE, min_now);
+					//Imposto promemoria
+					alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, mycalendar.getTimeInMillis(),
+							AlarmManager.INTERVAL_DAY, pendIntent);
 				}
 				else
 				{//Disattiva promemoria
@@ -119,13 +119,13 @@ public class FragmentSettings extends Fragment {
 						alarmManager.cancel(pendIntent);
 					}	
 				}
-				
+
 			}
 		});
-		
-		
+
+
 		tmpicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-			
+
 			@Override
 			public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
 				// TODO Auto-generated method stub
@@ -136,27 +136,27 @@ public class FragmentSettings extends Fragment {
 				}
 			}
 		});
-		
+
 		return view;
 	}
-	
-	
-	
+
+
+
 	public void onPause()
 	{
 		super.onPause();
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		SharedPreferences.Editor editor = preferences.edit();
-		
+
 		int int_sp_acc = sp_acc.getSelectedItemPosition();
 		int int_sp_duration = sp_duration.getSelectedItemPosition();
 		int int_sp_sens = sp_sens.getSelectedItemPosition();
 		boolean bln_cbt = cbt.isChecked();
 		int hour = tmpicker.getCurrentHour();
 		int min = tmpicker.getCurrentMinute();
-		
-		
-		
+
+
+
 		//Salvataggio impostazioni
 		editor.putInt("spinnerValueAcc", int_sp_acc);
 		editor.putInt("spinnerValueDuration", int_sp_duration);
@@ -166,8 +166,8 @@ public class FragmentSettings extends Fragment {
 		editor.putInt("pickerValueM", min);
 		//facciamo il commit
 		editor.commit();
-		
+
 	}
-	
-	
+
+
 }

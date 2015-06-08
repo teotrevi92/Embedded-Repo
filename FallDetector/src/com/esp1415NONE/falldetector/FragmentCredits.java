@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 
 public class FragmentCredits extends Fragment {
 
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.activity_fragment_credits, container, false);
-		
+
 		return view;
 	}
 

@@ -23,38 +23,38 @@ import android.widget.TextView;
 
 
 public class ToastAllertActivity extends Activity{
-	
-	
+
+
 	Handler handler;
-    boolean check;
-    boolean mBound = false;
-    LocationService loc;
-    
+	boolean check;
+	boolean mBound = false;
+	LocationService loc;
 
-    private Intent intent; //Tri
-    private String ids; //Tri
-    private String idf; //Tri
-//    private DbAdapter dbAdapter;
- 
-    
-    
-    private ServiceConnection mConnection = new ServiceConnection() {
 
-        @Override
-        public void onServiceConnected(ComponentName className,
-                IBinder service) {
-            // We've bound to LocalService, cast the IBinder and get LocalService instance
-            LocalBinder binder = (LocalBinder) service;
-            loc = binder.getService();
-            mBound = true;
-        }
+	private Intent intent; //Tri
+	private String ids; //Tri
+	private String idf; //Tri
+	//    private DbAdapter dbAdapter;
 
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            mBound = false;
-        }
-    };
-    
+
+
+	private ServiceConnection mConnection = new ServiceConnection() {
+
+		@Override
+		public void onServiceConnected(ComponentName className,
+				IBinder service) {
+			// We've bound to LocalService, cast the IBinder and get LocalService instance
+			LocalBinder binder = (LocalBinder) service;
+			loc = binder.getService();
+			mBound = true;
+		}
+
+		@Override
+		public void onServiceDisconnected(ComponentName arg0) {
+			mBound = false;
+		}
+	};
+
 
 	@Override
 	public void onCreate(Bundle state) {
@@ -64,20 +64,20 @@ public class ToastAllertActivity extends Activity{
 		intent = getIntent(); //Tri
 		ids = intent.getStringExtra("ids"); //Tri
 		idf = intent.getStringExtra("idf"); //Tri
-//		dbAdapter = new DbAdapter(this);
-		
+		//		dbAdapter = new DbAdapter(this);
+
 		Button ok = new Button(this);
 		ok.setText(R.string.toast_act_button);
 		TextView txt = new TextView(this);
 		txt.setText(R.string.toast_act_messagge);
 		check=false;
-		
+
 		Intent intent = new Intent(this, LocationService.class);
 		startService(intent);
-	    bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-		
+		bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+
 		ok.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -86,21 +86,21 @@ public class ToastAllertActivity extends Activity{
 					loc.finish();
 					loc.stopAlarm();
 				}
-//				unbindService(mConnection);
-				
+				//				unbindService(mConnection);
+
 				/* QUI BISOGNA SALVARE CHE NON E' STATA INVIATA LA MAIL*/
-				
+
 				ToastAllertActivity.this.finish();
-				
+
 			}
 		});
-		
+
 		//Creo il layout
 		LinearLayout mylayout = new LinearLayout(this);
 		//Aggiungo gli elementi al layout
 		mylayout.addView(ok);
 		mylayout.addView(txt);
-		
+
 		mylayout.setGravity(Gravity.CENTER);
 		//Visualizzo il layout
 		setContentView(mylayout);
@@ -110,28 +110,28 @@ public class ToastAllertActivity extends Activity{
 
 	private void playCountDown() {
 		//se per 10 secondi non viene premuto il tasto ok, viene chiusa
-				handler = new Handler();
-				handler.postDelayed(new Runnable() {
-					@Override
-					public void run() {
-						if(mBound) 
-							loc.setId(ids, idf); 
-						
-						if(!check)//se non e' stato premuto Annulla chiudi dopo 10 secondi e invia mail
-						{
-							if(mBound){
-								loc.check();
-								loc.stopAlarm();
-							}
-							ToastAllertActivity.this.finish(); 
-						}
+		handler = new Handler();
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				if(mBound) 
+					loc.setId(ids, idf); 
+
+				if(!check)//se non e' stato premuto Annulla chiudi dopo 10 secondi e invia mail
+				{
+					if(mBound){
+						loc.check();
+						loc.stopAlarm();
 					}
-				}, 10000);
-		
+					ToastAllertActivity.this.finish(); 
+				}
+			}
+		}, 10000);
+
 	}
-	
 
 
-	
-	
+
+
+
 }

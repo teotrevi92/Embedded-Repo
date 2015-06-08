@@ -6,13 +6,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 public class MyGraph {
-	
+
 	Bitmap bg;
 	Canvas canvas;
 	int ingrandimento;
 	Paint paint;
-    int xLarghezza;
-    int yLarghezza;
+	int xLarghezza;
+	int yLarghezza;
 	float asseX;
 	float asseY;
 	float tempo;
@@ -23,21 +23,21 @@ public class MyGraph {
 	Bitmap rnd;
 	Canvas canvas2;
 	Paint paint2;
-	
+
 	public MyGraph(int larghezza,int altezza)
 	{
-	
-	 ingrandimento = 6;
-	 paint = new Paint();
-     xLarghezza = larghezza;
-     yLarghezza = altezza;
-	 asseX=xLarghezza/2; //metto l'asse x a meta' del disegno
-	 asseY=(yLarghezza/5)*4;//metto l'asse y a meta' del disegno
-	 tempo=0;
-	 starX = 0;
-	 starY =0;
-	 stopX=0;
-	 stopY=0;
+
+		ingrandimento = 6;
+		paint = new Paint();
+		xLarghezza = larghezza;
+		yLarghezza = altezza;
+		asseX=xLarghezza/2; //metto l'asse x a meta' del disegno
+		asseY=(yLarghezza/5)*4;//metto l'asse y a meta' del disegno
+		tempo=0;
+		starX = 0;
+		starY =0;
+		stopX=0;
+		stopY=0;
 	}
 	public void doBase()
 	{
@@ -47,29 +47,29 @@ public class MyGraph {
 		bg=Bitmap.createBitmap(xLarghezza, yLarghezza, Bitmap.Config.ARGB_8888);
 		canvas = new Canvas(bg);
 		paint.setColor(Color.parseColor("black"));
-        canvas.drawLine(5,0,5,yLarghezza, paint);
-        canvas.drawLine(0,asseY,xLarghezza-20,asseY, paint);
-        canvas.drawText("0", xLarghezza-15, asseY, paint);
-        //disegno la freccia
-        canvas.drawLine(5,0,0,5,paint);
-        canvas.drawLine(5,0,10,5,paint);
-        //disego linee di scala
-        canvas.drawLine(0, asseY-5*ingrandimento, xLarghezza-20, asseY-5*ingrandimento, paint);
-        canvas.drawText("5", xLarghezza-15, asseY-5*ingrandimento, paint);
-        canvas.drawLine(0, asseY-10*ingrandimento, xLarghezza-20, asseY-10*ingrandimento, paint);
-        canvas.drawText("10", xLarghezza-15, asseY-10*ingrandimento, paint);
-        canvas.drawLine(0, asseY-15*ingrandimento, xLarghezza-20, asseY-15*ingrandimento, paint);
-        canvas.drawText("15", xLarghezza-15, asseY-15*ingrandimento, paint);
-        canvas.drawLine(0, asseY-20*ingrandimento, xLarghezza-20, asseY-20*ingrandimento, paint);
-        canvas.drawText("20", xLarghezza-15, asseY-20*ingrandimento, paint);
-        canvas.drawLine(0, asseY-25*ingrandimento, xLarghezza-20, asseY-25*ingrandimento, paint);
-        canvas.drawText("25", xLarghezza-15, asseY-25*ingrandimento, paint);
-        canvas.drawLine(0, asseY-30*ingrandimento, xLarghezza-20, asseY-30*ingrandimento, paint);
-        canvas.drawText("30", xLarghezza-15, asseY-30*ingrandimento, paint);
-        canvas.drawLine(0, asseY-35*ingrandimento, xLarghezza-20, asseY-35*ingrandimento, paint);
-        canvas.drawText("35", xLarghezza-15, asseY-35*ingrandimento, paint);
-        
-        paint.setColor(Color.parseColor("blue"));
+		canvas.drawLine(5,0,5,yLarghezza, paint);
+		canvas.drawLine(0,asseY,xLarghezza-20,asseY, paint);
+		canvas.drawText("0", xLarghezza-15, asseY, paint);
+		//disegno la freccia
+		canvas.drawLine(5,0,0,5,paint);
+		canvas.drawLine(5,0,10,5,paint);
+		//disego linee di scala
+		canvas.drawLine(0, asseY-5*ingrandimento, xLarghezza-20, asseY-5*ingrandimento, paint);
+		canvas.drawText("5", xLarghezza-15, asseY-5*ingrandimento, paint);
+		canvas.drawLine(0, asseY-10*ingrandimento, xLarghezza-20, asseY-10*ingrandimento, paint);
+		canvas.drawText("10", xLarghezza-15, asseY-10*ingrandimento, paint);
+		canvas.drawLine(0, asseY-15*ingrandimento, xLarghezza-20, asseY-15*ingrandimento, paint);
+		canvas.drawText("15", xLarghezza-15, asseY-15*ingrandimento, paint);
+		canvas.drawLine(0, asseY-20*ingrandimento, xLarghezza-20, asseY-20*ingrandimento, paint);
+		canvas.drawText("20", xLarghezza-15, asseY-20*ingrandimento, paint);
+		canvas.drawLine(0, asseY-25*ingrandimento, xLarghezza-20, asseY-25*ingrandimento, paint);
+		canvas.drawText("25", xLarghezza-15, asseY-25*ingrandimento, paint);
+		canvas.drawLine(0, asseY-30*ingrandimento, xLarghezza-20, asseY-30*ingrandimento, paint);
+		canvas.drawText("30", xLarghezza-15, asseY-30*ingrandimento, paint);
+		canvas.drawLine(0, asseY-35*ingrandimento, xLarghezza-20, asseY-35*ingrandimento, paint);
+		canvas.drawText("35", xLarghezza-15, asseY-35*ingrandimento, paint);
+
+		paint.setColor(Color.parseColor("blue"));
 	}
 	public void drowPoint(float punto)
 	{
@@ -80,8 +80,8 @@ public class MyGraph {
 		canvas.drawLine(starX, starY, stopX, stopY, paint);
 		stopX=starX;
 		stopY=starY;
-//		if (tempo>250)
-//			doBase();
+		//		if (tempo>250)
+		//			doBase();
 	}
 	//creo un immagine random
 	public void doRandomImg(int year, int month, int day, int hours, int minutes, int seconds,int size)

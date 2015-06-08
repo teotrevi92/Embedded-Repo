@@ -98,6 +98,11 @@
             android:label="@string/title_activity_add_email"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
+        <activity
+            android:name=".RenameEmailActivity"
+            android:label="@string/title_activity_rename_email"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
     </application>
 
 </manifest>
