@@ -1,7 +1,9 @@
 package com.esp1415NONE.falldetector;
 
+import com.esp1415NONE.falldetector.classi.DbAdapter;
 import com.esp1415NONE.falldetector.classi.NsMenuAdapter;
 import com.esp1415NONE.falldetector.classi.NsMenuItemModel;
+
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 @SuppressWarnings("deprecation")
 public class MainActivity extends ActionBarActivity {
@@ -29,6 +32,7 @@ public class MainActivity extends ActionBarActivity {
 
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
+	private DbAdapter dbAdapter; //Tri
 
 	//private ImageButton play;
 
@@ -43,6 +47,7 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_drawer);
 
+		dbAdapter = new DbAdapter(getApplication());
 		fragmentManager = getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
 		if (savedInstanceState == null)
@@ -209,11 +214,16 @@ public class MainActivity extends ActionBarActivity {
 				break;
 
 			case 3:
-				FragmentListView ls_fragment3 = new FragmentListView();
-				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment3);
-				fragmentTransaction.commit();
-				fragmentTransaction = fragmentManager.beginTransaction();
-				mDrawer.closeDrawer(mDrawerList);
+				if(dbAdapter.getNumberSession() == 0) {
+					Toast.makeText(getApplicationContext(), "Nessuna sessione", Toast.LENGTH_SHORT).show();
+				}
+				else {
+					FragmentListView ls_fragment3 = new FragmentListView();
+					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment3);
+					fragmentTransaction.commit();
+					fragmentTransaction = fragmentManager.beginTransaction();
+					mDrawer.closeDrawer(mDrawerList);
+				}
 				break;
 
 			case 4:

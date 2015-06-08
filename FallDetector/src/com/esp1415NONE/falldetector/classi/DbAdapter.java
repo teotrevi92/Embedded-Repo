@@ -456,6 +456,20 @@ public class DbAdapter  {
 		return n;
 	}
 
+	public int getNumberSession()
+	{ 
+		int n = 0;
+		SQLiteDatabase db = helper.getReadableDatabase();
+		String QUERY = "SELECT COUNT(*) FROM " + StringName.TABLE_NAME1 + ";";
+		Cursor cursor = db.rawQuery(QUERY, null);
+		if(cursor != null) {
+			cursor.moveToFirst();
+			n = cursor.getInt(0);
+		}
+		else n = 0;
+		return n;
+	}
+
 	public String[] getListContact() {
 		int n = getNumberContact();
 		String[] listcontact = new String[n];

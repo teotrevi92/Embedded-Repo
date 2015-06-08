@@ -4,6 +4,8 @@ package com.esp1415NONE.falldetector;
 
 import java.util.Calendar;
 
+import com.esp1415NONE.falldetector.classi.DbAdapter;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -21,6 +23,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class FragmentSettings extends Fragment {
 
@@ -35,6 +38,7 @@ public class FragmentSettings extends Fragment {
 	private Button button_add; //Tri
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
+	private DbAdapter dbAdapter; //Tri
 
 	View view;
 	@Override
@@ -50,6 +54,7 @@ public class FragmentSettings extends Fragment {
 		int int_spM = preferences.getInt("pickerValueM", 0);
 		fragmentManager = getActivity().getSupportFragmentManager(); //Tri
 		fragmentTransaction = fragmentManager.beginTransaction(); //Tri
+		dbAdapter = new DbAdapter(getActivity()); //Tri
 
 		sp_acc = (Spinner) view.findViewById(R.id.spinnerAcc);
 		sp_duration = (Spinner) view.findViewById(R.id.spinnerMaxSession);
@@ -76,10 +81,15 @@ public class FragmentSettings extends Fragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				FragmentListContacts ls_fragment = new FragmentListContacts();
-				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
-				fragmentTransaction.commit();
-				/* controllo degli stack per rach*/
+				if(dbAdapter.getNumberContact() == 0) {
+					Toast.makeText(getActivity(), "Non ci sono contatti salvati", Toast.LENGTH_SHORT).show();
+				}
+				else {
+					FragmentListContacts ls_fragment = new FragmentListContacts();
+					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
+					fragmentTransaction.commit();
+					/* controllo degli stack per rach*/
+				}
 			}
 		});
 
