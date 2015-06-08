@@ -149,7 +149,7 @@ public class FragmentListView extends ListFragment {
 	}
 
 
-	@SuppressWarnings("deprecation")
+//	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
@@ -166,7 +166,7 @@ public class FragmentListView extends ListFragment {
 			ssca.notifyDataSetChanged();
 			//per vedere la modifica in tempo reale
 			c = dbAdapter.getAllRowsTable1();
-			getActivity().startManagingCursor(c);
+//			getActivity().startManagingCursor(c);
 			ssca = new SessionSimpleCursorAdapter(getActivity(), c);
 			setListAdapter(ssca);
 			return true;
@@ -183,7 +183,7 @@ public class FragmentListView extends ListFragment {
 			//per vedere la modifica in tempo reale
 			//SEMBRA NON FUNZIONARE QUESTO METODO
 			c = dbAdapter.getAllRowsTable1();
-			getActivity().startManagingCursor(c);
+//			getActivity().startManagingCursor(c);
 			ssca = new SessionSimpleCursorAdapter(getActivity(), c);
 			setListAdapter(ssca);
 			// arrayList.set(info.position,setItem);

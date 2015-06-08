@@ -41,7 +41,7 @@ public class FragmentDetailSession extends ListFragment {
 	//	}
 	//	
 
-	@SuppressWarnings("deprecation")
+//	@SuppressWarnings("deprecation")
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -51,7 +51,7 @@ public class FragmentDetailSession extends ListFragment {
 		dbAdapter = new DbAdapter(getActivity());
 		ls = (ListView) getActivity().findViewById(android.R.id.list);
 		Cursor c = dbAdapter.getInfoTable2(ids);
-		getActivity().startManagingCursor(c);
+//		getActivity().startManagingCursor(c);
 		setListAdapter(new SessionSimpleCursorAdapterDetails(getActivity(), c));
 
 		ls.setOnItemClickListener(new AdapterView.OnItemClickListener() {

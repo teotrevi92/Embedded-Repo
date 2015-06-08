@@ -104,6 +104,11 @@ public class LocationService extends Service implements LocationListener{
 		vib.vibrate(10000);
 		mp.setLooping(true);
 		mp.start();
+		//inizializzo gli indirizzi email
+		n = dbAdapter.getNumberContact(); //TRI
+		emailTo = new String[n]; //TRI
+		emailTo = dbAdapter.getListContact(); //TRI
+		
 		//Cerco e salvo la localizzazione
 		geocoder = new Geocoder(this);
 		if(mgr.isProviderEnabled(LocationManager.GPS_PROVIDER))
@@ -187,9 +192,7 @@ public class LocationService extends Service implements LocationListener{
 
 	private void sendMail()
 	{	//Se confermato l'invio mail viene inviata appena vengono presi i dati del gps
-		n = dbAdapter.getNumberContact(); //TRI
-		emailTo = new String[n]; //TRI
-		emailTo = dbAdapter.getListContact(); //TRI
+		
 		if(check)
 		{
 			sent=true; //mail inviata

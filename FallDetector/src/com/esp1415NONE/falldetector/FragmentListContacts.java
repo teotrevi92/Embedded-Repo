@@ -77,7 +77,7 @@ public class FragmentListContacts extends ListFragment {
 	}
 
 
-	@SuppressWarnings("deprecation")
+//	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
@@ -91,7 +91,7 @@ public class FragmentListContacts extends ListFragment {
 			csca.notifyDataSetChanged();
 			//per vedere la modifica in tempo reale
 			c = dbAdapter.getInfoTable4();
-			getActivity().startManagingCursor(c);
+//			getActivity().startManagingCursor(c);
 			csca = new ContactSimpleCursorAdapter(getActivity(), c);
 			setListAdapter(csca);
 			return true;

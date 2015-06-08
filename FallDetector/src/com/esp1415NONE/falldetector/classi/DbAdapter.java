@@ -383,7 +383,7 @@ public class DbAdapter  {
 		Cursor cursor = db.rawQuery(QUERY, null);
 		if(cursor != null) {
 			cursor.moveToFirst();
-			n = Integer.parseInt(cursor.getString(0));
+			n = cursor.getInt(0);
 		}
 		else n = 0;
 		return n;
@@ -393,16 +393,23 @@ public class DbAdapter  {
 		int n = getNumberContact();
 		String[] listcontact = new String[n];
 		SQLiteDatabase db = helper.getReadableDatabase();
-		String QUERY = "SELECT " + StringName.MAIL + " FROM " + StringName.TABLE_NAME4 + ";";
-		Cursor cursor = db.rawQuery(QUERY, null);
+//		String QUERY = "SELECT " + StringName.MAIL + " FROM " + StringName.TABLE_NAME4 + ";";
+		String[] columns = {StringName.MAIL};
+		Cursor cursor = db.query(StringName.TABLE_NAME4, columns , null, null, null, null, null);
+//		Cursor cursor = db.rawQuery(QUERY, null);
 		if(cursor != null) {
 			cursor.moveToFirst();
 			for(int i = 0; i < n; i++)
 				listcontact[i] = cursor.getString(i);
+			//			listcontact[0] = cursor.getString(0);
+			//			listcontact[1] = cursor.getString(1);
 		}
-
+		cursor.close();
+		db.close();
 		return listcontact;
 	}
+
+
 
 
 
