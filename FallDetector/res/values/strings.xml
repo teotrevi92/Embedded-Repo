@@ -68,10 +68,10 @@
     <string name="activityRename">  Rinominare la Sessione?</string>
     <string name="title_activity_add_email">Aggiungi Contatto</string>
     <string name="toast_act_ok">Conferma</string>
-    <string name="text_email">Indirizzo e-mail(*)</string>
+    <string name="text_email">e-mail*</string>
     <string name="text_email1">Indirizzo e-mail: </string>
-    <string name="text_name">Nome(*)</string>
-    <string name="text_surname">Cognome(*)</string>
+    <string name="text_name">Nome*</string>
+    <string name="text_surname">Cognome*</string>
     <string name="text_fall">Caduta: </string>
     <string name="descript">Grafico caduta</string>
     <string name="text_example_fall">XXX</string>
