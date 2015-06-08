@@ -399,8 +399,10 @@ public class DbAdapter  {
 //		Cursor cursor = db.rawQuery(QUERY, null);
 		if(cursor != null) {
 			cursor.moveToFirst();
-			for(int i = 0; i < n; i++)
-				listcontact[i] = cursor.getString(i);
+			for(int i = 0; i < n; i++) {
+				listcontact[i] = cursor.getString(0);
+				cursor.moveToNext();
+			}
 			//			listcontact[0] = cursor.getString(0);
 			//			listcontact[1] = cursor.getString(1);
 		}

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class RenameEmailActivity extends Activity {
 
-	private TextView email, name, surname;
+	private TextView name, surname;
 	private Button ok, no;
 	private DbAdapter dbAdapter;
 	private String mail, name_, surname_;
@@ -24,7 +24,6 @@ public class RenameEmailActivity extends Activity {
 		setContentView(R.layout.activity_rename_email);
 		intent = getIntent();
 		mail = intent.getStringExtra("mail");
-		email = (TextView) findViewById(R.id.mail);
 		name = (EditText) findViewById(R.id.name);
 		surname = (EditText) findViewById(R.id.surname);
 		ok = (Button) findViewById(R.id.btn_yes);
