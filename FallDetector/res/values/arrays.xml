@@ -7,24 +7,24 @@
         <item>ns_menu_3</item>
         <item>ns_menu_4</item>
         <item>ns_menu_5</item>
-        <item>ns_menu_6</item>
     </string-array>
 
     <array name="ns_menu_items_icon">
         <item>home</item>
         <item>current_session</item>
         <item>sessions</item>
-        <item>profile</item>
         <item>settings</item>
         <item>info</item>
     </array>
-    
+
+    <!--
     <string-array name="menu">
 		<item>Edit</item>
 		<item>Delete</item>
 		<item>Send</item>
 	</string-array>
-    
+    -->
+
     <string-array name="maxsession_arrays">
         <item>1 ora</item>
         <item>2 ore</item>
@@ -36,13 +36,11 @@
         <item>8 ore</item>
         <item>9 ore</item>
     </string-array>
-    
     <string-array name="sens_arrays">
         <item>Corsa</item>
         <item>Normale</item>
         <item>Anziano</item>
     </string-array>
-    
     <string-array name="accurancy_arrays">
         <item>Bassa</item>
         <item>Media</item>

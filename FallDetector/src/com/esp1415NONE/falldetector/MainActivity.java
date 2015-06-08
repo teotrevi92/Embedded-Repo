@@ -217,7 +217,7 @@ public class MainActivity extends ActionBarActivity {
 				break;
 
 			case 4:
-				FragmentProfile ls_fragment4 = new FragmentProfile();
+				FragmentSettings ls_fragment4 = new FragmentSettings();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment4);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();
@@ -225,16 +225,8 @@ public class MainActivity extends ActionBarActivity {
 				break;
 
 			case 5:
-				FragmentSettings ls_fragment5 = new FragmentSettings();
+				FragmentCredits ls_fragment5 = new FragmentCredits();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment5);
-				fragmentTransaction.commit();
-				fragmentTransaction = fragmentManager.beginTransaction();
-				mDrawer.closeDrawer(mDrawerList);
-				break;
-
-			case 6:
-				FragmentCredits ls_fragment6 = new FragmentCredits();
-				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment6);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();
 				mDrawer.closeDrawer(mDrawerList);

@@ -216,6 +216,7 @@ public class DbAdapter  {
 	public void dropSession(String ids) {
 		SQLiteDatabase db = helper.getWritableDatabase();
 		//		db.delete(StringName.TABLE_NAME3, ids, null);
+		db.delete(StringName.TABLE_NAME3, StringName.UIDSREF + " = '" + ids + "' ", null);
 		db.delete(StringName.TABLE_NAME2, StringName.UIDSREF + " = '" + ids + "' ", null);
 		db.delete(StringName.TABLE_NAME1, StringName.UIDS + " = '" + ids + "' ", null);
 		//		String QUERY = "DELETE FROM " + StringName.TABLE_NAME2 + " WHERE "

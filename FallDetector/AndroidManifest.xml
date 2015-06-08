@@ -40,10 +40,6 @@
             android:label="@string/title_activity_fragment_settings" >
         </activity>
         <activity
-            android:name=".FragmentProfile"
-            android:label="@string/title_activity_fragment_profile" >
-        </activity>
-        <activity
             android:name=".FragmentCurrentSession"
             android:label="@string/title_activity_fragment_current_session" >
         </activity>
