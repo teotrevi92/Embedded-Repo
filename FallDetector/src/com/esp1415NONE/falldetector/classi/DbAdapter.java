@@ -57,20 +57,43 @@ public class DbAdapter  {
 		return buffer.toString();
 
 	}
-	public String getTable3()
+
+	public String getTable2plus()
 	{
 		SQLiteDatabase db = helper.getWritableDatabase();
 
-		String[] columns = {StringName.UIDFREF, StringName.UIDSREF, StringName.MAILREF, StringName.SENT};
+		String[] columns = {StringName.UIDSREF,StringName.UIDF, StringName.LAT, StringName.LONG, StringName.DATEF};
+		Cursor cursor = db.query(StringName.TABLE_NAME2, columns, null, null, null, null, null);
+		StringBuffer buffer = new StringBuffer();
+		while(cursor.moveToNext())
+		{
+			int ids = cursor.getInt(0);
+			String idf = cursor.getString(1);
+			String lat = cursor.getString(2);
+			String longi = cursor.getString(3);
+			String date = cursor.getString(4);
+			buffer.append(ids+" "+idf+ " "+ lat + " " + longi + " " + date + "\n");
+		}
+
+		return buffer.toString();
+
+	}
+
+
+	public String getTable3()
+	{
+		SQLiteDatabase db = helper.getReadableDatabase();
+
+		String[] columns = {StringName.UIDSREF, StringName.UIDFREF, StringName.MAILREF, StringName.SENT};
 		Cursor cursor = db.query(StringName.TABLE_NAME3, columns, null, null, null, null, null);
 		StringBuffer buffer = new StringBuffer();
 		while(cursor.moveToNext())
 		{
-			int cid = cursor.getInt(0);
-			int ids = cursor.getInt(1);
+			String ids = cursor.getString(0);
+			String idf = cursor.getString(1);
 			String mail = cursor.getString(2);
 			String sent = cursor.getString(3);
-			buffer.append(cid+ ""+ ids + "" + mail + "" + sent + "\n");
+			buffer.append(ids+ " "+ idf + " " + mail + " " + sent + "\n");
 		}
 		//cursor.close();
 
@@ -134,11 +157,12 @@ public class DbAdapter  {
 	{
 		SQLiteDatabase db = helper.getWritableDatabase();
 
-		String query = "SELECT DISTINCT " + StringName.UIDSREF + " as _id ," + StringName.NAMES + "," 
-				+ StringName.UIDF + "," + StringName.DATEF  /*+ "," + StringName.SENT */
-				+ " FROM " + StringName.TABLE_NAME2 + " JOIN " + StringName.TABLE_NAME1 + 
-				" ON " + StringName.UIDS + " = " + StringName.UIDSREF +//MANCA JOIN CON TABLE3
-				" WHERE " + StringName.UIDSREF + " = ' " + id_s + " ' ;";
+		String query = "SELECT DISTINCT " + StringName.UIDS + " as _id ," + StringName.NAMES + "," 
+				+ StringName.UIDF + "," + StringName.DATEF  + "," + StringName.SENT 
+				+ " FROM (" + StringName.TABLE_NAME2 + " JOIN " + StringName.TABLE_NAME1 + 
+				" ON " + StringName.UIDS + " = " + StringName.UIDSREF + ") AS J NATURAL JOIN " 
+				+ StringName.TABLE_NAME3 + 
+				" WHERE " + StringName.UIDS + " = '" + id_s + "' ;";
 		Cursor cursor = db.rawQuery(query, null);
 
 		return cursor;
@@ -228,20 +252,16 @@ public class DbAdapter  {
 	}
 
 	public void setInfoSent(String ids, String idf, String[] listContact) {
-		String bool = "false";
+		String sent = "No";
 		SQLiteDatabase db = helper.getWritableDatabase();
-
-		ContentValues contentValues = new ContentValues();
+		ContentValues contentValues;
 		for(int i = 0; i < listContact.length; i++) {
+			contentValues = new ContentValues();
 			contentValues.put(StringName.UIDFREF, idf);
 			contentValues.put(StringName.UIDSREF, ids);
-			contentValues.put(StringName.MAIL, listContact[i]);
-			contentValues.put(StringName.SENT, bool);
+			contentValues.put(StringName.MAILREF, listContact[i]);
+			contentValues.put(StringName.SENT, sent);
 			db.insert(StringName.TABLE_NAME3, null,contentValues);
-			contentValues.remove(StringName.UIDFREF);
-			contentValues.remove(StringName.UIDSREF);
-			contentValues.remove(StringName.MAIL);
-			contentValues.remove(StringName.SENT);
 		}
 	}
 
@@ -259,7 +279,7 @@ public class DbAdapter  {
 		contentValues.put(StringName.MAIL, mail);
 		contentValues.put(StringName.NAME, name);
 		contentValues.put(StringName.SURNAME, surname);
-		db.insert(StringName.TABLE_NAME4, null,contentValues); // ritorna -1 se qualcosa va storto
+		db.insert(StringName.TABLE_NAME4, null,contentValues);
 	}
 
 	//crea la sessione e restituisce l'id sessione
@@ -556,12 +576,12 @@ public class DbAdapter  {
 	{
 		SQLiteDatabase db = helper.getWritableDatabase();
 		ContentValues contentValues = new ContentValues();
-		String bool = "true";
-		contentValues.put(StringName.SENT, bool);
+		String sent = "Si";
+		contentValues.put(StringName.SENT, sent);
 		for(int i = 0; i < listContact.length; i++) {
-		db.update(StringName.TABLE_NAME3, contentValues, StringName.UIDFREF + " = '" + idf + "' AND "
-				+ StringName.UIDSREF + " = '" + ids + "' AND "
-				+ StringName.MAIL + " = '" + listContact[i] + "'", null);
+			db.update(StringName.TABLE_NAME3, contentValues, StringName.UIDFREF + " = '" + idf + "' AND "
+					+ StringName.UIDSREF + " = '" + ids + "' AND "
+					+ StringName.MAILREF + " = '" + listContact[i] + "'", null);
 		}
 	}
 
@@ -607,7 +627,7 @@ public class DbAdapter  {
 				+ StringName.SURNAME + " VARCHAR(70) NOT NULL" + ");";
 		private static final String CREATE_TABLE3 = "CREATE TABLE "+ StringName.TABLE_NAME3 + " ( "
 				+ StringName.UIDFREF + " INTEGER NOT NULL, " + StringName.UIDSREF + " INTEGER NOT NULL, " 
-				+ StringName.MAILREF + " VARCHAR(100) NOT NULL," + StringName.SENT + " BOOLEAN NOT NULL," 
+				+ StringName.MAILREF + " VARCHAR(100) NOT NULL," + StringName.SENT + " CHAR(2)," 
 				+ "PRIMARY KEY(" + StringName.UIDFREF + "," + StringName.UIDSREF + "," + StringName.MAILREF + "),"
 				+ "FOREIGN KEY(" + StringName.UIDFREF + "," + StringName.UIDSREF + ") REFERENCES " 
 				+ StringName.TABLE_NAME2 + "(" + StringName.UIDF + "," + StringName.UIDSREF + "),"

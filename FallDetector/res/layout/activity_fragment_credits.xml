@@ -18,4 +18,22 @@
         android:text="Questo è il fragment dedicato ai crediti"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="106dp"
+        android:layout_marginTop="81dp"
+        android:text="Table3" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_alignLeft="@+id/button1"
+        android:text="TableJoin" />
+
 </RelativeLayout>

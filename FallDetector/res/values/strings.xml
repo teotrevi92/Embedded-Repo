@@ -94,7 +94,7 @@
     <string name="text_example_durate_sess">00:00:00</string>
     <string name="text_fall1">Caduta </string>
     <string name="text_example_sent">si/no</string>
-    <string name="text_sent">Stato; </string>
+    <string name="text_sent">Stato: </string>
     <string name="add_new_contact">Aggiungi nuovo contatto</string>
     <string name="text_example_count_fall">KK</string>
     <string name="text_count_fall">N.Cadute: </string>

@@ -207,7 +207,8 @@ public class LocationService extends Service implements LocationListener{
 			check=false;
 
 			/* QUI BISOGNA SALVARE CHE LA MAIL E' STATA INVIATA ----------------------------------------------------------*/			
-
+			dbAdapter.setSentTrue(idf, ids, emailTo);
+			
 			finish();
 		}
 	}
