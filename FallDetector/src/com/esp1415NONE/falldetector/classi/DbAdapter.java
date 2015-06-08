@@ -227,9 +227,26 @@ public class DbAdapter  {
 		//		db.execSQL(QUERY);
 	}
 
+	public void setInfoSent(String ids, String idf, String[] listContact) {
+		String bool = "false";
+		SQLiteDatabase db = helper.getWritableDatabase();
+
+		ContentValues contentValues = new ContentValues();
+		for(int i = 0; i < listContact.length; i++) {
+			contentValues.put(StringName.UIDFREF, idf);
+			contentValues.put(StringName.UIDSREF, ids);
+			contentValues.put(StringName.MAIL, listContact[i]);
+			contentValues.put(StringName.SENT, bool);
+			db.insert(StringName.TABLE_NAME3, null,contentValues);
+			contentValues.remove(StringName.UIDFREF);
+			contentValues.remove(StringName.UIDSREF);
+			contentValues.remove(StringName.MAIL);
+			contentValues.remove(StringName.SENT);
+		}
+	}
+
 	public void dropContact(String mail) {
 		SQLiteDatabase db = helper.getWritableDatabase();
-		//		db.delete(StringName.TABLE_NAME3, ids, null);
 		db.delete(StringName.TABLE_NAME3, StringName.MAILREF + " = '" + mail + "' ", null);
 		db.delete(StringName.TABLE_NAME4, StringName.MAIL + " = '" + mail + "' ", null);
 	}
@@ -394,10 +411,10 @@ public class DbAdapter  {
 		int n = getNumberContact();
 		String[] listcontact = new String[n];
 		SQLiteDatabase db = helper.getReadableDatabase();
-//		String QUERY = "SELECT " + StringName.MAIL + " FROM " + StringName.TABLE_NAME4 + ";";
+		//		String QUERY = "SELECT " + StringName.MAIL + " FROM " + StringName.TABLE_NAME4 + ";";
 		String[] columns = {StringName.MAIL};
 		Cursor cursor = db.query(StringName.TABLE_NAME4, columns , null, null, null, null, null);
-//		Cursor cursor = db.rawQuery(QUERY, null);
+		//		Cursor cursor = db.rawQuery(QUERY, null);
 		if(cursor != null) {
 			cursor.moveToFirst();
 			for(int i = 0; i < n; i++) {
@@ -486,7 +503,10 @@ public class DbAdapter  {
 		contentValues.put(StringName.LONG, longit);
 		contentValues.put(StringName.DATEF, datef);
 		contentValues.put(StringName.ARRAY, array);
-		db.insert(StringName.TABLE_NAME2, null,contentValues); // ritorna -1 se qualcosa va storto
+		db.insert(StringName.TABLE_NAME2, null,contentValues); 
+		String idsString = ids+"";
+		String idfString = idf+"";
+		setInfoSent(idsString, idfString, getListContact());
 
 	}
 
@@ -532,17 +552,18 @@ public class DbAdapter  {
 		return a.length;
 	}
 
-	public void setSent(int idf, int ids, String mailr, boolean sent)
+	public void setSentTrue(String idf, String ids, String[] listContact)
 	{
 		SQLiteDatabase db = helper.getWritableDatabase();
 		ContentValues contentValues = new ContentValues();
-
-		contentValues.put(StringName.UIDFREF, idf);
-		contentValues.put(StringName.UIDSREF, ids);
-		contentValues.put(StringName.MAILREF, mailr);
-		contentValues.put(StringName.SENT, sent);
-		db.insert(StringName.TABLE_NAME3, null,contentValues); // ritorna -1 se qualcosa va storto
-	} // da modificare?
+		String bool = "true";
+		contentValues.put(StringName.SENT, bool);
+		for(int i = 0; i < listContact.length; i++) {
+		db.update(StringName.TABLE_NAME3, contentValues, StringName.UIDFREF + " = '" + idf + "' AND "
+				+ StringName.UIDSREF + " = '" + ids + "' AND "
+				+ StringName.MAIL + " = '" + listContact[i] + "'", null);
+		}
+	}
 
 
 
