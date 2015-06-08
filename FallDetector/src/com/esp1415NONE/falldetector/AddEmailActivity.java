@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddEmailActivity extends Activity {
 
@@ -39,10 +40,15 @@ public class AddEmailActivity extends Activity {
 				// TODO Auto-generated method stub
 				String mail = email.getText().toString();
 				String name_ = name.getText().toString();
-				String surname_ = surname.getText().toString(); 
-				dbAdapter.createContact(mail, name_, surname_);
+				String surname_ = surname.getText().toString();
+				if(mail.equals("") || name_.equals("") || surname_.equals(""))
+					Toast.makeText(getApplicationContext(), "Controllare i campi obbligatori", Toast.LENGTH_SHORT).show();
+				else {
+					dbAdapter.createContact(mail, name_, surname_);
+					AddEmailActivity.this.finish();
+				}
 
-				AddEmailActivity.this.finish();
+				
 
 			}
 		});
