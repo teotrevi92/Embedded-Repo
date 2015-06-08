@@ -155,13 +155,14 @@ public class DbAdapter  {
 
 	public Cursor getInfoTable2(String id_s)
 	{
-		SQLiteDatabase db = helper.getWritableDatabase();
+		SQLiteDatabase db = helper.getReadableDatabase();
 
 		String query = "SELECT DISTINCT " + StringName.UIDS + " as _id ," + StringName.NAMES + "," 
 				+ StringName.UIDF + "," + StringName.DATEF  + "," + StringName.SENT 
 				+ " FROM (" + StringName.TABLE_NAME2 + " JOIN " + StringName.TABLE_NAME1 + 
-				" ON " + StringName.UIDS + " = " + StringName.UIDSREF + ") AS J NATURAL JOIN " 
-				+ StringName.TABLE_NAME3 + 
+				" ON " + StringName.UIDS + " = " + StringName.UIDSREF + ") AS J JOIN " 
+				+ StringName.TABLE_NAME3 + " ON " + StringName.UIDS + " = " + StringName.TABLE_NAME3
+				+ "." + StringName.UIDSREF +
 				" WHERE " + StringName.UIDS + " = '" + id_s + "' ;";
 		Cursor cursor = db.rawQuery(query, null);
 
@@ -169,9 +170,36 @@ public class DbAdapter  {
 
 	}
 
+	//	String SUBQUERY = "(SELECT DISTINCT " + StringName.SENT  + ",fall." + StringName.UIDSREF + " AS ids3,"
+	//			+ StringName.UIDF + " AS idf3," + StringName.DATEF + " FROM " +
+	//			StringName.TABLE_NAME3 + " JOIN " + StringName.TABLE_NAME2 + 
+	//			" ON fall." + StringName.UIDSREF + " = state."+ StringName.UIDSREF +")";
+	//
+	//	String query = "SELECT DISTINCT ids3 as _id, idf3," + StringName.NAMES + ","
+	//			+ StringName.SENT +  "," + StringName.DATEF 
+	//			+ " FROM (" + SUBQUERY + " JOIN " + StringName.TABLE_NAME1
+	//			+ " ON ids3 = " + StringName.UIDS + ") AS J "
+	//			+ " WHERE ids3 = '" + id_s + "' ;";
+
+	//	String query = "SELECT DISTINCT " + StringName.UIDS + " as _id ," + StringName.NAMES + "," 
+	//			+ StringName.UIDF + "," + StringName.DATEF  + "," + StringName.SENT 
+	//			+ " FROM (" + StringName.TABLE_NAME1 + " JOIN " + StringName.TABLE_NAME2 + 
+	//			" ON " + StringName.UIDS + " = " + StringName.UIDSREF + ") AS J JOIN " 
+	//			+ StringName.TABLE_NAME3 + " ON " + StringName.UIDS + " = " + StringName.TABLE_NAME3
+	//			+ "." + StringName.UIDSREF +
+	//			" WHERE " + StringName.UIDS + " = '" + id_s + "' ;";
+
+	//	String query = "SELECT DISTINCT " + StringName.UIDS + " as _id ," + StringName.NAMES + "," 
+	//			+ StringName.UIDF + "," + StringName.DATEF  + "," + StringName.SENT 
+	//			+ " FROM (" + StringName.TABLE_NAME2 + " JOIN " + StringName.TABLE_NAME1 + 
+	//			" ON " + StringName.UIDS + " = " + StringName.UIDSREF + ") AS J JOIN " 
+	//			+ StringName.TABLE_NAME3 + " ON " + StringName.UIDS + " = " + StringName.TABLE_NAME3
+	//			+ "." + StringName.UIDSREF +
+	//			" WHERE " + StringName.UIDS + " = '" + id_s + "' ;";
+
 	public Cursor getInfoTable4()
 	{
-		SQLiteDatabase db = helper.getWritableDatabase();
+		SQLiteDatabase db = helper.getReadableDatabase();
 
 		String query = "SELECT " + StringName.MAIL + " as _id ," + StringName.NAME + "," 
 				+ StringName.SURNAME + " FROM " + StringName.TABLE_NAME4 + " ;";
@@ -183,7 +211,7 @@ public class DbAdapter  {
 
 	public String[] getMoreInfoTable2(String id_s, String id_f)
 	{
-		SQLiteDatabase db = helper.getWritableDatabase();
+		SQLiteDatabase db = helper.getReadableDatabase();
 		String[] arr = new String[8];
 		String query = "SELECT DISTINCT " + StringName.UIDSREF + " as _id ," + StringName.NAMES + ","  
 				+ StringName.DATE + "," + StringName.LAT + "," +  StringName.LONG + ","
@@ -254,15 +282,16 @@ public class DbAdapter  {
 	public void setInfoSent(String ids, String idf, String[] listContact) {
 		String sent = "No";
 		SQLiteDatabase db = helper.getWritableDatabase();
-		ContentValues contentValues;
+		ContentValues contentValues = new ContentValues();
 		for(int i = 0; i < listContact.length; i++) {
-			contentValues = new ContentValues();
 			contentValues.put(StringName.UIDFREF, idf);
 			contentValues.put(StringName.UIDSREF, ids);
 			contentValues.put(StringName.MAILREF, listContact[i]);
 			contentValues.put(StringName.SENT, sent);
 			db.insert(StringName.TABLE_NAME3, null,contentValues);
+			contentValues.clear();
 		}
+		db.close();
 	}
 
 	public void dropContact(String mail) {
@@ -575,17 +604,30 @@ public class DbAdapter  {
 	public void setSentTrue(String idf, String ids, String[] listContact)
 	{
 		SQLiteDatabase db = helper.getWritableDatabase();
-		ContentValues contentValues = new ContentValues();
 		String sent = "Si";
+		ContentValues contentValues = new ContentValues();
 		contentValues.put(StringName.SENT, sent);
 		for(int i = 0; i < listContact.length; i++) {
 			db.update(StringName.TABLE_NAME3, contentValues, StringName.UIDFREF + " = '" + idf + "' AND "
 					+ StringName.UIDSREF + " = '" + ids + "' AND "
 					+ StringName.MAILREF + " = '" + listContact[i] + "'", null);
 		}
+		db.close();
 	}
 
+	//	String QUERY = "UPDATE " + StringName.TABLE_NAME3 + " SET " + StringName.SENT 
+	//			+ " = '" + sent + "' WHERE " + StringName.UIDSREF + " = '" + ids + "' AND "
+	//			+ StringName.UIDFREF + " = '" + idf + "' AND " 
+	//			+ StringName.MAILREF + " = '" + listContact[i] + "';";
+	//	db.execSQL(QUERY);
 
+	//	ContentValues contentValues = new ContentValues();
+	//	contentValues.put(StringName.SENT, sent);
+	//	for(int i = 0; i < listContact.length; i++) {
+	//		db.update(StringName.TABLE_NAME3, contentValues, StringName.UIDFREF + " = '" + idf + "' AND "
+	//				+ StringName.UIDSREF + " = '" + ids + "' AND "
+	//				+ StringName.MAILREF + " = '" + listContact[i] + "'", null);
+	//	}
 
 
 
@@ -615,7 +657,8 @@ public class DbAdapter  {
 
 		private static final String CREATE_TABLE1 = "CREATE TABLE "+ StringName.TABLE_NAME1 + " ( "
 				+ StringName.UIDS + " INTEGER PRIMARY KEY AUTOINCREMENT, " + StringName.NAMES + " VARCHAR(20) NOT NULL, "
-				+ StringName.DATE + " TIMESTAMP NOT NULL, " + StringName.DURATION + " CHAR(8), " + StringName.SENS + " INTEGER NOT NULL " + ");";
+				+ StringName.DATE + " TIMESTAMP NOT NULL, " + StringName.DURATION + " CHAR(8), " 
+				+ StringName.SENS + " INTEGER NOT NULL " + ");";
 		private static final String CREATE_TABLE2 = "CREATE TABLE "+ StringName.TABLE_NAME2 + " ( "
 				+ StringName.UIDF + " INTEGER , " + StringName.UIDSREF + " TIMESTAMP NOT NULL, " 
 				+ StringName.LAT + " VARCHAR(20), " + StringName.LONG + " VARCHAR(20), "
