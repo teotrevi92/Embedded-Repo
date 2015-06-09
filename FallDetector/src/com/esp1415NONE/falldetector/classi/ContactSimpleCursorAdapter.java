@@ -20,6 +20,7 @@ public class ContactSimpleCursorAdapter extends SimpleCursorAdapter
 	}
 
 
+	
 	@Override
 	public void bindView(View view, Context context, Cursor cursor)
 	{

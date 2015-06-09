@@ -139,7 +139,7 @@ public class MainActivity extends ActionBarActivity {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
 		menu.findItem(R.id.action_settings).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-			
+
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
 				// TODO Auto-generated method stub
@@ -150,7 +150,6 @@ public class MainActivity extends ActionBarActivity {
 				return false;
 			}
 		});
-		
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -158,8 +157,8 @@ public class MainActivity extends ActionBarActivity {
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		// If the nav drawer is open, hide action items related to the content view
-//		boolean drawerOpen = mDrawer.isDrawerOpen(mDrawerList);
-//		menu.findItem(R.id.action_save).setVisible(!drawerOpen);
+		boolean drawerOpen = mDrawer.isDrawerOpen(mDrawerList);
+		menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
 
