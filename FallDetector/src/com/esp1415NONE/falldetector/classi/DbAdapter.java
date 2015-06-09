@@ -213,14 +213,16 @@ public class DbAdapter  {
 	public String[] getMoreInfoTable2(String id_s, String id_f)
 	{
 		SQLiteDatabase db = helper.getReadableDatabase();
-		String[] arr = new String[8];
-		String query = "SELECT DISTINCT " + StringName.UIDSREF + " as _id ," + StringName.NAMES + ","  
+		String[] arr = new String[9];
+		String query = "SELECT DISTINCT " + StringName.UIDS + " as _id ," + StringName.NAMES + ","  
 				+ StringName.DATE + "," + StringName.LAT + "," +  StringName.LONG + ","
-				+ StringName.UIDF + "," + StringName.DATEF  /*+ "," + StringName.SENT */ + "," 
-				+ StringName.ARRAY + " FROM " + StringName.TABLE_NAME2 + " JOIN " + StringName.TABLE_NAME1 + 
-				" ON " + StringName.UIDS + " = " + StringName.UIDSREF +//MANCA JOIN CON TABLE3
-				" WHERE " + StringName.UIDSREF + " = ' " + id_s + " ' AND " + StringName.UIDF + 
-				" = ' " + id_f + " ';";
+				+ StringName.UIDF + "," + StringName.DATEF  + "," + StringName.SENT  + "," 
+				+ StringName.ARRAY + " FROM (" + StringName.TABLE_NAME1 + " JOIN " + StringName.TABLE_NAME2 + 
+				" ON " + StringName.UIDS + " = " + StringName.UIDSREF + ") AS J JOIN "+ StringName.TABLE_NAME3 + " ON " + StringName.UIDS + " = " + StringName.TABLE_NAME3
+				+ "." + StringName.UIDSREF + " AND "+ StringName.UIDF + " = " + StringName.TABLE_NAME3
+				+ "." + StringName.UIDFREF +
+				" WHERE " + StringName.UIDS + " = '" + id_s + "' AND " + StringName.UIDF + 
+				" = '" + id_f + "';";
 		Cursor cursor = db.rawQuery(query, null);
 		if(cursor != null) {
 			cursor.moveToFirst();
@@ -231,7 +233,8 @@ public class DbAdapter  {
 			arr[4] = cursor.getString(4); //long
 			arr[5] = cursor.getString(5); //idf
 			arr[6] = cursor.getString(6); //data caduta
-			arr[7] = cursor.getString(7); //array dati accelerometro
+			arr[7] = cursor.getString(7); //sent
+			arr[8] = cursor.getString(8); //array dati accelerometro
 		}
 		return arr;
 
@@ -297,7 +300,7 @@ public class DbAdapter  {
 
 	public void dropContact(String mail) {
 		SQLiteDatabase db = helper.getWritableDatabase();
-		db.delete(StringName.TABLE_NAME3, StringName.MAILREF + " = '" + mail + "' ", null);
+//		db.delete(StringName.TABLE_NAME3, StringName.MAILREF + " = '" + mail + "' ", null);
 		db.delete(StringName.TABLE_NAME4, StringName.MAIL + " = '" + mail + "' ", null);
 	}
 
@@ -679,17 +682,20 @@ public class DbAdapter  {
 				+ StringName.LAT + " VARCHAR(20), " + StringName.LONG + " VARCHAR(20), "
 				+ StringName.DATEF + " TIMESTAMP NOT NULL, " + StringName.ARRAY + " VARCHAR(1000) NOT NULL, "
 				+ "PRIMARY KEY(" + StringName.UIDF + "," + StringName.UIDSREF + "),"
-				+ "FOREIGN KEY(" + StringName.UIDSREF + ") REFERENCES " + StringName.TABLE_NAME1 + "(" + StringName.UIDS + ")" + ");";
+				+ "FOREIGN KEY(" + StringName.UIDSREF + ") REFERENCES " + StringName.TABLE_NAME1 + "(" + StringName.UIDS 
+				+ ") ON UPDATE CASCADE ON DELETE CASCADE" +");";
 		private static final String CREATE_TABLE4 = "CREATE TABLE "+ StringName.TABLE_NAME4 + " ( "
 				+ StringName.MAIL + " VARCHAR(100) PRIMARY KEY , " + StringName.NAME + " VARCHAR(70) NOT NULL, " 
-				+ StringName.SURNAME + " VARCHAR(70) NOT NULL" + ");";
+				+ StringName.SURNAME + " VARCHAR(70) NOT NULL"  + ");";
 		private static final String CREATE_TABLE3 = "CREATE TABLE "+ StringName.TABLE_NAME3 + " ( "
 				+ StringName.UIDFREF + " INTEGER NOT NULL, " + StringName.UIDSREF + " INTEGER NOT NULL, " 
 				+ StringName.MAILREF + " VARCHAR(100) NOT NULL," + StringName.SENT + " CHAR(2)," 
 				+ "PRIMARY KEY(" + StringName.UIDFREF + "," + StringName.UIDSREF + "," + StringName.MAILREF + "),"
 				+ "FOREIGN KEY(" + StringName.UIDFREF + "," + StringName.UIDSREF + ") REFERENCES " 
-				+ StringName.TABLE_NAME2 + "(" + StringName.UIDF + "," + StringName.UIDSREF + "),"
-				+ "FOREIGN KEY(" + StringName.MAILREF + ") REFERENCES " + StringName.TABLE_NAME4 + "(" + StringName.MAIL + ")" + ");";
+				+ StringName.TABLE_NAME2 + "(" + StringName.UIDF + "," + StringName.UIDSREF
+				+ ") ON UPDATE CASCADE ON DELETE CASCADE," + "FOREIGN KEY(" + StringName.MAILREF 
+				+ ") REFERENCES " + StringName.TABLE_NAME4 + "(" + StringName.MAIL 
+				+ ") ON UPDATE CASCADE ON DELETE SET NULL" +");";
 
 		private static final String DROP_TABLE1 = "DROP TABLE IF EXSISTS" + StringName.TABLE_NAME1;
 		private static final String DROP_TABLE2 = "DROP TABLE IF EXSISTS" + StringName.TABLE_NAME2; 

@@ -77,7 +77,8 @@ public class FragmentDetailSession extends ListFragment {
 					intent.putExtra("long", result[4]);
 					intent.putExtra("idf", result[5]);
 					intent.putExtra("dataf", result[6]);
-					intent.putExtra("array", result[7]);
+					intent.putExtra("sent", result[7]);
+					intent.putExtra("array", result[8]);
 					startActivity(intent);
 					break;
 				}

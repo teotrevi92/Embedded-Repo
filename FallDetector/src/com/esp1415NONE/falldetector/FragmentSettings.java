@@ -88,7 +88,7 @@ public class FragmentSettings extends Fragment {
 					FragmentListContacts ls_fragment = new FragmentListContacts();
 					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 					fragmentTransaction.commit();
-					/* controllo degli stack per rach*/
+					/*CONTROLLO DEGLI STACK PER RACH*/
 				}
 			}
 		});
@@ -100,7 +100,7 @@ public class FragmentSettings extends Fragment {
 				// TODO Auto-generated method stub
 				Intent i = new Intent(getActivity(),AddEmailActivity.class);
 				startActivity(i);
-				/* controllo degli stack per rach*/
+				
 			}
 		});
 

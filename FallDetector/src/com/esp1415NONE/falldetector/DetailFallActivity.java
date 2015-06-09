@@ -13,8 +13,8 @@ import android.widget.TextView;
 public class DetailFallActivity extends Activity {
 
 	private DbAdapter dbAdapter;
-	private TextView name_S,id_s,id_f,date_f,lat_,longit_;
-	private String ids,idf,nameS,datef,lat,longit,dateS,array;
+	private TextView name_S,id_s,id_f,date_f,lat_,longit_,sent_;
+	private String ids,idf,nameS,datef,lat,longit,dateS,array,sent;
 	private Intent i;
 	private ImageView logo,graph;
 	private float[] acc;
@@ -34,7 +34,7 @@ public class DetailFallActivity extends Activity {
 		idf = i.getStringExtra("idf");
 		datef = i.getStringExtra("dataf");
 		array = i.getStringExtra("array");
-
+		sent = i.getStringExtra("sent");
 
 
 		name_S = (TextView) findViewById(R.id.nameS);
@@ -43,6 +43,7 @@ public class DetailFallActivity extends Activity {
 		date_f = (TextView) findViewById(R.id.datef);
 		lat_ = (TextView) findViewById(R.id.lat);
 		longit_ = (TextView) findViewById(R.id.longit);
+		sent_ = (TextView) findViewById(R.id.sent);
 		logo = (ImageView) findViewById(R.id.imageS);
 		graph = (ImageView) findViewById(R.id.graph); 
 
@@ -51,6 +52,7 @@ public class DetailFallActivity extends Activity {
 		id_f.setText(idf);
 		date_f.setText(datef);
 		lat_.setText(lat);
+		sent_.setText(sent);
 		longit_.setText(longit);
 
 		dbAdapter = new DbAdapter(this);

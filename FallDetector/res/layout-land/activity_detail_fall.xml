@@ -60,10 +60,10 @@
         android:id="@+id/view2"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
         android:layout_alignBottom="@+id/graph"
         android:layout_alignTop="@+id/graph"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/graph"
         android:layout_toRightOf="@+id/graph"
         android:background="#D3D3D3" />
@@ -85,8 +85,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/view2"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginStart="7dp"
         android:layout_toEndOf="@+id/view2"
         android:layout_toRightOf="@+id/view2"
         android:layout="@+id/view2"
@@ -111,7 +111,7 @@
         android:layout_alignBottom="@+id/view2"
         android:layout_alignLeft="@+id/textView1"
         android:layout_alignStart="@+id/textView1"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="50dp"
         android:layout_marginEnd="5sp"
         android:layout_marginRight="10dp"
         android:layout_marginStart="5sp"
@@ -125,21 +125,9 @@
         android:layout_alignBottom="@+id/view2"
         android:layout_alignLeft="@+id/datef"
         android:layout_alignStart="@+id/datef"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="35dp"
         android:text="@string/text_latitude_fall1"
         android:textSize="14sp" />
-
-    <View
-        android:id="@+id/view1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignEnd="@+id/graph"
-        android:layout_alignLeft="@+id/graph"
-        android:layout_alignRight="@+id/datef"
-        android:layout_alignStart="@+id/graph"
-        android:layout_below="@+id/longit"
-        android:layout_marginTop="3dp"
-        android:background="#D3D3D3" />
 
     <ImageView
         android:id="@+id/imageS"
@@ -148,6 +136,8 @@
         android:layout_alignLeft="@+id/view1"
         android:layout_alignStart="@+id/textView4"
         android:layout_below="@+id/view1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="5dp"
         android:contentDescription="@string/miniature_session" />
@@ -159,8 +149,8 @@
         android:layout_alignBottom="@+id/imageS"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
-        android:layout_toRightOf="@+id/imageS"
         android:layout_toEndOf="@+id/imageS"
+        android:layout_toRightOf="@+id/imageS"
         android:text="@string/text_example_ids"
         android:textSize="18sp" />
 
@@ -176,5 +166,37 @@
         android:layout_toRightOf="@+id/ids"
         android:text="@string/text_session"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/view2"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4"
+        android:text="@string/text_sent"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/sent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView5"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_marginLeft="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_toEndOf="@+id/textView5"
+        android:layout_toRightOf="@+id/textView5"
+        android:text="@string/text_example_sent" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/view2"
+        android:layout_marginTop="5dp"
+        android:background="#D3D3D3" />
 
 </RelativeLayout>
