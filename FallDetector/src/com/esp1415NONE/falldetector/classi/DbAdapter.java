@@ -162,7 +162,8 @@ public class DbAdapter  {
 				+ " FROM (" + StringName.TABLE_NAME2 + " JOIN " + StringName.TABLE_NAME1 + 
 				" ON " + StringName.UIDS + " = " + StringName.UIDSREF + ") AS J JOIN " 
 				+ StringName.TABLE_NAME3 + " ON " + StringName.UIDS + " = " + StringName.TABLE_NAME3
-				+ "." + StringName.UIDSREF +
+				+ "." + StringName.UIDSREF + " AND "+ StringName.UIDF + " = " + StringName.TABLE_NAME3
+				+ "." + StringName.UIDFREF +
 				" WHERE " + StringName.UIDS + " = '" + id_s + "' ;";
 		Cursor cursor = db.rawQuery(query, null);
 
@@ -674,7 +675,7 @@ public class DbAdapter  {
 				+ StringName.DATE + " TIMESTAMP NOT NULL, " + StringName.DURATION + " CHAR(8), " 
 				+ StringName.SENS + " INTEGER NOT NULL " + ");";
 		private static final String CREATE_TABLE2 = "CREATE TABLE "+ StringName.TABLE_NAME2 + " ( "
-				+ StringName.UIDF + " INTEGER , " + StringName.UIDSREF + " TIMESTAMP NOT NULL, " 
+				+ StringName.UIDF + " INTEGER NOT NULL, " + StringName.UIDSREF + " INTEGER NOT NULL, " 
 				+ StringName.LAT + " VARCHAR(20), " + StringName.LONG + " VARCHAR(20), "
 				+ StringName.DATEF + " TIMESTAMP NOT NULL, " + StringName.ARRAY + " VARCHAR(1000) NOT NULL, "
 				+ "PRIMARY KEY(" + StringName.UIDF + "," + StringName.UIDSREF + "),"
