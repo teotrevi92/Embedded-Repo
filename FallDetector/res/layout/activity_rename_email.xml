@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="250sp"
-    android:layout_height="300sp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical" >
 
     <TextView
@@ -10,17 +10,17 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10sp"
         android:layout_marginStart="10sp"
-        android:layout_marginTop="10sp"
+        android:layout_marginTop="5sp"
         android:text="@string/text_email1"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/mail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10sp"
         android:layout_marginStart="10sp"
-        android:layout_marginTop="10sp"
+        android:layout_marginTop="5sp"
         android:text="@string/text_example_mail_contact"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10sp"
         android:layout_marginStart="10sp"
-        android:layout_marginTop="15sp"
+        android:layout_marginTop="10sp"
         android:text="@string/text_name"
         android:textSize="18sp" />
 
@@ -62,14 +62,12 @@
         android:id="@+id/surname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="10sp"
         android:layout_marginRight="10sp"
         android:layout_marginStart="10sp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_marginBottom="8dp" >
-
-        <requestFocus />
+        android:inputType="textPersonName" >
     </EditText>
 
     <LinearLayout
@@ -80,21 +78,21 @@
 
         <Button
             android:id="@+id/btn_no"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
-            android:background="@android:color/white"
             android:clickable="true"
             android:text="@string/toast_act_button" />
 
         <Button
             android:id="@+id/btn_yes"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
-            android:background="@android:color/white"
             android:clickable="true"
             android:text="@string/toast_act_ok" />
     </LinearLayout>

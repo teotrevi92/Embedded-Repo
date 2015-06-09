@@ -2,15 +2,19 @@ package com.esp1415NONE.falldetector;
 
 import com.esp1415NONE.falldetector.ChronoService;
 import com.esp1415NONE.falldetector.ChronoService.LocalBinder;
+import com.esp1415NONE.falldetector.classi.ContactSimpleCursorAdapter;
 import com.esp1415NONE.falldetector.classi.DbAdapter;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.database.Cursor;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -23,6 +27,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -163,11 +170,12 @@ public class FragmentCurrentSession extends Fragment {
 
 					//implemento rinomina
 					String ids = dbAdapter.getCurrentSessionID();
-					Intent i = new Intent(getActivity(), RenameActivity.class);
-					i.putExtra("ids", ids);
-					i.putExtra("where", "stop");
-					//i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					startActivity(i);
+					dialogRenameSession(getActivity(),ids);
+//					Intent i = new Intent(getActivity(), RenameActivity.class);
+//					i.putExtra("ids", ids);
+//					i.putExtra("where", "stop");
+//					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//					startActivity(i);
 					doStop();
 				}
 			}
@@ -231,6 +239,8 @@ public class FragmentCurrentSession extends Fragment {
 		myTimer.scheduleAtFixedRate(myTimerTask, 0, 500);		
 		return view;
 	}
+	
+	
 
 	private boolean controlInternet() {
 		getActivity();
@@ -258,6 +268,43 @@ public class FragmentCurrentSession extends Fragment {
 		myTimer.cancel();
 		myTimerTask.cancel();
 		super.onDestroy();
+	}
+	
+	private void dialogRenameSession(Activity activity,String ids) {
+		final Dialog dialog = new Dialog(getActivity());
+		dialog.setContentView(R.layout.activity_rename);
+		dialog.setTitle("Rinomina Sessione");
+		final String id_s = ids;
+		final Activity a = activity;
+		//personalizzo il Dialog
+		final EditText nameS_ = (EditText) dialog.findViewById(R.id.nameS);
+		nameS_.setText("Sessione");
+		Button ok = (Button) dialog.findViewById(R.id.btn_yes);
+		Button no = (Button) dialog.findViewById(R.id.btn_no);
+		// cosa faccio al click del conferma
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String nameS = nameS_.getText().toString(); 
+				if(nameS.equals(""))
+					Toast.makeText(a, "Inserisci un nome", Toast.LENGTH_SHORT).show();
+				else {
+					dbAdapter.setNameSession(id_s, nameS);
+					dialog.dismiss();
+				}
+			}
+		});
+		// cosa faccio al click dell'annulla
+		no.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				dbAdapter.setNameSession(id_s, "Sessione");
+				dialog.dismiss();
+
+			}
+		});
+		dialog.show();
 	}
 
 }

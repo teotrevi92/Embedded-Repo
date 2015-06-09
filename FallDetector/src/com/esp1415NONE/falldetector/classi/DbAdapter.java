@@ -530,7 +530,7 @@ public class DbAdapter  {
 
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(StringName.NAMES, name);
-		db.update(StringName.TABLE_NAME1, contentValues, StringName.UIDS +" = " + ids, null);
+		db.update(StringName.TABLE_NAME1, contentValues, StringName.UIDS +" = '" + ids + "'", null);
 		db.close();
 	}
 

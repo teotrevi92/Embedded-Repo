@@ -4,7 +4,7 @@ import com.esp1415NONE.falldetector.classi.DbAdapter;
 import com.esp1415NONE.falldetector.classi.SessionSimpleCursorAdapter;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.app.Dialog;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -15,8 +15,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +27,6 @@ public class FragmentListView extends ListFragment {
 
 	private DbAdapter dbAdapter;
 	private Activity activity;
-	private ListView ls;
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
 	private TextView textview;
@@ -49,18 +50,17 @@ public class FragmentListView extends ListFragment {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 		dbAdapter = new DbAdapter(getActivity());
-
 		fragmentManager = getActivity().getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
-		ls = (ListView) getActivity().findViewById(android.R.id.list);
 		Cursor c = dbAdapter.getAllRowsTable1();
 		getActivity().startManagingCursor(c);
 		ssca = new SessionSimpleCursorAdapter(getActivity(), c);
 		setListAdapter(ssca);
+		
 		registerForContextMenu(getListView());
 
 
-		ls.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+		getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -95,7 +95,7 @@ public class FragmentListView extends ListFragment {
 
 		});
 
-		ls.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+		getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
@@ -174,11 +174,12 @@ public class FragmentListView extends ListFragment {
 			//			Toast.makeText(activity, "Rinominato", Toast.LENGTH_SHORT).show();
 			//			RenameDialog rd = new RenameDialog(getActivity(), ids);
 			//            rd.show();
-			Intent i = new Intent(getActivity(), RenameActivity.class);
-			i.putExtra("ids", ids);
-			i.putExtra("where", "rename");
-			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			startActivity(i);
+//			Intent i = new Intent(getActivity(), RenameActivity.class);
+//			i.putExtra("ids", ids);
+//			i.putExtra("where", "rename");
+//			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//			startActivity(i);
+			dialogRenameSession(getActivity(), ids);
 			ssca.notifyDataSetChanged();
 			//per vedere la modifica in tempo reale
 			//SEMBRA NON FUNZIONARE QUESTO METODO
@@ -204,9 +205,48 @@ public class FragmentListView extends ListFragment {
 
 
 	}
+	private void dialogRenameSession(Activity activity,String ids) {
+		final Dialog dialog = new Dialog(getActivity());
+		dialog.setContentView(R.layout.activity_rename);
+		dialog.setTitle("Rinomina Sessione");
+		final String id_s = ids;
+		final Activity a = activity;
+		//personalizzo il Dialog
+		final EditText nameS_ = (EditText) dialog.findViewById(R.id.nameS);
+		String nameDB = dbAdapter.getNameSession(ids);
+		nameS_.setText(nameDB);
+		Button ok = (Button) dialog.findViewById(R.id.btn_yes);
+		Button no = (Button) dialog.findViewById(R.id.btn_no);
+		// cosa faccio al click del conferma
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String nameS = nameS_.getText().toString(); 
+				if(nameS.equals(""))
+					Toast.makeText(a, "Inserisci un nome", Toast.LENGTH_SHORT).show();
+				else {
+					dbAdapter.setNameSession(id_s, nameS);
+					ssca.notifyDataSetChanged();
+					//per vedere la modifica in tempo reale
+					Cursor c = dbAdapter.getAllRowsTable1();
+					ssca = new SessionSimpleCursorAdapter(getActivity(), c);
+					setListAdapter(ssca);
+					dialog.dismiss();
+				}
+			}
+		});
+		// cosa faccio al click dell'annulla
+		no.setOnClickListener(new View.OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				dbAdapter.setNameSession(id_s, "Sessione");
+				dialog.dismiss();
 
-
+			}
+		});
+		dialog.show();
+	}
 
 
 }

@@ -35,7 +35,6 @@ public class FragmentSettings extends Fragment {
 	private PendingIntent pendIntent;
 	private AlarmManager alarmManager;
 	private Button button; //Tri
-	private Button button_add; //Tri
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
 	private DbAdapter dbAdapter; //Tri
@@ -62,7 +61,6 @@ public class FragmentSettings extends Fragment {
 		cbt = (CheckBox) view.findViewById(R.id.checkBoxTimer);
 		tmpicker = (TimePicker) view.findViewById(R.id.timePicker);
 		button = (Button) view.findViewById(R.id.buttonemail); //Tri 
-		button_add = (Button) view.findViewById(R.id.addemail); //Tri 
 
 		//Reimposto i valori salvati
 		sp_acc.setSelection(int_sp_acc);
@@ -94,15 +92,7 @@ public class FragmentSettings extends Fragment {
 		});
 
 
-		button_add.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent i = new Intent(getActivity(),AddEmailActivity.class);
-				startActivity(i);
-				
-			}
-		});
+		
 
 		cbt.setOnClickListener(new View.OnClickListener() {
 

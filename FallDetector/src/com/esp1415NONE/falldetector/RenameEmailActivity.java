@@ -47,7 +47,7 @@ public class RenameEmailActivity extends Activity {
 				dbAdapter.setNameContact(mail, name_, surname_);
 
 				RenameEmailActivity.this.finish();
-
+				
 			}
 		});
 		
@@ -57,6 +57,7 @@ public class RenameEmailActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				RenameEmailActivity.this.finish();
+				
 			}
 		});
 	}

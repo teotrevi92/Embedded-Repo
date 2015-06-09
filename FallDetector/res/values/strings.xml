@@ -62,7 +62,7 @@
     <string name="activityRename">  Rinominare la Sessione?</string>
     <string name="title_activity_add_email">Aggiungi Contatto</string>
     <string name="toast_act_ok">Conferma</string>
-    <string name="text_email">e-mail*</string>
+    <string name="text_email">E-mail*</string>
     <string name="text_email1">Indirizzo e-mail: </string>
     <string name="text_name">Nome*</string>
     <string name="text_surname">Cognome*</string>
@@ -100,6 +100,8 @@
     <string name="new_session">Avvia Nuova Sessione</string>
     <string name="delete_contact">Cancella Contatto</string>
     <string name="rename_contact">Rinomina Contatto</string>
+    <string name="text_namesession">Inserisci un nome sessione: </string>
     <string name="title_activity_rename_email">Rinomina Contatto</string>
+    <string name="text_addbutton">Aggiungi</string>
 
 </resources>
