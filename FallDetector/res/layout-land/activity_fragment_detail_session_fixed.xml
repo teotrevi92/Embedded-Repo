@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/first"
+    android:id="@+id/Layout1"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/first"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
     <ImageView
         android:id="@+id/logoS"
@@ -85,7 +91,14 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
                 android:text="@string/text_example_durate_sess" />
+         </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/listfall"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </ListView>
 
 </LinearLayout>
