@@ -4,7 +4,6 @@ import com.esp1415NONE.falldetector.classi.ContactSimpleCursorAdapter;
 import com.esp1415NONE.falldetector.classi.DbAdapter;
 
 import android.app.Dialog;
-import android.app.ListActivity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,7 +19,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;

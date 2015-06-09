@@ -153,6 +153,23 @@ public class DbAdapter  {
 		return arr;
 	}
 
+//	public Cursor getInfoTable2(String id_s)
+//	{
+//		SQLiteDatabase db = helper.getReadableDatabase();
+//
+//		String query = "SELECT DISTINCT " + StringName.UIDS + " as _id ," + StringName.NAMES + "," 
+//				+ StringName.UIDF + "," + StringName.DATEF  + "," + StringName.SENT 
+//				+ " FROM (" + StringName.TABLE_NAME2 + " JOIN " + StringName.TABLE_NAME1 + 
+//				" ON " + StringName.UIDS + " = " + StringName.UIDSREF + ") AS J JOIN " 
+//				+ StringName.TABLE_NAME3 + " ON " + StringName.UIDS + " = " + StringName.TABLE_NAME3
+//				+ "." + StringName.UIDSREF + " AND "+ StringName.UIDF + " = " + StringName.TABLE_NAME3
+//				+ "." + StringName.UIDFREF +
+//				" WHERE " + StringName.UIDS + " = '" + id_s + "' ;";
+//		Cursor cursor = db.rawQuery(query, null);
+//
+//		return cursor;
+//
+//	}
 	public Cursor getInfoTable2(String id_s)
 	{
 		SQLiteDatabase db = helper.getReadableDatabase();

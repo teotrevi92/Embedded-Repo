@@ -2,7 +2,6 @@ package com.esp1415NONE.falldetector;
 
 import com.esp1415NONE.falldetector.ChronoService;
 import com.esp1415NONE.falldetector.ChronoService.LocalBinder;
-import com.esp1415NONE.falldetector.classi.ContactSimpleCursorAdapter;
 import com.esp1415NONE.falldetector.classi.DbAdapter;
 
 import java.util.Timer;
@@ -14,7 +13,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.database.Cursor;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
