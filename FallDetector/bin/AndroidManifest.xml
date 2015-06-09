@@ -27,11 +27,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--  
         <activity
             android:name=".ListActivity2"
             android:label="@string/title_ListActivity2" >
-        </activity>
-        <activity
+        </activity>-->
+      <!--    <activity
             android:name=".FragmentCredits"
             android:label="@string/title_activity_fragment_credits" >
         </activity>
@@ -46,7 +47,7 @@
         <activity
             android:name=".FragmentHome"
             android:label="@string/title_activity_fragment_home" >
-        </activity>
+        </activity>-->
         <activity
             android:name=".ToastAllertActivity"
             android:label="@string/toast_act_title"
@@ -58,10 +59,10 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity
+      <!--    <activity
             android:name=".FragmentResume"
             android:label="@string/title_activity_fragment_resume" >
-        </activity>
+        </activity>-->
 
         <service
             android:name=".AlarmService"
@@ -80,10 +81,10 @@
             android:label="@string/title_activity_detail_fall"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
-        <activity
+     <!--     <activity
             android:name=".FragmentDetailSession"
             android:label="@string/title_activity_fragment_detail_session" >
-        </activity>
+        </activity>-->
         <activity
             android:name=".RenameActivity"
             android:label="@string/title_activity_rename"
