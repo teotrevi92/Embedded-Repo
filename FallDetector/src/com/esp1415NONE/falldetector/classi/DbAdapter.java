@@ -205,7 +205,7 @@ public class DbAdapter  {
 		Cursor cursor = db.rawQuery(query, null);
 
 
-//		db.close();
+		//		db.close();
 		return cursor;
 
 	}
@@ -248,7 +248,7 @@ public class DbAdapter  {
 		//		String[] columns1 = {"id_",StringName.NAME,StringName.SURNAME};
 		//		Cursor cursor = db.query(StringName.TABLE_NAME4, columns, null, columns1, null, null, null);
 
-//		db.close();
+		//		db.close();
 		return cursor;
 
 	}
@@ -291,18 +291,25 @@ public class DbAdapter  {
 		String query = "SELECT DISTINCT " + StringName.UIDS + " as _id, "  
 				+ StringName.NAMES + " , " + StringName.DATE + " , " + StringName.DURATION + " , countFall" 
 				+ " FROM (" + StringName.TABLE_NAME1 + " LEFT OUTER JOIN (SELECT " 
-				+ StringName.UIDSREF  + ", COUNT(*) AS countFall"
+				+ StringName.UIDSREF  + ", COUNT("+ StringName.UIDF +") AS countFall"
 				+ " FROM " + StringName.TABLE_NAME2
 				+ " GROUP BY " + StringName.UIDSREF + ") AS J ON " 
 				+ StringName.UIDS + " = " + StringName.UIDSREF +" ) AS K"  
 				+ " ; ";
 
 		Cursor cursor = db.rawQuery(query, null);
-//		db.close();
+		//		db.close();
 		return cursor;
 	}
 
-
+	//	String query = "SELECT DISTINCT " + StringName.UIDS + " as _id, "  
+	//			+ StringName.NAMES + " , " + StringName.DATE + " , " + StringName.DURATION + " , countFall" 
+	//			+ " FROM (" + StringName.TABLE_NAME1 + " LEFT OUTER JOIN (SELECT " 
+	//			+ StringName.UIDSREF  + ", COUNT(*) AS countFall"
+	//			+ " FROM " + StringName.TABLE_NAME2
+	//			+ " GROUP BY " + StringName.UIDSREF + ") AS J ON " 
+	//			+ StringName.UIDS + " ='" + StringName.UIDSREF +"' ) AS K"  
+	//			+ " ; ";
 
 	public Cursor getAllRowsTable2() {
 		SQLiteDatabase db = helper.getReadableDatabase();
@@ -312,7 +319,7 @@ public class DbAdapter  {
 				+ StringName.DATEF + " FROM " + StringName.TABLE_NAME2 +";";
 		Cursor cursor = db.rawQuery(query, null);
 
-//		db.close();
+		//		db.close();
 		return cursor;
 	}
 
@@ -663,21 +670,21 @@ public class DbAdapter  {
 		return s;
 	}
 
-	public void createFall(int idf, int ids, String lat, String longit, String datef, String array)
+	public void createFall(int idf, int ids, /*String lat, String longit,*/ String datef, String array, String[] listContact)
 	{
 		SQLiteDatabase db = helper.getWritableDatabase();
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(StringName.UIDF, idf);
 		contentValues.put(StringName.UIDSREF, ids);
-		contentValues.put(StringName.LAT, lat);
-		contentValues.put(StringName.LONG, longit);
+		contentValues.put(StringName.LAT, "");
+		contentValues.put(StringName.LONG, "");
 		contentValues.put(StringName.DATEF, datef);
 		contentValues.put(StringName.ARRAY, array);
 		String table = StringName.TABLE_NAME2;
-		db.insert(table, null,contentValues); 
+		db.insert(table, null,contentValues);
 		String idsString = ids+"";
 		String idfString = idf+"";
-		setInfoSent(idsString, idfString, getListContact());
+		setInfoSent(idsString, idfString, listContact);
 
 		db.close();
 	}

@@ -28,19 +28,19 @@ public class LocationService extends Service implements LocationListener{
 
 	private final IBinder mBinder = new LocalBinder();
 	private String where;
-	LocationManager mgr;
+	private LocationManager mgr;
 	private Location mLastLocation;
 	private Geocoder geocoder;
-	DbAdapter dbAdapter;
+	private DbAdapter dbAdapter;
 	private Vibrator vib;
 	private MediaPlayer mp;
 	private int n = 0; //TRI
 
-	Intent email;
-	String[] emailTo;
-//	String[] emailTo = {"azi92@hotmail.it", "azi92rach@gmail.com"};
-	String emailText = "Aiuto!! Sono caduto. Mi trovo qui:\n";
-	String subject = "AIUTO DI SOCCORSO";
+	private Intent email;
+	private String[] emailTo;
+	//	private String[] emailTo = {"azi92@hotmail.it", "azi92rach@gmail.com"};
+	private String emailText = "Aiuto!! Sono caduto. Mi trovo qui:\n";
+	private String subject = "AIUTO DI SOCCORSO";
 
 	boolean check; //Viene usata per avere l'ok dell'invio	
 	boolean sent; //Segnala il corretto invio della mail, da salvare del database
@@ -108,7 +108,7 @@ public class LocationService extends Service implements LocationListener{
 		n = dbAdapter.getNumberContact(); //TRI
 		emailTo = new String[n]; //TRI
 		emailTo = dbAdapter.getListContact(); //TRI
-		
+
 		//Cerco e salvo la localizzazione
 		geocoder = new Geocoder(this);
 		if(mgr.isProviderEnabled(LocationManager.GPS_PROVIDER))
@@ -158,7 +158,7 @@ public class LocationService extends Service implements LocationListener{
 			//salvo i dati del gps
 			String lat = Double.toString(latitude);  //Tri
 			String longit = Double.toString(longitude);  //Tri
-			dbAdapter.setLatLongGPS(ids, idf, lat, longit); //da capire come passare idf e ids
+			dbAdapter.setLatLongGPS(ids, idf, lat, longit); 
 			where = latitude + ", " + longitude;
 			setAdress();
 		}
@@ -192,7 +192,7 @@ public class LocationService extends Service implements LocationListener{
 
 	private void sendMail()
 	{	//Se confermato l'invio mail viene inviata appena vengono presi i dati del gps
-		
+
 		if(check)
 		{
 			sent=true; //mail inviata
@@ -208,7 +208,7 @@ public class LocationService extends Service implements LocationListener{
 
 			/* QUI BISOGNA SALVARE CHE LA MAIL E' STATA INVIATA ----------------------------------------------------------*/			
 			dbAdapter.setSentTrue(idf, ids, emailTo);
-			
+
 			finish();
 		}
 	}

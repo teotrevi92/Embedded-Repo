@@ -2,8 +2,6 @@ package com.esp1415NONE.falldetector;
 
 import com.esp1415NONE.falldetector.classi.*;
 
-import java.util.Calendar;
-
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -23,19 +21,19 @@ public class ChronoService extends Service implements SensorEventListener {
 	private final IBinder mBinder = new LocalBinder();
 	private MyChronometer crn;
 	private static int isPlaying = 0; //0 se e' in stop, 1 in play, -1 in pausa
-	SensorManager sm = null;
-	int sensorAccurancy;
-	final String tag = "AccLogger";
+	private SensorManager sm = null;
+	private int sensorAccurancy;
+	private final String tag = "AccLogger";
 	//variabili per i calcoli
-	float totAcc;
-	Queue que;
-	int sizeQueue;
-	int sensibilityMin;
-	int sensibilityMax;
+	private float totAcc;
+	private Queue que;
+	private int sizeQueue;
+	private int sensibilityMin;
+	private int sensibilityMax;
 	//variabili per il grafico e la data
-	Calendar todayTime;
-	MyGraph graph;
-	String maxTimeSession;
+	//	private Calendar todayTime;
+	//	private MyGraph graph;
+	private String maxTimeSession;
 	//Variabili per il database
 	private DbAdapter dbAdapter;
 	private int id_s = 0; //id sessione corrente
@@ -81,7 +79,7 @@ public class ChronoService extends Service implements SensorEventListener {
 					myTime = new MyTime();
 					//						float[] f = {1.1f}; //Passo gli array dei dati dell'accelerometro
 					String date = dbAdapter.convertArrayToString(que.getBox());
-					dbAdapter.createFall(id_f, id_s, null, null, myTime.myTime(), date); //I dati gps verranno salvati piu' avanti
+					dbAdapter.createFall(id_f, id_s, myTime.myTime(), date, dbAdapter.getListContact()); //I dati gps verranno salvati piu' avanti
 
 
 					//allerta

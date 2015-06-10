@@ -7,13 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.Toast;
 
 public class FragmentCredits extends Fragment {
-	Button bt1,bt2;
-	DbAdapter dbAdapter;
+	private Button bt1,bt2;
+	private DbAdapter dbAdapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

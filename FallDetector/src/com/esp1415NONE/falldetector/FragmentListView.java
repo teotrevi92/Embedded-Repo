@@ -26,7 +26,6 @@ public class FragmentListView extends ListFragment {
 
 
 	private DbAdapter dbAdapter;
-	private Activity activity;
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
 	private TextView textview;
@@ -35,14 +34,7 @@ public class FragmentListView extends ListFragment {
 	private String ids;
 	private int cad;
 
-	SessionSimpleCursorAdapter ssca;
-
-
-	@Override
-	public void onAttach(Activity a) {
-		super.onAttach(a);
-		activity = a;
-	}
+	private SessionSimpleCursorAdapter ssca;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -56,7 +48,7 @@ public class FragmentListView extends ListFragment {
 		getActivity().startManagingCursor(c);
 		ssca = new SessionSimpleCursorAdapter(getActivity(), c);
 		setListAdapter(ssca);
-		
+
 		registerForContextMenu(getListView());
 
 
@@ -86,7 +78,7 @@ public class FragmentListView extends ListFragment {
 						//						fragmentTransaction = fragmentManager.beginTransaction();
 					}
 					else {
-						Toast.makeText(activity, "Non ci sono cadute", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getActivity(), "Non ci sono cadute", Toast.LENGTH_SHORT).show();
 					}
 					break;
 				}
@@ -134,7 +126,7 @@ public class FragmentListView extends ListFragment {
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		// TODO Auto-generated method stub
 		super.onCreateContextMenu(menu, v, menuInfo);
-		MenuInflater inflater = activity.getMenuInflater();
+		MenuInflater inflater = getActivity().getMenuInflater();
 		inflater.inflate(R.menu.main_context_menu, menu);
 
 		//		View parent = ((ViewGroup)v).getChildAt(1);
@@ -149,7 +141,7 @@ public class FragmentListView extends ListFragment {
 	}
 
 
-//	@SuppressWarnings("deprecation")
+	//	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
@@ -161,12 +153,12 @@ public class FragmentListView extends ListFragment {
 		switch (item.getItemId()) {
 		case R.id.delete_id:
 
-			Toast.makeText(activity, "Eliminato:"+ids, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), "Eliminato:"+ids, Toast.LENGTH_SHORT).show();
 			dbAdapter.dropSession(ids);
 			ssca.notifyDataSetChanged();
 			//per vedere la modifica in tempo reale
 			c = dbAdapter.getAllRowsTable1();
-//			getActivity().startManagingCursor(c);
+			//			getActivity().startManagingCursor(c);
 			ssca = new SessionSimpleCursorAdapter(getActivity(), c);
 			setListAdapter(ssca);
 			return true;
@@ -174,17 +166,17 @@ public class FragmentListView extends ListFragment {
 			//			Toast.makeText(activity, "Rinominato", Toast.LENGTH_SHORT).show();
 			//			RenameDialog rd = new RenameDialog(getActivity(), ids);
 			//            rd.show();
-//			Intent i = new Intent(getActivity(), RenameActivity.class);
-//			i.putExtra("ids", ids);
-//			i.putExtra("where", "rename");
-//			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//			startActivity(i);
+			//			Intent i = new Intent(getActivity(), RenameActivity.class);
+			//			i.putExtra("ids", ids);
+			//			i.putExtra("where", "rename");
+			//			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			//			startActivity(i);
 			dialogRenameSession(getActivity(), ids);
 			ssca.notifyDataSetChanged();
 			//per vedere la modifica in tempo reale
 			//SEMBRA NON FUNZIONARE QUESTO METODO
 			c = dbAdapter.getAllRowsTable1();
-//			getActivity().startManagingCursor(c);
+			//			getActivity().startManagingCursor(c);
 			ssca = new SessionSimpleCursorAdapter(getActivity(), c);
 			setListAdapter(ssca);
 			// arrayList.set(info.position,setItem);

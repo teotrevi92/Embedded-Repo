@@ -25,10 +25,10 @@ import android.widget.TextView;
 public class ToastAllertActivity extends Activity{
 
 
-	Handler handler;
+	private Handler handler;
 	boolean check;
 	boolean mBound = false;
-	LocationService loc;
+	private LocationService loc;
 
 
 	private Intent intent; //Tri

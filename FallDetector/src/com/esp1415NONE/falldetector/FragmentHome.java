@@ -13,7 +13,6 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -27,17 +26,17 @@ import android.widget.Toast;
 
 public class FragmentHome extends Fragment{
 
-	ChronoService cronom;
-	boolean mBound = false;
-	ImageButton play;
-	TextView titlehome;
-	TextView statusGps;
-	TextView statusNtw;
+	private ChronoService cronom;
+	private boolean mBound = false;
+	private ImageButton play;
+	private TextView titlehome;
+	private TextView statusGps;
+	private TextView statusNtw;
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
-	Timer myTimer;
-	TimerTask myTimerTask;
-	Handler hander = new Handler();
+	private Timer myTimer;
+	private TimerTask myTimerTask;
+	//	private Handler handler = new Handler();
 
 	/** Defines callbacks for service binding, passed to bindService() */
 	private ServiceConnection mConnection = new ServiceConnection() {

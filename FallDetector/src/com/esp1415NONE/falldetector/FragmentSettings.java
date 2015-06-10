@@ -25,17 +25,17 @@ import android.widget.TimePicker;
 
 public class FragmentSettings extends Fragment {
 
-	Spinner sp_acc;
-	Spinner sp_duration;
-	Spinner sp_sens;
-	CheckBox cbt;
-	TimePicker tmpicker;
+	private Spinner sp_acc;
+	private Spinner sp_duration;
+	private Spinner sp_sens;
+	private CheckBox cbt;
+	private TimePicker tmpicker;
 	private PendingIntent pendIntent;
 	private AlarmManager alarmManager;
 	private Button button; //Tri
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
-//	private DbAdapter dbAdapter; //Tri
+	//	private DbAdapter dbAdapter; //Tri
 
 	View view;
 	@Override
@@ -51,7 +51,7 @@ public class FragmentSettings extends Fragment {
 		int int_spM = preferences.getInt("pickerValueM", 0);
 		fragmentManager = getActivity().getSupportFragmentManager(); //Tri
 		fragmentTransaction = fragmentManager.beginTransaction(); //Tri
-//		dbAdapter = new DbAdapter(getActivity()); //Tri
+		//		dbAdapter = new DbAdapter(getActivity()); //Tri
 
 		sp_acc = (Spinner) view.findViewById(R.id.spinnerAcc);
 		sp_duration = (Spinner) view.findViewById(R.id.spinnerMaxSession);

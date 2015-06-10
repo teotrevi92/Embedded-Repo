@@ -7,22 +7,22 @@ import android.graphics.Paint;
 
 public class MyGraph {
 
-	Bitmap bg;
-	Canvas canvas;
-	int ingrandimento;
-	Paint paint;
-	int xLarghezza;
-	int yLarghezza;
-	float asseX;
-	float asseY;
-	float tempo;
-	float starX;
-	float starY;
-	float stopX;
-	float stopY;
-	Bitmap rnd;
-	Canvas canvas2;
-	Paint paint2;
+	private Bitmap bg;
+	private Canvas canvas;
+	private int ingrandimento;
+	private Paint paint;
+	private int xLarghezza;
+	private int yLarghezza;
+	//	private float asseX;
+	private float asseY;
+	private float tempo;
+	private float starX;
+	private float starY;
+	private float stopX;
+	private float stopY;
+	private Bitmap rnd;
+	private Canvas canvas2;
+	private Paint paint2;
 
 	public MyGraph(int larghezza,int altezza)
 	{
@@ -31,7 +31,7 @@ public class MyGraph {
 		paint = new Paint();
 		xLarghezza = larghezza;
 		yLarghezza = altezza;
-		asseX=xLarghezza/2; //metto l'asse x a meta' del disegno
+		//		asseX=xLarghezza/2; //metto l'asse x a meta' del disegno
 		asseY=(yLarghezza/5)*4;//metto l'asse y a meta' del disegno
 		tempo=0;
 		starX = 0;
