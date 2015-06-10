@@ -82,12 +82,6 @@
         
     </LinearLayout>
     
-     <Button
-        android:id="@+id/addemail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/add_new_contact" />
-    
      <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
