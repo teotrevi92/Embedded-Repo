@@ -136,9 +136,9 @@
         android:layout_alignLeft="@+id/view1"
         android:layout_alignStart="@+id/textView4"
         android:layout_below="@+id/view1"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginTop="5dp"
         android:contentDescription="@string/miniature_session" />
 

@@ -181,7 +181,7 @@ public class FragmentListContacts extends Fragment {
 		});
 		dialog.show();
 	}
-	
+
 	private void dialogAddContact() {
 		final Dialog dialog = new Dialog(getActivity());
 		dialog.setContentView(R.layout.activity_add_email);

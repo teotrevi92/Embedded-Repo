@@ -12,11 +12,11 @@
 
         <ImageView
             android:id="@+id/logoS"
-            android:layout_width="47dp"
-            android:layout_height="47dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
             android:contentDescription="@string/miniature_session" />
 
         <LinearLayout
@@ -36,7 +36,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
                     android:text="@string/text_example_sess"
                     android:textSize="18sp" />
 
@@ -46,7 +45,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
                     android:text="@string/text_session"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -94,6 +92,14 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="3dp"
+        android:background="#D3D3D3" />
 
     <ListView
         android:id="@+id/listfall"

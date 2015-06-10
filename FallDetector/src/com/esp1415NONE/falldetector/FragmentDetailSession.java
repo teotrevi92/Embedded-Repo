@@ -50,8 +50,8 @@ public class FragmentDetailSession extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 
 		ids = getArguments().getString("ids");
-		
-		
+
+
 		c = dbAdapter.getInfoTable2(ids);
 		listfall.setAdapter(new SessionSimpleCursorAdapterDetails(getActivity(), c));
 
@@ -63,10 +63,10 @@ public class FragmentDetailSession extends Fragment {
 				switch (position) {
 
 				default:
-					
+
 					cad = (TextView) view.findViewById(R.id.idf);
 
-					
+
 					idf = cad.getText().toString();
 					String[] result = new String[8];
 					result = dbAdapter.getMoreInfoTable2(ids, idf);
@@ -86,9 +86,9 @@ public class FragmentDetailSession extends Fragment {
 
 			}
 		});
-//		c = dbAdapter.getInfoTable2(ids);
+		//		c = dbAdapter.getInfoTable2(ids);
 		String[] arr = new String[3];
-//		String ids = c.getString(c.getColumnIndex("_id"));
+		//		String ids = c.getString(c.getColumnIndex("_id"));
 		arr = dbAdapter.getInfoTable1(ids);
 		idess.setText(ids);
 		dataS.setText(arr[0]);

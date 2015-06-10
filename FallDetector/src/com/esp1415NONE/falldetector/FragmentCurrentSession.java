@@ -169,11 +169,11 @@ public class FragmentCurrentSession extends Fragment {
 					//implemento rinomina
 					String ids = dbAdapter.getCurrentSessionID();
 					dialogRenameSession(getActivity(),ids);
-//					Intent i = new Intent(getActivity(), RenameActivity.class);
-//					i.putExtra("ids", ids);
-//					i.putExtra("where", "stop");
-//					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//					startActivity(i);
+					//					Intent i = new Intent(getActivity(), RenameActivity.class);
+					//					i.putExtra("ids", ids);
+					//					i.putExtra("where", "stop");
+					//					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					//					startActivity(i);
 					doStop();
 				}
 			}
@@ -237,8 +237,8 @@ public class FragmentCurrentSession extends Fragment {
 		myTimer.scheduleAtFixedRate(myTimerTask, 0, 500);		
 		return view;
 	}
-	
-	
+
+
 
 	private boolean controlInternet() {
 		getActivity();
@@ -267,7 +267,7 @@ public class FragmentCurrentSession extends Fragment {
 		myTimerTask.cancel();
 		super.onDestroy();
 	}
-	
+
 	private void dialogRenameSession(Activity activity,String ids) {
 		final Dialog dialog = new Dialog(getActivity());
 		dialog.setContentView(R.layout.activity_rename);
