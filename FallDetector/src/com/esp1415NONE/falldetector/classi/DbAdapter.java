@@ -294,8 +294,8 @@ public class DbAdapter  {
 				+ StringName.UIDSREF  + ", COUNT("+ StringName.UIDF +") AS countFall"
 				+ " FROM " + StringName.TABLE_NAME2
 				+ " GROUP BY " + StringName.UIDSREF + ") AS J ON " 
-				+ StringName.UIDS + " = " + StringName.UIDSREF +" ) AS K"  
-				+ " ; ";
+				+ StringName.UIDS + " = " + StringName.UIDSREF +" ) AS K ORDER BY "
+				+ StringName.UIDS + " DESC ; ";
 
 		Cursor cursor = db.rawQuery(query, null);
 		//		db.close();
