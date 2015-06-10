@@ -82,7 +82,12 @@ public class FragmentListContacts extends Fragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				dialogAddContact();
+				if((ChronoService.isPlaying == 1) || (ChronoService.isPlaying == -1)) {
+					Toast.makeText(getActivity(), "Impossibile aggiungere\ncontatti durante la sessione", Toast.LENGTH_SHORT).show();
+				}
+				else {
+					dialogAddContact();
+				}
 			}
 		});
 	}
@@ -105,30 +110,29 @@ public class FragmentListContacts extends Fragment {
 	public boolean onContextItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
 
+
+
 		Cursor c;
 		switch (item.getItemId()) {
 		case R.id.delete_id_contact:
-			//DEVO ELIMINARE ANCHE LA TABELLA 3 PRIMA DI ELIMINARE QUESTA DOPO IMPLEMENTAZIONE
-			Toast.makeText(getActivity(), "Eliminato:"+mail, Toast.LENGTH_SHORT).show();
-			dbAdapter.dropContact(mail);
-			csca.notifyDataSetChanged();
-			//per vedere la modifica in tempo reale
-			c = dbAdapter.getInfoTable4();
-			//			getActivity().startManagingCursor(c);
-			csca = new ContactSimpleCursorAdapter(getActivity(), c);
-			listcontact.setAdapter(csca);
+			if((ChronoService.isPlaying == 1) || (ChronoService.isPlaying == -1)) {
+				Toast.makeText(getActivity(), "Impossibile cancellare\ni contatti durante la sessione", Toast.LENGTH_SHORT).show();
+			}
+			else {
+				//DEVO ELIMINARE ANCHE LA TABELLA 3 PRIMA DI ELIMINARE QUESTA DOPO IMPLEMENTAZIONE
+				Toast.makeText(getActivity(), "Eliminato:"+mail, Toast.LENGTH_SHORT).show();
+				dbAdapter.dropContact(mail);
+				csca.notifyDataSetChanged();
+				//per vedere la modifica in tempo reale
+				c = dbAdapter.getInfoTable4();
+				//			getActivity().startManagingCursor(c);
+				csca = new ContactSimpleCursorAdapter(getActivity(), c);
+				listcontact.setAdapter(csca);
+			}
 			return true;
 		case R.id.ren_id_contact:
-			//			Toast.makeText(activity, "Rinominato", Toast.LENGTH_SHORT).show();
-			//			RenameDialog rd = new RenameDialog(getActivity(), ids);
-			//            rd.show();
-			//			Intent i = new Intent(getActivity(), RenameEmailActivity.class);
-			//			i.putExtra("mail", mail);
-			//			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			//			startActivity(i);
-			// custom dialog
-			dialogRenameContact();
 
+			dialogRenameContact();
 			return true;
 		default:
 			return super.onContextItemSelected(item);

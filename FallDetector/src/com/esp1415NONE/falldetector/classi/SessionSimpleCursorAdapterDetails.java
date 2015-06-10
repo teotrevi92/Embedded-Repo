@@ -11,14 +11,12 @@ public class SessionSimpleCursorAdapterDetails extends SimpleCursorAdapter
 {
 
 
-
 	@SuppressWarnings("deprecation")
 	public SessionSimpleCursorAdapterDetails(Context context, Cursor c)
 	{
 		super(context, R.layout.activity_fragment_detail_session, c, new String[]
 				{ StringName.UIDF, StringName.DATEF , StringName.SENT }, new int[]
 						{ R.id.idf,R.id.dataF , R.id.sent});
-
 	}
 
 
@@ -26,6 +24,8 @@ public class SessionSimpleCursorAdapterDetails extends SimpleCursorAdapter
 	public void bindView(View view, Context context, Cursor cursor)
 	{
 		super.bindView(view, context, cursor);
+
+
 
 
 

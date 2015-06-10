@@ -46,10 +46,13 @@ public class FragmentListView extends ListFragment {
 		fragmentTransaction = fragmentManager.beginTransaction();
 		Cursor c = dbAdapter.getAllRowsTable1();
 		getActivity().startManagingCursor(c);
-		ssca = new SessionSimpleCursorAdapter(getActivity(), c);
+		ssca = new SessionSimpleCursorAdapter(getActivity(), c, ChronoService.isPlaying, ChronoService.id_s);
 		setListAdapter(ssca);
 
 		registerForContextMenu(getListView());
+
+
+
 
 
 		getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -109,8 +112,9 @@ public class FragmentListView extends ListFragment {
 				return false;
 			}
 		});
-
 	}
+
+
 
 	//		@Override
 	//		public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -145,42 +149,33 @@ public class FragmentListView extends ListFragment {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
-		//	AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-		//	int pos = info.position;
 
+		String idsC = Integer.toString(ChronoService.id_s);
 
 		Cursor c;
 		switch (item.getItemId()) {
 		case R.id.delete_id:
-
-			Toast.makeText(getActivity(), "Eliminato:"+ids, Toast.LENGTH_SHORT).show();
-			dbAdapter.dropSession(ids);
-			ssca.notifyDataSetChanged();
-			//per vedere la modifica in tempo reale
-			c = dbAdapter.getAllRowsTable1();
-			//			getActivity().startManagingCursor(c);
-			ssca = new SessionSimpleCursorAdapter(getActivity(), c);
-			setListAdapter(ssca);
+			if((ids.equals(idsC)) && ((ChronoService.isPlaying == 1) || (ChronoService.isPlaying == -1))) {
+				Toast.makeText(getActivity(), "Impossibile cancellare\nla sessione in corso", Toast.LENGTH_SHORT).show();
+			}
+			else {
+				Toast.makeText(getActivity(), "Eliminato:"+ids, Toast.LENGTH_SHORT).show();
+				dbAdapter.dropSession(ids);
+				ssca.notifyDataSetChanged();
+				//per vedere la modifica in tempo reale
+				c = dbAdapter.getAllRowsTable1();
+				//			getActivity().startManagingCursor(c);
+				ssca = new SessionSimpleCursorAdapter(getActivity(), c, ChronoService.isPlaying, ChronoService.id_s);
+				setListAdapter(ssca);
+			}
 			return true;
 		case R.id.ren_id:
-			//			Toast.makeText(activity, "Rinominato", Toast.LENGTH_SHORT).show();
-			//			RenameDialog rd = new RenameDialog(getActivity(), ids);
-			//            rd.show();
-			//			Intent i = new Intent(getActivity(), RenameActivity.class);
-			//			i.putExtra("ids", ids);
-			//			i.putExtra("where", "rename");
-			//			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			//			startActivity(i);
-			dialogRenameSession(getActivity(), ids);
-			ssca.notifyDataSetChanged();
-			//per vedere la modifica in tempo reale
-			//SEMBRA NON FUNZIONARE QUESTO METODO
-			c = dbAdapter.getAllRowsTable1();
-			//			getActivity().startManagingCursor(c);
-			ssca = new SessionSimpleCursorAdapter(getActivity(), c);
-			setListAdapter(ssca);
-			// arrayList.set(info.position,setItem);
-			// adapter.notifyDataSetChanged();
+			if((ids.equals(idsC)) && ((ChronoService.isPlaying == 1) || (ChronoService.isPlaying == -1))) {
+				Toast.makeText(getActivity(), "Impossibile rinominare\nla sessione in corso", Toast.LENGTH_SHORT).show();
+			}
+			else {
+				dialogRenameSession(getActivity(), ids);			
+			}
 			return true;
 		case R.id.new_session:
 			FragmentCurrentSession ls_fragment = new FragmentCurrentSession();
@@ -194,6 +189,7 @@ public class FragmentListView extends ListFragment {
 		default:
 			return super.onContextItemSelected(item);
 		}
+
 
 
 	}
@@ -221,7 +217,7 @@ public class FragmentListView extends ListFragment {
 					ssca.notifyDataSetChanged();
 					//per vedere la modifica in tempo reale
 					Cursor c = dbAdapter.getAllRowsTable1();
-					ssca = new SessionSimpleCursorAdapter(getActivity(), c);
+					ssca = new SessionSimpleCursorAdapter(getActivity(), c, ChronoService.isPlaying, ChronoService.id_s);
 					setListAdapter(ssca);
 					dialog.dismiss();
 				}

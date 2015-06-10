@@ -657,8 +657,8 @@ public class DbAdapter  {
 		//		String query = "SELECT " + StringName.SURNAME + " FROM " + StringName.TABLE_NAME4 + 
 		//				" WHERE " + StringName.MAIL + " = '" + mail + "' ;";
 		//		Cursor cursor = db.rawQuery(query, null);
-		String[] columns = {StringName.NAME};
-		String where = StringName.SURNAME + "='" + mail + "'";
+		String[] columns = {StringName.SURNAME};
+		String where = StringName.MAIL + "='" + mail + "'";
 		String table = StringName.TABLE_NAME4;
 		Cursor cursor = db.query(table, columns, where, null, null, null, null);
 		if(cursor != null) {

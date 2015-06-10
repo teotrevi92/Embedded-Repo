@@ -20,7 +20,8 @@ import android.util.Log;
 public class ChronoService extends Service implements SensorEventListener {
 	private final IBinder mBinder = new LocalBinder();
 	private MyChronometer crn;
-	private static int isPlaying = 0; //0 se e' in stop, 1 in play, -1 in pausa
+	//l'ho messa statica per usarla in altre classi
+	static int isPlaying = 0; //0 se e' in stop, 1 in play, -1 in pausa 
 	private SensorManager sm = null;
 	private int sensorAccurancy;
 	private final String tag = "AccLogger";
@@ -36,7 +37,7 @@ public class ChronoService extends Service implements SensorEventListener {
 	private String maxTimeSession;
 	//Variabili per il database
 	private DbAdapter dbAdapter;
-	private int id_s = 0; //id sessione corrente
+	static int id_s = 0; //id sessione corrente messa statica
 	private int id_f = 0;
 	private MyTime myTime;
 
@@ -230,5 +231,7 @@ public class ChronoService extends Service implements SensorEventListener {
 		// TODO Auto-generated method stub
 		stop();
 	}
+
+
 
 }

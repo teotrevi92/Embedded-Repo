@@ -6,6 +6,7 @@ import com.esp1415NONE.falldetector.classi.DbAdapter;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
@@ -13,13 +14,17 @@ import android.widget.TextView;
 
 public class SessionSimpleCursorAdapter extends SimpleCursorAdapter 
 {	
+	String idsC;
+	int isPlaying;
 
 	@SuppressWarnings("deprecation")
-	public SessionSimpleCursorAdapter(Context context, Cursor c)
+	public SessionSimpleCursorAdapter(Context context, Cursor c, int isPlaying, int idsC)
 	{
 		super(context, R.layout.activity_session_riepilog, c, new String[]
 				{ "_id" , StringName.NAMES ,StringName.DATE , StringName.DURATION, "countFall" }, new int[]
 						{ R.id.nome,R.id.nomeS,R.id.data, R.id.durata, R.id.sessione });
+		this.idsC = Integer.toString(idsC);
+		this.isPlaying = isPlaying;
 	}
 
 
@@ -42,6 +47,28 @@ public class SessionSimpleCursorAdapter extends SimpleCursorAdapter
 		MyGraph rndBitmap = new MyGraph(size,size);
 		rndBitmap.doRandomImg(dateA[0], dateA[1], dateA[2], dateA[3], dateA[4], dateA[5], size);
 		logo.setImageBitmap(rndBitmap.getRandomImg());
+		
+		
+//		for (int i = 0; i < getListView().getAdapter().getCount(); i++) {
+
+		//COME IDENTIFICARE LA SESSIONE CORRENTE REGISTRATA E EVIDENZIARE LA RIGA NELLA LISTVIEW
+		TextView ids = (TextView) view.findViewById(R.id.nome);
+		TextView nomeS = (TextView) view.findViewById(R.id.nomeS);
+		String idss = ids.getText().toString();
+		if((idss.equals(idsC)) && ((isPlaying == 1) || (isPlaying == -1))) {
+//			Toast.makeText(context, "la sessione corrent e' " + idss, Toast.LENGTH_SHORT).show();
+//			v.setBackgroundColor(Color.RED);
+//			textview.setTextColor(Color.RED);
+//			textview.setTypeface(textview.getTypeface(), Typeface.BOLD);
+//			rec.setVisibility(View.VISIBLE);
+//			view.setBackgroundColor(Color.RED);
+			ids.setTextColor(Color.RED);
+			nomeS.setTextColor(Color.RED);
+			
+			
+		}
+		//	}
+		
 
 	}
 
