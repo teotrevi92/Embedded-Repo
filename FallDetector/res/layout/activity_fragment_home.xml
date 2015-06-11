@@ -21,6 +21,20 @@
             android:textSize="30sp"
             android:visibility="invisible" />
     </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/relativeLayoutHome4"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+        android:layout_below="@+id/relativeLayoutHome1"
+        android:layout_above="@+id/relativeLayoutHome3">
+    
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ULTIMA SESSIONE"/>
+        
+      </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/relativeLayoutHome2"
@@ -40,21 +54,26 @@
             android:visibility="invisible" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/textNetwork"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/relativeLayoutHome3"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/relativeLayoutHome2"
-        android:layout_centerHorizontal="true"
-        android:text="" />
+        android:layout_above="@+id/relativeLayoutHome2">
 
     <TextView
-        android:id="@+id/textGps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textNetwork"
-        android:layout_alignLeft="@+id/textNetwork"
-        android:layout_alignStart="@+id/textNetwork"
-        android:text="" />
+            android:id="@+id/textGps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="" />
 
+        <TextView
+            android:id="@+id/textNetwork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textGps"
+            android:layout_centerHorizontal="true"
+            android:text="" />
+
+	</RelativeLayout>
 </RelativeLayout>

@@ -1,56 +1,89 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation = "horizontal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="horizontal"
     tools:context="com.esp1415NONE.falldetector.SessioneCorrenteFragment" >
-
-    <LinearLayout
+    
+	<RelativeLayout
         android:id="@+id/relativeLayoutHome1"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent" >
+        android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/titleHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="@string/titleSession"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="30sp"
             android:visibility="invisible" />
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayoutHome2"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true" >
+    </RelativeLayout>
+     
+     <RelativeLayout
+        android:id="@+id/relativeLayoutHome4"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+        android:layout_toLeftOf="@+id/relativeLayoutHome2"
+        android:layout_toStartOf="@+id/relativeLayoutHome2"
+        android:layout_below="@+id/relativeLayoutHome1">
+    
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="QUI SI PUO' INSERIRE 
+L'ULTIMA SESSIONE
+IN QUESTO RELATIVE 4"/>
+        
+      </RelativeLayout>
+       
+     <RelativeLayout
+         android:id="@+id/relativeLayoutHome3"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/relativeLayoutHome2"
+         android:layout_toEndOf="@+id/relativeLayoutHome1"
+         android:layout_toRightOf="@+id/relativeLayoutHome1" >
 
         <TextView
             android:id="@+id/textGps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:text="" />
-
-        <ImageButton
-            android:id="@+id/startSession"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/play"
-            android:contentDescription="@string/DescPlay"
-            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/textNetwork"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textGps"
-            android:layout_alignStart="@+id/textGps"
             android:layout_below="@+id/textGps"
+            android:layout_centerHorizontal="true"
             android:text="" />
+
     </RelativeLayout>
+    
+     <RelativeLayout
+         android:id="@+id/relativeLayoutHome2"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="14dp"
+         android:layout_toEndOf="@+id/relativeLayoutHome1"
+         android:layout_toRightOf="@+id/relativeLayoutHome1" >
+
+
+
+         <ImageButton
+             android:id="@+id/startSession"
+             android:layout_width="130dp"
+             android:layout_height="130dp"
+             android:layout_centerVertical="true"
+             android:layout_centerHorizontal="true"
+             android:background="@drawable/play"
+             android:contentDescription="@string/DescPlay"
+             android:visibility="invisible" />
+     </RelativeLayout>
 
 </RelativeLayout>

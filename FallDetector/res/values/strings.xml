@@ -46,8 +46,8 @@
     <string name="sens_prompt">Scegli</string>
     <string name="textemail">Email a cui inviare la richiesta di aiuto</string>
     <string name="buttonaddemail">VISUALIZZA LISTA EMAIL</string>
-    <string name="enableLoc">Localizzazione Attiva</string>
-    <string name="NoenableLoc">Localizzazione NON attiva</string>
+    <string name="enableLoc">Localizzazione ATTIVA</string>
+    <string name="NoenableLoc">Localizzazione NON ATTIVA</string>
     <string name="enableNet">Connessione dati ATTIVA</string>
     <string name="NoenableNet">Connessione dati NON ATTIVA</string>
     <string name="toastLoc">ATTIVARE LOCALIZZAZIONE (Gps o wifi/rete)</string>

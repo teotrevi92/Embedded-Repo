@@ -41,6 +41,9 @@ public class ChronoService extends Service implements SensorEventListener {
 	private int id_f = 0;
 	private MyTime myTime;
 
+	private float x;
+	private float y;
+	private float z;
 
 	public void onSensorChanged(SensorEvent event)
 	{
@@ -57,9 +60,9 @@ public class ChronoService extends Service implements SensorEventListener {
 				// IMPORTANT NOTE: The axes are swapped when the device's
 				// screen orientation changes. To access the unswapped values,
 				// use indices 3, 4 and 5 in values[]
-				float x = event.values[0];
-				float y = event.values[1];
-				float z = event.values[2];
+				x = event.values[0];
+				y = event.values[1];
+				z = event.values[2];
 				totAcc = (float) Math.sqrt((x*x)+(y*y)+(z*z));
 				que.enqueue(totAcc);
 
@@ -224,6 +227,15 @@ public class ChronoService extends Service implements SensorEventListener {
 	public String getString()
 	{
 		return crn.getElapsedTime();
+	}
+	public int getX(){
+		return (int)x;
+	}
+	public int getY(){
+		return (int)y;
+	}
+	public int getZ(){
+		return (int)z;
 	}
 
 	@Override

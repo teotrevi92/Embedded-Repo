@@ -28,6 +28,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 public class FragmentCurrentSession extends Fragment {	
@@ -35,6 +36,9 @@ public class FragmentCurrentSession extends Fragment {
 	private ImageButton play;
 	private ImageButton pause;
 	private ImageButton stop;
+	private ProgressBar pbx;
+	private ProgressBar pby;
+	private ProgressBar pbz;
 	private ChronoService cronom;
 	private boolean mBound = false;
 	private TextView time;
@@ -75,6 +79,12 @@ public class FragmentCurrentSession extends Fragment {
 		title.setText(R.string.playtitleSession);
 		title.setVisibility(View.VISIBLE);
 		time.setVisibility(View.VISIBLE);
+		pbx.setVisibility(View.VISIBLE);
+		pby.setVisibility(View.VISIBLE);
+		pbz.setVisibility(View.VISIBLE);
+		pbx.setProgress(0);
+		pby.setProgress(0);
+		pbz.setProgress(0);
 	}
 	private void inPlay()
 	{
@@ -84,6 +94,9 @@ public class FragmentCurrentSession extends Fragment {
 		title.setText(R.string.playtitleSession);
 		title.setVisibility(View.VISIBLE);
 		time.setVisibility(View.VISIBLE);
+		pbx.setVisibility(View.VISIBLE);
+		pby.setVisibility(View.VISIBLE);
+		pbz.setVisibility(View.VISIBLE);
 
 	}
 	private void inStop()
@@ -94,6 +107,12 @@ public class FragmentCurrentSession extends Fragment {
 		title.setText(R.string.titleSession);
 		title.setVisibility(View.VISIBLE);
 		time.setVisibility(View.VISIBLE);
+		pbx.setVisibility(View.INVISIBLE);
+		pby.setVisibility(View.INVISIBLE);
+		pbz.setVisibility(View.INVISIBLE);
+		pbx.setProgress(0);
+		pby.setProgress(0);
+		pbz.setProgress(0);
 	}
 	private void doStop()
 	{
@@ -101,8 +120,8 @@ public class FragmentCurrentSession extends Fragment {
 		//		fragmentTransaction.addToBackStack(null);
 		fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 		fragmentTransaction.commit();
-		time.setVisibility(View.INVISIBLE);
-		title.setVisibility(View.INVISIBLE);
+//		time.setVisibility(View.INVISIBLE);
+//		title.setVisibility(View.INVISIBLE);
 	}
 
 
@@ -119,7 +138,10 @@ public class FragmentCurrentSession extends Fragment {
 		title = (TextView) view.findViewById(R.id.titleSession);
 		statusGps =(TextView) view.findViewById(R.id.textGps);
 		statusNtw =(TextView) view.findViewById(R.id.textNetwork);
-
+		pbx = (ProgressBar) view.findViewById(R.id.progressBarX);
+		pby = (ProgressBar) view.findViewById(R.id.progressBarY);
+		pbz = (ProgressBar) view.findViewById(R.id.progressBarZ);
+		
 		fragmentManager = getActivity().getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -240,14 +262,19 @@ public class FragmentCurrentSession extends Fragment {
 							inPause();
 						else
 							inStop();
-						if(cronom.getPlaying()!=0)
+						if(cronom.getPlaying()!=0){
 							time.setText(cronom.getString());
+							pbx.setProgress(cronom.getX());
+							pby.setProgress(cronom.getY());
+							pbz.setProgress(cronom.getZ());
+						}
+						
 					}
 				}
 			});
 			}; 
 		};
-		myTimer.scheduleAtFixedRate(myTimerTask, 0, 500);		
+		myTimer.scheduleAtFixedRate(myTimerTask, 0, 200);		
 		return view;
 	}
 

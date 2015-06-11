@@ -1,107 +1,162 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation = "vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:orientation="vertical"
     tools:context="com.esp1415NONE.falldetector.SessioneCorrenteFragment" >
-    
 
-       
-     <RelativeLayout 
-            android:id="@+id/relativeLayout1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/relativeLayoutSession1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
         <TextView
-        android:id="@+id/titleSession"
-        android:layout_width="wrap_content"
+            android:id="@+id/titleSession"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/titleSession"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="30sp"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+     <RelativeLayout
+        android:id="@+id/relativeLayoutSession4"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+        android:layout_below="@+id/relativeLayoutSession1"
+        android:layout_above="@+id/relativeLayoutSession5">
+    
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DETTAGLI SESSIONE IN CORSO"/>
+        
+      </RelativeLayout>
+    
+      <RelativeLayout
+        android:id="@+id/relativeLayoutSession5"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="@string/titleSession"
-        android:gravity="center"
-        android:textSize="50sp"
-        android:visibility="invisible"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_above="@+id/relativeLayoutSession3">
+
+         <ProgressBar
+             android:id="@+id/progressBarZ"
+             style="?android:attr/progressBarStyleHorizontal"
+             android:layout_width="120dp"
+             android:layout_height="50dp"
+             android:layout_centerHorizontal="true"
+             android:visibility="invisible" 
+             android:max="20" />
+
+         <ProgressBar
+             android:id="@+id/progressBarY"
+             style="?android:attr/progressBarStyleHorizontal"
+             android:layout_width="120dp"
+             android:layout_height="50dp"
+             android:layout_alignParentTop="true"
+             android:layout_marginLeft="10dp"
+             android:layout_marginStart="10dp"
+             android:layout_toEndOf="@+id/progressBarZ"
+             android:layout_toRightOf="@+id/progressBarZ"
+             android:visibility="invisible" 
+             android:max="20" />
+
+         <ProgressBar
+             android:id="@+id/progressBarX"
+             style="?android:attr/progressBarStyleHorizontal"
+             android:layout_width="120dp"
+             android:layout_height="50dp"
+             android:layout_alignParentTop="true"
+             android:layout_marginEnd="10dp"
+             android:layout_marginRight="10dp"
+             android:layout_toLeftOf="@+id/progressBarZ"
+             android:layout_toStartOf="@+id/progressBarZ"
+             android:visibility="invisible" 
+             android:max="20" />
+          
+       </RelativeLayout>
+     
+
+   	<RelativeLayout
+        android:id="@+id/relativeLayoutSession2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="14dp" >
+		
+        <ImageButton
+            android:id="@+id/pausebutton"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/pause"
+            android:contentDescription="@string/DescPause"
+            android:visibility="invisible" />
+
+        <ImageButton
+            android:id="@+id/playbutton"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/play"
+            android:contentDescription="@string/DescPlay"
+            android:visibility="invisible" />
+
+        <ImageButton
+            android:id="@+id/stopbutton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/pausebutton"
+            android:layout_toRightOf="@+id/pausebutton"
+            android:background="@drawable/stop"
+            android:contentDescription="@string/DescStop"
+            android:visibility="invisible" />
+
+      
 
     </RelativeLayout>
- 
-     
-    <LinearLayout 
-        android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutSession3"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
-    <TextView
-	        android:id="@+id/textCrono"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginTop="60dp"
-	        android:text="@string/time"
-	        android:visibility="invisible"
-	        android:textAppearance="?android:attr/textAppearanceLarge"
-	        android:textSize="100sp" />
-    </LinearLayout>
-     
-	
-       
-        <RelativeLayout 
-            android:id="@+id/relativeLayout2"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            >
-   
+        android:layout_above="@+id/relativeLayoutSession2">
 
-	    <ImageButton
-	        android:id="@+id/pausebutton"
-	        android:layout_width="200dp"
-	        android:layout_height="200dp"
-	        android:layout_centerHorizontal="true"
-	        android:layout_centerVertical="true"
-	        android:background="@drawable/pause"
-	        android:contentDescription="@string/DescPause"
-	        android:visibility="invisible" />
+        <TextView
+            android:id="@+id/textCrono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/time"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="50sp"
+            android:visibility="invisible" />
 
-	    <ImageButton
-	        android:id="@+id/playbutton"
-	        android:layout_width="200dp"
-	        android:layout_height="200dp"
-	        android:layout_centerHorizontal="true"
-	        android:layout_centerVertical="true"
-	        android:background="@drawable/play"
-	        android:contentDescription="@string/DescPlay"
-	        android:visibility="invisible" />
+        <TextView
+            android:id="@+id/textGps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textCrono"
+            android:textSize="30sp"
+            android:layout_centerHorizontal="true"
+            android:text="" />
 
-	    <ImageButton
-	        android:id="@+id/stopbutton"
-	        android:layout_width="120dp"
-	        android:layout_height="120dp"
-	        android:layout_centerVertical="true"
-	        android:layout_toRightOf="@+id/pausebutton"
-	        android:layout_toEndOf="@+id/pausebutton"
-	        android:background="@drawable/stop"
-	        android:contentDescription="@string/DescStop"
-	        android:visibility="invisible" />
-	    
-	    <TextView
-         android:id="@+id/textGps"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_centerHorizontal="true"
-         android:textSize="20sp"
-         android:text="" />
+        <TextView
+            android:id="@+id/textNetwork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textGps"
+            android:textSize="30sp"
+            android:layout_centerHorizontal="true"
+            android:text="" />
 
-     <TextView
-         android:id="@+id/textNetwork"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignLeft="@+id/textGps"
-         android:layout_alignStart="@+id/textGps"
-         android:layout_below="@+id/textGps"
-         android:textSize="20sp"
-         android:text="" />
+    </RelativeLayout>
 
-	    </RelativeLayout>
- 
-
-	    
-
-</LinearLayout>
+</RelativeLayout>
