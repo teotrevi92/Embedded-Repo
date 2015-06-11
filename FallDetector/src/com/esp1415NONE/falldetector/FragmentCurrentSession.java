@@ -135,17 +135,31 @@ public class FragmentCurrentSession extends Fragment {
 				Intent intent = new Intent(getActivity(), ChronoService.class);
 				getActivity().startService(intent);
 				getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-				if(controlInternet())
+				
+				boolean control=true;
+				if(!controlInternet()){
+					Toast.makeText(getActivity(), R.string.toastNet , Toast.LENGTH_LONG).show();
+					control=false;
+				}
+				if(!controlLocGps() && !controlLocNet()){
+					Toast.makeText(getActivity(),  R.string.toastLoc , Toast.LENGTH_LONG).show();
+					control=false;
+				}
+				if(dbAdapter.getNumberContact()==0){
+					Toast.makeText(getActivity(),  R.string.toastCont , Toast.LENGTH_LONG).show();
+					control=false;
+				}
+					
+				
+				if(control)
 				{
 					if (mBound)
 					{
 						cronom.play();
 						inPlay();
-						Toast.makeText(getActivity(), "Play" , Toast.LENGTH_LONG).show();
+						Toast.makeText(getActivity(), R.string.toastPlay , Toast.LENGTH_LONG).show();
 					}
 				}
-				else
-					Toast.makeText(getActivity(), "ATTIVARE CONNESSIONE DATI" , Toast.LENGTH_LONG).show();
 
 			}
 		});
@@ -162,7 +176,7 @@ public class FragmentCurrentSession extends Fragment {
 					getActivity().unbindService(mConnection);
 					mBound = false;
 					inStop();
-					Toast.makeText(getActivity(), "Stop" , Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), R.string.toastStop , Toast.LENGTH_LONG).show();
 
 
 					//implemento rinomina
@@ -194,7 +208,7 @@ public class FragmentCurrentSession extends Fragment {
 					String tm = cronom.getString();
 					time.setText(tm);
 					inPause();
-					Toast.makeText(getActivity(), "Pause" , Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), R.string.toastPause , Toast.LENGTH_LONG).show();
 				}
 			}
 		});
@@ -210,10 +224,10 @@ public class FragmentCurrentSession extends Fragment {
 			public void run() { getActivity().runOnUiThread(new Runnable() {  
 				@Override  
 				public void run() {  
-					if(controlGps())
-						statusGps.setText(R.string.enableGps);
+					if(controlLocGps() || controlLocNet())
+						statusGps.setText(R.string.enableLoc);
 					else
-						statusGps.setText(R.string.NoenableGps);
+						statusGps.setText(R.string.NoenableLoc);
 					if(controlInternet())
 						statusNtw.setText(R.string.enableNet);
 					else
@@ -249,13 +263,23 @@ public class FragmentCurrentSession extends Fragment {
 		} catch (NullPointerException e) {}
 		return actNetworkInfo!=null;
 	}
-	private boolean controlGps(){
+	private boolean controlLocGps(){
 		//Controllo ATTIVAZIONE GPS
 		boolean control=false;
 
 		try {
 			LocationManager locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
 			control=locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		} catch (NullPointerException e) {}
+		
+		
+		return control;
+	}
+	private boolean controlLocNet(){
+		boolean control=false;
+		try {
+			LocationManager locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
+			control=locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 		} catch (NullPointerException e) {}
 		return control;
 	}

@@ -27,10 +27,10 @@ import android.util.Log;
 public class LocationService extends Service implements LocationListener{
 
 	private final IBinder mBinder = new LocalBinder();
-	private String where;
 	private LocationManager mgr;
 	private Location mLastLocation;
 	private Geocoder geocoder;
+	private String where;
 	private DbAdapter dbAdapter;
 	private Vibrator vib;
 	private MediaPlayer mp;
@@ -42,18 +42,19 @@ public class LocationService extends Service implements LocationListener{
 	private String emailText = "Aiuto!! Sono caduto. Mi trovo qui:\n";
 	private String subject = "AIUTO DI SOCCORSO";
 
-	boolean check; //Viene usata per avere l'ok dell'invio	
-	boolean sent; //Segnala il corretto invio della mail, da salvare del database
-	boolean ready; //Localizzazione salvata
+	private boolean check; //Viene usata per avere l'ok dell'invio	
+//	private boolean sent; //Segnala il corretto invio della mail, da salvare del database
+	private boolean ready; //Localizzazione salvata
+	boolean closeS;
 	private String ids;
 	private String idf;
-
+	private String lat;
+	private String longit;
 
 	@Override
 	public void onLocationChanged(Location location) {
 		// TODO Auto-generated method stub
 		setLocation();
-		ready=true;
 		sendMail();
 	}
 
@@ -92,10 +93,14 @@ public class LocationService extends Service implements LocationListener{
 	@Override
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub
+		lat = "ND";
+		longit="ND";
+		where="";
 		dbAdapter = new DbAdapter(this);
 		check=false;
-		sent=false;
+//		sent=false;
 		ready=false;
+		closeS = false;
 		mgr = (LocationManager) this.getSystemService(LOCATION_SERVICE);
 		setNotify();
 		//avvio l'avviso
@@ -123,6 +128,7 @@ public class LocationService extends Service implements LocationListener{
 			mgr.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
 			mLastLocation = mgr.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);	
 		}
+		setLocation();
 		return mBinder;
 	}
 	private void setNotify() {
@@ -156,20 +162,15 @@ public class LocationService extends Service implements LocationListener{
 			double latitude = mLastLocation.getLatitude();
 			double longitude = mLastLocation.getLongitude();
 			//salvo i dati del gps
-			String lat = Double.toString(latitude);  //Tri
-			String longit = Double.toString(longitude);  //Tri
-			dbAdapter.setLatLongGPS(ids, idf, lat, longit); 
-			where = latitude + ", " + longitude;
+			lat = Double.toString(latitude);  //Tri
+			longit = Double.toString(longitude);  //Tri
+			where = lat+", "+longit;
+			ready=true;
+			if (closeS) //Se e' stato premuto annulla, salva i dati ed esci
+				finish();
+//			dbAdapter.setLatLongGPS(ids, idf, lat, longit);
 			setAdress();
 		}
-		else {
-			where="(Non e' stato possibile rocevere i dati del gps!!)";
-		}
-
-		/*SALVARE LA  where COME LOCALIZZAZIONE, siccome puo' essere aggiornata, verra' salvata ogni volta cosi' da tenere quella ultima
-         FATTO SOPRA
-         ----------------------------------------------------*/
-
 	}
 
 
@@ -195,7 +196,7 @@ public class LocationService extends Service implements LocationListener{
 
 		if(check)
 		{
-			sent=true; //mail inviata
+//			sent=true; //mail inviata
 			email = new Intent(Intent.ACTION_SEND);
 			email.putExtra(Intent.EXTRA_EMAIL,emailTo);
 			email.putExtra(Intent.EXTRA_SUBJECT, subject);	
@@ -218,11 +219,11 @@ public class LocationService extends Service implements LocationListener{
 		if (ready)
 			sendMail(); //invio mail se la localizzazione e' pronta, altrimenti aspetto e verra' chiamata quando e' pronta
 	}
-	public void finish()
+	public void closeService()
 	{
-		stopForeground(true);
-		stopSelf();
+		closeS = true;
 	}
+	
 	public void stopAlarm()
 	{
 		mp.stop();
@@ -232,5 +233,12 @@ public class LocationService extends Service implements LocationListener{
 	{
 		ids=id_s;
 		idf=id_f;
+	}
+	
+	private void finish()
+	{
+		dbAdapter.setLatLongGPS(ids, idf, lat, longit); //salvo i dati della localizzazione prima di chiudere
+		stopForeground(true);
+		stopSelf();
 	}
 }

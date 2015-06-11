@@ -82,9 +82,11 @@ public class ToastAllertActivity extends Activity{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				check = true;
+				if(mBound) 
+					loc.setId(ids, idf); 
 				if(mBound){
-					loc.finish();
 					loc.stopAlarm();
+					loc.closeService();
 				}
 				//				unbindService(mConnection);
 
@@ -114,11 +116,10 @@ public class ToastAllertActivity extends Activity{
 		handler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				if(mBound) 
-					loc.setId(ids, idf); 
-
 				if(!check)//se non e' stato premuto Annulla chiudi dopo 10 secondi e invia mail
 				{
+					if(mBound) 
+						loc.setId(ids, idf); 
 					if(mBound){
 						loc.check();
 						loc.stopAlarm();

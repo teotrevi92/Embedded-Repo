@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.esp1415NONE.falldetector.ChronoService.LocalBinder;
+import com.esp1415NONE.falldetector.classi.DbAdapter;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -36,6 +37,7 @@ public class FragmentHome extends Fragment{
 	private FragmentManager fragmentManager;
 	private Timer myTimer;
 	private TimerTask myTimerTask;
+	private DbAdapter dbAdapter;
 	//	private Handler handler = new Handler();
 
 	/** Defines callbacks for service binding, passed to bindService() */
@@ -73,6 +75,7 @@ public class FragmentHome extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.activity_fragment_home, container, false);
+		dbAdapter = new DbAdapter(getActivity());
 		play = (ImageButton) view.findViewById(R.id.startSession);
 		titlehome = (TextView) view.findViewById(R.id.titleHome);
 		statusGps =(TextView) view.findViewById(R.id.textGps);
@@ -90,17 +93,28 @@ public class FragmentHome extends Fragment{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(controlInternet())
-				{
+				boolean control=true;
+				if(!controlInternet()){
+					Toast.makeText(getActivity(), R.string.toastNet , Toast.LENGTH_LONG).show();
+					control=false;
+				}
+				if(!controlLocGps() && !controlLocNet()){
+					Toast.makeText(getActivity(), R.string.toastLoc , Toast.LENGTH_LONG).show();
+					control=false;
+				}
+				if(dbAdapter.getNumberContact()==0){
+					Toast.makeText(getActivity(),  R.string.toastCont , Toast.LENGTH_LONG).show();
+					control=false;
+				}
+					
+				if(control){
 					if (mBound)
 					{
 						cronom.play();
 						inPlay();
-						Toast.makeText(getActivity(), "Play" , Toast.LENGTH_LONG).show();
+						Toast.makeText(getActivity(), R.string.toastPlay, Toast.LENGTH_LONG).show();
 					}	
 				}
-				else
-					Toast.makeText(getActivity(), "ATTIVARE CONNESSIONE DATI" , Toast.LENGTH_LONG).show();
 			}
 		});
 
@@ -110,10 +124,10 @@ public class FragmentHome extends Fragment{
 			public void run() { getActivity().runOnUiThread(new Runnable() {  
 				@Override  
 				public void run() {  
-					if(controlGps())
-						statusGps.setText(R.string.enableGps);
+					if(controlLocGps() || controlLocNet())
+						statusGps.setText(R.string.enableLoc);
 					else
-						statusGps.setText(R.string.NoenableGps);
+						statusGps.setText(R.string.NoenableLoc);
 					if(controlInternet())
 						statusNtw.setText(R.string.enableNet);
 					else
@@ -145,13 +159,23 @@ public class FragmentHome extends Fragment{
 		} catch (NullPointerException e) {}
 		return actNetworkInfo!=null;
 	}
-	private boolean controlGps(){
+	private boolean controlLocGps(){
 		//Controllo ATTIVAZIONE GPS
 		boolean control=false;
 
 		try {
 			LocationManager locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
 			control=locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		} catch (NullPointerException e) {}
+		
+		
+		return control;
+	}
+	private boolean controlLocNet(){
+		boolean control=false;
+		try {
+			LocationManager locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
+			control=locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 		} catch (NullPointerException e) {}
 		return control;
 	}
