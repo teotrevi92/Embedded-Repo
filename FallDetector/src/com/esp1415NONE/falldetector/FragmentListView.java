@@ -5,8 +5,10 @@ import com.esp1415NONE.falldetector.classi.SessionSimpleCursorAdapter;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
@@ -33,6 +35,8 @@ public class FragmentListView extends ListFragment {
 	//	private TextView textview2;
 	private String ids;
 	private int cad;
+	private int isOpenDialog1 = 0;
+	private EditText nameS_;
 
 	private SessionSimpleCursorAdapter ssca;
 
@@ -42,6 +46,7 @@ public class FragmentListView extends ListFragment {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 		dbAdapter = new DbAdapter(getActivity());
+
 		fragmentManager = getActivity().getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
 		Cursor c = dbAdapter.getAllRowsTable1();
@@ -51,10 +56,14 @@ public class FragmentListView extends ListFragment {
 
 		registerForContextMenu(getListView());
 
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+		isOpenDialog1 = preferences.getInt("dialog", 0);
 
-
-
-
+		if(isOpenDialog1 == 1) {
+			Toast.makeText(getActivity(), "Gira ", Toast.LENGTH_SHORT).show();
+			ids = preferences.getString("ids1", null);
+			dialogRenameSession(getActivity(), ids, preferences.getString("nameS",null));
+		}
 		getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
@@ -174,7 +183,7 @@ public class FragmentListView extends ListFragment {
 				Toast.makeText(getActivity(), "Impossibile rinominare\nla sessione in corso", Toast.LENGTH_SHORT).show();
 			}
 			else {
-				dialogRenameSession(getActivity(), ids);			
+				dialogRenameSession(getActivity(), ids, null);			
 			}
 			return true;
 		case R.id.new_session:
@@ -193,16 +202,22 @@ public class FragmentListView extends ListFragment {
 
 
 	}
-	private void dialogRenameSession(Activity activity,String ids) {
+	private void dialogRenameSession(Activity activity,String ids, String nameSe) {
 		final Dialog dialog = new Dialog(getActivity());
 		dialog.setContentView(R.layout.activity_rename);
 		dialog.setTitle("Rinomina Sessione");
 		final String id_s = ids;
 		final Activity a = activity;
 		//personalizzo il Dialog
-		final EditText nameS_ = (EditText) dialog.findViewById(R.id.nameS);
+		nameS_ = (EditText) dialog.findViewById(R.id.nameS);
 		String nameDB = dbAdapter.getNameSession(ids);
-		nameS_.setText(nameDB);
+		nameS_ = (EditText) dialog.findViewById(R.id.nameS);
+		if(isOpenDialog1 == 1)
+			nameS_.setText(nameSe);
+		else
+			nameS_.setText(nameDB);
+		isOpenDialog1 = 1;
+		
 		Button ok = (Button) dialog.findViewById(R.id.btn_yes);
 		Button no = (Button) dialog.findViewById(R.id.btn_no);
 		// cosa faccio al click del conferma
@@ -214,6 +229,7 @@ public class FragmentListView extends ListFragment {
 					Toast.makeText(a, "Inserisci un nome", Toast.LENGTH_SHORT).show();
 				else {
 					dbAdapter.setNameSession(id_s, nameS);
+					isOpenDialog1 = 0;
 					ssca.notifyDataSetChanged();
 					//per vedere la modifica in tempo reale
 					Cursor c = dbAdapter.getAllRowsTable1();
@@ -228,12 +244,29 @@ public class FragmentListView extends ListFragment {
 
 			@Override
 			public void onClick(View v) {
-				dbAdapter.setNameSession(id_s, "Sessione");
+				isOpenDialog1 = 0;
 				dialog.dismiss();
 
 			}
 		});
 		dialog.show();
+	}
+	public void onPause()
+	{
+		super.onPause();
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+		SharedPreferences.Editor editor = preferences.edit();
+
+//		String id_s = dbAdapter.getCurrentSessionID();
+		if(isOpenDialog1 == 1)
+			editor.putString("nameS", nameS_.getText().toString());
+		//Salvataggio impostazioni
+		editor.putInt("dialog", isOpenDialog1);
+//
+		editor.putString("ids1", ids);
+		//facciamo il commit
+		editor.commit();
+
 	}
 
 

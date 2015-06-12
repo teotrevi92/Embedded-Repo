@@ -53,7 +53,7 @@ public class FragmentCurrentSession extends Fragment {
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
 	private DbAdapter dbAdapter;
-	private static int isOpenDialog = 0;
+	private int isOpenDialog = 0;
 	private EditText nameS_;
 
 
