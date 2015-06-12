@@ -6,6 +6,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:minHeight="32dp"
         android:text="@string/settings" />
 
@@ -18,6 +19,7 @@
             android:id="@+id/textView1"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_gravity="center_vertical"
             android:minWidth="130dp"
             android:text="@string/textaccurancy" />
@@ -38,6 +40,7 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_width="140dp"
+            android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:minWidth="130dp"
@@ -60,6 +63,7 @@
             android:id="@+id/textView3"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_gravity="center_vertical"
             android:minWidth="130dp"
             android:text="@string/textsens" />
@@ -81,6 +85,7 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_gravity="center_vertical"
             android:minWidth="130dp"
             android:text="@string/texttimer" />
@@ -112,6 +117,7 @@
             android:id="@+id/textView5"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_gravity="center_vertical"
             android:minWidth="130dp"
             android:text="@string/textemail" />

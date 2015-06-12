@@ -33,6 +33,7 @@
                 android:id="@+id/nome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="@string/text_example_sess"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -41,6 +42,7 @@
                 android:id="@+id/nomeS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:layout_marginLeft="7dp"
                 android:layout_marginStart="7dp"
                 android:text="@string/text_session"
@@ -58,6 +60,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="@string/text_date_session"
                 android:textSize="14sp" />
 
@@ -65,6 +68,7 @@
                 android:id="@+id/data"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:textColor="@color/white"
                 android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
                 android:text="@string/text_example_date_sess"
@@ -79,6 +83,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="@string/text_durate_sess"
                 android:textSize="14sp" />
 
@@ -86,6 +91,7 @@
                 android:id="@+id/durata"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
                 android:text="@string/text_example_durate_sess"
@@ -95,6 +101,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:text="@string/text_count_fall"
@@ -104,6 +111,7 @@
                 android:id="@+id/sessione"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
                 android:text="@string/text_example_count_fall"

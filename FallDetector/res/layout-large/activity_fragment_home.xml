@@ -14,6 +14,7 @@
             android:id="@+id/titleHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="@string/titleSession"
@@ -32,6 +33,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="ULTIMA SESSIONE"/>
         
       </RelativeLayout>
@@ -64,6 +66,7 @@
             android:id="@+id/textGps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_centerHorizontal="true"
             android:textSize="30sp"
             android:text="" />
@@ -72,6 +75,7 @@
             android:id="@+id/textNetwork"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_below="@+id/textGps"
             android:layout_centerHorizontal="true"
             android:textSize="30sp"

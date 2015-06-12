@@ -6,6 +6,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:minHeight="32dp"
         android:text="@string/settings" />
 
@@ -17,6 +18,7 @@
         <TextView
             android:id="@+id/textView1"
             android:layout_width="140dp"
+            android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:minWidth="130dp"
@@ -38,6 +40,7 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_width="140dp"
+            android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:minWidth="130dp"
@@ -49,6 +52,7 @@
             android:layout_height="wrap_content"
             android:entries="@array/maxsession_arrays"
             android:prompt="@string/maxsession_prompt" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -59,6 +63,7 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="140dp"
+            android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:minWidth="130dp"
@@ -80,6 +85,7 @@
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:minWidth="130dp"
@@ -111,6 +117,7 @@
         <TextView
             android:id="@+id/textView5"
             android:layout_width="140dp"
+            android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:minWidth="130dp"
