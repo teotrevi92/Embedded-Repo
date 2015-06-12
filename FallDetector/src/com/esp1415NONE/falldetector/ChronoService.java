@@ -169,7 +169,7 @@ public class ChronoService extends Service implements SensorEventListener {
 			else if(int_sens==2)
 			{
 				sensibilityMin = 6;
-				sensibilityMax = 10;
+				sensibilityMax = 15;
 			}
 
 			//creo l'array per il salvataggio dei dati dell'accellerometro
@@ -196,7 +196,7 @@ public class ChronoService extends Service implements SensorEventListener {
 		Notification notificationPlay = new NotificationCompat.Builder(getApplicationContext())
 		.setContentTitle("FallDetector")
 		.setContentText("In play")
-		.setSmallIcon(R.drawable.play)
+		.setSmallIcon(R.drawable.icplay)
 		.setContentIntent(pi) 
 		.build();
 		final int notificationID = 5786000;

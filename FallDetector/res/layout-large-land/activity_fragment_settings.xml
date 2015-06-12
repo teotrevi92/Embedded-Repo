@@ -102,7 +102,7 @@
             android:text="@string/textonofftimer" />
         <TimePicker
             android:id="@+id/timePicker"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="150dp" />
         
     </LinearLayout>

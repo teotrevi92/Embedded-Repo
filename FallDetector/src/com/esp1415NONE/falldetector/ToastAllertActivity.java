@@ -82,9 +82,8 @@ public class ToastAllertActivity extends Activity{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				check = true;
-				if(mBound) 
-					loc.setId(ids, idf); 
-				if(mBound){
+				if(mBound) {
+					loc.setId(ids, idf);
 					loc.stopAlarm();
 					loc.closeService();
 				}

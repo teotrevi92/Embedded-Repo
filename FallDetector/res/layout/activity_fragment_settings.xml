@@ -100,7 +100,7 @@
         <TimePicker
             android:id="@+id/timePicker"
             android:layout_width="fill_parent"
-            android:layout_height="89dp" />
+            android:layout_height="100dp" />
     </LinearLayout>
 
     <LinearLayout

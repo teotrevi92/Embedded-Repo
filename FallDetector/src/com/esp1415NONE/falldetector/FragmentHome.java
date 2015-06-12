@@ -105,6 +105,9 @@ public class FragmentHome extends Fragment{
 				if(dbAdapter.getNumberContact()==0){
 					Toast.makeText(getActivity(),  R.string.toastCont , Toast.LENGTH_LONG).show();
 					control=false;
+					FragmentSettings ls_fragment = new FragmentSettings();
+					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
+					fragmentTransaction.commit();
 				}
 					
 				if(control){
