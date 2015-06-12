@@ -13,11 +13,13 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -51,6 +53,8 @@ public class FragmentCurrentSession extends Fragment {
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
 	private DbAdapter dbAdapter;
+	private static int isOpenDialog = 0;
+	private EditText nameS_;
 
 
 	/** Defines callbacks for service binding, passed to bindService() */
@@ -120,8 +124,8 @@ public class FragmentCurrentSession extends Fragment {
 		//		fragmentTransaction.addToBackStack(null);
 		fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 		fragmentTransaction.commit();
-//		time.setVisibility(View.INVISIBLE);
-//		title.setVisibility(View.INVISIBLE);
+		//		time.setVisibility(View.INVISIBLE);
+		//		title.setVisibility(View.INVISIBLE);
 	}
 
 
@@ -130,6 +134,11 @@ public class FragmentCurrentSession extends Fragment {
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.activity_fragment_current_session, container, false);
 		dbAdapter = new DbAdapter(getActivity());
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+		isOpenDialog = preferences.getInt("dialog", 0);
+
+		if(isOpenDialog == 1)
+			dialogRenameSession(getActivity(), preferences.getString("ids", null),preferences.getString("nameS",null));
 
 		play = (ImageButton) view.findViewById(R.id.playbutton);
 		pause = (ImageButton) view.findViewById(R.id.pausebutton);
@@ -141,7 +150,7 @@ public class FragmentCurrentSession extends Fragment {
 		pbx = (ProgressBar) view.findViewById(R.id.progressBarX);
 		pby = (ProgressBar) view.findViewById(R.id.progressBarY);
 		pbz = (ProgressBar) view.findViewById(R.id.progressBarZ);
-		
+
 		fragmentManager = getActivity().getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -157,7 +166,7 @@ public class FragmentCurrentSession extends Fragment {
 				Intent intent = new Intent(getActivity(), ChronoService.class);
 				getActivity().startService(intent);
 				getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-				
+
 				boolean control=true;
 				if(!controlInternet()){
 					Toast.makeText(getActivity(), R.string.toastNet , Toast.LENGTH_LONG).show();
@@ -174,8 +183,8 @@ public class FragmentCurrentSession extends Fragment {
 					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 					fragmentTransaction.commit();
 				}
-					
-				
+
+
 				if(control)
 				{
 					if (mBound)
@@ -206,13 +215,13 @@ public class FragmentCurrentSession extends Fragment {
 
 					//implemento rinomina
 					String ids = dbAdapter.getCurrentSessionID();
-					dialogRenameSession(getActivity(),ids);
+					dialogRenameSession(getActivity(),ids, null);
 					//					Intent i = new Intent(getActivity(), RenameActivity.class);
 					//					i.putExtra("ids", ids);
 					//					i.putExtra("where", "stop");
 					//					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					//					startActivity(i);
-					doStop();
+//					doStop();
 				}
 			}
 		});
@@ -271,7 +280,7 @@ public class FragmentCurrentSession extends Fragment {
 							pby.setProgress(cronom.getY());
 							pbz.setProgress(cronom.getZ());
 						}
-						
+
 					}
 				}
 			});
@@ -301,8 +310,8 @@ public class FragmentCurrentSession extends Fragment {
 			LocationManager locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
 			control=locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 		} catch (NullPointerException e) {}
-		
-		
+
+
 		return control;
 	}
 	private boolean controlLocNet(){
@@ -321,15 +330,18 @@ public class FragmentCurrentSession extends Fragment {
 		super.onDestroy();
 	}
 
-	private void dialogRenameSession(Activity activity,String ids) {
+	private void dialogRenameSession(Activity activity,String ids, String nameSe) {
 		final Dialog dialog = new Dialog(getActivity());
 		dialog.setContentView(R.layout.activity_rename);
 		dialog.setTitle("Rinomina Sessione");
 		final String id_s = ids;
 		final Activity a = activity;
 		//personalizzo il Dialog
-		final EditText nameS_ = (EditText) dialog.findViewById(R.id.nameS);
-		nameS_.setText("Sessione");
+		nameS_ = (EditText) dialog.findViewById(R.id.nameS);if(isOpenDialog == 1)
+			nameS_.setText(nameSe);
+		else
+			nameS_.setText("Sessione");
+		isOpenDialog = 1;
 		Button ok = (Button) dialog.findViewById(R.id.btn_yes);
 		Button no = (Button) dialog.findViewById(R.id.btn_no);
 		// cosa faccio al click del conferma
@@ -341,7 +353,9 @@ public class FragmentCurrentSession extends Fragment {
 					Toast.makeText(a, "Inserisci un nome", Toast.LENGTH_SHORT).show();
 				else {
 					dbAdapter.setNameSession(id_s, nameS);
+					isOpenDialog = 0;
 					dialog.dismiss();
+					doStop();
 				}
 			}
 		});
@@ -351,11 +365,31 @@ public class FragmentCurrentSession extends Fragment {
 			@Override
 			public void onClick(View v) {
 				dbAdapter.setNameSession(id_s, "Sessione");
+				isOpenDialog = 0;
 				dialog.dismiss();
+				doStop();
 
 			}
 		});
 		dialog.show();
+	}
+
+	public void onPause()
+	{
+		super.onPause();
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+		SharedPreferences.Editor editor = preferences.edit();
+
+		String id_s = dbAdapter.getCurrentSessionID();
+		if(isOpenDialog == 1)
+			editor.putString("nameS", nameS_.getText().toString());
+		//Salvataggio impostazioni
+		editor.putInt("dialog", isOpenDialog);
+
+		editor.putString("ids", id_s);
+		//facciamo il commit
+		editor.commit();
+
 	}
 
 }
