@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
@@ -410,6 +411,14 @@ public class FragmentCurrentSession extends Fragment {
 		dialog.setTitle("Rinomina Sessione");
 		final String id_s = ids;
 		final Activity a = activity;
+		dialog.setOnCancelListener(new DialogInterface.OnCancelListener()
+		{@Override
+			public void onCancel(DialogInterface dialog)
+		{
+			isOpenDialog = 0;
+			dialog.dismiss();
+		}
+		});
 		//personalizzo il Dialog
 		nameS_ = (EditText) dialog.findViewById(R.id.nameS);
 		if(isOpenDialog == 1)
@@ -481,5 +490,6 @@ public class FragmentCurrentSession extends Fragment {
 	//		//facciamo il commit
 	//		editor.commit();
 	//	}
+
 
 }
