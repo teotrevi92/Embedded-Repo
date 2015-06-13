@@ -167,9 +167,9 @@ public class FragmentCurrentSession extends Fragment {
 		getActivity().startService(intent);
 		getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
 
-//		tx2 = (TextView) view.findViewById(R.id.textView2);
-//		tx3 = (TextView) view.findViewById(R.id.textView3);
-//		tx4 = (TextView) view.findViewById(R.id.textView4);
+		//		tx2 = (TextView) view.findViewById(R.id.textView2);
+		//		tx3 = (TextView) view.findViewById(R.id.textView3);
+		//		tx4 = (TextView) view.findViewById(R.id.textView4);
 		ids_ = (TextView) view.findViewById(R.id.nome);
 		nameSes = (TextView) view.findViewById(R.id.nomeS);
 		dateS_ = (TextView) view.findViewById(R.id.data);
@@ -187,8 +187,8 @@ public class FragmentCurrentSession extends Fragment {
 		//			nfall_.setVisibility(View.VISIBLE);
 		//			logo.setVisibility(View.VISIBLE);
 		String idss = dbAdapter.getCurrentSessionID();
-//		String[] s = new String[3];
-//		int n = dbAdapter.getNumberFall(idss);
+		//		String[] s = new String[3];
+		//		int n = dbAdapter.getNumberFall(idss);
 		Cursor c = dbAdapter.getInfoTableRiepilog(idss);
 		String r1   = c.getString(c.getColumnIndex("_id"));
 		String r2   = c.getString(c.getColumnIndex(StringName.NAMES));
@@ -197,7 +197,7 @@ public class FragmentCurrentSession extends Fragment {
 		//		Cursor c = dbAdapter.getNumberFall(idss);
 		//		c.moveToNext();
 		//		String fall = c.getString(c.getColumnIndex("countFall"));
-//		String fall = "0";
+		//		String fall = "0";
 		if(r5 == null)
 			r5 = "0";
 
@@ -396,6 +396,12 @@ public class FragmentCurrentSession extends Fragment {
 		myTimer.cancel();
 		myTimerTask.cancel();
 		super.onDestroy();
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+		SharedPreferences.Editor editor = preferences.edit();
+		if(getActivity().isFinishing())
+			editor.putInt("dialog", 0);
+		//facciamo il commit
+		editor.commit();
 	}
 
 	private void dialogRenameSession(Activity activity,String ids, String nameSe) {
@@ -448,14 +454,18 @@ public class FragmentCurrentSession extends Fragment {
 		super.onPause();
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		SharedPreferences.Editor editor = preferences.edit();
+		if(getActivity().isFinishing()) {
+			editor.putInt("dialog", 0);
+		}
+		else {
+			String id_s = dbAdapter.getCurrentSessionID();
+			if(isOpenDialog == 1)
+				editor.putString("nameS", nameS_.getText().toString());
+			//Salvataggio impostazioni
+			editor.putInt("dialog", isOpenDialog);
 
-		String id_s = dbAdapter.getCurrentSessionID();
-		if(isOpenDialog == 1)
-			editor.putString("nameS", nameS_.getText().toString());
-		//Salvataggio impostazioni
-		editor.putInt("dialog", isOpenDialog);
-
-		editor.putString("ids", id_s);
+			editor.putString("ids", id_s);
+		}
 		//facciamo il commit
 		editor.commit();
 

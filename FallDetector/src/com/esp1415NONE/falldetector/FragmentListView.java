@@ -37,7 +37,7 @@ public class FragmentListView extends ListFragment {
 	private int cad;
 	private int isOpenDialog = 0; //1 se Dialog aperto, 0 se chiuso
 	private EditText nameS_;
-//	private boolean inDialog = false; //se sono passato per inDialog
+	//	private boolean inDialog = false; //se sono passato per inDialog
 
 	private SessionSimpleCursorAdapter ssca;
 
@@ -266,30 +266,46 @@ public class FragmentListView extends ListFragment {
 		super.onPause();
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		SharedPreferences.Editor editor = preferences.edit();
-
-		//		String id_s = dbAdapter.getCurrentSessionID();
-		if(isOpenDialog == 1)
-			editor.putString("nameS", nameS_.getText().toString());
-		//Salvataggio impostazioni
-		editor.putInt("dialog", isOpenDialog);
-		//
-		editor.putString("ids1", ids);
+		if(getActivity().isFinishing()) {
+			editor.putInt("dialog", 0);
+		}
+		else {
+			//		String id_s = dbAdapter.getCurrentSessionID();
+			if(isOpenDialog == 1)
+				editor.putString("nameS", nameS_.getText().toString());
+			//Salvataggio impostazioni
+			editor.putInt("dialog", isOpenDialog);
+			//
+			editor.putString("ids1", ids);
+		}
 		//facciamo il commit
 		editor.commit();
 
 	}
 
-//	@Override
-//	public void onDestroy() {
-//		// TODO Auto-generated method stub
-//		super.onDestroy();
-//		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-//		SharedPreferences.Editor editor = preferences.edit();
-//
-//		editor.putInt("dialog", 0);
-//		//facciamo il commit
-//		editor.commit();
-//	}
+	@Override
+	public void onDestroyView() {
+		// TODO Auto-generated method stub
+		super.onDestroyView();
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+		SharedPreferences.Editor editor = preferences.edit();
+		if(getActivity().isFinishing())
+			editor.putInt("dialog", 0);
+		//facciamo il commit
+		editor.commit();
+	}
+
+	//	@Override
+	//	public void onDestroy() {
+	//		// TODO Auto-generated method stub
+	//		super.onDestroy();
+	//		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+	//		SharedPreferences.Editor editor = preferences.edit();
+	//
+	//		editor.putInt("dialog", 0);
+	//		//facciamo il commit
+	//		editor.commit();
+	//	}
 
 
 }

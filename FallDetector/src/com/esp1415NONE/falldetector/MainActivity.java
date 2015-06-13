@@ -290,6 +290,17 @@ public class MainActivity extends ActionBarActivity {
 		}
 
 	}
+//	@Override
+//	protected void onPause() {
+//		// TODO Auto-generated method stub
+//		super.onPause();
+//		if(isFinishing()) {
+//			int i;
+//		}
+//		else {
+//			int i;
+//		}
+//	}
 
 
 }

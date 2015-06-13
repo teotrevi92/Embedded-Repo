@@ -66,8 +66,8 @@ public class SessionSimpleCursorAdapter extends SimpleCursorAdapter
 			nomeS.setTextColor(Color.RED);
 		}
 		else {
-			ids.setTextColor(Color.GRAY);
-			nomeS.setTextColor(Color.GRAY);
+			ids.setTextColor(Color.WHITE);
+			nomeS.setTextColor(Color.WHITE);
 		}
 
 
