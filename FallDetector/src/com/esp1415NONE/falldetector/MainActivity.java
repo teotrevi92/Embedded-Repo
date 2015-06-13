@@ -29,6 +29,7 @@ public class MainActivity extends ActionBarActivity {
 	private ListView mDrawerList;
 	private DrawerLayout mDrawer;
 	private CustomActionBarDrawerToggle mDrawerToggle;
+//	private FragmentListContacts fr;
 	private String[] menuItems;
 
 	private FragmentTransaction fragmentTransaction;
@@ -131,7 +132,7 @@ public class MainActivity extends ActionBarActivity {
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		mDrawerToggle.onConfigurationChanged(newConfig);
+		mDrawerToggle.onConfigurationChanged(newConfig);	
 	}
 
 	@Override
@@ -290,17 +291,17 @@ public class MainActivity extends ActionBarActivity {
 		}
 
 	}
-//	@Override
-//	protected void onPause() {
-//		// TODO Auto-generated method stub
-//		super.onPause();
-//		if(isFinishing()) {
-//			int i;
-//		}
-//		else {
-//			int i;
-//		}
-//	}
+	//	@Override
+	//	protected void onPause() {
+	//		// TODO Auto-generated method stub
+	//		super.onPause();
+	//		if(isFinishing()) {
+	//			int i;
+	//		}
+	//		else {
+	//			int i;
+	//		}
+	//	}
 
 
 }

@@ -5,12 +5,9 @@ import java.util.regex.Pattern;
 import com.esp1415NONE.falldetector.classi.ContactSimpleCursorAdapter;
 import com.esp1415NONE.falldetector.classi.DbAdapter;
 
-import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -41,8 +38,9 @@ public class FragmentListContacts extends Fragment {
 	private int isOpenDialog = 0; //1 se sto aggiungendo, 2 se sto rinominando, 0 se non ci sono Dialog aperti
 	private EditText name_,surname_,mail_;
 	private Cursor c;
-	private boolean IsconfigChange ;
+	private int i = 0;
 	//	private boolean inDialog = false;
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,8 +48,8 @@ public class FragmentListContacts extends Fragment {
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.add_button, container, false);
 		dbAdapter = new DbAdapter(getActivity());
-		IsconfigChange = true ;
-//		c = dbAdapter.getInfoTable4();
+		i = 0;
+		//		c = dbAdapter.getInfoTable4();
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		isOpenDialog = preferences.getInt("dialog", 0);
 
@@ -68,15 +66,15 @@ public class FragmentListContacts extends Fragment {
 		return view;
 	}
 
-	@SuppressWarnings("deprecation")
+	//	@SuppressWarnings("deprecation")
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 
 
-		Cursor c = dbAdapter.getInfoTable4();
-		getActivity().startManagingCursor(c);
+		c = dbAdapter.getInfoTable4();
+		//		getActivity().startManagingCursor(c);
 		csca = new ContactSimpleCursorAdapter(getActivity(), c);
 		listcontact.setAdapter(csca);
 
@@ -134,7 +132,7 @@ public class FragmentListContacts extends Fragment {
 
 
 
-		
+
 		switch (item.getItemId()) {
 		case R.id.delete_id_contact:
 			if((ChronoService.isPlaying == 1) || (ChronoService.isPlaying == -1)) {
@@ -337,7 +335,7 @@ public class FragmentListContacts extends Fragment {
 			}
 			editor.putInt("dialog", isOpenDialog);
 		}
-//		c.close();
+		//		c.close();
 
 
 
@@ -353,50 +351,73 @@ public class FragmentListContacts extends Fragment {
 		super.onDestroyView();
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		SharedPreferences.Editor editor = preferences.edit();
-		if(getActivity().isFinishing()) {
+		if(getActivity().isFinishing())
 			editor.putInt("dialog", 0);
-//			c.close();
+			//			c.close();
+			//		}
+			//facciamo il commit
+			editor.commit();
 		}
-		//facciamo il commit
-		editor.commit();
+
+		//	@Override
+		//	public void onConfigurationChanged(Configuration config) 
+		//	{
+		//		super.onConfigurationChanged(config);
+		//		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+		//		SharedPreferences.Editor editor = preferences.edit();
+		//
+		//		if(config.orientation == Configuration.ORIENTATION_LANDSCAPE)
+		//		{
+		//			if(isOpenDialog == 1) {
+		//				editor.putString("name", name_.getText().toString());
+		//				editor.putString("surname", surname_.getText().toString());
+		//				editor.putString("mail", mail_.getText().toString());
+		//			}
+		//			else if(isOpenDialog == 2)
+		//			{
+		//				editor.putString("name", name_.getText().toString());
+		//				editor.putString("surname", surname_.getText().toString());
+		//				editor.putString("mail", email.getText().toString());
+		//			}
+		//			//		//Salvataggio impostazioni
+		//			//		if(inDialog == true)
+		//			editor.putInt("dialog", isOpenDialog);
+		//
+		//
+		//		}
+		//		//facciamo il commit
+		//		editor.commit();
+		//	}
+		//		 @Override
+		//		public void onResume() {
+		//			// TODO Auto-generated method stub
+		//			super.onResume();
+		//			int i = 0;
+		//			isOpenDialog = 0;
+		//		}
+
+		//	@Override
+		//	public void onConfigurationChanged(Configuration newConfig) {
+		//		// TODO Auto-generated method stub
+		//		super.onConfigurationChanged(newConfig);
+		//		if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE)
+		//			Toast.makeText(getActivity(), "Land", Toast.LENGTH_LONG).show();
+		//		else if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT)
+		//			Toast.makeText(getActivity(), "Port", Toast.LENGTH_LONG).show();
+		//	}
+
+		@Override
+		public void onResume() {
+			// TODO Auto-generated method stub
+			super.onResume();
+			i++;
+			if(i == 1) {
+				c = dbAdapter.getInfoTable4();
+				csca = new ContactSimpleCursorAdapter(getActivity(), c);
+				listcontact.setAdapter(csca);
+			}
+		}
+
+
+
 	}
-
-	//	@Override
-	//	public void onConfigurationChanged(Configuration config) 
-	//	{
-	//		super.onConfigurationChanged(config);
-	//		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-	//		SharedPreferences.Editor editor = preferences.edit();
-	//
-	//		if(config.orientation == Configuration.ORIENTATION_LANDSCAPE)
-	//		{
-	//			if(isOpenDialog == 1) {
-	//				editor.putString("name", name_.getText().toString());
-	//				editor.putString("surname", surname_.getText().toString());
-	//				editor.putString("mail", mail_.getText().toString());
-	//			}
-	//			else if(isOpenDialog == 2)
-	//			{
-	//				editor.putString("name", name_.getText().toString());
-	//				editor.putString("surname", surname_.getText().toString());
-	//				editor.putString("mail", email.getText().toString());
-	//			}
-	//			//		//Salvataggio impostazioni
-	//			//		if(inDialog == true)
-	//			editor.putInt("dialog", isOpenDialog);
-	//
-	//
-	//		}
-	//		//facciamo il commit
-	//		editor.commit();
-	//	}
-	//	 @Override
-	//	public void onStart() {
-	//		// TODO Auto-generated method stub
-	//		super.onStart();
-	//		isOpenDialog = 0;
-	//	}
-	//	 
-
-
-}
