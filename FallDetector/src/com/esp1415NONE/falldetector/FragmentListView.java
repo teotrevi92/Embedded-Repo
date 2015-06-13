@@ -35,8 +35,9 @@ public class FragmentListView extends ListFragment {
 	//	private TextView textview2;
 	private String ids;
 	private int cad;
-	private int isOpenDialog1 = 0;
+	private int isOpenDialog = 0; //1 se Dialog aperto, 0 se chiuso
 	private EditText nameS_;
+//	private boolean inDialog = false; //se sono passato per inDialog
 
 	private SessionSimpleCursorAdapter ssca;
 
@@ -57,10 +58,9 @@ public class FragmentListView extends ListFragment {
 		registerForContextMenu(getListView());
 
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		isOpenDialog1 = preferences.getInt("dialog", 0);
+		isOpenDialog = preferences.getInt("dialog", 0);
 
-		if(isOpenDialog1 == 1) {
-			Toast.makeText(getActivity(), "Gira ", Toast.LENGTH_SHORT).show();
+		if(isOpenDialog == 1) {
 			ids = preferences.getString("ids1", null);
 			dialogRenameSession(getActivity(), ids, preferences.getString("nameS",null));
 		}
@@ -73,24 +73,34 @@ public class FragmentListView extends ListFragment {
 
 
 				default:
+
 					textview = (TextView) view.findViewById(R.id.nome);
 					//					textview2 = (TextView) view.findViewById(R.id.nomeS);
 					textview1 = (TextView) view.findViewById(R.id.sessione);
 
 					ids = textview.getText().toString();
 					cad = Integer.parseInt(textview1.getText().toString());
-					if(cad > 0) {
-						FragmentDetailSession frg = new FragmentDetailSession();
-						Bundle args = new Bundle();
-						args.putString("ids", ids);
-						frg.setArguments(args);
+					String idsC = Integer.toString(ChronoService.id_s);
+					if((ids.equals(idsC)) &&  ((ChronoService.isPlaying == 1) || (ChronoService.isPlaying == -1))) {
+						FragmentCurrentSession frg = new FragmentCurrentSession();
 						fragmentTransaction.replace(R.id.frag_show_activity, frg);
 						//						fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
 						fragmentTransaction.commit();
-						//						fragmentTransaction = fragmentManager.beginTransaction();
 					}
 					else {
-						Toast.makeText(getActivity(), "Non ci sono cadute", Toast.LENGTH_SHORT).show();
+						if(cad > 0) {
+							FragmentDetailSession frg = new FragmentDetailSession();
+							Bundle args = new Bundle();
+							args.putString("ids", ids);
+							frg.setArguments(args);
+							fragmentTransaction.replace(R.id.frag_show_activity, frg);
+							//						fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
+							fragmentTransaction.commit();
+							//						fragmentTransaction = fragmentManager.beginTransaction();
+						}
+						else {
+							Toast.makeText(getActivity(), "Non ci sono cadute", Toast.LENGTH_SHORT).show();
+						}
 					}
 					break;
 				}
@@ -212,12 +222,12 @@ public class FragmentListView extends ListFragment {
 		nameS_ = (EditText) dialog.findViewById(R.id.nameS);
 		String nameDB = dbAdapter.getNameSession(ids);
 		nameS_ = (EditText) dialog.findViewById(R.id.nameS);
-		if(isOpenDialog1 == 1)
+		if(isOpenDialog == 1)
 			nameS_.setText(nameSe);
 		else
 			nameS_.setText(nameDB);
-		isOpenDialog1 = 1;
-		
+		isOpenDialog = 1;
+
 		Button ok = (Button) dialog.findViewById(R.id.btn_yes);
 		Button no = (Button) dialog.findViewById(R.id.btn_no);
 		// cosa faccio al click del conferma
@@ -229,7 +239,7 @@ public class FragmentListView extends ListFragment {
 					Toast.makeText(a, "Inserisci un nome", Toast.LENGTH_SHORT).show();
 				else {
 					dbAdapter.setNameSession(id_s, nameS);
-					isOpenDialog1 = 0;
+					isOpenDialog = 0;
 					ssca.notifyDataSetChanged();
 					//per vedere la modifica in tempo reale
 					Cursor c = dbAdapter.getAllRowsTable1();
@@ -244,7 +254,7 @@ public class FragmentListView extends ListFragment {
 
 			@Override
 			public void onClick(View v) {
-				isOpenDialog1 = 0;
+				isOpenDialog = 0;
 				dialog.dismiss();
 
 			}
@@ -257,17 +267,29 @@ public class FragmentListView extends ListFragment {
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		SharedPreferences.Editor editor = preferences.edit();
 
-//		String id_s = dbAdapter.getCurrentSessionID();
-		if(isOpenDialog1 == 1)
+		//		String id_s = dbAdapter.getCurrentSessionID();
+		if(isOpenDialog == 1)
 			editor.putString("nameS", nameS_.getText().toString());
 		//Salvataggio impostazioni
-		editor.putInt("dialog", isOpenDialog1);
-//
+		editor.putInt("dialog", isOpenDialog);
+		//
 		editor.putString("ids1", ids);
 		//facciamo il commit
 		editor.commit();
 
 	}
+
+//	@Override
+//	public void onDestroy() {
+//		// TODO Auto-generated method stub
+//		super.onDestroy();
+//		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+//		SharedPreferences.Editor editor = preferences.edit();
+//
+//		editor.putInt("dialog", 0);
+//		//facciamo il commit
+//		editor.commit();
+//	}
 
 
 }

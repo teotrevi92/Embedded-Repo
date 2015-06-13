@@ -48,7 +48,7 @@ public class SessionSimpleCursorAdapter extends SimpleCursorAdapter
 		rndBitmap.doRandomImg(dateA[0], dateA[1], dateA[2], dateA[3], dateA[4], dateA[5], size);
 		logo.setImageBitmap(rndBitmap.getRandomImg());
 
-
+		
 		//		for (int i = 0; i < getListView().getAdapter().getCount(); i++) {
 
 		//COME IDENTIFICARE LA SESSIONE CORRENTE REGISTRATA E EVIDENZIARE LA RIGA NELLA LISTVIEW

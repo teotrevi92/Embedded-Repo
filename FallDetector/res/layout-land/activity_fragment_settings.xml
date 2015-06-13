@@ -1,116 +1,141 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent" >
 
-    <TextView
-        android:layout_width="fill_parent"
+    <!-- Here you put the rest of your current view -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:minHeight="15sp"
-        android:text="@string/settings" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="61dp" >
+        android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/textView1"
-            android:layout_width="140dp"
-            android:textColor="@color/white"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:minWidth="130dp"
-            android:text="@string/textaccurancy" />
+            android:minHeight="15sp"
+            android:text="@string/settings"
+            android:textColor="@color/white" />
 
-        <Spinner
-            android:id="@+id/spinnerAcc"
-            android:layout_width="113dp"
-            android:layout_height="wrap_content"
-            android:entries="@array/accurancy_arrays"
-            android:prompt="@string/accurancy_prompt" />
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="61dp" >
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="140dp"
-            android:textColor="@color/white"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:minWidth="130dp"
-            android:text="@string/textmaxduration" />
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:minWidth="130dp"
+                android:text="@string/textaccurancy"
+                android:textColor="@color/white" />
 
-        <Spinner
-            android:id="@+id/spinnerMaxSession"
-            android:layout_width="wrap_content"
+            <Spinner
+                android:id="@+id/spinnerAcc"
+                android:layout_width="113dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/accurancy_arrays"
+                android:prompt="@string/accurancy_prompt" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:minWidth="130dp"
+                android:text="@string/textmaxduration"
+                android:textColor="@color/white" />
+
+            <Spinner
+                android:id="@+id/spinnerMaxSession"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/maxsession_arrays"
+                android:prompt="@string/maxsession_prompt" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:minWidth="130dp"
+                android:text="@string/textsens"
+                android:textColor="@color/white" />
+
+            <Spinner
+                android:id="@+id/spinnerSens"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/sens_arrays"
+                android:prompt="@string/sens_prompt" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:minWidth="130dp"
+                android:text="@string/textemail"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/buttonemail"
+                android:layout_width="127dp"
+                android:layout_height="wrap_content"
+                android:text="@string/buttonaddemail" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:minWidth="130dp"
+                android:text="@string/texttimer"
+                android:textColor="@color/white" />
+
+            <CheckBox
+                android:id="@+id/checkBoxTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/textonofftimer" />
+
+            <TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="250dp"
+                android:layout_height="90dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/maxsession_arrays"
-            android:prompt="@string/maxsession_prompt" />
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/deletesession"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deletesession" />
+
+            <Button
+                android:id="@+id/deletedata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deletedata" />
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="56dp" >
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="140dp"
-            android:textColor="@color/white"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:minWidth="130dp"
-            android:text="@string/textsens" />
-
-        <Spinner
-            android:id="@+id/spinnerSens"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:entries="@array/sens_arrays"
-            android:prompt="@string/sens_prompt" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="140dp"
-            android:textColor="@color/white"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:minWidth="130dp"
-            android:text="@string/textemail" />
-
-        <Button
-            android:id="@+id/buttonemail"
-            android:layout_width="127dp"
-            android:layout_height="wrap_content"
-            android:text="@string/buttonaddemail" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:layout_gravity="center_vertical"
-            android:minWidth="130dp"
-            android:text="@string/texttimer" />
-
-        <CheckBox
-            android:id="@+id/checkBoxTimer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/textonofftimer" />
-
-        <TimePicker
-            android:id="@+id/timePicker"
-            android:layout_width="250dp"
-            android:layout_height="90dp" />
-    </LinearLayout>
-    
-
-</LinearLayout>
+</ScrollView>

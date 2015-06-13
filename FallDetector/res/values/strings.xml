@@ -46,6 +46,8 @@
     <string name="sens_prompt">Scegli</string>
     <string name="textemail">Email a cui inviare la richiesta di aiuto</string>
     <string name="buttonaddemail">VISUALIZZA LISTA EMAIL</string>
+    <string name="deletesession">CANCELLA SESSIONI</string>
+    <string name="deletedata">CANCELLA CONTENUTO</string>
     <string name="enableLoc">Localizzazione ATTIVA</string>
     <string name="NoenableLoc">Localizzazione NON ATTIVA</string>
     <string name="enableNet">Connessione dati ATTIVA</string>
@@ -101,5 +103,7 @@
     <string name="rename_contact">Rinomina Contatto</string>
     <string name="text_namesession">Inserisci un nome sessione: </string>
     <string name="text_addbutton">Aggiungi</string>
+    <string name="ultimatesession">Riepilogo ultima sessione: </string>
+    <string name="currentsession">Riepilogo sessione in corso: </string>
 
 </resources>

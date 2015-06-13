@@ -3,6 +3,8 @@ package com.esp1415NONE.falldetector;
 import com.esp1415NONE.falldetector.ChronoService;
 import com.esp1415NONE.falldetector.ChronoService.LocalBinder;
 import com.esp1415NONE.falldetector.classi.DbAdapter;
+import com.esp1415NONE.falldetector.classi.MyGraph;
+import com.esp1415NONE.falldetector.classi.StringName;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -14,6 +16,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -30,6 +33,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,8 +57,10 @@ public class FragmentCurrentSession extends Fragment {
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
 	private DbAdapter dbAdapter;
-	private int isOpenDialog = 0;
+	private int isOpenDialog = 0; //1 se Dialog aperto, 0 se chiuso
 	private EditText nameS_;
+	private TextView ids_,nameSes,dateS_,nfall_;
+	private ImageView logo;
 
 
 	/** Defines callbacks for service binding, passed to bindService() */
@@ -120,8 +126,11 @@ public class FragmentCurrentSession extends Fragment {
 	}
 	private void doStop()
 	{
-		FragmentResume ls_fragment = new FragmentResume();
+		FragmentDetailSession ls_fragment = new FragmentDetailSession();
 		//		fragmentTransaction.addToBackStack(null);
+		Bundle args = new Bundle();
+		args.putString("ids", dbAdapter.getCurrentSessionID());
+		ls_fragment.setArguments(args);
 		fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 		fragmentTransaction.commit();
 		//		time.setVisibility(View.INVISIBLE);
@@ -157,6 +166,65 @@ public class FragmentCurrentSession extends Fragment {
 		Intent intent = new Intent(getActivity(), ChronoService.class);
 		getActivity().startService(intent);
 		getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+
+//		tx2 = (TextView) view.findViewById(R.id.textView2);
+//		tx3 = (TextView) view.findViewById(R.id.textView3);
+//		tx4 = (TextView) view.findViewById(R.id.textView4);
+		ids_ = (TextView) view.findViewById(R.id.nome);
+		nameSes = (TextView) view.findViewById(R.id.nomeS);
+		dateS_ = (TextView) view.findViewById(R.id.data);
+		nfall_ = (TextView) view.findViewById(R.id.sessione);
+		logo = (ImageView) view.findViewById(R.id.logo);
+
+
+
+		//			tx2.setVisibility(View.VISIBLE);
+		//			tx3.setVisibility(View.VISIBLE);
+		//			tx4.setVisibility(View.VISIBLE);
+		//			ids_.setVisibility(View.VISIBLE);
+		//			nameSes.setVisibility(View.VISIBLE);
+		//			dateS_.setVisibility(View.VISIBLE);
+		//			nfall_.setVisibility(View.VISIBLE);
+		//			logo.setVisibility(View.VISIBLE);
+		String idss = dbAdapter.getCurrentSessionID();
+//		String[] s = new String[3];
+//		int n = dbAdapter.getNumberFall(idss);
+		Cursor c = dbAdapter.getInfoTableRiepilog(idss);
+		String r1   = c.getString(c.getColumnIndex("_id"));
+		String r2   = c.getString(c.getColumnIndex(StringName.NAMES));
+		String r3   = c.getString(c.getColumnIndex(StringName.DATE));
+		String r5   = c.getString(c.getColumnIndex("countFall"));
+		//		Cursor c = dbAdapter.getNumberFall(idss);
+		//		c.moveToNext();
+		//		String fall = c.getString(c.getColumnIndex("countFall"));
+//		String fall = "0";
+		if(r5 == null)
+			r5 = "0";
+
+
+		ids_.setText(r1);
+		nameSes.setText(r2);
+		dateS_.setText(r3);
+		nfall_.setText(r5);
+
+		int[] dateA = new int[6];
+		dateA = dbAdapter.getDate(dateS_.getText().toString());
+		int size = 30;
+		MyGraph rndBitmap = new MyGraph(size,size);
+		rndBitmap.doRandomImg(dateA[0], dateA[1], dateA[2], dateA[3], dateA[4], dateA[5], size);
+		logo.setImageBitmap(rndBitmap.getRandomImg());
+
+		//			tx2.setVisibility(View.INVISIBLE);
+		//			tx3.setVisibility(View.INVISIBLE);
+		//			tx4.setVisibility(View.INVISIBLE);
+		//			ids_.setVisibility(View.INVISIBLE);
+		//			nameSes.setVisibility(View.INVISIBLE);
+		//			dateS_.setVisibility(View.INVISIBLE);
+		//			nfall_.setVisibility(View.INVISIBLE);
+		//			logo.setVisibility(View.INVISIBLE);
+
+
+
 
 		play.setOnClickListener(new View.OnClickListener() {
 
@@ -221,7 +289,7 @@ public class FragmentCurrentSession extends Fragment {
 					//					i.putExtra("where", "stop");
 					//					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					//					startActivity(i);
-//					doStop();
+					//					doStop();
 				}
 			}
 		});
@@ -337,7 +405,8 @@ public class FragmentCurrentSession extends Fragment {
 		final String id_s = ids;
 		final Activity a = activity;
 		//personalizzo il Dialog
-		nameS_ = (EditText) dialog.findViewById(R.id.nameS);if(isOpenDialog == 1)
+		nameS_ = (EditText) dialog.findViewById(R.id.nameS);
+		if(isOpenDialog == 1)
 			nameS_.setText(nameSe);
 		else
 			nameS_.setText("Sessione");
@@ -391,5 +460,16 @@ public class FragmentCurrentSession extends Fragment {
 		editor.commit();
 
 	}
+	//	@Override
+	//	public void onDestroy() {
+	//		// TODO Auto-generated method stub
+	//		super.onDestroy();
+	//		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+	//		SharedPreferences.Editor editor = preferences.edit();
+	//
+	//		editor.putInt("dialog", 0);
+	//		//facciamo il commit
+	//		editor.commit();
+	//	}
 
 }

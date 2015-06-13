@@ -211,19 +211,40 @@ public class MainActivity extends ActionBarActivity {
 			mDrawerList.setItemChecked(position, true);
 			switch (position) {
 			case 1:
-				FragmentHome ls_fragment1 = new FragmentHome();
-				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment1);
-				fragmentTransaction.commit();
-				//ricreo l'oggetto per nuova futura Transaction
-				fragmentTransaction = fragmentManager.beginTransaction();
-				mDrawer.closeDrawer(mDrawerList);
+				if(ChronoService.isPlaying == 0) {
+					FragmentHome ls_fragment1 = new FragmentHome();
+					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment1);
+					fragmentTransaction.commit();
+					//ricreo l'oggetto per nuova futura Transaction
+					fragmentTransaction = fragmentManager.beginTransaction();
+					mDrawer.closeDrawer(mDrawerList);
+				}
+				else if(ChronoService.isPlaying == 1 || ChronoService.isPlaying == -1) {
+					FragmentCurrentSession ls_fragment1 = new FragmentCurrentSession();
+					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment1);
+					fragmentTransaction.commit();
+					//ricreo l'oggetto per nuova futura Transaction
+					fragmentTransaction = fragmentManager.beginTransaction();
+					mDrawer.closeDrawer(mDrawerList);
+				}
 				break;
 			case 2:
-				FragmentCurrentSession ls_fragment2 = new FragmentCurrentSession();
-				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment2);
-				fragmentTransaction.commit();
-				fragmentTransaction = fragmentManager.beginTransaction();
-				mDrawer.closeDrawer(mDrawerList);
+				if(ChronoService.isPlaying == 0) {
+					FragmentHome ls_fragment1 = new FragmentHome();
+					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment1);
+					fragmentTransaction.commit();
+					//ricreo l'oggetto per nuova futura Transaction
+					fragmentTransaction = fragmentManager.beginTransaction();
+					mDrawer.closeDrawer(mDrawerList);
+				}
+				else if(ChronoService.isPlaying == 1 || ChronoService.isPlaying == -1) {
+					FragmentCurrentSession ls_fragment1 = new FragmentCurrentSession();
+					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment1);
+					fragmentTransaction.commit();
+					//ricreo l'oggetto per nuova futura Transaction
+					fragmentTransaction = fragmentManager.beginTransaction();
+					mDrawer.closeDrawer(mDrawerList);
+				}
 				break;
 
 			case 3:

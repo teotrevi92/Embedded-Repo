@@ -285,6 +285,23 @@ public class DbAdapter  {
 
 	}
 
+	public void dropAllSession() {
+		SQLiteDatabase db = helper.getWritableDatabase();
+		db.delete(StringName.TABLE_NAME3, null, null);
+		db.delete(StringName.TABLE_NAME2, null, null);
+		db.delete(StringName.TABLE_NAME1, null, null);
+		db.close();
+	}
+
+	public void dropAllData() {
+		SQLiteDatabase db = helper.getWritableDatabase();
+		db.delete(StringName.TABLE_NAME3, null, null);
+		db.delete(StringName.TABLE_NAME2, null, null);
+		db.delete(StringName.TABLE_NAME1, null, null);
+		db.delete(StringName.TABLE_NAME4, null, null);
+		db.close();
+	}
+
 	public Cursor getAllRowsTable1() {
 		SQLiteDatabase db = helper.getReadableDatabase();
 
@@ -294,12 +311,99 @@ public class DbAdapter  {
 				+ StringName.UIDSREF  + ", COUNT("+ StringName.UIDF +") AS countFall"
 				+ " FROM " + StringName.TABLE_NAME2
 				+ " GROUP BY " + StringName.UIDSREF + ") AS J ON " 
-				+ StringName.UIDS + " = " + StringName.UIDSREF +" ) AS K ORDER BY "
-				+ StringName.UIDS + " DESC ; ";
+				+ StringName.UIDS + " = " + StringName.UIDSREF +" ) ORDER BY " + 
+				StringName.UIDS + " DESC;" ;
 
 		Cursor cursor = db.rawQuery(query, null);
 		//		db.close();
 		return cursor;
+	}
+	
+	public Cursor getInfoTableRiepilog(String ids) {
+		SQLiteDatabase db = helper.getReadableDatabase();
+
+		String query = "SELECT DISTINCT " + StringName.UIDS + " as _id, "  
+				+ StringName.NAMES + " , " + StringName.DATE + " , " + StringName.DURATION + " , countFall" 
+				+ " FROM (" + StringName.TABLE_NAME1 + " LEFT OUTER JOIN (SELECT " 
+				+ StringName.UIDSREF  + ", COUNT("+ StringName.UIDF +") AS countFall"
+				+ " FROM " + StringName.TABLE_NAME2 + " WHERE " + StringName.UIDSREF + "='" + ids + "'"
+				+ " GROUP BY " + StringName.UIDSREF + ") AS J ON " 
+				+ StringName.UIDS + " = " + StringName.UIDSREF +" ) ORDER BY " + 
+				StringName.UIDS + " DESC;" ;
+
+		Cursor cursor = db.rawQuery(query, null);
+		cursor.moveToNext();
+		//		db.close();
+		return cursor;
+	}
+
+	public String[] getInfoUltimateSession(String ids) {
+		SQLiteDatabase db = helper.getReadableDatabase();
+		String[] s = new String[4];
+		String[] columns = {StringName.UIDS,StringName.NAMES,StringName.DATE,StringName.DURATION};
+		String table = StringName.TABLE_NAME1;
+		String where = StringName.UIDS + "='" + ids + "'";
+		Cursor cursor = db.query(table, columns, where, null, null, null, null);
+		if(cursor != null) {
+			cursor.moveToFirst();
+			s[0] = Integer.toString(cursor.getInt(0));
+			s[1] = cursor.getString(1);
+			s[2] = cursor.getString(2);
+			s[3] = cursor.getString(3);
+		}
+		cursor.close();
+		db.close();
+		return s;
+	}
+	//	public Cursor getNumberFall(String ids) {
+	//		SQLiteDatabase db = helper.getReadableDatabase();
+	//		String table = StringName.TABLE_NAME2;
+	//		String where = StringName.UIDSREF + " = '" + ids + "'";
+	//		String query = "SELECT DISTINCT " + StringName.UIDSREF + " AS _id, COUNT(*) AS countFall FROM " + table
+	//				+ " WHERE " + where + " GROUP BY " + StringName.UIDSREF + ";";
+	//		Cursor cursor = db.rawQuery(query, null);
+	////		if(cursor != null) {
+	////			cursor.moveToNext();
+	////			s = cursor.getString(cursor.getColumnIndex("countFall"));
+	////		}
+	////		cursor.close();
+	////		db.close();
+	//
+	//		return cursor;
+
+	//	}
+
+	public int getNumberFall(String ids) {
+		SQLiteDatabase db = helper.getReadableDatabase();
+		int n = 0;
+		String table = StringName.TABLE_NAME2;
+		String where = StringName.UIDSREF + " = '" + ids + "'";
+		String query = "SELECT DISTINCT " + StringName.UIDSREF + " AS _id," + StringName.UIDF
+				+ " FROM " + table + " WHERE " + where + ";";
+		Cursor cursor = db.rawQuery(query, null);
+		n = cursor.getCount();
+			
+		cursor.close();
+		db.close();
+
+		return n;
+	}
+	public String[] getInfoCurrentSession(String ids) {
+		SQLiteDatabase db = helper.getReadableDatabase();
+		String[] s = new String[3];
+		String[] columns = {StringName.UIDS,StringName.NAMES,StringName.DATE};
+		String table = StringName.TABLE_NAME1;
+		String where = StringName.UIDS + "='" + ids + "'";
+		Cursor cursor = db.query(table, columns, where, null, null, null, null);
+		if(cursor != null) {
+			cursor.moveToFirst();
+			s[0] = Integer.toString(cursor.getInt(0));
+			s[1] = cursor.getString(1);
+			s[2] = cursor.getString(2);
+		}
+		cursor.close();
+		db.close();
+		return s;
 	}
 
 	//	String query = "SELECT DISTINCT " + StringName.UIDS + " as _id, "  
@@ -416,7 +520,7 @@ public class DbAdapter  {
 		String query = "SELECT MAX(" + columns + ") FROM " + table + " ;";
 		Cursor cursor = db.rawQuery(query, null);
 		if(cursor != null) {
-			cursor.moveToFirst();
+			cursor.moveToNext();
 			ids = cursor.getString(0);
 		}
 		cursor.close();
@@ -557,8 +661,10 @@ public class DbAdapter  {
 		String QUERY = "SELECT COUNT(*) FROM " + StringName.TABLE_NAME1 + ";";
 		Cursor cursor = db.rawQuery(QUERY, null);
 		if(cursor != null) {
-			cursor.moveToFirst();
+			cursor.moveToNext();
 			n = cursor.getInt(0);
+			//			if(cursor.getCount() == 0)
+			//				n = 0;
 		}
 		else n = 0;
 

@@ -1,11 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation = "horizontal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:orientation="horizontal"
     tools:context="com.esp1415NONE.falldetector.SessioneCorrenteFragment" >
-    
-	<RelativeLayout
+
+    <RelativeLayout
         android:id="@+id/relativeLayoutHome1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
@@ -14,80 +14,205 @@
             android:id="@+id/titleHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="@string/titleSession"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white"
             android:textSize="50sp"
             android:visibility="invisible" />
     </RelativeLayout>
-     
-     <RelativeLayout
-        android:id="@+id/relativeLayoutHome4"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" 
-        android:layout_toLeftOf="@+id/relativeLayoutHome2"
-        android:layout_toStartOf="@+id/relativeLayoutHome2"
-        android:layout_below="@+id/relativeLayoutHome1">
-    
+
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignEnd="@+id/relativeLayoutHome1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/relativeLayoutHome1"
+        android:layout_below="@+id/relativeLayoutHome1"
+        android:background="@drawable/border"
+        android:orientation="vertical" >
+
         <TextView
+            android:id="@+id/ultimatesession"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/ultimatesession"
             android:textColor="@color/white"
-            android:text="ULTIMA SESSIONE"/>
-        
-      </RelativeLayout>
-       
-     <RelativeLayout
-         android:id="@+id/relativeLayoutHome3"
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:layout_above="@+id/relativeLayoutHome2"
-         android:layout_toEndOf="@+id/relativeLayoutHome1"
-         android:layout_toRightOf="@+id/relativeLayoutHome1" >
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" >
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:contentDescription="@string/miniature_session" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/nome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_example_sess"
+                    android:textColor="@color/white"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/nomeS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_session"
+                    android:textColor="@color/white"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_date_session"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:text="@string/text_example_date_sess"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_durate_sess"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/durata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:text="@string/text_example_durate_sess"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_count_fall"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/sessione"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:text="@string/text_example_count_fall"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutHome3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/relativeLayoutHome2"
+        android:layout_toEndOf="@+id/relativeLayoutHome1"
+        android:layout_toRightOf="@+id/relativeLayoutHome1" >
 
         <TextView
             android:id="@+id/textGps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="30sp"
             android:layout_centerHorizontal="true"
-            android:text="" />
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/textNetwork"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:layout_below="@+id/textGps"
-            android:textSize="30sp"
             android:layout_centerHorizontal="true"
-            android:text="" />
-
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="30sp" />
     </RelativeLayout>
-    
-     <RelativeLayout
-         android:id="@+id/relativeLayoutHome2"
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:layout_alignParentBottom="true"
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutHome2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="14dp"
-         android:layout_toEndOf="@+id/relativeLayoutHome1"
-         android:layout_toRightOf="@+id/relativeLayoutHome1" >
+        android:layout_toEndOf="@+id/relativeLayoutHome1"
+        android:layout_toRightOf="@+id/relativeLayoutHome1" >
 
-
-
-         <ImageButton
-             android:id="@+id/startSession"
-             android:layout_width="200dp"
-             android:layout_height="200dp"
-             android:layout_centerVertical="true"
-             android:layout_centerHorizontal="true"
-             android:background="@drawable/play"
-             android:contentDescription="@string/DescPlay"
-             android:visibility="invisible" />
-     </RelativeLayout>
+        <ImageButton
+            android:id="@+id/startSession"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/play"
+            android:contentDescription="@string/DescPlay"
+            android:visibility="invisible" />
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -5,6 +5,11 @@ package com.esp1415NONE.falldetector;
 import java.util.Calendar;
 
 
+
+
+
+import com.esp1415NONE.falldetector.classi.DbAdapter;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -22,6 +27,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class FragmentSettings extends Fragment {
 
@@ -32,9 +38,10 @@ public class FragmentSettings extends Fragment {
 	private TimePicker tmpicker;
 	private PendingIntent pendIntent;
 	private AlarmManager alarmManager;
-	private Button button; //Tri
+	private Button button,btSession, btData; //Tri
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
+	private DbAdapter dbAdapter;
 	//	private DbAdapter dbAdapter; //Tri
 
 	View view;
@@ -51,7 +58,8 @@ public class FragmentSettings extends Fragment {
 		int int_spM = preferences.getInt("pickerValueM", 0);
 		fragmentManager = getActivity().getSupportFragmentManager(); //Tri
 		fragmentTransaction = fragmentManager.beginTransaction(); //Tri
-		//		dbAdapter = new DbAdapter(getActivity()); //Tri
+		dbAdapter = new DbAdapter(getActivity()); //Tri
+
 
 		sp_acc = (Spinner) view.findViewById(R.id.spinnerAcc);
 		sp_duration = (Spinner) view.findViewById(R.id.spinnerMaxSession);
@@ -59,6 +67,8 @@ public class FragmentSettings extends Fragment {
 		cbt = (CheckBox) view.findViewById(R.id.checkBoxTimer);
 		tmpicker = (TimePicker) view.findViewById(R.id.timePicker);
 		button = (Button) view.findViewById(R.id.buttonemail); //Tri 
+		btSession = (Button) view.findViewById(R.id.deletesession); //Tri
+		btData = (Button) view.findViewById(R.id.deletedata); //Tri
 
 		//Reimposto i valori salvati
 		sp_acc.setSelection(int_sp_acc);
@@ -89,6 +99,40 @@ public class FragmentSettings extends Fragment {
 			}
 		});
 
+		btSession.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if((ChronoService.isPlaying == 1) || (ChronoService.isPlaying == -1)) {
+					Toast.makeText(getActivity(),"Impossibile durante la sessione in corso", Toast.LENGTH_SHORT).show();
+
+				}
+				else {
+
+					dbAdapter.dropAllSession();
+					Toast.makeText(getActivity(),"Cancellate tutte le sessioni", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+
+		btData.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				// TODO Auto-generated method stub
+				if((ChronoService.isPlaying == 1) || (ChronoService.isPlaying == -1)) {
+					Toast.makeText(getActivity(),"Impossibile durante la sessione in corso", Toast.LENGTH_SHORT).show();
+
+				}
+				else {
+
+					dbAdapter.dropAllData();
+					Toast.makeText(getActivity(),"Cancellati tutti i dati", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
 
 
 

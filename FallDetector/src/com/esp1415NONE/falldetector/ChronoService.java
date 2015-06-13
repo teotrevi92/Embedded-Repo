@@ -40,6 +40,7 @@ public class ChronoService extends Service implements SensorEventListener {
 	static int id_s = 0; //id sessione corrente messa statica
 	private int id_f = 0;
 	private MyTime myTime;
+	
 
 	private float x;
 	private float y;
@@ -120,14 +121,18 @@ public class ChronoService extends Service implements SensorEventListener {
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub	
+//		boolean zero = false;
 		sm = (SensorManager)getSystemService(SENSOR_SERVICE);
 		dbAdapter = new DbAdapter(this); //Inizializzazione database
 		//		graph = new Grafico(300,300);
 		//		graph.doBase();
+		
 		return mBinder;
 
 	}
+	
+
 
 	public void play()
 	{	
