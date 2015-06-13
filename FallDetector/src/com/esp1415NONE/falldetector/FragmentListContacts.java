@@ -6,6 +6,7 @@ import com.esp1415NONE.falldetector.classi.ContactSimpleCursorAdapter;
 import com.esp1415NONE.falldetector.classi.DbAdapter;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -38,7 +39,7 @@ public class FragmentListContacts extends Fragment {
 	private int isOpenDialog = 0; //1 se sto aggiungendo, 2 se sto rinominando, 0 se non ci sono Dialog aperti
 	private EditText name_,surname_,mail_;
 	private Cursor c;
-	private int i = 0;
+	//	private int i = 0;
 	//	private boolean inDialog = false;
 
 
@@ -48,7 +49,7 @@ public class FragmentListContacts extends Fragment {
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.add_button, container, false);
 		dbAdapter = new DbAdapter(getActivity());
-		i = 0;
+		//		i = 0;
 		//		c = dbAdapter.getInfoTable4();
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		isOpenDialog = preferences.getInt("dialog", 0);
@@ -170,6 +171,14 @@ public class FragmentListContacts extends Fragment {
 		final String s = surnameC;
 		final String m = mailC;
 		//		inDialog = true;
+		dialog.setOnCancelListener(new DialogInterface.OnCancelListener()
+		{@Override
+			public void onCancel(DialogInterface dialog)
+		{
+			isOpenDialog = 0;
+			dialog.dismiss();
+		}
+		});
 		//personalizzo il Dialog
 		name_ = (EditText) dialog.findViewById(R.id.name);
 		surname_ = (EditText) dialog.findViewById(R.id.surname);
@@ -223,14 +232,35 @@ public class FragmentListContacts extends Fragment {
 		});
 		dialog.show();
 	}
+	//	private void onBackPressed(Dialog d) {
+	//		// TODO Auto-generated method stub
+	//		Toast.makeText(getActivity(), "Ciao", Toast.LENGTH_SHORT).show();
+	//		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+	//		SharedPreferences.Editor editor = preferences.edit();
+	//		isOpenDialog = 0;
+	//		editor.putInt("dialog", isOpenDialog);
+	//		editor.commit();
+	//		d.dismiss();
+	//	}
 
 	private void dialogAddContact(String nameC, String surnameC, String mailC) {
 		final Dialog dialog = new Dialog(getActivity());
 		dialog.setContentView(R.layout.activity_add_email);
 		dialog.setTitle("Aggiungi Contatto");
+		//		onBackPressed(dialog);
 		final String n = nameC;
 		final String s = surnameC;
 		final String m = mailC;
+
+		dialog.setOnCancelListener(new DialogInterface.OnCancelListener()
+		{@Override
+			public void onCancel(DialogInterface dialog)
+		{
+			isOpenDialog = 0;
+			dialog.dismiss();
+		}
+		});
+
 
 		//		inDialog = true;
 		//personalizzo il Dialog
@@ -353,71 +383,71 @@ public class FragmentListContacts extends Fragment {
 		SharedPreferences.Editor editor = preferences.edit();
 		if(getActivity().isFinishing())
 			editor.putInt("dialog", 0);
-			//			c.close();
-			//		}
-			//facciamo il commit
-			editor.commit();
-		}
-
-		//	@Override
-		//	public void onConfigurationChanged(Configuration config) 
-		//	{
-		//		super.onConfigurationChanged(config);
-		//		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		//		SharedPreferences.Editor editor = preferences.edit();
-		//
-		//		if(config.orientation == Configuration.ORIENTATION_LANDSCAPE)
-		//		{
-		//			if(isOpenDialog == 1) {
-		//				editor.putString("name", name_.getText().toString());
-		//				editor.putString("surname", surname_.getText().toString());
-		//				editor.putString("mail", mail_.getText().toString());
-		//			}
-		//			else if(isOpenDialog == 2)
-		//			{
-		//				editor.putString("name", name_.getText().toString());
-		//				editor.putString("surname", surname_.getText().toString());
-		//				editor.putString("mail", email.getText().toString());
-		//			}
-		//			//		//Salvataggio impostazioni
-		//			//		if(inDialog == true)
-		//			editor.putInt("dialog", isOpenDialog);
-		//
-		//
+		//			c.close();
 		//		}
-		//		//facciamo il commit
-		//		editor.commit();
-		//	}
-		//		 @Override
-		//		public void onResume() {
-		//			// TODO Auto-generated method stub
-		//			super.onResume();
-		//			int i = 0;
-		//			isOpenDialog = 0;
-		//		}
-
-		//	@Override
-		//	public void onConfigurationChanged(Configuration newConfig) {
-		//		// TODO Auto-generated method stub
-		//		super.onConfigurationChanged(newConfig);
-		//		if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE)
-		//			Toast.makeText(getActivity(), "Land", Toast.LENGTH_LONG).show();
-		//		else if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT)
-		//			Toast.makeText(getActivity(), "Port", Toast.LENGTH_LONG).show();
-		//	}
-
-		@Override
-		public void onResume() {
-			// TODO Auto-generated method stub
-			super.onResume();
-			i++;
-			if(i == 1) {
-				c = dbAdapter.getInfoTable4();
-				csca = new ContactSimpleCursorAdapter(getActivity(), c);
-				listcontact.setAdapter(csca);
-			}
-		}
-
-
-
+		//facciamo il commit
+		editor.commit();
 	}
+
+	//	@Override
+	//	public void onConfigurationChanged(Configuration config) 
+	//	{
+	//		super.onConfigurationChanged(config);
+	//		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+	//		SharedPreferences.Editor editor = preferences.edit();
+	//
+	//		if(config.orientation == Configuration.ORIENTATION_LANDSCAPE)
+	//		{
+	//			if(isOpen == 1) {
+	//				editor.putString("name", name_.getText().toString());
+	//				editor.putString("surname", surname_.getText().toString());
+	//				editor.putString("mail", mail_.getText().toString());
+	//			}
+	//			else if(isOpenDialog == 2)
+	//			{
+	//				editor.putString("name", name_.getText().toString());
+	//				editor.putString("surname", surname_.getText().toString());
+	//				editor.putString("mail", email.getText().toString());
+	//			}
+	//			//		//Salvataggio impostazioni
+	//			//		if(inDialog == true)
+	//			editor.putInt("dialog", isOpenDialog);
+	//
+	//
+	//		}
+	//		//facciamo il commit
+	//		editor.commit();
+	//	}
+	//		 @Override
+	//		public void onResume() {
+	//			// TODO Auto-generated method stub
+	//			super.onResume();
+	//			int i = 0;
+	//			isOpenDialog = 0;
+	//		}
+
+	//	@Override
+	//	public void onConfigurationChanged(Configuration newConfig) {
+	//		// TODO Auto-generated method stub
+	//		super.onConfigurationChanged(newConfig);
+	//		if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE)
+	//			Toast.makeText(getActivity(), "Land", Toast.LENGTH_LONG).show();
+	//		else if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT)
+	//			Toast.makeText(getActivity(), "Port", Toast.LENGTH_LONG).show();
+	//	}
+
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		//			i++;
+		//			if(i == 1) {
+		c = dbAdapter.getInfoTable4();
+		csca = new ContactSimpleCursorAdapter(getActivity(), c);
+		listcontact.setAdapter(csca);
+		//			}
+	}
+
+
+
+}
