@@ -35,6 +35,8 @@ public class MainActivity extends ActionBarActivity {
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
 	private DbAdapter dbAdapter; //Tri
+	private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+	private long mBackPressed;
 
 	//private ImageButton play;
 
@@ -175,6 +177,19 @@ public class MainActivity extends ActionBarActivity {
 
 		// Handle your other action bar items...
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onBackPressed()
+	{
+	    if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) 
+	    { 
+	        super.onBackPressed(); 
+	        return;
+	    }
+	    else { Toast.makeText(getBaseContext(), "Per uscire cliccare di nuovo INDIETRO", Toast.LENGTH_SHORT).show(); }
+
+	    mBackPressed = System.currentTimeMillis();
 	}
 
 	private class CustomActionBarDrawerToggle extends ActionBarDrawerToggle {
