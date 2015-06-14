@@ -22,7 +22,7 @@
         android:layout_marginRight="10sp"
         android:layout_marginStart="10sp"
         android:ems="10"
-        android:inputType="textPersonName" >
+        android:inputType="textCapSentences">
 
         <requestFocus />
     </EditText>
@@ -45,7 +45,7 @@
         android:layout_marginRight="10sp"
         android:layout_marginStart="10sp"
         android:ems="10"
-        android:inputType="textPersonName" >
+        android:inputType="textCapSentences" >
 
     </EditText>
 

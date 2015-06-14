@@ -105,5 +105,6 @@
     <string name="text_addbutton">Aggiungi</string>
     <string name="ultimatesession">Riepilogo ultima sessione: </string>
     <string name="currentsession">Riepilogo sessione in corso: </string>
+    <string name="text_example_confirm">Cancellare?</string>
 
 </resources>
