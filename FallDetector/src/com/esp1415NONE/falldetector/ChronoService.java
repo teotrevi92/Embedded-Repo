@@ -40,7 +40,6 @@ public class ChronoService extends Service implements SensorEventListener {
 	static int id_s = 0; //id sessione corrente messa statica
 	private int id_f = 0;
 	private MyTime myTime;
-	
 
 	private float x;
 	private float y;
@@ -75,7 +74,6 @@ public class ChronoService extends Service implements SensorEventListener {
 				//Rilevazione caduta
 				if (que.isFall())
 				{	
-
 					/*QUI SI SALVARE TUTTI I DATI DELLA CADUTA,
 					 	DATA E ORA E ARRAY DEI DATI
 						e mandare id_f nell'intent
@@ -85,7 +83,6 @@ public class ChronoService extends Service implements SensorEventListener {
 					//						float[] f = {1.1f}; //Passo gli array dei dati dell'accelerometro
 					String date = dbAdapter.convertArrayToString(que.getBox());
 					dbAdapter.createFall(id_f, id_s, myTime.myTime(), date, dbAdapter.getListContact()); //I dati gps verranno salvati piu' avanti
-
 
 					//allerta
 					Intent i = new Intent(this, ToastAllertActivity.class);
@@ -122,16 +119,16 @@ public class ChronoService extends Service implements SensorEventListener {
 	@Override
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub	
-//		boolean zero = false;
+		//		boolean zero = false;
 		sm = (SensorManager)getSystemService(SENSOR_SERVICE);
 		dbAdapter = new DbAdapter(this); //Inizializzazione database
 		//		graph = new Grafico(300,300);
 		//		graph.doBase();
-		
+
 		return mBinder;
 
 	}
-	
+
 
 
 	public void play()
@@ -248,6 +245,7 @@ public class ChronoService extends Service implements SensorEventListener {
 		// TODO Auto-generated method stub
 		stop();
 	}
+
 
 
 

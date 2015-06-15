@@ -43,8 +43,7 @@ public class FragmentSettings extends Fragment {
 	private FragmentManager fragmentManager;
 	private DbAdapter dbAdapter;
 	private int isOpenDialog = 0; //1 se cancella sessioni, 2 se cancella tutto, 0 se non ci sono Dialog aperti
-
-	View view;
+	private View view;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -249,7 +248,6 @@ public class FragmentSettings extends Fragment {
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
 				dbAdapter.dropAllSession();
 				isOpenDialog = 0;
 				Toast.makeText(getActivity(),"Cancellate tutte le sessioni", Toast.LENGTH_SHORT).show();

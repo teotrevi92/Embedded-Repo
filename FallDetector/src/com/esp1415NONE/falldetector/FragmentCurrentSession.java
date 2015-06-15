@@ -146,6 +146,7 @@ public class FragmentCurrentSession extends Fragment {
 		dbAdapter = new DbAdapter(getActivity());
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		isOpenDialog = preferences.getInt("dialog", 0);
+		
 
 		if(isOpenDialog == 1)
 			dialogRenameSession(getActivity(), preferences.getString("ids", null),preferences.getString("nameS",null));
@@ -228,7 +229,7 @@ public class FragmentCurrentSession extends Fragment {
 
 
 		play.setOnClickListener(new View.OnClickListener() {
-
+			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -490,6 +491,7 @@ public class FragmentCurrentSession extends Fragment {
 	//		//facciamo il commit
 	//		editor.commit();
 	//	}
-
-
+	
+	
+	
 }
