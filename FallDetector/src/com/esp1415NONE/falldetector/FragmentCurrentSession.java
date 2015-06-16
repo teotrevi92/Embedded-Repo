@@ -62,6 +62,8 @@ public class FragmentCurrentSession extends Fragment {
 	private EditText nameS_;
 	private TextView ids_,nameSes,dateS_,nfall_;
 	private ImageView logo;
+	private String idss;
+	private Cursor c;
 
 
 	/** Defines callbacks for service binding, passed to bindService() */
@@ -188,10 +190,10 @@ public class FragmentCurrentSession extends Fragment {
 		//			dateS_.setVisibility(View.VISIBLE);
 		//			nfall_.setVisibility(View.VISIBLE);
 		//			logo.setVisibility(View.VISIBLE);
-		String idss = dbAdapter.getCurrentSessionID();
+		idss = dbAdapter.getCurrentSessionID();
 		//		String[] s = new String[3];
 		//		int n = dbAdapter.getNumberFall(idss);
-		Cursor c = dbAdapter.getInfoTableRiepilog(idss);
+		c = dbAdapter.getInfoTableRiepilog(idss);
 		String r1   = c.getString(c.getColumnIndex("_id"));
 		String r2   = c.getString(c.getColumnIndex(StringName.NAMES));
 		String r3   = c.getString(c.getColumnIndex(StringName.DATE));
@@ -328,6 +330,14 @@ public class FragmentCurrentSession extends Fragment {
 			public void run() { getActivity().runOnUiThread(new Runnable() {  
 				@Override  
 				public void run() {  
+					idss = dbAdapter.getCurrentSessionID();
+					c = dbAdapter.getInfoTableRiepilog(idss);
+					String r5   = c.getString(c.getColumnIndex("countFall"));
+					if(r5 == null)
+						r5 = "0";
+					nfall_.setText(r5);
+					
+					
 					if(controlLocGps() || controlLocNet())
 						statusGps.setText(R.string.enableLoc);
 					else

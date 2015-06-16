@@ -100,6 +100,7 @@ public class FragmentSettings extends Fragment {
 				FragmentListContacts ls_fragment = new FragmentListContacts();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 				fragmentTransaction.commit();
+				//-------------------------------------QUA AGGIUNGERE GLI STACK
 				/*CONTROLLO DEGLI STACK PER RACH*/
 				//				}
 			}

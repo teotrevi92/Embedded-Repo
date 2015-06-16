@@ -43,7 +43,7 @@ public class LocationService extends Service implements LocationListener{
 	private Intent email;
 	private String[] emailTo;
 	//	private String[] emailTo = {"azi92@hotmail.it", "azi92rach@gmail.com"};
-	private String emailText = "Aiuto!! Sono caduto. Mi trovo qui:\n";
+	private String emailText = "Aiuto!! Sono caduto. Localizzazione approssimativa:\n";
 	private String subject = "AIUTO DI SOCCORSO";
 
 	private static boolean check=false; //Viene usata per avere l'ok dell'invio	

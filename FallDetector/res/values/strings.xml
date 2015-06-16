@@ -38,14 +38,14 @@
     <string name="settings">Impostazioni FallDetector</string>
     <string name="textaccurancy">Scegli l\'accuratezza dell\'accelerometro</string>
     <string name="accurancy_prompt">Scegli</string>
-    <string name="textmaxduration">Scegli la durata massima della sessione (HH:MM)</string>
+    <string name="textmaxduration">Scegli la durata massima della sessione</string>
     <string name="maxsession_prompt">Massima durata sessione</string>
     <string name="texttimer">Imposta promemoria giornaliero</string>
     <string name="textonofftimer">Attiva</string>
     <string name="textsens">Scegli la sensibilità</string>
     <string name="sens_prompt">Scegli</string>
     <string name="textemail">Email a cui inviare la richiesta di aiuto</string>
-    <string name="buttonaddemail">VISUALIZZA LISTA EMAIL</string>
+    <string name="buttonaddemail">LISTA EMAIL</string>
     <string name="deletesession">CANCELLA SESSIONI</string>
     <string name="deletedata">CANCELLA CONTENUTO</string>
     <string name="enableLoc">Localizzazione ATTIVA</string>

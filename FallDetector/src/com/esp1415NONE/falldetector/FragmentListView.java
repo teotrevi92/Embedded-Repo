@@ -87,6 +87,7 @@ public class FragmentListView extends ListFragment {
 						fragmentTransaction.replace(R.id.frag_show_activity, frg);
 						//						fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
 						fragmentTransaction.commit();
+						//-------------------------------------QUA AGGIUNGERE GLI STACK
 					}
 					else {
 						if(cad > 0) {
