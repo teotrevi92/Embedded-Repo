@@ -97,12 +97,12 @@ public class FragmentSettings extends Fragment {
 				//					Toast.makeText(getActivity(), "Non ci sono contatti salvati", Toast.LENGTH_SHORT).show();
 				//				}
 				//				else {
+				fragmentTransaction.addToBackStack(null);
 				FragmentListContacts ls_fragment = new FragmentListContacts();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 				fragmentTransaction.commit();
 				//-------------------------------------QUA AGGIUNGERE GLI STACK
-				/*CONTROLLO DEGLI STACK PER RACH*/
-				//				}
+				
 			}
 		});
 

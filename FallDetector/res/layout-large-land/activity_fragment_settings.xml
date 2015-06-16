@@ -88,6 +88,8 @@
                 android:id="@+id/buttonemail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                 android:background="@drawable/mybutton"
+                style="@style/button_text"
                 android:text="@string/buttonaddemail" />
         </LinearLayout>
 
@@ -128,12 +130,16 @@
                 android:id="@+id/deletesession"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                 android:background="@drawable/mybutton"
+                style="@style/button_text"
                 android:text="@string/deletesession" />
 
             <Button
                 android:id="@+id/deletedata"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                 android:background="@drawable/mybutton"
+                style="@style/button_text"
                 android:text="@string/deletedata" />
         </LinearLayout>
     </LinearLayout>

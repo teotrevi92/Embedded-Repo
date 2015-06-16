@@ -85,9 +85,7 @@ public class FragmentListView extends ListFragment {
 					if((ids.equals(idsC)) &&  ((ChronoService.isPlaying == 1) || (ChronoService.isPlaying == -1))) {
 						FragmentCurrentSession frg = new FragmentCurrentSession();
 						fragmentTransaction.replace(R.id.frag_show_activity, frg);
-						//						fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
 						fragmentTransaction.commit();
-						//-------------------------------------QUA AGGIUNGERE GLI STACK
 					}
 					else {
 						if(cad > 0) {
@@ -95,6 +93,7 @@ public class FragmentListView extends ListFragment {
 							Bundle args = new Bundle();
 							args.putString("ids", ids);
 							frg.setArguments(args);
+							fragmentTransaction.addToBackStack(null);
 							fragmentTransaction.replace(R.id.frag_show_activity, frg);
 							//						fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
 							fragmentTransaction.commit();

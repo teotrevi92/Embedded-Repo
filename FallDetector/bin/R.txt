@@ -362,13 +362,14 @@ int drawable ic_drawer 0x7f02003e
 int drawable ic_launcher 0x7f02003f
 int drawable icplay 0x7f020040
 int drawable info 0x7f020041
-int drawable pause 0x7f020042
-int drawable play 0x7f020043
-int drawable profile 0x7f020044
-int drawable sendmail 0x7f020045
-int drawable sessions 0x7f020046
-int drawable settings 0x7f020047
-int drawable stop 0x7f020048
+int drawable mybutton 0x7f020042
+int drawable pause 0x7f020043
+int drawable play 0x7f020044
+int drawable profile 0x7f020045
+int drawable sendmail 0x7f020046
+int drawable sessions 0x7f020047
+int drawable settings 0x7f020048
+int drawable stop 0x7f020049
 int id Layout1 0x7f0a0075
 int id LinearLayout1 0x7f0a0061
 int id RelativeLayout 0x7f0a0047
@@ -707,7 +708,7 @@ int string toast_rename_button 0x7f0b004c
 int string ultimatesession 0x7f0b0076
 int style Animation_AppCompat_DropDownUp 0x7f0c00cf
 int style AppBaseTheme 0x7f0c00f8
-int style AppTheme 0x7f0c00f9
+int style AppTheme 0x7f0c00fa
 int style Base_Animation_AppCompat_DropDownUp 0x7f0c00df
 int style Base_TextAppearance_AppCompat 0x7f0c00a3
 int style Base_TextAppearance_AppCompat_Body1 0x7f0c00ae
@@ -955,6 +956,7 @@ int style Widget_AppCompat_Spinner_Underlined 0x7f0c001b
 int style Widget_AppCompat_TextView_SpinnerItem 0x7f0c0036
 int style Widget_AppCompat_Toolbar 0x7f0c0037
 int style Widget_AppCompat_Toolbar_Button_Navigation 0x7f0c0038
+int style button_text 0x7f0c00f9
 int[] styleable ActionBar { 0x7f010000, 0x7f010001, 0x7f01002c, 0x7f010055, 0x7f010056, 0x7f010057, 0x7f010058, 0x7f010059, 0x7f01005a, 0x7f01005b, 0x7f01005c, 0x7f01005d, 0x7f01005e, 0x7f01005f, 0x7f010060, 0x7f010061, 0x7f010062, 0x7f010063, 0x7f010064, 0x7f010065, 0x7f010066, 0x7f010067, 0x7f010068, 0x7f010069, 0x7f01006a, 0x7f01006b, 0x7f01006c }
 int styleable ActionBar_background 11
 int styleable ActionBar_backgroundSplit 13
