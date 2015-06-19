@@ -290,6 +290,12 @@ public class DbAdapter  {
 		db.delete(StringName.TABLE_NAME3, null, null);
 		db.delete(StringName.TABLE_NAME2, null, null);
 		db.delete(StringName.TABLE_NAME1, null, null);
+		db.execSQL(DbHelper.DROP_TABLE3);
+		db.execSQL(DbHelper.DROP_TABLE2);
+		db.execSQL(DbHelper.DROP_TABLE1);
+		db.execSQL(DbHelper.CREATE_TABLE1);
+		db.execSQL(DbHelper.CREATE_TABLE2);
+		db.execSQL(DbHelper.CREATE_TABLE3);
 		db.close();
 	}
 
@@ -299,6 +305,15 @@ public class DbAdapter  {
 		db.delete(StringName.TABLE_NAME2, null, null);
 		db.delete(StringName.TABLE_NAME1, null, null);
 		db.delete(StringName.TABLE_NAME4, null, null);
+//		String DROP_TABLE3 = "DROP TABLE IF EXSISTS" + StringName.TABLE_NAME3;
+//		String DROP_TABLE2 = "DROP TABLE IF EXSISTS" + StringName.TABLE_NAME2;
+//		String DROP_TABLE1 = "DROP TABLE IF EXSISTS" + StringName.TABLE_NAME1;
+		db.execSQL(DbHelper.DROP_TABLE3);
+		db.execSQL(DbHelper.DROP_TABLE2);
+		db.execSQL(DbHelper.DROP_TABLE1);
+		db.execSQL(DbHelper.CREATE_TABLE1);
+		db.execSQL(DbHelper.CREATE_TABLE2);
+		db.execSQL(DbHelper.CREATE_TABLE3);
 		db.close();
 	}
 
@@ -897,7 +912,7 @@ public class DbAdapter  {
 	{
 
 
-
+		
 		private static final String CREATE_TABLE1 = "CREATE TABLE "+ StringName.TABLE_NAME1 + " ( "
 				+ StringName.UIDS + " INTEGER PRIMARY KEY AUTOINCREMENT, " + StringName.NAMES + " VARCHAR(20) NOT NULL, "
 				+ StringName.DATE + " TIMESTAMP NOT NULL, " + StringName.DURATION + " CHAR(8), " 
@@ -922,10 +937,10 @@ public class DbAdapter  {
 				+ ") REFERENCES " + StringName.TABLE_NAME4 + "(" + StringName.MAIL 
 				+ ") ON UPDATE CASCADE ON DELETE SET NULL" +");";
 
-		private static final String DROP_TABLE1 = "DROP TABLE IF EXSISTS" + StringName.TABLE_NAME1;
-		private static final String DROP_TABLE2 = "DROP TABLE IF EXSISTS" + StringName.TABLE_NAME2; 
-		private static final String DROP_TABLE3 = "DROP TABLE IF EXSISTS" + StringName.TABLE_NAME3; 
-		private static final String DROP_TABLE4 = "DROP TABLE IF EXSISTS" + StringName.TABLE_NAME4; 
+		private static final String DROP_TABLE1 = "DROP TABLE IF EXISTS " + StringName.TABLE_NAME1;
+		private static final String DROP_TABLE2 = "DROP TABLE IF EXISTS " + StringName.TABLE_NAME2; 
+		private static final String DROP_TABLE3 = "DROP TABLE IF EXISTS " + StringName.TABLE_NAME3; 
+		private static final String DROP_TABLE4 = "DROP TABLE IF EXISTS " + StringName.TABLE_NAME4; 
 
 
 
