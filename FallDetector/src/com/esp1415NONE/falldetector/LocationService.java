@@ -37,19 +37,16 @@ public class LocationService extends Service implements LocationListener{
 	private DbAdapter dbAdapter;
 	private Vibrator vib;
 	private Ringtone rng;
-//	private MediaPlayer mp;
-	private int n = 0; //TRI
+	private int n = 0;
 
 	private Intent email;
 	private String[] emailTo;
-	//	private String[] emailTo = {"azi92@hotmail.it", "azi92rach@gmail.com"};
 	private String emailText = "Aiuto!! Sono caduto. Localizzazione approssimativa:\n";
 	private String subject = "AIUTO DI SOCCORSO";
 
 	private static boolean check=false; //Viene usata per avere l'ok dell'invio	
-//	private boolean sent; //Segnala il corretto invio della mail, da salvare del database
 	private static boolean ready=false; //Localizzazione salvata
-	private static boolean closeS=false;
+	private static boolean closeS=false; //e' stato premuto annulla, per cui salva la localizzazione e non viene mandata la mail
 	private String ids;
 	private String idf;
 	private String lat;
@@ -99,11 +96,11 @@ public class LocationService extends Service implements LocationListener{
 		// TODO Auto-generated method stub
 		lat = "ND";
 		longit="ND";
-		where="";
+		where=lat+", "+longit;
 		dbAdapter = new DbAdapter(this);
 		mgr = (LocationManager) this.getSystemService(LOCATION_SERVICE);
 		setNotify();
-		//avvio l'avviso
+		//avvio l'avviso con l'allarme predefinito e la vibrazione
 		Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
 		rng = RingtoneManager.getRingtone(getApplicationContext(), notification);
 		rng.play();
@@ -114,7 +111,7 @@ public class LocationService extends Service implements LocationListener{
 		emailTo = new String[n];
 		emailTo = dbAdapter.getListContact();
 
-		//Cerco e salvo la localizzazione
+		//Cerco e salvo la localizzazione se possibile
 		geocoder = new Geocoder(this);
 		if(mgr.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
 		{
@@ -125,7 +122,6 @@ public class LocationService extends Service implements LocationListener{
 		{
 			mgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 			mLastLocation = mgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
 		}
 		else
 		{
@@ -165,8 +161,8 @@ public class LocationService extends Service implements LocationListener{
 			double latitude = mLastLocation.getLatitude();
 			double longitude = mLastLocation.getLongitude();
 			//salvo i dati del gps
-			lat = Double.toString(latitude);  //Tri
-			longit = Double.toString(longitude);  //Tri
+			lat = Double.toString(latitude); 
+			longit = Double.toString(longitude);
 			where = lat+", "+longit;
 			ready=true;
 			if (closeS) //Se e' stato premuto annulla, salva i dati ed esci
@@ -178,7 +174,7 @@ public class LocationService extends Service implements LocationListener{
 
 	private void setAdress()
 	{
-		//Provo a cercare l'indirizzo
+		//Provo a cercare l'indirizzo tramite network
 		try {
 			//Creo una lista con i dettagli degli indirizzi
 			List<Address> addresses = geocoder.getFromLocation(mLastLocation.getLatitude(), mLastLocation.getLongitude(), 10);

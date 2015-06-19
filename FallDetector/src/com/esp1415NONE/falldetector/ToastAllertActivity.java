@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-//import android.widget.Toast;
 
 
 
@@ -29,12 +28,9 @@ public class ToastAllertActivity extends Activity{
 	boolean check;
 	boolean mBound = false;
 	private LocationService loc;
-
-
-	private Intent intent; //Tri
-	private String ids; //Tri
-	private String idf; //Tri
-	//    private DbAdapter dbAdapter;
+	private Intent intent; 
+	private String ids; 
+	private String idf; 
 
 
 
@@ -43,7 +39,6 @@ public class ToastAllertActivity extends Activity{
 		@Override
 		public void onServiceConnected(ComponentName className,
 				IBinder service) {
-			// We've bound to LocalService, cast the IBinder and get LocalService instance
 			LocalBinder binder = (LocalBinder) service;
 			loc = binder.getService();
 			mBound = true;
@@ -61,10 +56,9 @@ public class ToastAllertActivity extends Activity{
 		/* Verra' chiusa dopo 10 secondi se non viene premuto il tasto
 		 annulla e verra' inviata la mail*/
 		super.onCreate(state);
-		intent = getIntent(); //Tri
-		ids = intent.getStringExtra("ids"); //Tri
-		idf = intent.getStringExtra("idf"); //Tri
-		//		dbAdapter = new DbAdapter(this);
+		intent = getIntent(); 
+		ids = intent.getStringExtra("ids");
+		idf = intent.getStringExtra("idf");
 
 		Button ok = new Button(this);
 		ok.setText(R.string.toast_act_button);
@@ -87,10 +81,6 @@ public class ToastAllertActivity extends Activity{
 					loc.stopAlarm();
 					loc.closeService();
 				}
-				//				unbindService(mConnection);
-
-				/* QUI BISOGNA SALVARE CHE NON E' STATA INVIATA LA MAIL*/
-
 				ToastAllertActivity.this.finish();
 
 			}
@@ -101,7 +91,6 @@ public class ToastAllertActivity extends Activity{
 		//Aggiungo gli elementi al layout
 		mylayout.addView(ok);
 		mylayout.addView(txt);
-
 		mylayout.setGravity(Gravity.CENTER);
 		//Visualizzo il layout
 		setContentView(mylayout);
@@ -111,6 +100,7 @@ public class ToastAllertActivity extends Activity{
 
 	private void playCountDown() {
 		//se per 10 secondi non viene premuto il tasto ok, viene chiusa
+		//e viene prodotta la mail
 		handler = new Handler();
 		handler.postDelayed(new Runnable() {
 			@Override
@@ -118,7 +108,7 @@ public class ToastAllertActivity extends Activity{
 				if(!check)//se non e' stato premuto Annulla chiudi dopo 10 secondi e invia mail
 				{
 					if(mBound) 
-						loc.setId(ids, idf); 
+						loc.setId(ids, idf); //passo al LocalService le chiavi per salvare nel database
 					if(mBound){
 						loc.check();
 						loc.stopAlarm();
