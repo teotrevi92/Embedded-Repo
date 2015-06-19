@@ -148,7 +148,7 @@ public class FragmentCurrentSession extends Fragment {
 		dbAdapter = new DbAdapter(getActivity());
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		isOpenDialog = preferences.getInt("dialog", 0);
-		
+
 
 		if(isOpenDialog == 1)
 			dialogRenameSession(getActivity(), preferences.getString("ids", null),preferences.getString("nameS",null));
@@ -174,13 +174,22 @@ public class FragmentCurrentSession extends Fragment {
 		//		tx2 = (TextView) view.findViewById(R.id.textView2);
 		//		tx3 = (TextView) view.findViewById(R.id.textView3);
 		//		tx4 = (TextView) view.findViewById(R.id.textView4);
+
+		//			tx2.setVisibility(View.VISIBLE);
+		//			tx3.setVisibility(View.VISIBLE);
+		//			tx4.setVisibility(View.VISIBLE);
+		//			ids_.setVisibility(View.VISIBLE);
+		//			nameSes.setVisibility(View.VISIBLE);
+		//			dateS_.setVisibility(View.VISIBLE);
+		//			nfall_.setVisibility(View.VISIBLE);
+		//			logo.setVisibility(View.VISIBLE);
+
+
 		ids_ = (TextView) view.findViewById(R.id.nome);
 		nameSes = (TextView) view.findViewById(R.id.nomeS);
 		dateS_ = (TextView) view.findViewById(R.id.data);
 		nfall_ = (TextView) view.findViewById(R.id.sessione);
 		logo = (ImageView) view.findViewById(R.id.logo);
-
-
 
 		//			tx2.setVisibility(View.VISIBLE);
 		//			tx3.setVisibility(View.VISIBLE);
@@ -229,9 +238,8 @@ public class FragmentCurrentSession extends Fragment {
 
 
 
-
 		play.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -336,8 +344,7 @@ public class FragmentCurrentSession extends Fragment {
 					if(r5 == null)
 						r5 = "0";
 					nfall_.setText(r5);
-					
-					
+
 					if(controlLocGps() || controlLocNet())
 						statusGps.setText(R.string.enableLoc);
 					else
@@ -438,9 +445,10 @@ public class FragmentCurrentSession extends Fragment {
 			nameS_.setText("Sessione");
 		isOpenDialog = 1;
 		Button ok = (Button) dialog.findViewById(R.id.btn_yes);
-		Button no = (Button) dialog.findViewById(R.id.btn_no);
+
 		// cosa faccio al click del conferma
 		ok.setOnClickListener(new OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				String nameS = nameS_.getText().toString(); 
@@ -454,18 +462,18 @@ public class FragmentCurrentSession extends Fragment {
 				}
 			}
 		});
-		// cosa faccio al click dell'annulla
-		no.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				dbAdapter.setNameSession(id_s, "Sessione");
-				isOpenDialog = 0;
-				dialog.dismiss();
-				doStop();
-
-			}
-		});
+		//		// cosa faccio al click dell'annulla
+		//		no.setOnClickListener(new View.OnClickListener() {
+		//
+		//			@Override
+		//			public void onClick(View v) {
+		//				dbAdapter.setNameSession(id_s, "Sessione");
+		//				isOpenDialog = 0;
+		//				dialog.dismiss();
+		//				doStop();
+		//
+		//			}
+		//		});
 		dialog.show();
 	}
 
@@ -501,7 +509,9 @@ public class FragmentCurrentSession extends Fragment {
 	//		//facciamo il commit
 	//		editor.commit();
 	//	}
-	
-	
-	
+
+
+
+
+
 }

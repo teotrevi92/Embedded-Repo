@@ -42,7 +42,7 @@ public class FragmentListView extends ListFragment {
 	private Cursor c;
 	private SessionSimpleCursorAdapter ssca;
 
-//	@SuppressWarnings("deprecation")
+	//	@SuppressWarnings("deprecation")
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -52,9 +52,9 @@ public class FragmentListView extends ListFragment {
 		fragmentManager = getActivity().getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
 		c = dbAdapter.getAllRowsTable1();
-//		getActivity().startManagingCursor(c);
-//		ssca = new SessionSimpleCursorAdapter(getActivity(), c, ChronoService.isPlaying, ChronoService.id_s);
-//		setListAdapter(ssca);
+		//		getActivity().startManagingCursor(c);
+		//		ssca = new SessionSimpleCursorAdapter(getActivity(), c, ChronoService.isPlaying, ChronoService.id_s);
+		//		setListAdapter(ssca);
 
 		registerForContextMenu(getListView());
 
@@ -198,10 +198,16 @@ public class FragmentListView extends ListFragment {
 			}
 			return true;
 		case R.id.new_session:
-			FragmentCurrentSession ls_fragment = new FragmentCurrentSession();
-			//			fragmentManager.popBackStack(); //viene tolto dallo stack il fragment precedente
-			fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
-			fragmentTransaction.commit();
+			if(ChronoService.isPlaying == 1 || ChronoService.isPlaying == -1) {
+				FragmentCurrentSession ls_fragment = new FragmentCurrentSession();		
+				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
+				fragmentTransaction.commit();
+			}
+			else if(ChronoService.isPlaying == 0) {
+				FragmentHome ls_fragment = new FragmentHome();		
+				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
+				fragmentTransaction.commit();
+			}
 			//			fragmentTransaction = fragmentManager.beginTransaction();
 			//			fragmentTransaction.addToBackStack(null);
 			//			Toast.makeText(activity, "Da implementare altre opzioni", Toast.LENGTH_SHORT).show();
@@ -215,7 +221,7 @@ public class FragmentListView extends ListFragment {
 	}
 	private void dialogRenameSession(Activity activity,String ids, String nameSe) {
 		final Dialog dialog = new Dialog(getActivity());
-		dialog.setContentView(R.layout.activity_rename);
+		dialog.setContentView(R.layout.activity_rename_list);
 		dialog.setTitle("Rinomina Sessione");
 		final String id_s = ids;
 		final Activity a = activity;

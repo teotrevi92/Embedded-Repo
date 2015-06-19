@@ -24,7 +24,7 @@
     </RelativeLayout>
      
      <LinearLayout
-        android:id="@+id/LinearLayout1"
+        android:id="@+id/LayoutRect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
