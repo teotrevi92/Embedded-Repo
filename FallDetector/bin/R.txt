@@ -398,11 +398,10 @@ int id buttonemail 0x7f0a0096
 int id checkBoxTimer 0x7f0a0092
 int id checkbox 0x7f0a0029
 int id collapseActionView 0x7f0a0015
-int id contenitore 0x7f0a0089
-int id contenitorino 0x7f0a008a
-int id data 0x7f0a006c
-int id dataF 0x7f0a007a
+int id date 0x7f0a006c
+int id dateF 0x7f0a007a
 int id datef 0x7f0a0047
+int id dates 0x7f0a0086
 int id decor_content_parent 0x7f0a002f
 int id default_activity_button 0x7f0a0024
 int id delete_id 0x7f0a00a3
@@ -414,7 +413,7 @@ int id disableHome 0x7f0a000d
 int id drawer 0x7f0a009c
 int id drawer_layout 0x7f0a009a
 int id dropdown 0x7f0a001a
-int id durata 0x7f0a0086
+int id duration 0x7f0a0087
 int id durationS 0x7f0a0080
 int id edit_query 0x7f0a0033
 int id end 0x7f0a001c
@@ -426,6 +425,7 @@ int id graph 0x7f0a0041
 int id home 0x7f0a0000
 int id homeAsUp 0x7f0a000e
 int id icon 0x7f0a0026
+int id id_s 0x7f0a006a
 int id idf 0x7f0a0079
 int id idfall 0x7f0a0044
 int id ids 0x7f0a0053
@@ -463,12 +463,13 @@ int id menurow_counter 0x7f0a00a0
 int id menurow_icon 0x7f0a009e
 int id menurow_title 0x7f0a009f
 int id middle 0x7f0a001d
+int id n_fall 0x7f0a006d
 int id name 0x7f0a005a
 int id nameS 0x7f0a0054
+int id name_s 0x7f0a006b
 int id never 0x7f0a0017
 int id new_session 0x7f0a00a5
-int id nome 0x7f0a006a
-int id nomeS 0x7f0a006b
+int id nfall 0x7f0a0088
 int id none 0x7f0a000f
 int id normal 0x7f0a000b
 int id ns_menu_row 0x7f0a009d
@@ -481,7 +482,7 @@ int id progress_circular 0x7f0a0007
 int id progress_horizontal 0x7f0a0008
 int id radio 0x7f0a002b
 int id relativeLayoutHome1 0x7f0a0082
-int id relativeLayoutHome2 0x7f0a0087
+int id relativeLayoutHome2 0x7f0a0089
 int id relativeLayoutHome3 0x7f0a0084
 int id relativeLayoutSession1 0x7f0a0065
 int id relativeLayoutSession2 0x7f0a0072
@@ -500,7 +501,6 @@ int id search_plate 0x7f0a0039
 int id search_src_text 0x7f0a003a
 int id search_voice_btn 0x7f0a003e
 int id sent 0x7f0a0050
-int id sessione 0x7f0a006d
 int id shortcut 0x7f0a002a
 int id showCustom 0x7f0a0010
 int id showHome 0x7f0a0011
@@ -509,7 +509,7 @@ int id spinnerAcc 0x7f0a008c
 int id spinnerMaxSession 0x7f0a008e
 int id spinnerSens 0x7f0a0090
 int id split_action_bar 0x7f0a0004
-int id startSession 0x7f0a0088
+int id startSession 0x7f0a008a
 int id stopbutton 0x7f0a0075
 int id submit_area 0x7f0a003c
 int id surname 0x7f0a005b

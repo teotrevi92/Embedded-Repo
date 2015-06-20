@@ -1,11 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation = "horizontal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context="com.esp1415NONE.falldetector.SessioneCorrenteFragment" >
-    
-	<RelativeLayout
+    android:orientation="horizontal" >
+
+    <RelativeLayout
         android:id="@+id/relativeLayoutSession1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
@@ -14,16 +13,16 @@
             android:id="@+id/titleSession"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="@string/titleSession"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white"
             android:textSize="50sp"
             android:visibility="invisible" />
     </RelativeLayout>
-     
-     <LinearLayout
+
+    <LinearLayout
         android:id="@+id/LayoutRect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,7 +56,7 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/nome"
+                    android:id="@+id/id_s"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -67,7 +66,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/nomeS"
+                    android:id="@+id/name_s"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_session"
@@ -94,7 +93,7 @@
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/data"
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/text_example_date_sess"
@@ -117,7 +116,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/sessione"
+                android:id="@+id/n_fall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
@@ -127,69 +126,68 @@
                 android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
-      
-     <RelativeLayout
+
+    <RelativeLayout
         android:id="@+id/relativeLayoutSession5"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/relativeLayoutSession1"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/relativeLayoutSession1"
-        android:layout_marginTop="10dp">
+        android:layout_toRightOf="@+id/relativeLayoutSession1" >
 
-         <ProgressBar
-             android:id="@+id/progressBarZ"
-             style="?android:attr/progressBarStyleHorizontal"
-             android:layout_width="60dp"
-             android:layout_height="wrap_content"
-             android:layout_centerHorizontal="true"
-             android:visibility="invisible" 
-             android:max="20" />
+        <ProgressBar
+            android:id="@+id/progressBarZ"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:max="20"
+            android:visibility="invisible" />
 
-         <ProgressBar
-             android:id="@+id/progressBarY"
-             style="?android:attr/progressBarStyleHorizontal"
-             android:layout_width="60dp"
-             android:layout_height="wrap_content"
-             android:layout_alignParentTop="true"
-             android:layout_marginLeft="10dp"
-             android:layout_marginStart="10dp"
-             android:layout_toEndOf="@+id/progressBarZ"
-             android:layout_toRightOf="@+id/progressBarZ"
-             android:visibility="invisible" 
-             android:max="20" />
+        <ProgressBar
+            android:id="@+id/progressBarY"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/progressBarZ"
+            android:layout_toRightOf="@+id/progressBarZ"
+            android:max="20"
+            android:visibility="invisible" />
 
-         <ProgressBar
-             android:id="@+id/progressBarX"
-             style="?android:attr/progressBarStyleHorizontal"
-             android:layout_width="60dp"
-             android:layout_height="wrap_content"
-             android:layout_alignParentTop="true"
-             android:layout_marginEnd="10dp"
-             android:layout_marginRight="10dp"
-             android:layout_toLeftOf="@+id/progressBarZ"
-             android:layout_toStartOf="@+id/progressBarZ"
-             android:visibility="invisible" 
-             android:max="20" />
-          
-       </RelativeLayout>
-       
-     <RelativeLayout
+        <ProgressBar
+            android:id="@+id/progressBarX"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/progressBarZ"
+            android:layout_toStartOf="@+id/progressBarZ"
+            android:max="20"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/relativeLayoutSession3"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/relativeLayoutSession5"
-        android:layout_toRightOf="@+id/relativeLayoutSession1"
-        android:layout_toEndOf="@+id/relativeLayoutSession1">
+        android:layout_toEndOf="@+id/relativeLayoutSession1"
+        android:layout_toRightOf="@+id/relativeLayoutSession1" >
 
         <TextView
             android:id="@+id/textCrono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:text="@string/time"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white"
             android:textSize="50sp"
             android:visibility="invisible" />
 
@@ -197,41 +195,39 @@
             android:id="@+id/textGps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:layout_below="@+id/textCrono"
-            android:textSize="30sp"
             android:layout_centerHorizontal="true"
-            android:text="" />
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/textNetwork"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:layout_below="@+id/textGps"
-            android:textSize="30sp"
             android:layout_centerHorizontal="true"
-            android:text="" />
-
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="30sp" />
     </RelativeLayout>
-    
-     <RelativeLayout
+
+    <RelativeLayout
         android:id="@+id/relativeLayoutSession2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/relativeLayoutSession3"
-        android:layout_toRightOf="@+id/relativeLayoutSession1"
         android:layout_toEndOf="@+id/relativeLayoutSession1"
-         >
-		
+        android:layout_toRightOf="@+id/relativeLayoutSession1" >
+
         <ImageButton
             android:id="@+id/pausebutton"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:background="@drawable/pause"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/stopbutton"
             android:layout_toStartOf="@+id/stopbutton"
+            android:background="@drawable/pause"
             android:contentDescription="@string/DescPause"
             android:visibility="invisible" />
 
@@ -239,11 +235,11 @@
             android:id="@+id/stopbutton"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/stop"
             android:contentDescription="@string/DescStop"
             android:visibility="invisible" />
@@ -258,9 +254,6 @@
             android:background="@drawable/play"
             android:contentDescription="@string/DescPlay"
             android:visibility="invisible" />
-
     </RelativeLayout>
-     
-    
 
 </RelativeLayout>

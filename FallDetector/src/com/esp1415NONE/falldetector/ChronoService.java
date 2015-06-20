@@ -37,8 +37,8 @@ public class ChronoService extends Service implements SensorEventListener {
 	//Variabili per il database
 	private DbAdapter dbAdapter;
 	static int id_s = 0; //id sessione corrente messa statica
-	private int id_f = 0;
-	private MyTime myTime;
+	private int id_f = 0; //id caduta per ogni sessione
+	private MyTime myTime; //per calcolare la data della sessione e/o caduta
 
 	private float x;
 	private float y;
@@ -50,9 +50,7 @@ public class ChronoService extends Service implements SensorEventListener {
 		{
 			if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
 			{
-				// IMPORTANT NOTE: The axes are swapped when the device's
-				// screen orientation changes. To access the unswapped values,
-				// use indices 3, 4 and 5 in values[]
+
 				x = event.values[0];
 				y = event.values[1];
 				z = event.values[2];
@@ -67,10 +65,16 @@ public class ChronoService extends Service implements SensorEventListener {
 				//Rilevazione caduta
 				if (que.isFall())
 				{	
+					//si incrementa l'id della caduta
 					id_f++;
+
+					//si acquisisce le info sulla data e ora attuali
 					myTime = new MyTime();
 					String date = dbAdapter.convertArrayToString(que.getBox());
-					dbAdapter.createFall(id_f, id_s, myTime.myTime(), date, dbAdapter.getListContact()); //I dati gps verranno salvati piu' avanti
+
+					//si inserisce nel database la caduta
+					dbAdapter.createFall(id_f, id_s, myTime.myTime(), date, dbAdapter.getListContact());
+
 					//Allerta caduta
 					Intent i = new Intent(this, ToastAllertActivity.class);
 					i.putExtra("ids", id_s+"");
@@ -79,13 +83,13 @@ public class ChronoService extends Service implements SensorEventListener {
 					startActivity(i);
 				}
 
-
 			}
 		}
 	}
 
 	public void onAccuracyChanged(Sensor sensor, int accuracy)
 	{
+		//controllo nei Log
 		Log.d(tag,"onAccuracyChanged: " + sensor + ", accuracy: " + accuracy);
 	}
 
@@ -107,17 +111,17 @@ public class ChronoService extends Service implements SensorEventListener {
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub	
 		sm = (SensorManager)getSystemService(SENSOR_SERVICE);
+
 		//Inizializzazione database
 		dbAdapter = new DbAdapter(this); 
+
 		return mBinder;
 
 	}
 
-
-
 	public void play()
 	{	
-		
+
 		if (isPlaying==0) //Nuova sessione
 		{
 			crn = new MyChronometer();
@@ -125,6 +129,7 @@ public class ChronoService extends Service implements SensorEventListener {
 			int accurancy = preferences.getInt("spinnerValueAcc", 1);
 			int int_maxTimeSession = preferences.getInt("spinnerValueDuration", 1)+1;
 			int int_sens = preferences.getInt("spinnerValueSens", 0);
+
 			//imposto l'accuratezza dell'accellerometro
 			if (accurancy==0)	//se l'accuratezza e' normale allora ricevo 1 dato ogni 60 millisecondi
 			{	
@@ -161,8 +166,11 @@ public class ChronoService extends Service implements SensorEventListener {
 
 			//creo l'array per il salvataggio dei dati dell'accellerometro
 			que = new Queue(sizeQueue,sensibilityMin,sensibilityMax);
+
 			//creo la stringa che mi indica la massima durata della sessione
 			maxTimeSession = "0"+int_maxTimeSession+":00:00";
+
+			//aggiungo la sessione a database e registro in ids l'id della sessione
 			id_s = dbAdapter.createSession(sizeQueue, "Sessione");
 		}
 		isPlaying = 1; //in play
@@ -191,9 +199,12 @@ public class ChronoService extends Service implements SensorEventListener {
 		isPlaying = -1; //in pausa
 	}
 	public void stop()
-	{
+	{	
+		//setto a database la durata della sessione
 		String lifeSession = getString(); 
 		dbAdapter.setDuration(id_s, lifeSession);
+
+		//azzero l'id caduta una volta terminata la sessione
 		id_f = 0;
 		crn.stop();
 		sm.unregisterListener(this);
@@ -223,8 +234,5 @@ public class ChronoService extends Service implements SensorEventListener {
 		// TODO Auto-generated method stub
 		stop();
 	}
-
-
-
 
 }

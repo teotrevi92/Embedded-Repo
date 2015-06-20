@@ -29,7 +29,6 @@
 
         <requestFocus />
     </EditText>
-    <!-- android:background="@android:color/transparent" -->
 
     <Button
         android:id="@+id/btn_yes"

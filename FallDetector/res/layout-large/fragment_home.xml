@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    tools:context="com.esp1415NONE.falldetector.SessioneCorrenteFragment" >
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:id="@+id/relativeLayoutHome1"
@@ -23,31 +22,31 @@
             android:visibility="invisible" />
     </RelativeLayout>
 
-   <LinearLayout
+    <LinearLayout
         android:id="@+id/LinearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/relativeLayoutHome3"
         android:layout_below="@+id/relativeLayoutHome1"
-        android:orientation="vertical"
-        android:background="@drawable/border" >
+        android:background="@drawable/border"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/ultimatesession"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ultimatesession"
-            android:textColor="@color/white"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
+            android:text="@string/ultimatesession"
+            android:textColor="@color/white"
             android:textSize="30sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp" >
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp" >
 
             <ImageView
                 android:id="@+id/logo"
@@ -59,7 +58,7 @@
                 android:contentDescription="@string/miniature_session" />
 
             <TextView
-                android:id="@+id/nome"
+                android:id="@+id/id_s"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/text_example_sess"
@@ -68,7 +67,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/nomeS"
+                android:id="@+id/name_s"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
@@ -95,7 +94,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/data"
+                android:id="@+id/dates"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="4dp"
@@ -121,7 +120,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/durata"
+                android:id="@+id/duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -147,7 +146,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/sessione"
+                android:id="@+id/nfall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"

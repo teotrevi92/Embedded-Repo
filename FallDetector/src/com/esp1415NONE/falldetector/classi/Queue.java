@@ -2,8 +2,6 @@ package com.esp1415NONE.falldetector.classi;
 
 import android.graphics.Bitmap;
 
-
-
 public class Queue
 {
 	private float[] box;
@@ -14,7 +12,6 @@ public class Queue
 	{
 		box = new float[size];
 		box_length = size;
-		//			makeEmpty();
 		sensMax = max;
 		sensMin = min;
 	}
@@ -23,23 +20,12 @@ public class Queue
 	{
 		box = new float[size];
 		box_length = size;
-		//			makeEmpty();
 		sensMax = 0;
 		sensMin = 0;
 	}
 
-	//		public void makeEmpty()
-	//		{back=box_length-1;}
-	//		
-	//		public boolean isEmpty()
-	//		 { return back==box_length-1;}
-
 	public void enqueue(float obj)
 	{ 
-		//		if(increment(back)<0) resize();
-		//		   box[back]=obj;
-		//		   if (back > 0) back=increment(back);
-
 		for (int i=box_length-1;i>0;i--)
 		{
 			box[i]=box[i-1];
@@ -47,24 +33,17 @@ public class Queue
 		box[0]=obj;
 
 	}
-	//		 
-	//		 public int increment(int index)
-	//		 { return index-1; }
-	//		 public void resize()
-	//		 {
-	//			 for (int i=box_length-1;i>0;i--)
-	//			 {
-	//				 box[i]=box[i-1];
-	//			 }
-	//		 }
+
 	public float getFloat(int a)
 	{
 		return box[a];
 	}
+
 	public float[] getBox()
 	{
 		return box;
 	}
+
 	//ALGORITMO CADUTA
 	public boolean isFall()
 	{
@@ -77,6 +56,7 @@ public class Queue
 		}
 		return false;
 	}
+
 	public Bitmap getGraphQueue(int size)
 	{
 		int i;

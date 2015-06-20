@@ -1,8 +1,5 @@
 package com.esp1415NONE.falldetector;
 
-
-
-
 import com.esp1415NONE.falldetector.LocationService.LocalBinder;
 
 import android.app.Activity;
@@ -19,10 +16,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
-
 public class ToastAllertActivity extends Activity{
-
 
 	private Handler handler;
 	boolean check;
@@ -31,8 +25,6 @@ public class ToastAllertActivity extends Activity{
 	private Intent intent; 
 	private String ids; 
 	private String idf; 
-
-
 
 	private ServiceConnection mConnection = new ServiceConnection() {
 
@@ -53,6 +45,7 @@ public class ToastAllertActivity extends Activity{
 
 	@Override
 	public void onCreate(Bundle state) {
+
 		/* Verra' chiusa dopo 10 secondi se non viene premuto il tasto
 		 annulla e verra' inviata la mail*/
 		super.onCreate(state);
@@ -99,10 +92,12 @@ public class ToastAllertActivity extends Activity{
 
 
 	private void playCountDown() {
+
 		//se per 10 secondi non viene premuto il tasto ok, viene chiusa
 		//e viene prodotta la mail
 		handler = new Handler();
 		handler.postDelayed(new Runnable() {
+
 			@Override
 			public void run() {
 				if(!check)//se non e' stato premuto Annulla chiudi dopo 10 secondi e invia mail
@@ -119,9 +114,5 @@ public class ToastAllertActivity extends Activity{
 		}, 10000);
 
 	}
-
-
-
-
 
 }

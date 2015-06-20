@@ -22,6 +22,4 @@ public class NsMenuItemModel {
 		this(title,iconRes,false);
 	}
 
-
-
 }

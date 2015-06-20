@@ -55,6 +55,7 @@ public class LocationService extends Service implements LocationListener{
 	@Override
 	public void onLocationChanged(Location location) {
 		// TODO Auto-generated method stub
+
 		setLocation();
 		sendMail();
 	}
@@ -94,18 +95,21 @@ public class LocationService extends Service implements LocationListener{
 	@Override
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub
+
 		lat = "ND";
 		longit="ND";
 		where=lat+", "+longit;
 		dbAdapter = new DbAdapter(this);
 		mgr = (LocationManager) this.getSystemService(LOCATION_SERVICE);
 		setNotify();
+
 		//avvio l'avviso con l'allarme predefinito e la vibrazione
 		Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
 		rng = RingtoneManager.getRingtone(getApplicationContext(), notification);
 		rng.play();
 		vib = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
 		vib.vibrate(10000);
+
 		//inizializzo gli indirizzi email
 		n = dbAdapter.getNumberContact();
 		emailTo = new String[n];
@@ -131,6 +135,7 @@ public class LocationService extends Service implements LocationListener{
 		return mBinder;
 	}
 	private void setNotify() {
+
 		///Creo la notifica
 		Intent intent = new Intent(this, MainActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -160,6 +165,7 @@ public class LocationService extends Service implements LocationListener{
 		if (mLastLocation != null) {
 			double latitude = mLastLocation.getLatitude();
 			double longitude = mLastLocation.getLongitude();
+
 			//salvo i dati del gps
 			lat = Double.toString(latitude); 
 			longit = Double.toString(longitude);
@@ -194,7 +200,6 @@ public class LocationService extends Service implements LocationListener{
 
 		if(check)
 		{
-//			sent=true; //mail inviata
 			email = new Intent(Intent.ACTION_SEND);
 			email.putExtra(Intent.EXTRA_EMAIL,emailTo);
 			email.putExtra(Intent.EXTRA_SUBJECT, subject);	
@@ -205,14 +210,15 @@ public class LocationService extends Service implements LocationListener{
 			startActivity(i);
 			check=false;
 
-			/* QUI BISOGNA SALVARE CHE LA MAIL E' STATA INVIATA ----------------------------------------------------------*/			
+			//si salva che la mail è stata inviata	
 			dbAdapter.setSentTrue(idf, ids, emailTo);
+
 			//notifico l'invio mail
 			NotificationCompat.Builder mBuilder =
-				    new NotificationCompat.Builder(this)
-				    .setSmallIcon(R.drawable.sendmail)
-				    .setContentTitle("FallDetector")
-				    .setContentText("Email di soccorso inviata!");
+					new NotificationCompat.Builder(this)
+			.setSmallIcon(R.drawable.sendmail)
+			.setContentTitle("FallDetector")
+			.setContentText("Email di soccorso inviata!");
 			int mNotificationId = 75623;
 			NotificationManager mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 			mNotifyMgr.notify(mNotificationId, mBuilder.build());
@@ -232,7 +238,7 @@ public class LocationService extends Service implements LocationListener{
 		if (ready)
 			finish();
 	}
-	
+
 	public void stopAlarm()
 	{
 		rng.stop();
@@ -243,13 +249,14 @@ public class LocationService extends Service implements LocationListener{
 		ids=id_s;
 		idf=id_f;
 	}
-	
+
 	private void finish()
 	{
 		check=false;
 		closeS=false;
 		ready=false;
-		dbAdapter.setLatLongGPS(ids, idf, lat, longit); //salvo i dati della localizzazione prima di chiudere
+		//salvo i dati della localizzazione prima di chiudere
+		dbAdapter.setLatLongGPS(ids, idf, lat, longit);
 		stopForeground(true);
 		stopSelf();
 	}

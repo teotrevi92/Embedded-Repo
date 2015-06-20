@@ -29,23 +29,12 @@ public class MainActivity extends ActionBarActivity {
 	private ListView mDrawerList;
 	private DrawerLayout mDrawer;
 	private CustomActionBarDrawerToggle mDrawerToggle;
-	//	private FragmentListContacts fr;
 	private String[] menuItems;
 
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
-	private DbAdapter dbAdapter; //Tri
-	//	private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
-	//	private long mBackPressed;
+	private DbAdapter dbAdapter;
 
-	//private ImageButton play;
-
-	//stato
-	//@Override
-	//protected void onSaveInstanceState(Bundle outState) {
-	//super.onSaveInstanceState(outState);
-	//	outState.putInt("tab", getSupportActionBar().getSelectedNavigationIndex());
-	//}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,11 +48,10 @@ public class MainActivity extends ActionBarActivity {
 			//apre in automatico questa activity quando avvio l'app
 			FragmentHome ls_fragment = new FragmentHome();
 			fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
+
 			//mi serve per metterlo nello stack per il pulsante indietro
-			//			fragmentTransaction.addToBackStack(null);
 			fragmentTransaction.commit();
 			fragmentTransaction = fragmentManager.beginTransaction();
-			//			fragmentTransaction.addToBackStack("home");
 		}
 
 		/*utilizzo un metodo di supporto di appcompact, e agisco il pulsante 
@@ -79,10 +67,6 @@ public class MainActivity extends ActionBarActivity {
 		_initMenu();
 		mDrawerToggle = new CustomActionBarDrawerToggle(this, mDrawer);
 		mDrawer.setDrawerListener(mDrawerToggle);
-
-		//fragment
-		//	Configuration config = getResources().getConfiguration();
-
 
 	}
 
@@ -108,9 +92,6 @@ public class MainActivity extends ActionBarActivity {
 					"drawable", this.getPackageName());
 
 			NsMenuItemModel mItem = new NsMenuItemModel(id_title, id_icon);
-			//potrei eliminarlo, lo tengo, in caso lo canello, e' il numeretto blu
-			//if (res==1) mItem.counter=12; //it is just an example...
-			//if (res==3) mItem.counter=3; //it is just an example...
 			mAdapter.addItem(mItem);
 			res++;
 		}
@@ -146,6 +127,7 @@ public class MainActivity extends ActionBarActivity {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
 				// TODO Auto-generated method stub
+
 				FragmentSettings ls_fragment4 = new FragmentSettings();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment4);
 				fragmentTransaction.commit();
@@ -159,6 +141,7 @@ public class MainActivity extends ActionBarActivity {
 	/* Called whenever we call invalidateOptionsMenu() */
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
+
 		// If the nav drawer is open, hide action items related to the content view
 		boolean drawerOpen = mDrawer.isDrawerOpen(mDrawerList);
 		menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
@@ -178,19 +161,6 @@ public class MainActivity extends ActionBarActivity {
 		// Handle your other action bar items...
 		return super.onOptionsItemSelected(item);
 	}
-
-	//	@Override
-	//	public void onBackPressed()
-	//	{
-	//	    if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) 
-	//	    { 
-	//	        super.onBackPressed(); 
-	//	        return;
-	//	    }
-	//	    else { Toast.makeText(getBaseContext(), "Per uscire cliccare di nuovo INDIETRO", Toast.LENGTH_SHORT).show(); }
-	//
-	//	    mBackPressed = System.currentTimeMillis();
-	//	}
 
 	private class CustomActionBarDrawerToggle extends ActionBarDrawerToggle {
 
@@ -227,11 +197,13 @@ public class MainActivity extends ActionBarActivity {
 			mDrawerList.setItemChecked(position, true);
 			switch (position) {
 			case 1:
+
 				if(ChronoService.isPlaying == 0) {
 					fragmentManager.popBackStack();
 					FragmentHome ls_fragment1 = new FragmentHome();
 					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment1);
 					fragmentTransaction.commit();
+
 					//ricreo l'oggetto per nuova futura Transaction
 					fragmentTransaction = fragmentManager.beginTransaction();
 					mDrawer.closeDrawer(mDrawerList);
@@ -241,17 +213,20 @@ public class MainActivity extends ActionBarActivity {
 					FragmentCurrentSession ls_fragment1 = new FragmentCurrentSession();
 					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment1);
 					fragmentTransaction.commit();
+
 					//ricreo l'oggetto per nuova futura Transaction
 					fragmentTransaction = fragmentManager.beginTransaction();
 					mDrawer.closeDrawer(mDrawerList);
 				}
 				break;
 			case 2:
+
 				if(ChronoService.isPlaying == 0) {
 					fragmentManager.popBackStack();
 					FragmentHome ls_fragment1 = new FragmentHome();
 					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment1);
 					fragmentTransaction.commit();
+
 					//ricreo l'oggetto per nuova futura Transaction
 					fragmentTransaction = fragmentManager.beginTransaction();
 					mDrawer.closeDrawer(mDrawerList);
@@ -261,6 +236,7 @@ public class MainActivity extends ActionBarActivity {
 					FragmentCurrentSession ls_fragment1 = new FragmentCurrentSession();
 					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment1);
 					fragmentTransaction.commit();
+
 					//ricreo l'oggetto per nuova futura Transaction
 					fragmentTransaction = fragmentManager.beginTransaction();
 					mDrawer.closeDrawer(mDrawerList);
@@ -272,6 +248,7 @@ public class MainActivity extends ActionBarActivity {
 					Toast.makeText(getApplicationContext(), "Nessuna sessione", Toast.LENGTH_SHORT).show();
 				}
 				else {
+
 					fragmentManager.popBackStack();
 					FragmentListView ls_fragment3 = new FragmentListView();
 					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment3);
@@ -282,6 +259,7 @@ public class MainActivity extends ActionBarActivity {
 				break;
 
 			case 4:
+
 				fragmentManager.popBackStack();
 				FragmentSettings ls_fragment4 = new FragmentSettings();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment4);
@@ -291,6 +269,7 @@ public class MainActivity extends ActionBarActivity {
 				break;
 
 			case 5:
+
 				fragmentManager.popBackStack();
 				FragmentCredits ls_fragment5 = new FragmentCredits();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment5);
@@ -313,17 +292,5 @@ public class MainActivity extends ActionBarActivity {
 		}
 
 	}
-	//	@Override
-	//	protected void onPause() {
-	//		// TODO Auto-generated method stub
-	//		super.onPause();
-	//		if(isFinishing()) {
-	//			int i;
-	//		}
-	//		else {
-	//			int i;
-	//		}
-	//	}
-
 
 }

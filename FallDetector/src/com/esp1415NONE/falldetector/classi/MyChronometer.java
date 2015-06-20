@@ -7,14 +7,19 @@ public class MyChronometer
 	private long startTime;
 	private boolean isRunning;
 
-	public MyChronometer() { reset(); }
+	public MyChronometer() 
+	{
+		reset(); 
+	}
 
-	public void start(){
+	public void start()
+	{
 		if (isRunning) return;
 		isRunning = true;
 		startTime = System.currentTimeMillis();
 	}
-	public void stop(){
+	public void stop()
+	{
 		isRunning = false;
 		long endTime = System.currentTimeMillis();
 		elapsedTime = elapsedTime + endTime - startTime;
@@ -28,7 +33,8 @@ public class MyChronometer
 		elapsedTime = elapsedTime + endTime - startTime;
 	}
 
-	public String getElapsedTime(){
+	public String getElapsedTime()
+	{
 		long endTime=0;
 		if (isRunning)
 			endTime = elapsedTime + System.currentTimeMillis() - startTime;
@@ -53,7 +59,9 @@ public class MyChronometer
 		return h+":"+m+":"+s; 
 	}
 
-	public void reset(){
+	public void reset()
+	{
 		elapsedTime = 0;
-		isRunning = false; }
+		isRunning = false; 
+	}
 }

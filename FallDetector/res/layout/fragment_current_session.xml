@@ -49,7 +49,7 @@
                 android:contentDescription="@string/miniature_session" />
 
             <TextView
-                android:id="@+id/nome"
+                android:id="@+id/id_s"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -59,7 +59,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/nomeS"
+                android:id="@+id/name_s"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
@@ -87,7 +87,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/data"
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="4dp"
@@ -112,7 +112,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/sessione"
+                android:id="@+id/n_fall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"

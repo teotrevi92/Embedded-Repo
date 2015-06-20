@@ -42,20 +42,20 @@ public class FragmentHome extends Fragment{
 	private Timer myTimer;
 	private TimerTask myTimerTask;
 	private DbAdapter dbAdapter;
-	private TextView ids_,nameS_,dateS_,durationS_,nfall_,ultimateS,tx2,tx3,tx4;
+	private TextView ids_,nameS_,dateS_,durationS_,nfall_;
 	private ImageView logo;
-	//	private Handler handler = new Handler();
 
-	/** Defines callbacks for service binding, passed to bindService() */
+	/* Defines callbacks for service binding, passed to bindService() */
 	private ServiceConnection mConnection = new ServiceConnection() {
 
 		@Override
-		public void onServiceConnected(ComponentName className,
-				IBinder service) {
+		public void onServiceConnected(ComponentName className, IBinder service) {
+
 			// We've bound to LocalService, cast the IBinder and get LocalService instance
 			LocalBinder binder = (LocalBinder) service;
 			cronom = binder.getService();
 			mBound = true;
+
 		}
 
 		@Override
@@ -66,6 +66,7 @@ public class FragmentHome extends Fragment{
 
 	private void inPlay()
 	{
+		//quando clicco play vado a sessione corrente
 		FragmentCurrentSession ls_fragment2 = new FragmentCurrentSession();
 		fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment2);
 		fragmentTransaction.commit();
@@ -80,8 +81,11 @@ public class FragmentHome extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+
 		View view = inflater.inflate(R.layout.fragment_home, container, false);
+
 		dbAdapter = new DbAdapter(getActivity());
+
 		play = (ImageButton) view.findViewById(R.id.startSession);
 		titlehome = (TextView) view.findViewById(R.id.titleHome);
 		statusGps =(TextView) view.findViewById(R.id.textGps);
@@ -94,74 +98,39 @@ public class FragmentHome extends Fragment{
 		getActivity().startService(intent);
 		getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
 
-		ids_ = (TextView) view.findViewById(R.id.nome);
-		nameS_ = (TextView) view.findViewById(R.id.nomeS);
-		dateS_ = (TextView) view.findViewById(R.id.data);
-		durationS_ = (TextView) view.findViewById(R.id.durata);
-		nfall_ = (TextView) view.findViewById(R.id.sessione);
-		ultimateS = (TextView) view.findViewById(R.id.ultimatesession);
+		ids_ = (TextView) view.findViewById(R.id.id_s);
+		nameS_ = (TextView) view.findViewById(R.id.name_s);
+		dateS_ = (TextView) view.findViewById(R.id.dates);
+		durationS_ = (TextView) view.findViewById(R.id.duration);
+		nfall_ = (TextView) view.findViewById(R.id.nfall);
 		logo = (ImageView) view.findViewById(R.id.logo);
-		tx2 = (TextView) view.findViewById(R.id.textView2);
-		tx3 = (TextView) view.findViewById(R.id.textView3);
-		tx4 = (TextView) view.findViewById(R.id.textView4);
 
-		if(dbAdapter.getNumberSession() == 0) {
-			ultimateS.setText("Nessuna Sessione Precedente");
-			ids_.setVisibility(View.INVISIBLE);
-			nameS_.setVisibility(View.INVISIBLE);
-			dateS_.setVisibility(View.INVISIBLE);
-			durationS_.setVisibility(View.INVISIBLE);
-			nfall_.setVisibility(View.INVISIBLE);
-			logo.setVisibility(View.INVISIBLE);
-			tx2.setVisibility(View.INVISIBLE);
-			tx3.setVisibility(View.INVISIBLE);
-			tx4.setVisibility(View.INVISIBLE);
-		}
-		else {
-			//			ids_.setVisibility(View.VISIBLE);
-			//			nameS_.setVisibility(View.VISIBLE);
-			//			dateS_.setVisibility(View.VISIBLE);
-			//			durationS_.setVisibility(View.VISIBLE);
-			//			nfall_.setVisibility(View.VISIBLE);
-			//			logo.setVisibility(View.VISIBLE);
-			//			tx2.setVisibility(View.VISIBLE);
-			//			tx3.setVisibility(View.VISIBLE);
-			//			tx4.setVisibility(View.VISIBLE);
-			String idss = dbAdapter.getCurrentSessionID();
-//			String[] s = new String[4];
-//			s = dbAdapter.getInfoUltimateSession(idss);
-//			int n = dbAdapter.getNumberFall(idss);
+		String idss = dbAdapter.getCurrentSessionID();
 
-			//			Cursor c = dbAdapter.getAllRowsTable1();
-			//			c.moveToNext();
-			//			c.moveToNext();
-			//			String fall = c.getString(c.getColumnIndex("countFall"));
-			//			String fall = Integer.toString(n);
-			Cursor c = dbAdapter.getInfoTableRiepilog(idss);
-			String r1   = c.getString(c.getColumnIndex("_id"));
-			String r2   = c.getString(c.getColumnIndex(StringName.NAMES));
-			String r3   = c.getString(c.getColumnIndex(StringName.DATE));
-			String r4   = c.getString(c.getColumnIndex(StringName.DURATION));
-			String r5   = c.getString(c.getColumnIndex("countFall"));
-//			String fall = "0";
-			if(r5 == null)
-				r5 = "0";
+		Cursor c = dbAdapter.getInfoTableRiepilog(idss);
+		String r1   = c.getString(c.getColumnIndex("_id"));
+		String r2   = c.getString(c.getColumnIndex(StringName.NAMES));
+		String r3   = c.getString(c.getColumnIndex(StringName.DATE));
+		String r4   = c.getString(c.getColumnIndex(StringName.DURATION));
+		String r5   = c.getString(c.getColumnIndex("countFall"));
 
+		//se cadute zero, inserisco 0
+		if(r5 == null)
+			r5 = "0";
 
-			ids_.setText(r1);
-			nameS_.setText(r2);
-			dateS_.setText(r3);
-			durationS_.setText(r4);
-			nfall_.setText(r5);
+		ids_.setText(r1);
+		nameS_.setText(r2);
+		dateS_.setText(r3);
+		durationS_.setText(r4);
+		nfall_.setText(r5);
 
-			int[] dateA = new int[6];
-			dateA = dbAdapter.getDate(dateS_.getText().toString());
-			int size = 30;
-			//String nomeImmagine = date.toLowerCase().replace(' ', '_').replace('\'', '_') + ".png";
-			MyGraph rndBitmap = new MyGraph(size,size);
-			rndBitmap.doRandomImg(dateA[0], dateA[1], dateA[2], dateA[3], dateA[4], dateA[5], size);
-			logo.setImageBitmap(rndBitmap.getRandomImg());
-		}
+		int[] dateA = new int[6];
+		dateA = dbAdapter.getDate(dateS_.getText().toString());
+		int size = 30;
+
+		MyGraph rndBitmap = new MyGraph(size,size);
+		rndBitmap.doRandomImg(dateA[0], dateA[1], dateA[2], dateA[3], dateA[4], dateA[5], size);
+		logo.setImageBitmap(rndBitmap.getRandomImg());
 
 
 		play.setOnClickListener(new View.OnClickListener() {
@@ -170,6 +139,7 @@ public class FragmentHome extends Fragment{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				boolean control=true;
+
 				if(!controlInternet()){
 					Toast.makeText(getActivity(), R.string.toastNet , Toast.LENGTH_LONG).show();
 					control=false;
@@ -178,7 +148,7 @@ public class FragmentHome extends Fragment{
 					Toast.makeText(getActivity(), R.string.toastLoc , Toast.LENGTH_LONG).show();
 					control=false;
 				}
-				if(dbAdapter.getNumberContact()==0){
+				if(dbAdapter.getNumberContact() == 0){
 					Toast.makeText(getActivity(),  R.string.toastCont , Toast.LENGTH_LONG).show();
 					control=false;
 					FragmentSettings ls_fragment = new FragmentSettings();
@@ -222,8 +192,6 @@ public class FragmentHome extends Fragment{
 			}; 
 		};
 		myTimer.scheduleAtFixedRate(myTimerTask, 0, 500);	
-
-
 
 		return view;
 	}

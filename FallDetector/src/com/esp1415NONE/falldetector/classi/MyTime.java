@@ -2,45 +2,47 @@ package com.esp1415NONE.falldetector.classi;
 
 import java.util.Calendar;
 
-public class MyTime {
+public class MyTime 
+{
 
-	public String myTime() {
+	public String myTime() 
+	{
 		String time = "";
-		String or = "";
+		String hour = "";
 		String min = "";
 		String sec = "";
-		String mes = "";
-		String gio = "";
+		String month = "";
+		String day = "";
 
 		Calendar c = Calendar.getInstance(); 
 
-		int ore = c.get(Calendar.HOUR_OF_DAY);
-		if(ore < 10)
-			or = "0"+ore;
-		else or = ""+ore;
+		int hours = c.get(Calendar.HOUR_OF_DAY);
+		if(hours < 10)
+			hour = "0"+hours;
+		else hour = ""+hours;
 
-		int minuti = c.get(Calendar.MINUTE);
-		if(minuti < 10)
-			min = "0"+minuti;
-		else min = ""+minuti;
+		int minuts = c.get(Calendar.MINUTE);
+		if(minuts < 10)
+			min = "0"+minuts;
+		else min = ""+minuts;
 
-		int secondi = c.get(Calendar.SECOND);
-		if(secondi < 10)
-			sec = "0"+secondi;
-		else sec = ""+secondi;
+		int seconds = c.get(Calendar.SECOND);
+		if(seconds < 10)
+			sec = "0"+seconds;
+		else sec = ""+seconds;
 
-		int anno = c.get(Calendar.YEAR);
-		int mese = c.get(Calendar.MONTH)+1;
-		if(mese < 10)
-			mes = "0"+mese;
-		else mes = ""+mese;
+		int year = c.get(Calendar.YEAR);
+		int months = c.get(Calendar.MONTH)+1;
+		if(months < 10)
+			month = "0"+months;
+		else month = ""+months;
 
-		int giorno = c.get(Calendar.DAY_OF_MONTH);
-		if(giorno < 10)
-			gio = "0"+giorno;
-		else gio = ""+giorno;
+		int days = c.get(Calendar.DAY_OF_MONTH);
+		if(days < 10)
+			day = "0"+days;
+		else day = ""+days;
 
-		time = anno+ "-" + mes + "-" + gio + " " + or + ":" + min + ":" + sec;
+		time = year+ "-" + month + "-" + day + " " + hour + ":" + min + ":" + sec;
 
 		return time;
 	}

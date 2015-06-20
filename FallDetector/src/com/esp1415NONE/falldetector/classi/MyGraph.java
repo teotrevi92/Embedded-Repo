@@ -13,7 +13,6 @@ public class MyGraph {
 	private Paint paint;
 	private int xLarghezza;
 	private int yLarghezza;
-	//	private float asseX;
 	private float asseY;
 	private float tempo;
 	private float starX;
@@ -26,12 +25,10 @@ public class MyGraph {
 
 	public MyGraph(int larghezza,int altezza)
 	{
-
 		ingrandimento = 6;
 		paint = new Paint();
 		xLarghezza = larghezza;
 		yLarghezza = altezza;
-		//		asseX=xLarghezza/2; //metto l'asse x a meta' del disegno
 		asseY=(yLarghezza/5)*4;//metto l'asse y a meta' del disegno
 		tempo=0;
 		starX = 0;
@@ -39,6 +36,7 @@ public class MyGraph {
 		stopX=0;
 		stopY=0;
 	}
+
 	public void doBase()
 	{
 		tempo=5;// ho messo 5,e gli altri due valori seguenti per farlo partire dall'origine deli assi
@@ -50,9 +48,11 @@ public class MyGraph {
 		canvas.drawLine(5,0,5,yLarghezza, paint);
 		canvas.drawLine(0,asseY,xLarghezza-20,asseY, paint);
 		canvas.drawText("0", xLarghezza-15, asseY, paint);
+
 		//disegno la freccia
 		canvas.drawLine(5,0,0,5,paint);
 		canvas.drawLine(5,0,10,5,paint);
+
 		//disego linee di scala
 		canvas.drawLine(0, asseY-5*ingrandimento, xLarghezza-20, asseY-5*ingrandimento, paint);
 		canvas.drawText("5", xLarghezza-15, asseY-5*ingrandimento, paint);
@@ -71,18 +71,17 @@ public class MyGraph {
 
 		paint.setColor(Color.parseColor("blue"));
 	}
+
 	public void drowPoint(float punto)
 	{
 		tempo=tempo+2f;
 		starX = tempo;
 		starY =asseY-punto*ingrandimento;
-		//canvas.drawPoint(starX,starY, paint);
 		canvas.drawLine(starX, starY, stopX, stopY, paint);
 		stopX=starX;
 		stopY=starY;
-		//		if (tempo>250)
-		//			doBase();
 	}
+
 	//creo un immagine random
 	public void doRandomImg(int year, int month, int day, int hours, int minutes, int seconds,int size)
 	{
@@ -107,10 +106,12 @@ public class MyGraph {
 		for(i=0;i<6;i++)
 			canvas2.drawCircle(xrand[i], yrand[i], 3 , paint2);	
 	}
+
 	public Bitmap getRandomImg()
 	{
 		return Bitmap.createBitmap(rnd);
 	}
+
 	//ritora il grafico
 	public Bitmap getGrafico()
 	{	

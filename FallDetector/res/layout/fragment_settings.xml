@@ -3,8 +3,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <!-- Here you put the rest of your current view -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -129,13 +127,13 @@
                 android:text="@string/textemail"
                 android:textColor="@color/white" />
 
-            <Button 
+            <Button
                 android:id="@+id/buttonemail"
-                android:background="@drawable/mybutton"
+                style="@style/button_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/buttonaddemail"
-                style="@style/button_text" />
+                android:background="@drawable/mybutton"
+                android:text="@string/buttonaddemail" />
         </LinearLayout>
 
         <LinearLayout
@@ -146,20 +144,19 @@
 
             <Button
                 android:id="@+id/deletesession"
-                android:background="@drawable/mybutton"
                 style="@style/button_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/deletesession"/>
+                android:background="@drawable/mybutton"
+                android:text="@string/deletesession" />
 
             <Button
                 android:id="@+id/deletedata"
+                style="@style/button_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/mybutton"
-                style="@style/button_text"
                 android:text="@string/deletedata" />
-
         </LinearLayout>
     </LinearLayout>
 

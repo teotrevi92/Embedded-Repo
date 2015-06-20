@@ -1,6 +1,7 @@
 package com.esp1415NONE.falldetector;
 
 import com.esp1415NONE.falldetector.ChronoService;
+
 import com.esp1415NONE.falldetector.ChronoService.LocalBinder;
 import com.esp1415NONE.falldetector.classi.DbAdapter;
 import com.esp1415NONE.falldetector.classi.MyGraph;
@@ -8,7 +9,6 @@ import com.esp1415NONE.falldetector.classi.StringName;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ComponentName;
@@ -38,6 +38,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 public class FragmentCurrentSession extends Fragment {	
 
 	private ImageButton play;
@@ -54,7 +55,6 @@ public class FragmentCurrentSession extends Fragment {
 	private TextView statusNtw;
 	private Timer myTimer;
 	private TimerTask myTimerTask;
-	//	private Handler handler = new Handler();
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager fragmentManager;
 	private DbAdapter dbAdapter;
@@ -66,12 +66,12 @@ public class FragmentCurrentSession extends Fragment {
 	private Cursor c;
 
 
-	/** Defines callbacks for service binding, passed to bindService() */
+	/* Defines callbacks for service binding, passed to bindService() */
 	private ServiceConnection mConnection = new ServiceConnection() {
 
 		@Override
-		public void onServiceConnected(ComponentName className,
-				IBinder service) {
+		public void onServiceConnected(ComponentName className, IBinder service) {
+
 			// We've bound to LocalService, cast the IBinder and get LocalService instance
 			LocalBinder binder = (LocalBinder) service;
 			cronom = binder.getService();
@@ -129,26 +129,25 @@ public class FragmentCurrentSession extends Fragment {
 	}
 	private void doStop()
 	{
+		//se clicco stop vado al riassunto della sessione
 		FragmentDetailSession ls_fragment = new FragmentDetailSession();
-		//		fragmentTransaction.addToBackStack(null);
 		Bundle args = new Bundle();
 		args.putString("ids", dbAdapter.getCurrentSessionID());
 		ls_fragment.setArguments(args);
 		fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 		fragmentTransaction.commit();
-		//		time.setVisibility(View.INVISIBLE);
-		//		title.setVisibility(View.INVISIBLE);
 	}
 
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+
 		View view = inflater.inflate(R.layout.fragment_current_session, container, false);
 		dbAdapter = new DbAdapter(getActivity());
+
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		isOpenDialog = preferences.getInt("dialog", 0);
-
 
 		if(isOpenDialog == 1)
 			dialogRenameSession(getActivity(), preferences.getString("ids", null),preferences.getString("nameS",null));
@@ -171,49 +170,27 @@ public class FragmentCurrentSession extends Fragment {
 		getActivity().startService(intent);
 		getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
 
-		//		tx2 = (TextView) view.findViewById(R.id.textView2);
-		//		tx3 = (TextView) view.findViewById(R.id.textView3);
-		//		tx4 = (TextView) view.findViewById(R.id.textView4);
-
-		//			tx2.setVisibility(View.VISIBLE);
-		//			tx3.setVisibility(View.VISIBLE);
-		//			tx4.setVisibility(View.VISIBLE);
-		//			ids_.setVisibility(View.VISIBLE);
-		//			nameSes.setVisibility(View.VISIBLE);
-		//			dateS_.setVisibility(View.VISIBLE);
-		//			nfall_.setVisibility(View.VISIBLE);
-		//			logo.setVisibility(View.VISIBLE);
-
-
-		ids_ = (TextView) view.findViewById(R.id.nome);
-		nameSes = (TextView) view.findViewById(R.id.nomeS);
-		dateS_ = (TextView) view.findViewById(R.id.data);
-		nfall_ = (TextView) view.findViewById(R.id.sessione);
+		ids_ = (TextView) view.findViewById(R.id.id_s);
+		nameSes = (TextView) view.findViewById(R.id.name_s);
+		dateS_ = (TextView) view.findViewById(R.id.date);
+		nfall_ = (TextView) view.findViewById(R.id.n_fall);
 		logo = (ImageView) view.findViewById(R.id.logo);
 
-		//			tx2.setVisibility(View.VISIBLE);
-		//			tx3.setVisibility(View.VISIBLE);
-		//			tx4.setVisibility(View.VISIBLE);
-		//			ids_.setVisibility(View.VISIBLE);
-		//			nameSes.setVisibility(View.VISIBLE);
-		//			dateS_.setVisibility(View.VISIBLE);
-		//			nfall_.setVisibility(View.VISIBLE);
-		//			logo.setVisibility(View.VISIBLE);
+		//acquisisco l'id sessione corrente
 		idss = dbAdapter.getCurrentSessionID();
-		//		String[] s = new String[3];
-		//		int n = dbAdapter.getNumberFall(idss);
+
+		//inizializzo cursore
 		c = dbAdapter.getInfoTableRiepilog(idss);
+
+		//acquisisco i dati del db che mi interessano
 		String r1   = c.getString(c.getColumnIndex("_id"));
 		String r2   = c.getString(c.getColumnIndex(StringName.NAMES));
 		String r3   = c.getString(c.getColumnIndex(StringName.DATE));
 		String r5   = c.getString(c.getColumnIndex("countFall"));
-		//		Cursor c = dbAdapter.getNumberFall(idss);
-		//		c.moveToNext();
-		//		String fall = c.getString(c.getColumnIndex("countFall"));
-		//		String fall = "0";
+
+		//se non ci sono cadute, inserisco 0
 		if(r5 == null)
 			r5 = "0";
-
 
 		ids_.setText(r1);
 		nameSes.setText(r2);
@@ -222,27 +199,18 @@ public class FragmentCurrentSession extends Fragment {
 
 		int[] dateA = new int[6];
 		dateA = dbAdapter.getDate(dateS_.getText().toString());
+
 		int size = 30;
 		MyGraph rndBitmap = new MyGraph(size,size);
 		rndBitmap.doRandomImg(dateA[0], dateA[1], dateA[2], dateA[3], dateA[4], dateA[5], size);
 		logo.setImageBitmap(rndBitmap.getRandomImg());
-
-		//			tx2.setVisibility(View.INVISIBLE);
-		//			tx3.setVisibility(View.INVISIBLE);
-		//			tx4.setVisibility(View.INVISIBLE);
-		//			ids_.setVisibility(View.INVISIBLE);
-		//			nameSes.setVisibility(View.INVISIBLE);
-		//			dateS_.setVisibility(View.INVISIBLE);
-		//			nfall_.setVisibility(View.INVISIBLE);
-		//			logo.setVisibility(View.INVISIBLE);
-
-
 
 		play.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+
 				Intent intent = new Intent(getActivity(), ChronoService.class);
 				getActivity().startService(intent);
 				getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
@@ -256,14 +224,14 @@ public class FragmentCurrentSession extends Fragment {
 					Toast.makeText(getActivity(),  R.string.toastLoc , Toast.LENGTH_LONG).show();
 					control=false;
 				}
-				if(dbAdapter.getNumberContact()==0){
+				if(dbAdapter.getNumberContact() == 0){
 					Toast.makeText(getActivity(),  R.string.toastCont , Toast.LENGTH_LONG).show();
 					control=false;
+
 					FragmentSettings ls_fragment = new FragmentSettings();
 					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 					fragmentTransaction.commit();
 				}
-
 
 				if(control)
 				{
@@ -292,16 +260,10 @@ public class FragmentCurrentSession extends Fragment {
 					inStop();
 					Toast.makeText(getActivity(), R.string.toastStop , Toast.LENGTH_LONG).show();
 
-
 					//implemento rinomina
 					String ids = dbAdapter.getCurrentSessionID();
 					dialogRenameSession(getActivity(),ids, null);
-					//					Intent i = new Intent(getActivity(), RenameActivity.class);
-					//					i.putExtra("ids", ids);
-					//					i.putExtra("where", "stop");
-					//					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					//					startActivity(i);
-					//					doStop();
+
 				}
 			}
 		});
@@ -317,7 +279,6 @@ public class FragmentCurrentSession extends Fragment {
 				// TODO Auto-generated method stub
 				if (mBound) 
 				{
-					//inPause();
 					cronom.pause();
 					String tm = cronom.getString();
 					time.setText(tm);
@@ -327,10 +288,6 @@ public class FragmentCurrentSession extends Fragment {
 			}
 		});
 
-
-
-
-
 		//ogni mezzo secondo mi aggiorna il cronometro e controlla lo stato
 		myTimer = new Timer();   
 		myTimerTask = new TimerTask() {  
@@ -338,7 +295,9 @@ public class FragmentCurrentSession extends Fragment {
 			public void run() { getActivity().runOnUiThread(new Runnable() {  
 				@Override  
 				public void run() {  
+
 					idss = dbAdapter.getCurrentSessionID();
+					//aggiorno le cadute in tempo reale
 					c = dbAdapter.getInfoTableRiepilog(idss);
 					String r5   = c.getString(c.getColumnIndex("countFall"));
 					if(r5 == null)
@@ -376,8 +335,6 @@ public class FragmentCurrentSession extends Fragment {
 		myTimer.scheduleAtFixedRate(myTimerTask, 0, 200);		
 		return view;
 	}
-
-
 
 	private boolean controlInternet() {
 		getActivity();
@@ -437,6 +394,7 @@ public class FragmentCurrentSession extends Fragment {
 			dialog.dismiss();
 		}
 		});
+
 		//personalizzo il Dialog
 		nameS_ = (EditText) dialog.findViewById(R.id.nameS);
 		if(isOpenDialog == 1)
@@ -462,18 +420,7 @@ public class FragmentCurrentSession extends Fragment {
 				}
 			}
 		});
-		//		// cosa faccio al click dell'annulla
-		//		no.setOnClickListener(new View.OnClickListener() {
-		//
-		//			@Override
-		//			public void onClick(View v) {
-		//				dbAdapter.setNameSession(id_s, "Sessione");
-		//				isOpenDialog = 0;
-		//				dialog.dismiss();
-		//				doStop();
-		//
-		//			}
-		//		});
+
 		dialog.show();
 	}
 
@@ -489,6 +436,7 @@ public class FragmentCurrentSession extends Fragment {
 			String id_s = dbAdapter.getCurrentSessionID();
 			if(isOpenDialog == 1)
 				editor.putString("nameS", nameS_.getText().toString());
+
 			//Salvataggio impostazioni
 			editor.putInt("dialog", isOpenDialog);
 
@@ -498,20 +446,6 @@ public class FragmentCurrentSession extends Fragment {
 		editor.commit();
 
 	}
-	//	@Override
-	//	public void onDestroy() {
-	//		// TODO Auto-generated method stub
-	//		super.onDestroy();
-	//		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-	//		SharedPreferences.Editor editor = preferences.edit();
-	//
-	//		editor.putInt("dialog", 0);
-	//		//facciamo il commit
-	//		editor.commit();
-	//	}
-
-
-
 
 
 }

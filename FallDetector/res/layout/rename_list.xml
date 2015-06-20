@@ -29,7 +29,6 @@
 
         <requestFocus />
     </EditText>
-    <!-- android:background="@android:color/transparent" -->
 
     <LinearLayout
         android:layout_width="wrap_content"

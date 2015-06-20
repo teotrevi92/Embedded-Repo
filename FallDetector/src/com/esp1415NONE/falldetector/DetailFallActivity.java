@@ -25,18 +25,19 @@ public class DetailFallActivity extends Activity {
 		super.onCreate(state);
 		setContentView(R.layout.activity_detail_fall);
 
+		//riprendo i dati dell'intent
 		i = getIntent();
 		ids = i.getStringExtra("ids");
-		nameS = i.getStringExtra("nomeS");
-		dateS = i.getStringExtra("dataS");
+		nameS = i.getStringExtra("name_s");
+		dateS = i.getStringExtra("date_s");
 		lat = i.getStringExtra("lat");
 		longit = i.getStringExtra("long");
 		idf = i.getStringExtra("idf");
-		datef = i.getStringExtra("dataf");
+		datef = i.getStringExtra("date_f");
 		array = i.getStringExtra("array");
 		sent = i.getStringExtra("sent");
 
-
+		//prendo gli id del layout
 		name_S = (TextView) findViewById(R.id.nameS);
 		id_s = (TextView) findViewById(R.id.ids);
 		id_f = (TextView) findViewById(R.id.idfall);
@@ -55,8 +56,10 @@ public class DetailFallActivity extends Activity {
 		sent_.setText(sent);
 		longit_.setText(longit);
 
+		//inizializzazione database
 		dbAdapter = new DbAdapter(this);
 
+		//prendo l'accuratezza
 		int sizeArray = dbAdapter.getSens(ids);
 		acc = new float[sizeArray];
 		acc = dbAdapter.convertStringToArray(array);
@@ -67,19 +70,14 @@ public class DetailFallActivity extends Activity {
 		}
 		graph.setImageBitmap(que.getGraphQueue(150));
 
-
-
-
 		int[] dateA = new int[6];
 		dateA = dbAdapter.getDate(dateS);
+
 		int size = 30;
-		//String nomeImmagine = date.toLowerCase().replace(' ', '_').replace('\'', '_') + ".png";
+		
 		MyGraph rndBitmap = new MyGraph(size,size);
 		rndBitmap.doRandomImg(dateA[0], dateA[1], dateA[2], dateA[3], dateA[4], dateA[5], size);
 		logo.setImageBitmap(rndBitmap.getRandomImg());
-
-
-
 
 
 	}
