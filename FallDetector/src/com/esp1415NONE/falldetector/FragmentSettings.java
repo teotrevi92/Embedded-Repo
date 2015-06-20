@@ -47,7 +47,7 @@ public class FragmentSettings extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		view = inflater.inflate(R.layout.activity_fragment_settings, container, false);
+		view = inflater.inflate(R.layout.fragment_settings, container, false);
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		isOpenDialog = preferences.getInt("dialog", 0);
 		if(isOpenDialog == 1) {
@@ -98,7 +98,7 @@ public class FragmentSettings extends Fragment {
 				//				}
 				//				else {
 				fragmentTransaction.addToBackStack(null);
-				FragmentListContacts ls_fragment = new FragmentListContacts();
+				ListContacts ls_fragment = new ListContacts();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 				fragmentTransaction.commit();
 				//-------------------------------------QUA AGGIUNGERE GLI STACK

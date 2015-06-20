@@ -14,7 +14,7 @@ public class ContactSimpleCursorAdapter extends SimpleCursorAdapter
 	@SuppressWarnings("deprecation")
 	public ContactSimpleCursorAdapter(Context context, Cursor c)
 	{
-		super(context, R.layout.activity_fragment_contact, c, new String[]
+		super(context, R.layout.contact, c, new String[]
 				{ "_id" , StringName.NAME ,StringName.SURNAME }, new int[]
 						{ R.id.mail,R.id.name,R.id.surname });
 	}

@@ -49,7 +49,7 @@ public class MainActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main_drawer);
+		setContentView(R.layout.main_drawer);
 
 		dbAdapter = new DbAdapter(getApplication());
 		fragmentManager = getSupportFragmentManager();

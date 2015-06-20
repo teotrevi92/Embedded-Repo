@@ -221,7 +221,7 @@ public class FragmentListView extends ListFragment {
 	}
 	private void dialogRenameSession(Activity activity,String ids, String nameSe) {
 		final Dialog dialog = new Dialog(getActivity());
-		dialog.setContentView(R.layout.activity_rename_list);
+		dialog.setContentView(R.layout.rename_list);
 		dialog.setTitle("Rinomina Sessione");
 		final String id_s = ids;
 		final Activity a = activity;

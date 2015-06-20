@@ -33,7 +33,7 @@ public class FragmentDetailSession extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View view = inflater.inflate(R.layout.activity_fragment_detail_session_fixed, container, false);
+		View view = inflater.inflate(R.layout.fragment_detail_session_fixed, container, false);
 		listfall = (ListView) view.findViewById(R.id.listfall);
 		idess = (TextView) view.findViewById(R.id.idsess);
 		nameS = (TextView) view.findViewById(R.id.nameS);

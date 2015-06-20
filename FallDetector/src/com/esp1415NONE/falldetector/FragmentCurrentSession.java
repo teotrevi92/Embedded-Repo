@@ -144,7 +144,7 @@ public class FragmentCurrentSession extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View view = inflater.inflate(R.layout.activity_fragment_current_session, container, false);
+		View view = inflater.inflate(R.layout.fragment_current_session, container, false);
 		dbAdapter = new DbAdapter(getActivity());
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		isOpenDialog = preferences.getInt("dialog", 0);
@@ -425,7 +425,7 @@ public class FragmentCurrentSession extends Fragment {
 
 	private void dialogRenameSession(Activity activity,String ids, String nameSe) {
 		final Dialog dialog = new Dialog(getActivity());
-		dialog.setContentView(R.layout.activity_rename);
+		dialog.setContentView(R.layout.rename_session);
 		dialog.setTitle("Rinomina Sessione");
 		final String id_s = ids;
 		final Activity a = activity;

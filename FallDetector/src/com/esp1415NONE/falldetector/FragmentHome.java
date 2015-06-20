@@ -80,7 +80,7 @@ public class FragmentHome extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View view = inflater.inflate(R.layout.activity_fragment_home, container, false);
+		View view = inflater.inflate(R.layout.fragment_home, container, false);
 		dbAdapter = new DbAdapter(getActivity());
 		play = (ImageButton) view.findViewById(R.id.startSession);
 		titlehome = (TextView) view.findViewById(R.id.titleHome);

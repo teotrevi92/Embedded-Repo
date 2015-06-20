@@ -54,6 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_fall"
+                    android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -64,6 +65,7 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginStart="4dp"
                     android:text="@string/text_example_fall"
+                    android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -78,7 +80,8 @@
                     android:id="@+id/datef"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_example_date_fall" />
+                    android:text="@string/text_example_date_fall"
+                    android:textColor="#000000" />
             </LinearLayout>
 
             <LinearLayout
@@ -90,7 +93,8 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_latitude_fall" />
+                    android:text="@string/text_latitude_fall"
+                    android:textColor="#000000" />
 
                 <TextView
                     android:id="@+id/lat"
@@ -98,7 +102,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
                     android:layout_marginStart="3dp"
-                    android:text="@string/text_example_latitude" />
+                    android:text="@string/text_example_latitude"
+                    android:textColor="#000000" />
             </LinearLayout>
 
             <LinearLayout
@@ -110,7 +115,8 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_longitude_fall" />
+                    android:text="@string/text_longitude_fall"
+                    android:textColor="#000000" />
 
                 <TextView
                     android:id="@+id/longit"
@@ -118,7 +124,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
                     android:layout_marginStart="3dp"
-                    android:text="@string/text_example_longitude" />
+                    android:text="@string/text_example_longitude"
+                    android:textColor="#000000" />
             </LinearLayout>
 
             <LinearLayout
@@ -130,7 +137,8 @@
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_sent" />
+                    android:text="@string/text_sent"
+                    android:textColor="#000000" />
 
                 <TextView
                     android:id="@+id/sent"
@@ -138,7 +146,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
                     android:layout_marginStart="3dp"
-                    android:text="@string/text_example_sent" />
+                    android:text="@string/text_example_sent"
+                    android:textColor="#000000" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -166,10 +175,10 @@
             android:id="@+id/imageS"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_marginBottom="1dp"
             android:layout_marginLeft="1dp"
             android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
             android:contentDescription="@string/miniature_session" />
 
         <TextView
@@ -180,6 +189,7 @@
             android:layout_marginStart="7dp"
             android:layout_marginTop="5dp"
             android:text="@string/text_example_ids"
+            android:textColor="#000000"
             android:textSize="18sp" />
 
         <TextView
@@ -190,210 +200,8 @@
             android:layout_marginStart="7dp"
             android:layout_marginTop="5dp"
             android:text="@string/text_session"
+            android:textColor="#000000"
             android:textSize="18sp" />
     </LinearLayout>
 
-</RelativeLayout><!--
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="#FFFFFF"
-    android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/idfall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView1"
-        android:layout_marginLeft="3dp"
-        android:layout_marginStart="3dp"
-        android:layout_toEndOf="@+id/textView1"
-        android:layout_toRightOf="@+id/textView1"
-        android:text="@string/text_example_fall"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/longit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView4"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_marginLeft="3dp"
-        android:layout_marginStart="3dp"
-        android:layout_toEndOf="@+id/textView4"
-        android:layout_toRightOf="@+id/textView4"
-        android:text="@string/text_example_longitude"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/lat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView3"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_toEndOf="@+id/textView1"
-        android:layout_toRightOf="@+id/textView3"
-        android:text="@string/text_example_latitude"
-        android:textSize="14sp" />
-
-    
-          <ImageView
-        android:id="@+id/imageS"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignRight="@+id/idfall"
-        android:layout_alignEnd="@+id/idfall"
-        android:layout_alignTop="@+id/view2"
-        android:contentDescription="@string/miniature_session" />
-    
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="1dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/graph"
-        android:layout_alignTop="@+id/graph"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_toEndOf="@+id/graph"
-        android:layout_toRightOf="@+id/graph"
-        android:background="#D3D3D3" />
-
-    <ImageView
-        android:id="@+id/graph"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="14dp"
-        android:contentDescription="@string/descript" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/view2"
-        android:layout_marginLeft="7dp"
-        android:layout_marginStart="7dp"
-        android:layout_toEndOf="@+id/view2"
-        android:layout_toRightOf="@+id/view2"
-        android:layout="@+id/view2"
-        android:text="@string/text_fall"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_below="@+id/lat"
-        android:text="@string/text_longitude_fall1"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/datef"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/view2"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_alignStart="@+id/textView1"
-        android:layout_marginBottom="50dp"
-        android:layout_marginEnd="5sp"
-        android:layout_marginRight="10dp"
-        android:layout_marginStart="5sp"
-        android:text="@string/text_example_date_fall"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/view2"
-        android:layout_alignLeft="@+id/datef"
-        android:layout_alignStart="@+id/datef"
-        android:layout_marginBottom="35dp"
-        android:text="@string/text_latitude_fall1"
-        android:textSize="14sp" />
-
-    <ImageView
-        android:id="@+id/imageS"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignLeft="@+id/view1"
-        android:layout_alignStart="@+id/textView4"
-        android:layout_below="@+id/view1"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:contentDescription="@string/miniature_session" />
-
-    <TextView
-        android:id="@+id/ids"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageS"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_toEndOf="@+id/imageS"
-        android:layout_toRightOf="@+id/imageS"
-        android:text="@string/text_example_ids"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/nameS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/ids"
-        android:layout_alignBottom="@+id/ids"
-        android:layout_marginLeft="4dp"
-        android:layout_marginStart="4dp"
-        android:layout_toEndOf="@+id/textView3"
-        android:layout_toRightOf="@+id/ids"
-        android:text="@string/text_session"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/view2"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignStart="@+id/textView4"
-        android:text="@string/text_sent"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/sent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView5"
-        android:layout_alignBottom="@+id/textView5"
-        android:layout_marginLeft="3dp"
-        android:layout_marginStart="3dp"
-        android:layout_toEndOf="@+id/textView5"
-        android:layout_toRightOf="@+id/textView5"
-        android:text="@string/text_example_sent" />
-
-    <View
-        android:id="@+id/view1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/view2"
-        android:layout_marginTop="5dp"
-        android:background="#D3D3D3" />
-
 </RelativeLayout>
--->

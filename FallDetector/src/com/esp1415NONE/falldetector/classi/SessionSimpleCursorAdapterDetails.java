@@ -14,7 +14,7 @@ public class SessionSimpleCursorAdapterDetails extends SimpleCursorAdapter
 	@SuppressWarnings("deprecation")
 	public SessionSimpleCursorAdapterDetails(Context context, Cursor c)
 	{
-		super(context, R.layout.activity_fragment_detail_session, c, new String[]
+		super(context, R.layout.fragment_detail_session, c, new String[]
 				{ StringName.UIDF, StringName.DATEF , StringName.SENT }, new int[]
 						{ R.id.idf,R.id.dataF , R.id.sent});
 	}

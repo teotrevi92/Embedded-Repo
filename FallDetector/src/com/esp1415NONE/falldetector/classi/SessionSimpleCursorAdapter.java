@@ -20,7 +20,7 @@ public class SessionSimpleCursorAdapter extends SimpleCursorAdapter
 	@SuppressWarnings("deprecation")
 	public SessionSimpleCursorAdapter(Context context, Cursor c, int isPlaying, int idsC)
 	{
-		super(context, R.layout.activity_session_riepilog, c, new String[]
+		super(context, R.layout.fragment_listview, c, new String[]
 				{ "_id" , StringName.NAMES ,StringName.DATE , StringName.DURATION, "countFall" }, new int[]
 						{ R.id.nome,R.id.nomeS,R.id.data, R.id.durata, R.id.sessione });
 		this.idsC = Integer.toString(idsC);

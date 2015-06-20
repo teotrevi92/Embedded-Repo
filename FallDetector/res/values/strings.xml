@@ -106,5 +106,15 @@
     <string name="ultimatesession">Riepilogo ultima sessione: </string>
     <string name="currentsession">Riepilogo sessione in corso: </string>
     <string name="text_example_confirm">Cancellare?</string>
-
+    <string name="text_name_project">Progetto:  Fall Detector</string>
+    <string name="text_begin">Tutto iniziò così&#8230;</string>
+    <string name="photo_group">Fotogruppo</string>
+    <string name="component_group">Componenti Gruppo:</string>
+    <string name="component1">Azizi Rachid</string>
+    <string name="component2">Trevisan Matteo</string>
+    <string name="component3">Tritoni Marco</string>
+    <string name="name_course">- Programmazione Di Sistemi Embedded -</string>
+    <string name="name_course_min">Progr. Di Sistemi Embedded</string>
+    <string name="name_coach">Professore:  Carlo Fantozzi</string>
+    
 </resources>
