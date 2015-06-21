@@ -6,7 +6,6 @@ import com.esp1415NONE.falldetector.classi.SessionSimpleCursorAdapterDetails;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -110,18 +109,6 @@ public class FragmentDetailSession extends Fragment {
 		MyGraph rndBitmap = new MyGraph(size,size);
 		rndBitmap.doRandomImg(dateA[0], dateA[1], dateA[2], dateA[3], dateA[4], dateA[5], size);
 		logo.setImageBitmap(rndBitmap.getRandomImg());
-
-		String idsC = Integer.toString(ChronoService.id_s);
-		int isPlaying = ChronoService.isPlaying;
-
-		String idsess_ = idsess.getText().toString();
-		if((idsess_.equals(idsC)) && ((isPlaying == 1) || (isPlaying == -1))) {
-
-			//evidenzio sessione corrente
-			idsess.setTextColor(Color.RED);
-			nameS.setTextColor(Color.RED);
-
-		}
 
 	}
 }

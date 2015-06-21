@@ -161,15 +161,15 @@ public class FragmentHome extends Fragment{
 				boolean control=true;
 
 				if(!controlInternet()){
-					Toast.makeText(getActivity(), R.string.toastNet , Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), R.string.toastNet , Toast.LENGTH_SHORT).show();
 					control=false;
 				}
 				if(!controlLocGps() && !controlLocNet()){
-					Toast.makeText(getActivity(), R.string.toastLoc , Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), R.string.toastLoc , Toast.LENGTH_SHORT).show();
 					control=false;
 				}
 				if(dbAdapter.getNumberContact() == 0){
-					Toast.makeText(getActivity(),  R.string.toastCont , Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(),  R.string.toastCont , Toast.LENGTH_SHORT).show();
 					control=false;
 					FragmentSettings ls_fragment = new FragmentSettings();
 					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
@@ -181,7 +181,7 @@ public class FragmentHome extends Fragment{
 					{
 						cronom.play();
 						inPlay();
-						Toast.makeText(getActivity(), R.string.toastPlay, Toast.LENGTH_LONG).show();
+						Toast.makeText(getActivity(), R.string.toastPlay, Toast.LENGTH_SHORT).show();
 					}	
 				}
 			}

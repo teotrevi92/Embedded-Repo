@@ -77,6 +77,7 @@
     <string name="text_example_date_sess">YYYY-MM-DD HH:MM:SS</string>
     <string name="text_latitude_fall">Latitudine: </string>
     <string name="text_longitude_fall">Longitudine: </string>
+    <string name="text_longitude_fall_min">Longitud: </string>
     <string name="text_latitude_fall1">Lat: </string>
     <string name="text_longitude_fall1">Lon: </string>
     <string name="text_example_longitude">ZZ.ZZZZ</string>

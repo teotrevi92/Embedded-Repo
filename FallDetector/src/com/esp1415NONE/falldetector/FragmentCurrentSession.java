@@ -217,15 +217,15 @@ public class FragmentCurrentSession extends Fragment {
 
 				boolean control=true;
 				if(!controlInternet()){
-					Toast.makeText(getActivity(), R.string.toastNet , Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), R.string.toastNet , Toast.LENGTH_SHORT).show();
 					control=false;
 				}
 				if(!controlLocGps() && !controlLocNet()){
-					Toast.makeText(getActivity(),  R.string.toastLoc , Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(),  R.string.toastLoc , Toast.LENGTH_SHORT).show();
 					control=false;
 				}
 				if(dbAdapter.getNumberContact() == 0){
-					Toast.makeText(getActivity(),  R.string.toastCont , Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(),  R.string.toastCont , Toast.LENGTH_SHORT).show();
 					control=false;
 
 					FragmentSettings ls_fragment = new FragmentSettings();
@@ -239,7 +239,7 @@ public class FragmentCurrentSession extends Fragment {
 					{
 						cronom.play();
 						inPlay();
-						Toast.makeText(getActivity(), R.string.toastPlay , Toast.LENGTH_LONG).show();
+						Toast.makeText(getActivity(), R.string.toastPlay , Toast.LENGTH_SHORT).show();
 					}
 				}
 
@@ -258,7 +258,7 @@ public class FragmentCurrentSession extends Fragment {
 					getActivity().unbindService(mConnection);
 					mBound = false;
 					inStop();
-					Toast.makeText(getActivity(), R.string.toastStop , Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), R.string.toastStop , Toast.LENGTH_SHORT).show();
 
 					//implemento rinomina
 					String ids = dbAdapter.getCurrentSessionID();
@@ -283,7 +283,7 @@ public class FragmentCurrentSession extends Fragment {
 					String tm = cronom.getString();
 					time.setText(tm);
 					inPause();
-					Toast.makeText(getActivity(), R.string.toastPause , Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), R.string.toastPause , Toast.LENGTH_SHORT).show();
 				}
 			}
 		});

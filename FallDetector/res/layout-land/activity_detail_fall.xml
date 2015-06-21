@@ -54,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_fall"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -65,7 +65,7 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginStart="4dp"
                     android:text="@string/text_example_fall"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -81,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_example_date_fall"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -94,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_latitude_fall"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/lat"
@@ -103,7 +103,7 @@
                     android:layout_marginLeft="3dp"
                     android:layout_marginStart="3dp"
                     android:text="@string/text_example_latitude"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -115,8 +115,8 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_longitude_fall"
-                    android:textColor="#000000" />
+                    android:text="@string/text_longitude_fall_min"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/longit"
@@ -125,7 +125,7 @@
                     android:layout_marginLeft="3dp"
                     android:layout_marginStart="3dp"
                     android:text="@string/text_example_longitude"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -138,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_sent"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/sent"
@@ -147,7 +147,7 @@
                     android:layout_marginLeft="3dp"
                     android:layout_marginStart="3dp"
                     android:text="@string/text_example_sent"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -166,7 +166,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/view"
         android:layout_gravity="center"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginEnd="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginStart="15dp" >
@@ -189,7 +189,7 @@
             android:layout_marginStart="7dp"
             android:layout_marginTop="5dp"
             android:text="@string/text_example_ids"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <TextView
@@ -200,7 +200,7 @@
             android:layout_marginStart="7dp"
             android:layout_marginTop="5dp"
             android:text="@string/text_session"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="18sp" />
     </LinearLayout>
 

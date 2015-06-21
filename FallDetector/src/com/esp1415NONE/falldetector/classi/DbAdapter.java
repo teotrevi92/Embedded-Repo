@@ -17,120 +17,6 @@ public class DbAdapter  {
 	private static String strSeparator = "_";
 	private MyTime myTime;
 
-//	public String getTable1()
-//	{
-//		SQLiteDatabase db = helper.getReadableDatabase();
-//
-//		String[] columns = {StringName.UIDS, StringName.DATE, StringName.DURATION, StringName.SENS};
-//		String table = StringName.TABLE_NAME1;
-//		Cursor cursor = db.query(table, columns, null, null, null, null, null);
-//		StringBuffer buffer = new StringBuffer();
-//		while(cursor.moveToNext())
-//		{
-//			int cid = cursor.getInt(0);
-//			String date = cursor.getString(1);
-//			String duration = cursor.getString(2);
-//			int sens = cursor.getInt(3);
-//			buffer.append(cid+ ""+ date + "" + duration + "" + sens + "\n");
-//		}
-//		cursor.close();
-//		db.close();
-//		return buffer.toString();
-
-//	}
-//	public String getTable2(String id_s)
-//	{
-//		SQLiteDatabase db = helper.getReadableDatabase();
-//
-//		String[] columns = {StringName.UIDF, StringName.LAT, StringName.LONG, StringName.DATEF, StringName.ARRAY};
-//		String table = StringName.TABLE_NAME2;
-//		Cursor cursor = db.query(table, columns, null, null, null, null, null);
-//		StringBuffer buffer = new StringBuffer();
-//		while(cursor.moveToNext())
-//		{
-//			int cid = cursor.getInt(0);
-//			int ids = cursor.getInt(1);
-//			String lat = cursor.getString(2);
-//			String longit = cursor.getString(3);
-//			String datef = cursor.getString(4);
-//			String array = cursor.getString(5);
-//			buffer.append(cid+ ""+ ids + "" + lat + "" + longit + "" + datef+ "" + array + "\n");
-//		}
-//
-//		cursor.close();
-//		db.close();
-//		return buffer.toString();
-//
-//	}
-
-//	public String getTable2plus()
-//	{
-//		SQLiteDatabase db = helper.getReadableDatabase();
-//
-//		String[] columns = {StringName.UIDSREF,StringName.UIDF, StringName.LAT, StringName.LONG, StringName.DATEF};
-//		String table = StringName.TABLE_NAME2;
-//		Cursor cursor = db.query(table, columns, null, null, null, null, null);
-//		StringBuffer buffer = new StringBuffer();
-//		while(cursor.moveToNext())
-//		{
-//			int ids = cursor.getInt(0);
-//			String idf = cursor.getString(1);
-//			String lat = cursor.getString(2);
-//			String longi = cursor.getString(3);
-//			String date = cursor.getString(4);
-//			buffer.append(ids+" "+idf+ " "+ lat + " " + longi + " " + date + "\n");
-//		}
-//
-//		cursor.close();
-//		db.close();
-//		return buffer.toString();
-//
-//	}
-
-//
-//	public String getTable3()
-//	{
-//		SQLiteDatabase db = helper.getReadableDatabase();
-//
-//		String[] columns = {StringName.UIDSREF, StringName.UIDFREF, StringName.MAILREF, StringName.SENT};
-//		String table = StringName.TABLE_NAME3;
-//		Cursor cursor = db.query(table, columns, null, null, null, null, null);
-//		StringBuffer buffer = new StringBuffer();
-//		while(cursor.moveToNext())
-//		{
-//			String ids = cursor.getString(0);
-//			String idf = cursor.getString(1);
-//			String mail = cursor.getString(2);
-//			String sent = cursor.getString(3);
-//			buffer.append(ids+ " "+ idf + " " + mail + " " + sent + "\n");
-//		}
-//		cursor.close();
-//		db.close();
-//		return buffer.toString();
-//
-//	}
-
-//	public String getTable4()
-//	{
-//		SQLiteDatabase db = helper.getReadableDatabase();
-//
-//		String[] columns = {StringName.MAIL, StringName.NAME, StringName.SURNAME};
-//		String table = StringName.TABLE_NAME4;
-//		Cursor cursor = db.query(table, columns, null, null, null, null, null);
-//		StringBuffer buffer = new StringBuffer();
-//		while(cursor.moveToNext())
-//		{
-//			String mail = cursor.getString(0);
-//			String name = cursor.getString(1);
-//			String surname = cursor.getString(2);
-//			buffer.append(mail+ ""+ name + "" + surname + "\n");
-//		}
-//		cursor.close();
-//		db.close();
-//		return buffer.toString();
-//
-//	}
-	
 	//restituisce le informazioni della tabella Session in un array
 	public String[] getInfoTable1(String ids)
 	{
@@ -170,7 +56,7 @@ public class DbAdapter  {
 		return cursor;
 
 	}
-	
+
 	//restituisce il cursore con le informazioni della tabella Contact
 	public Cursor getInfoTable4()
 	{
@@ -182,12 +68,12 @@ public class DbAdapter  {
 		return cursor;
 
 	}
-	
+
 	//restituisce le informazioni della tabella Fall più dettagliate in un array
 	public String[] getMoreInfoTable2(String id_s, String id_f)
 	{
 		SQLiteDatabase db = helper.getReadableDatabase();
-		
+
 		String[] arr = new String[9];
 		String query = "SELECT DISTINCT " + StringName.UIDS + " as _id ," + StringName.NAMES + ","  
 				+ StringName.DATE + "," + StringName.LAT + "," +  StringName.LONG + ","
@@ -288,78 +174,11 @@ public class DbAdapter  {
 		return cursor;
 	}
 
-//	public String[] getInfoUltimateSession(String ids) 
-//	{
-//		SQLiteDatabase db = helper.getReadableDatabase();
-//		String[] s = new String[4];
-//		String[] columns = {StringName.UIDS,StringName.NAMES,StringName.DATE,StringName.DURATION};
-//		String table = StringName.TABLE_NAME1;
-//		String where = StringName.UIDS + "='" + ids + "'";
-//		Cursor cursor = db.query(table, columns, where, null, null, null, null);
-//		if(cursor != null) {
-//			cursor.moveToFirst();
-//			s[0] = Integer.toString(cursor.getInt(0));
-//			s[1] = cursor.getString(1);
-//			s[2] = cursor.getString(2);
-//			s[3] = cursor.getString(3);
-//		}
-//		cursor.close();
-//		db.close();
-//		return s;
-//	}
-
-//	public int getNumberFall(String ids) 
-//	{
-//		SQLiteDatabase db = helper.getReadableDatabase();
-//		int n = 0;
-//		String table = StringName.TABLE_NAME2;
-//		String where = StringName.UIDSREF + " = '" + ids + "'";
-//		String query = "SELECT DISTINCT " + StringName.UIDSREF + " AS _id," + StringName.UIDF
-//				+ " FROM " + table + " WHERE " + where + ";";
-//		Cursor cursor = db.rawQuery(query, null);
-//		n = cursor.getCount();
-//		cursor.close();
-//		db.close();
-//
-//		return n;
-//	}
-
-//	public String[] getInfoCurrentSession(String ids) 
-//	{
-//		SQLiteDatabase db = helper.getReadableDatabase();
-//		String[] s = new String[3];
-//		String[] columns = {StringName.UIDS,StringName.NAMES,StringName.DATE};
-//		String table = StringName.TABLE_NAME1;
-//		String where = StringName.UIDS + "='" + ids + "'";
-//		Cursor cursor = db.query(table, columns, where, null, null, null, null);
-//		if(cursor != null) {
-//			cursor.moveToFirst();
-//			s[0] = Integer.toString(cursor.getInt(0));
-//			s[1] = cursor.getString(1);
-//			s[2] = cursor.getString(2);
-//		}
-//		cursor.close();
-//		db.close();
-//		return s;
-//	}
-
-//	public Cursor getAllRowsTable2() 
-//	{
-//		SQLiteDatabase db = helper.getReadableDatabase();
-//
-//		String query = "SELECT " + StringName.UIDF + " as _id,"  
-//				+ StringName.LAT + "," + StringName.LONG + "," + StringName.UIDSREF + ","
-//				+ StringName.DATEF + " FROM " + StringName.TABLE_NAME2 +";";
-//		Cursor cursor = db.rawQuery(query, null);
-//
-//		return cursor;
-//	}
-
 	//elimina una sessione in particolare 
 	public void dropSession(String ids) 
 	{
 		SQLiteDatabase db = helper.getWritableDatabase();
-		
+
 		db.delete(StringName.TABLE_NAME3, StringName.UIDSREF + " = '" + ids + "' ", null);
 		db.delete(StringName.TABLE_NAME2, StringName.UIDSREF + " = '" + ids + "' ", null);
 		db.delete(StringName.TABLE_NAME1, StringName.UIDS + " = '" + ids + "' ", null);
@@ -482,32 +301,6 @@ public class DbAdapter  {
 		db.close();
 		return s;
 	}
-
-//	//restituisce la data della sessione dandone l'ids
-//	public int[] getDate(int ids) 
-//	{
-//		SQLiteDatabase db = helper.getReadableDatabase();
-//		int[] dat = new int[6];
-//		String result = "";
-//		String[] columns = {StringName.DATE};
-//		String table = StringName.TABLE_NAME1;
-//		String where = StringName.UIDS + "='" + ids + "'";
-//		Cursor cursor = db.query(table, columns, where, null, null, null, null);
-//		if(cursor != null) {
-//			cursor.moveToFirst();
-//			result = cursor.getString(0);
-//		}
-//		dat[0] = Integer.parseInt(result.substring(0, 4)); //anno
-//		dat[1] = Integer.parseInt(result.substring(5, 7)); //mese
-//		dat[2] = Integer.parseInt(result.substring(8, 10)); //giorno
-//		dat[3] = Integer.parseInt(result.substring(11, 13)); //ore
-//		dat[4] = Integer.parseInt(result.substring(14, 16)); //minuti
-//		dat[5] = Integer.parseInt(result.substring(17, 19)); //secondi
-//
-//		cursor.close();
-//		db.close();
-//		return dat;
-//	}
 
 	//restituisce la data della sessione dandone l'ids
 	public int[] getDate(String d) 
@@ -646,7 +439,7 @@ public class DbAdapter  {
 		db.close();
 		return s;
 	}
-	
+
 	//restituisce il cognome del contatto dandone mail
 	public String getSurname(String mail) 
 	{
@@ -698,23 +491,6 @@ public class DbAdapter  {
 		return str;
 	}
 
-//	public String getArrayString(int ids, int idf) 
-//	{
-//		SQLiteDatabase db = helper.getReadableDatabase();
-//		String result = "";
-//		String[] columns = {StringName.ARRAY};
-//		String table = StringName.TABLE_NAME2;
-//		String where = StringName.UIDSREF + " = '" + ids + "' AND " + StringName.UIDF + " = '" + idf + "'";
-//		Cursor cursor = db.query(table, columns, where, null, null, null, null);
-//		if(cursor != null) {
-//			cursor.moveToFirst();
-//			result = cursor.getString(0);
-//		}
-//		cursor.close();
-//		db.close();
-//		return result;
-//	}
-
 	//converte in float[] un array di tipo String[]
 	public float[] convertStringToArray(String str)
 	{
@@ -724,15 +500,6 @@ public class DbAdapter  {
 			a[i] = Float.parseFloat(arr[i]);
 		return a;
 	}
-
-//	public int convertStringToArrayInt(String str)
-//	{
-//		String[] arr = str.split(strSeparator);
-//		float[] a = new float[arr.length];
-//		for(int i = 0; i < arr.length; i++)
-//			a[i] = Float.parseFloat(arr[i]);
-//		return a.length;
-//	}
 
 	//setta una caduta a Si, quindi mail inviata
 	public void setSentTrue(String idf, String ids, String[] listContact)
@@ -820,7 +587,6 @@ public class DbAdapter  {
 
 			}
 		}
-
 
 
 	}
