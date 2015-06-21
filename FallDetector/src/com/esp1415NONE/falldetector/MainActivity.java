@@ -128,6 +128,7 @@ public class MainActivity extends ActionBarActivity {
 			public boolean onMenuItemClick(MenuItem item) {
 				// TODO Auto-generated method stub
 
+				fragmentManager.popBackStack();
 				FragmentSettings ls_fragment4 = new FragmentSettings();
 				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment4);
 				fragmentTransaction.commit();

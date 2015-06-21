@@ -17,14 +17,6 @@
         <item>info</item>
     </array>
 
-    <!--
-    <string-array name="menu">
-		<item>Edit</item>
-		<item>Delete</item>
-		<item>Send</item>
-	</string-array>
-    -->
-
     <string-array name="maxsession_arrays">
         <item>1 ora</item>
         <item>2 ore</item>

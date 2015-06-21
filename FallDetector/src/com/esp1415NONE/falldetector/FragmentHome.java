@@ -42,7 +42,7 @@ public class FragmentHome extends Fragment{
 	private Timer myTimer;
 	private TimerTask myTimerTask;
 	private DbAdapter dbAdapter;
-	private TextView ids_,nameS_,dateS_,durationS_,nfall_;
+	private TextView ids_,nameS_,dateS_,durationS_,nfall_,ultimateS,tx2,tx3,tx4;
 	private ImageView logo;
 
 	/* Defines callbacks for service binding, passed to bindService() */
@@ -103,36 +103,56 @@ public class FragmentHome extends Fragment{
 		dateS_ = (TextView) view.findViewById(R.id.dates);
 		durationS_ = (TextView) view.findViewById(R.id.duration);
 		nfall_ = (TextView) view.findViewById(R.id.nfall);
+		ultimateS = (TextView) view.findViewById(R.id.ultimatesession);
 		logo = (ImageView) view.findViewById(R.id.logo);
+		tx2 = (TextView) view.findViewById(R.id.textView2);
+		tx3 = (TextView) view.findViewById(R.id.textView3);
+		tx4 = (TextView) view.findViewById(R.id.textView4);
 
-		String idss = dbAdapter.getCurrentSessionID();
-
-		Cursor c = dbAdapter.getInfoTableRiepilog(idss);
-		String r1   = c.getString(c.getColumnIndex("_id"));
-		String r2   = c.getString(c.getColumnIndex(StringName.NAMES));
-		String r3   = c.getString(c.getColumnIndex(StringName.DATE));
-		String r4   = c.getString(c.getColumnIndex(StringName.DURATION));
-		String r5   = c.getString(c.getColumnIndex("countFall"));
-
-		//se cadute zero, inserisco 0
-		if(r5 == null)
-			r5 = "0";
-
-		ids_.setText(r1);
-		nameS_.setText(r2);
-		dateS_.setText(r3);
-		durationS_.setText(r4);
-		nfall_.setText(r5);
-
-		int[] dateA = new int[6];
-		dateA = dbAdapter.getDate(dateS_.getText().toString());
-		int size = 30;
-
-		MyGraph rndBitmap = new MyGraph(size,size);
-		rndBitmap.doRandomImg(dateA[0], dateA[1], dateA[2], dateA[3], dateA[4], dateA[5], size);
-		logo.setImageBitmap(rndBitmap.getRandomImg());
+		if(dbAdapter.getNumberSession() == 0) {
+			ultimateS.setText("Nessuna Sessione Precedente");
+			ids_.setVisibility(View.INVISIBLE);
+			nameS_.setVisibility(View.INVISIBLE);
+			dateS_.setVisibility(View.INVISIBLE);
+			durationS_.setVisibility(View.INVISIBLE);
+			nfall_.setVisibility(View.INVISIBLE);
+			logo.setVisibility(View.INVISIBLE);
+			tx2.setVisibility(View.INVISIBLE);
+			tx3.setVisibility(View.INVISIBLE);
+			tx4.setVisibility(View.INVISIBLE);
+		}
+		else {
 
 
+			String idss = dbAdapter.getCurrentSessionID();
+
+			Cursor c = dbAdapter.getInfoTableRiepilog(idss);
+			String r1   = c.getString(c.getColumnIndex("_id"));
+			String r2   = c.getString(c.getColumnIndex(StringName.NAMES));
+			String r3   = c.getString(c.getColumnIndex(StringName.DATE));
+			String r4   = c.getString(c.getColumnIndex(StringName.DURATION));
+			String r5   = c.getString(c.getColumnIndex("countFall"));
+
+			//se cadute zero, inserisco 0
+			if(r5 == null)
+				r5 = "0";
+
+			ids_.setText(r1);
+			nameS_.setText(r2);
+			dateS_.setText(r3);
+			durationS_.setText(r4);
+			nfall_.setText(r5);
+
+			int[] dateA = new int[6];
+			dateA = dbAdapter.getDate(dateS_.getText().toString());
+			int size = 30;
+
+			MyGraph rndBitmap = new MyGraph(size,size);
+			rndBitmap.doRandomImg(dateA[0], dateA[1], dateA[2], dateA[3], dateA[4], dateA[5], size);
+			logo.setImageBitmap(rndBitmap.getRandomImg());
+
+		}
+		
 		play.setOnClickListener(new View.OnClickListener() {
 
 			@Override

@@ -13,7 +13,8 @@
             android:layout_height="wrap_content"
             android:minHeight="32dp"
             android:text="@string/settings"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
         <LinearLayout
             android:id="@+id/linearLayout1"
@@ -22,32 +23,34 @@
 
             <TextView
                 android:id="@+id/textView1"
-                android:layout_width="140dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:minWidth="130dp"
+            android:textSize="18sp"
                 android:text="@string/textaccurancy"
                 android:textColor="@color/white" />
 
             <Spinner
                 android:id="@+id/spinnerAcc"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/accurancy_arrays"
                 android:prompt="@string/accurancy_prompt" />
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="140dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:minWidth="130dp"
+            android:textSize="18sp"
                 android:text="@string/textmaxduration"
                 android:textColor="@color/white" />
 
             <Spinner
                 android:id="@+id/spinnerMaxSession"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/maxsession_arrays"
                 android:prompt="@string/maxsession_prompt" />
@@ -60,26 +63,28 @@
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="140dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:minWidth="130dp"
+            android:textSize="18sp"
                 android:text="@string/textsens"
                 android:textColor="@color/white" />
 
             <Spinner
                 android:id="@+id/spinnerSens"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/sens_arrays"
                 android:prompt="@string/sens_prompt" />
 
             <TextView
                 android:id="@+id/textView5"
-                android:layout_width="140dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:minWidth="130dp"
+            android:textSize="18sp"
                 android:text="@string/textemail"
                 android:textColor="@color/white" />
 
@@ -89,6 +94,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/mybutton"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:text="@string/buttonaddemail" />
         </LinearLayout>
 
@@ -99,7 +106,7 @@
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:minWidth="130dp"

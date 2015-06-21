@@ -22,7 +22,6 @@
 
         <EditText
             android:id="@+id/name"
-            style="@style/button_text_dialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10sp"
@@ -89,8 +88,6 @@
             android:layout_marginStart="10sp"
             android:ems="10"
             android:inputType="textEmailAddress" >
-
-            <requestFocus />
         </EditText>
     </LinearLayout>
 

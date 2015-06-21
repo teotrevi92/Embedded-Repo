@@ -13,7 +13,8 @@
             android:layout_height="wrap_content"
             android:minHeight="32dp"
             android:text="@string/settings"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
         <LinearLayout
             android:id="@+id/linearLayout1"
@@ -27,7 +28,8 @@
                 android:layout_gravity="center_vertical"
                 android:minWidth="130dp"
                 android:text="@string/textaccurancy"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <Spinner
                 android:id="@+id/spinnerAcc"
@@ -49,7 +51,8 @@
                 android:layout_gravity="center_vertical"
                 android:minWidth="130dp"
                 android:text="@string/textmaxduration"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <Spinner
                 android:id="@+id/spinnerMaxSession"
@@ -71,7 +74,8 @@
                 android:layout_gravity="center_vertical"
                 android:minWidth="130dp"
                 android:text="@string/textsens"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <Spinner
                 android:id="@+id/spinnerSens"
@@ -93,7 +97,8 @@
                 android:layout_gravity="center_vertical"
                 android:minWidth="130dp"
                 android:text="@string/texttimer"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <CheckBox
                 android:id="@+id/checkBoxTimer"
@@ -125,7 +130,8 @@
                 android:layout_gravity="center_vertical"
                 android:minWidth="130dp"
                 android:text="@string/textemail"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/buttonemail"
