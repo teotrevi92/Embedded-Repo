@@ -61,7 +61,7 @@
                 android:id="@+id/id_s"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text_example_sess"
+                android:text="@string/text_example_id"
                 android:textColor="@color/white"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -99,7 +99,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
-                android:text="@string/text_example_date_sess"
+                android:text="@string/text_example_date"
                 android:textColor="@color/white"
                 android:textSize="26sp" />
         </LinearLayout>

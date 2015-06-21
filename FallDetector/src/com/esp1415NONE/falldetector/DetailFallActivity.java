@@ -74,7 +74,7 @@ public class DetailFallActivity extends Activity {
 		dateA = dbAdapter.getDate(dateS);
 
 		int size = 30;
-		
+
 		MyGraph rndBitmap = new MyGraph(size,size);
 		rndBitmap.doRandomImg(dateA[0], dateA[1], dateA[2], dateA[3], dateA[4], dateA[5], size);
 		logo.setImageBitmap(rndBitmap.getRandomImg());

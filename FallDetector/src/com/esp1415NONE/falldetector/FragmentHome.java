@@ -152,7 +152,7 @@ public class FragmentHome extends Fragment{
 			logo.setImageBitmap(rndBitmap.getRandomImg());
 
 		}
-		
+
 		play.setOnClickListener(new View.OnClickListener() {
 
 			@Override

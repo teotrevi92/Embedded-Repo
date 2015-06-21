@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:clickable="true"
-            android:text="@string/toast_rename_button" />
+            android:text="@string/toast_act_ok" />
     </LinearLayout>
 
 </LinearLayout>

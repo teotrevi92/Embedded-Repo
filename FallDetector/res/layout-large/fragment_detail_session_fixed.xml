@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginStart="15dp"
-                    android:text="@string/text_example_sess"
+                    android:text="@string/text_example_id"
                     android:textColor="@color/white"
                     android:textSize="27sp"
                     android:textStyle="bold" />
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginStart="5dp"
-                    android:text="@string/text_example_date_sess"
+                    android:text="@string/text_example_date"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
             </LinearLayout>

@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:layout_marginStart="4dp"
-                    android:text="@string/text_example_fall"
+                    android:text="@string/text_example_id"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -75,7 +75,7 @@
                     android:id="@+id/datef"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_example_date_fall"
+                    android:text="@string/text_example_date"
                     android:textColor="@color/black" />
             </LinearLayout>
 
