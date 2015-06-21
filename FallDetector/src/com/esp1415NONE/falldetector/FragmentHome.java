@@ -45,13 +45,11 @@ public class FragmentHome extends Fragment{
 	private TextView ids_,nameS_,dateS_,durationS_,nfall_,ultimateS,tx2,tx3,tx4;
 	private ImageView logo;
 
-	/* Defines callbacks for service binding, passed to bindService() */
 	private ServiceConnection mConnection = new ServiceConnection() {
 
 		@Override
 		public void onServiceConnected(ComponentName className, IBinder service) {
 
-			// We've bound to LocalService, cast the IBinder and get LocalService instance
 			LocalBinder binder = (LocalBinder) service;
 			cronom = binder.getService();
 			mBound = true;

@@ -65,14 +65,11 @@ public class FragmentCurrentSession extends Fragment {
 	private String idss;
 	private Cursor c;
 
-
-	/* Defines callbacks for service binding, passed to bindService() */
 	private ServiceConnection mConnection = new ServiceConnection() {
 
 		@Override
 		public void onServiceConnected(ComponentName className, IBinder service) {
 
-			// We've bound to LocalService, cast the IBinder and get LocalService instance
 			LocalBinder binder = (LocalBinder) service;
 			cronom = binder.getService();
 			mBound = true;

@@ -195,8 +195,7 @@ public class MainActivity extends ActionBarActivity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			// Highlight the selected item, update the title, and close the drawer
-			// update selected item and title, then close the drawer
+			// Evidenzia l'item selezionato, aggiorna il titolo e chiude il drawer
 			mDrawerList.setItemChecked(position, true);
 			switch (position) {
 			case 1:
