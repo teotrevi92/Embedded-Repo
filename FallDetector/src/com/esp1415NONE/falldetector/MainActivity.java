@@ -40,9 +40,12 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_drawer);
 
+		//inizializzazione database
 		dbAdapter = new DbAdapter(getApplication());
+
 		fragmentManager = getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
+
 		if (savedInstanceState == null)
 		{
 			//apre in automatico questa activity quando avvio l'app
@@ -59,18 +62,19 @@ public class MainActivity extends ActionBarActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 
+		//mi prendo il layout del drawer
 		mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
 		//imposto come l'ombra del drawer quando lo apro
 		mDrawer.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-		_initMenu();
+		initMenu();
 		mDrawerToggle = new CustomActionBarDrawerToggle(this, mDrawer);
 		mDrawer.setDrawerListener(mDrawerToggle);
 
 	}
 
-	private void _initMenu() {
+	private void initMenu() {
 		NsMenuAdapter mAdapter = new NsMenuAdapter(this);
 
 		// Aggiungo l'header
@@ -108,7 +112,7 @@ public class MainActivity extends ActionBarActivity {
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
-		// Sync the toggle state after onRestoreInstanceState has occurred.
+
 		mDrawerToggle.syncState();
 	}
 
@@ -122,6 +126,8 @@ public class MainActivity extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
+
+		//pulsante impostazioni in alto a dx
 		menu.findItem(R.id.action_settings).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
 			@Override
@@ -129,8 +135,8 @@ public class MainActivity extends ActionBarActivity {
 				// TODO Auto-generated method stub
 
 				fragmentManager.popBackStack();
-				FragmentSettings ls_fragment4 = new FragmentSettings();
-				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment4);
+				FragmentSettings ls_fragment = new FragmentSettings();
+				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();
 				return false;
@@ -139,11 +145,11 @@ public class MainActivity extends ActionBarActivity {
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	/* Called whenever we call invalidateOptionsMenu() */
+
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 
-		// If the nav drawer is open, hide action items related to the content view
+		//se il drawer e' aperto, nascondo il pulsante impostazioni in alto a dx
 		boolean drawerOpen = mDrawer.isDrawerOpen(mDrawerList);
 		menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
@@ -151,15 +157,11 @@ public class MainActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		/*
-		 * The action bar home/up should open or close the drawer.
-		 * ActionBarDrawerToggle will take care of this.
-		 */
+
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
 
-		// Handle your other action bar items...
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -169,21 +171,21 @@ public class MainActivity extends ActionBarActivity {
 			super(
 					mActivity,
 					mDrawerLayout, 
-					R.drawable.ic_drawer,
-					R.string.ns_menu_bar, 
+					R.drawable.ic_drawer, //icona menu
+					R.string.ns_menu_bar,
 					R.string.ns_menu_bar);
 		}
 
 		@Override
 		public void onDrawerClosed(View view) {
 			getSupportActionBar().setTitle(getString(R.string.ns_menu_bar));
-			ActivityCompat.invalidateOptionsMenu(MainActivity.this); // creates call to onPrepareOptionsMenu()
+			ActivityCompat.invalidateOptionsMenu(MainActivity.this); // creato alla chiamata di onPrepareOptionsMenu()
 		}
 
 		@Override
 		public void onDrawerOpened(View drawerView) {
 			getSupportActionBar().setTitle(getString(R.string.ns_menu_bar));
-			ActivityCompat.invalidateOptionsMenu(MainActivity.this); // creates call to onPrepareOptionsMenu()
+			ActivityCompat.invalidateOptionsMenu(MainActivity.this); // creato alla chiamata di onPrepareOptionsMenu()
 		}
 	}
 
@@ -201,41 +203,44 @@ public class MainActivity extends ActionBarActivity {
 
 				if(ChronoService.isPlaying == 0) {
 					fragmentManager.popBackStack();
-					FragmentHome ls_fragment1 = new FragmentHome();
-					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment1);
+					FragmentHome ls_fragment = new FragmentHome();
+					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 					fragmentTransaction.commit();
 
 					//ricreo l'oggetto per nuova futura Transaction
 					fragmentTransaction = fragmentManager.beginTransaction();
 					mDrawer.closeDrawer(mDrawerList);
+
 				}
 				else if(ChronoService.isPlaying == 1 || ChronoService.isPlaying == -1) {
 					fragmentManager.popBackStack();
-					FragmentCurrentSession ls_fragment1 = new FragmentCurrentSession();
-					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment1);
+					FragmentCurrentSession ls_fragment = new FragmentCurrentSession();
+					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 					fragmentTransaction.commit();
 
 					//ricreo l'oggetto per nuova futura Transaction
 					fragmentTransaction = fragmentManager.beginTransaction();
 					mDrawer.closeDrawer(mDrawerList);
+
 				}
 				break;
 			case 2:
 
 				if(ChronoService.isPlaying == 0) {
 					fragmentManager.popBackStack();
-					FragmentHome ls_fragment1 = new FragmentHome();
-					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment1);
+					FragmentHome ls_fragment = new FragmentHome();
+					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 					fragmentTransaction.commit();
 
 					//ricreo l'oggetto per nuova futura Transaction
 					fragmentTransaction = fragmentManager.beginTransaction();
 					mDrawer.closeDrawer(mDrawerList);
+
 				}
 				else if(ChronoService.isPlaying == 1 || ChronoService.isPlaying == -1) {
 					fragmentManager.popBackStack();
-					FragmentCurrentSession ls_fragment1 = new FragmentCurrentSession();
-					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment1);
+					FragmentCurrentSession ls_fragment = new FragmentCurrentSession();
+					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 					fragmentTransaction.commit();
 
 					//ricreo l'oggetto per nuova futura Transaction
@@ -251,39 +256,42 @@ public class MainActivity extends ActionBarActivity {
 				else {
 
 					fragmentManager.popBackStack();
-					FragmentListView ls_fragment3 = new FragmentListView();
-					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment3);
+					FragmentListView ls_fragment = new FragmentListView();
+					fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 					fragmentTransaction.commit();
 					fragmentTransaction = fragmentManager.beginTransaction();
 					mDrawer.closeDrawer(mDrawerList);
+
 				}
 				break;
 
 			case 4:
 
 				fragmentManager.popBackStack();
-				FragmentSettings ls_fragment4 = new FragmentSettings();
-				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment4);
+				FragmentSettings ls_fragment = new FragmentSettings();
+				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();
 				mDrawer.closeDrawer(mDrawerList);
+
 				break;
 
 			case 5:
 
 				fragmentManager.popBackStack();
-				FragmentCredits ls_fragment5 = new FragmentCredits();
-				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment5);
+				FragmentCredits ls_fragment1 = new FragmentCredits();
+				fragmentTransaction.replace(R.id.frag_show_activity, ls_fragment1);
 				fragmentTransaction.commit();
 				fragmentTransaction = fragmentManager.beginTransaction();
 				mDrawer.closeDrawer(mDrawerList);
+
 				break;	
 
 
 
 			default:
-				//You should reset item counter
 
+				//resetta il drawer di default
 				mDrawer.closeDrawer(mDrawerList);
 
 				break;

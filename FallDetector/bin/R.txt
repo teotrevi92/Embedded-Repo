@@ -389,7 +389,7 @@ int id action_menu_presenter 0x7f0a0006
 int id action_mode_bar 0x7f0a002e
 int id action_mode_bar_stub 0x7f0a002d
 int id action_mode_close_button 0x7f0a0020
-int id action_settings 0x7f0a00a2
+int id action_settings 0x7f0a00a1
 int id activity_chooser_view_content 0x7f0a0021
 int id addbutton 0x7f0a0059
 int id always 0x7f0a0014
@@ -406,8 +406,8 @@ int id datef 0x7f0a0047
 int id dates 0x7f0a0086
 int id decor_content_parent 0x7f0a002f
 int id default_activity_button 0x7f0a0024
-int id delete_id 0x7f0a00a3
-int id delete_id_contact 0x7f0a00a6
+int id delete_id 0x7f0a00a2
+int id delete_id_contact 0x7f0a00a5
 int id deletedata 0x7f0a0099
 int id deletesession 0x7f0a0098
 int id dialog 0x7f0a0019
@@ -460,8 +460,7 @@ int id logo 0x7f0a0069
 int id logoS 0x7f0a007d
 int id longit 0x7f0a004d
 int id mail 0x7f0a005c
-int id menu_divider 0x7f0a00a1
-int id menurow_counter 0x7f0a00a0
+int id menu_divider 0x7f0a00a0
 int id menurow_icon 0x7f0a009e
 int id menurow_title 0x7f0a009f
 int id middle 0x7f0a001d
@@ -470,7 +469,7 @@ int id name 0x7f0a005a
 int id nameS 0x7f0a0054
 int id name_s 0x7f0a006b
 int id never 0x7f0a0017
-int id new_session 0x7f0a00a5
+int id new_session 0x7f0a00a4
 int id nfall 0x7f0a0088
 int id none 0x7f0a000f
 int id normal 0x7f0a000b
@@ -490,8 +489,8 @@ int id relativeLayoutSession1 0x7f0a0065
 int id relativeLayoutSession2 0x7f0a0072
 int id relativeLayoutSession3 0x7f0a006e
 int id relativeLayoutSession5 0x7f0a0068
-int id ren_id 0x7f0a00a4
-int id ren_id_contact 0x7f0a00a7
+int id ren_id 0x7f0a00a3
+int id ren_id_contact 0x7f0a00a6
 int id search_badge 0x7f0a0035
 int id search_bar 0x7f0a0034
 int id search_button 0x7f0a0036

@@ -28,21 +28,6 @@
             android:layout_toRightOf="@+id/menurow_icon"
             android:gravity="center_vertical"
             android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/menurow_counter"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:padding="6dp"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp"
-            android:textStyle="bold" />
     </RelativeLayout>
 
     <View
