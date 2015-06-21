@@ -1,7 +1,6 @@
 package com.esp1415NONE.falldetector;
 
 import com.esp1415NONE.falldetector.ChronoService;
-
 import com.esp1415NONE.falldetector.ChronoService.LocalBinder;
 import com.esp1415NONE.falldetector.classi.DbAdapter;
 import com.esp1415NONE.falldetector.classi.MyGraph;
@@ -9,6 +8,7 @@ import com.esp1415NONE.falldetector.classi.StringName;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ComponentName;
@@ -35,6 +35,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,6 +65,8 @@ public class FragmentCurrentSession extends Fragment {
 	private ImageView logo;
 	private String idss;
 	private Cursor c;
+	private LinearLayout layoutRect;
+	private String r5;
 
 	private ServiceConnection mConnection = new ServiceConnection() {
 
@@ -149,6 +152,7 @@ public class FragmentCurrentSession extends Fragment {
 		if(isOpenDialog == 1)
 			dialogRenameSession(getActivity(), preferences.getString("ids", null),preferences.getString("nameS",null));
 
+		layoutRect = (LinearLayout) view.findViewById(R.id.LayoutRect);
 		play = (ImageButton) view.findViewById(R.id.playbutton);
 		pause = (ImageButton) view.findViewById(R.id.pausebutton);
 		stop = (ImageButton) view.findViewById(R.id.stopbutton);
@@ -183,7 +187,7 @@ public class FragmentCurrentSession extends Fragment {
 		String r1   = c.getString(c.getColumnIndex("_id"));
 		String r2   = c.getString(c.getColumnIndex(StringName.NAMES));
 		String r3   = c.getString(c.getColumnIndex(StringName.DATE));
-		String r5   = c.getString(c.getColumnIndex("countFall"));
+		r5   = c.getString(c.getColumnIndex("countFall"));
 
 		//se non ci sono cadute, inserisco 0
 		if(r5 == null)
@@ -201,6 +205,22 @@ public class FragmentCurrentSession extends Fragment {
 		MyGraph rndBitmap = new MyGraph(size,size);
 		rndBitmap.doRandomImg(dateA[0], dateA[1], dateA[2], dateA[3], dateA[4], dateA[5], size);
 		logo.setImageBitmap(rndBitmap.getRandomImg());
+
+		layoutRect.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(r5.equals("0")) {
+					Toast.makeText(getActivity(), "Non ci sono cadute", Toast.LENGTH_SHORT).show();
+				}
+				else {
+					Intent intent = new Intent(getActivity(),ListFallActivity.class);
+					intent.putExtra("ids", idss);
+					startActivity(intent);
+				}
+			}
+		});
 
 		play.setOnClickListener(new View.OnClickListener() {
 
@@ -296,7 +316,7 @@ public class FragmentCurrentSession extends Fragment {
 					idss = dbAdapter.getCurrentSessionID();
 					//aggiorno le cadute in tempo reale
 					c = dbAdapter.getInfoTableRiepilog(idss);
-					String r5   = c.getString(c.getColumnIndex("countFall"));
+					r5   = c.getString(c.getColumnIndex("countFall"));
 					if(r5 == null)
 						r5 = "0";
 					nfall_.setText(r5);

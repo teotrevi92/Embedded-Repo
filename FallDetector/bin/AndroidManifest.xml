@@ -55,6 +55,11 @@
             android:label="@string/title_activity_detail_fall"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
+        <activity
+            android:name=".ListFallActivity"
+            android:label="@string/title_activity_list_fall"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
     </application>
 
 </manifest>

@@ -96,5 +96,7 @@
     <string name="name_course">- Programmazione Di Sistemi Embedded -</string>
     <string name="name_course_min">Progr. Di Sistemi Embedded</string>
     <string name="name_coach">Professore:  Carlo Fantozzi</string>
+    <string name="title_activity_list_fall">Cadute Sessione In Corso</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
