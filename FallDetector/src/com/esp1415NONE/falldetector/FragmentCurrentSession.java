@@ -40,7 +40,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FragmentCurrentSession extends Fragment {	
+public class FragmentCurrentSession extends Fragment {
 
 	private ImageButton play;
 	private ImageButton pause;
